@@ -1,0 +1,85 @@
+{
+  "name": "system_enr",
+  "version": "0.1.0",
+  "main": "localhost:8080",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "nw-serve": "nw .",
+    "nw-build": "build --tasks linux-x64 --mirror https://dl.nwjs.io/ ."
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "core-js": "^2.6.5",
+    "js-cookie": "^2.2.0",
+    "nw-vue-devtools-prebuilt": "^0.0.10",
+    "nwjs-builder-phoenix": "^1.15.0",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.12",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.12",
+    "@vue/cli-service": "^3.0.0-rc.12",
+    "nw": "^0.49.2-sdk",
+    "vue-awesome": "^4.1.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "build": {
+    "nwVersion": "0.40.1",
+    "strippedProperties": [
+      "chromium-args"
+    ]
+  },
+  "window": {
+    "title": "system_enr",
+    "icon": "favicon.png",
+    "toolbar": true,
+    "frame": false,
+    "width": 1200,
+    "height": 660,
+    "position": "center",
+    "min_width": 1200,
+    "min_height": 660,
+    "max_width": 1200,
+    "max_height": 660,
+    "transparent": true
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "chromium-args": "--load-extension='./node_modules/nw-vue-devtools-prebuilt/extension' --enable-node-worker --mixed-context",
+  "manifestUrl": "http://127.0.0.1:3127/package.json"
+}
