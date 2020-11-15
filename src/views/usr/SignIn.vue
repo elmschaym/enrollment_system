@@ -3,9 +3,9 @@
         <div class="bnnr">
             <div class="name">
                 <div class="p">
-                    <span>SYSTEM_ENR</span>
+                    <span>Adiong Memorial Polytechnic State College</span>
                 </div>
-                <div class="q">Management System</div>
+                <div class="q">Enrollemt System</div>
             </div>
         </div>
         <div class="form">
@@ -111,7 +111,7 @@
 
     .bnnr .name { position: absolute; top: 200px; left: 32px; right: 32px; }
     .bnnr .name .p { color: #111; }
-    .bnnr .name .p span { border-bottom: 10px solid #eee; font-size: 72px; text-transform: uppercase; color: #fff; font-weight: bold; display: inline-block; padding: 0 0 6px 0;}
+    .bnnr .name .p span { border-bottom: 10px solid #eee; font-size: 35px; text-transform: uppercase; color: #fff; font-weight: bold; display: inline-block; padding: 0 0 6px 0;}
     .bnnr .name .q { font-size: 36px; text-transform: uppercase; color: #fff; font-weight: bold; margin-top: 6px;  }
 
     div.l { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px;  background-color: rgba(0,0,0,0.10); padding: 24px 36px 48px 36px; border-radius: 10px; }
