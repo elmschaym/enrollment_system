@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>system_enr</title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta charset="UTF-8">
+		<title>system_enr</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+		<meta name="rating" content="general"/>
+		<meta name="author" content="Paul Caras"/>
+		<meta name="distribution" content="global"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <meta name="rating" content="general"/>
-    <meta name="author" content="Paul Caras"/>
-    <meta name="distribution" content="global"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="preload" href="/static/fonts/OpenSans-Regular.ttf" as="font"/>
-    <link rel="preload" href="/static/fonts/OpenSans-Bold.ttf" as="font"/>
-    <link rel="preload" href="/static/fonts/OpenSans-Italic.ttf" as="font"/>
-    <link rel="preload" href="/static/fonts/OpenSans-Light.ttf" as="font"/>
-    <link rel="preload" href="/static/fonts/BAUHS93.TTF" as="font"/>
-    <link rel="preload" href="/static/css/main.css" as="style"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
-  </head>
-  <body>
-    <div id="app" style="height: 660px"></div>
-    <script> var gui = require("nw.gui"); var win = gui.Window.get(); win.on("close", function(){let nw = this; window.setTimeout(function(){ nw.hide(); nw.close(true); }, 500); }); console.log(win);</script> 
-  </body>
+		<link rel="icon" href="<%= BASE_URL %>static/favicon-32.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" href="<%= BASE_URL %>static/favicon-32.ico" type="image/x-icon"/>
+		<link rel="stylesheet" type="text/css" href="<%= BASE_URL %>static/css/main.css"/>
+		<link rel="stylesheet" media="print" type="text/css" href="<%= BASE_URL %>static/css/print.css">
+		<script type="text/javascript">
+			window.API_BASEURL = 'http://127.0.0.1:8000';
+			window.nw = nw || {};
+			window.nwGui = require("nw.gui");
+			window.nwWin = nwGui.Window.get();
+		</script>
+	</head>
+	<body>
+		<div id="app" style="height: 660px"></div>
+	</body>
 </html>

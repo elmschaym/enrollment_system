@@ -1,8 +1,10 @@
 <template>
-    <div class="sele">
-        <div class="name" @click="isSelect = !isSelect" :style="styles ? styles : 'width: 100%; border-radius: 20px;'"><span>{{ selected }}</span> <v-icon name="caret-down"></v-icon></div>
-        <div class="opti" v-show="isSelect">
-            <span v-for="(o,i) in options" :key="i" @click="hasSelected(i)">{{ o.name }}</span>
+    <div class="wrap-o">
+        <div class="sele" :style="styles[0] ? styles[0] : 'width: 100%;'">
+            <div class="name" @click="isSelect = !isSelect"><span>{{ selected }}</span> <v-icon name="caret-down"></v-icon></div>
+            <div class="opti" v-show="isSelect">
+                <span :style="styles[1] ? styles[1] : 'padding: 7px 8px'" v-for="(o,i) in options" :key="i" @click="hasSelected(i)">{{ o.name }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -17,12 +19,16 @@
                 required: true
             },
             styles: {
-                type: String,
+                type: Array,
                 required: false
             },
             setValue: {
                 type: Function,
                 required: true
+            },
+            presets: {
+                type: Object,
+                default: () => ({ id: 0, name: '------' })
             }
         },
         data() {
@@ -39,19 +45,25 @@
             }
         },
         mounted() {
-            this.selected = "- - - - - -";
-            this.setValue(0);
+            this.selected = this.presets.name;
+            this.setValue(this.presets.id);
         }
     }
 </script>
 
 <style scoped>
-    .sele { position: relative; }
-    .name { color: #391e22; padding: 8px 10px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; box-shadow: 1px 1px 8px #e0e0e0 ; cursor: pointer; }
-    .name span { font-size: 11px; color: #555; }
+    .wrap-o { position: relative; }
+    .sele { color: #391e22; background-color: #fdfdfd; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; position: relative; border-radius: 2px; padding: 6px 10px 6px 10px; height: 27px; }
+
+    .name { height: 100%; }
+    .name span { font-size: 11px; color: #111; }
     .name svg { float: right; height: 10px; width: 10px; }
 
-    .opti { position: absolute; top: 100%; width: 100%; background-color: #fbfbfb; border: 1px solid #eaeaea; box-shadow: 0px 4px 9px rgba(0,0,0,0.15); overflow-y: scroll; max-height: 160px; z-index: 5000; }
-    .opti span { display: block; padding: 7px 8px; border-bottom: 1px solid #f5f5f5; border-top: 1px solid #f8f8f8; color: #111; font-size: 11px; }
+    .opti { position: absolute; top: 0; left: 0; right: 0; background-color: #fff; box-shadow: 0 4px 9px rgba(0,0,0,0.12); overflow-y: scroll; max-height: 160px; z-index: 5000; }
+    .opti::-webkit-scrollbar { width: 4px; display: block; }
+    .opti::-webkit-scrollbar-track { background: transparent; }
+    .opti::-webkit-scrollbar-thumb { background-color: #d0d0d0; border-radius: 4px; }
+
+    .opti span { display: block; border-top: 1px solid #f8f8f8; color: #111; font-size: 11px; }
     .opti span:hover { background-color: #f0f0f0 }
 </style>

@@ -64,8 +64,8 @@
                         vm.isConnecting = true;
                         let data = res.body;
                         if (data.stat == 1) {
-                            vm._storageSet('hash', { hash: data.hash });
-                            vm._storageSet('user', { id: data.id, username: data.username });
+                            vm.$storageSet('hash', { hash: data.hash });
+                            vm.$storageSet('user', { id: data.id, username: data.username });
                             window.setTimeout(function() {
                                 vm.$router.push('/'+ data.redr);
                             }, 2000)

@@ -2,7 +2,7 @@
 	<div class="wrap-d">
 		<div class="t">
 			<div class="find">
-				<input placeholder="Find pet, owner..."/>
+				<input placeholder="Find student, admission, department"/>
 				<span><v-icon name="search"></v-icon></span>
 			</div>
 			<div class="w">
@@ -63,9 +63,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="none" v-else>
-						No Services Today
-					</div>
 					<ui-loader v-if="isFetchingSL"></ui-loader>
 				</div>
 				<div class="feed">
@@ -115,16 +112,16 @@
 				modules: [
 					[
 						{ name: 'Admission', icon: 'bed', link: 'adm-index', style: '#fff5ee' },
-						{ name: 'Enrollments', icon: 'puzzle-piece', link: 'fin-index', style: '#f5f5dc' },
-						{ name: 'Billing', icon: 'paw', link: 'pet-index', style: '#f5e4e1' },
-						{ name: 'Department', icon: 'thermometer', link: 'lab-index', style: '#f0f8ff' }
+						{ name: 'Enrollments', icon: 'puzzle-piece', link: 'enr-index', style: '#f5f5dc' },
+						{ name: 'Finances', icon: 'paw', link: 'fin-index', style: '#f5e4e1' },
+						{ name: 'Department', icon: 'thermometer', link: 'dep-index', style: '#f0f8ff' }
 						
 					],
 					[
-						{ name: 'Students', icon: 'flask', link: 'pha-index', style: '#f0fff0' },
-						{ name: 'Subjects', icon: 'users', link: 'own-index', style: '#faebd7' },
-						{ name: 'Sections', icon: 'universal-access', link: 'ser-index', style: '#faf0e6' },
-						{ name: 'Courses', icon: 'calendar', link: 'eve-index', style: '#f5f5f5' },
+						{ name: 'Students', icon: 'flask', link: 'stu-index', style: '#f0fff0' },
+						{ name: 'Subjects', icon: 'users', link: 'sub-index', style: '#faebd7' },
+						{ name: 'Sections', icon: 'universal-access', link: 'sec-index', style: '#faf0e6' },
+						{ name: 'Courses', icon: 'calendar', link: 'cou-index', style: '#f5f5f5' },
 					]
 				],
 				admLists: [],
@@ -220,10 +217,6 @@
 			}
 		},
 		mounted() {
-			this.fetchServLists();
-			this.fetchAdmLists();
-			this.servTypes = this._storageGet('sys_form_services') || [];
-			this.petBreeds = this._storageGet('sys_form_breeds') || [];
 		}
 	}
 </script>
@@ -231,7 +224,7 @@
 <style scoped>
 	.wrap-d{ background-color: #f8f8f8; }
 
-	div.t { display: grid; grid-template-columns: 680px 216px 120px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
+	div.t { display: grid; grid-template-columns: 680px 372px 120px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
 	div.t .find { height: 40px; padding: 6px 16px; position: relative; background-color: #fcfcfc; }
 	div.t .find span { display: block; height: 28px; width: 40px; position: absolute; top: 7px; right: 17px; background-color: #f0f0f0; padding: 6px 13px; color: #fff; opacity: 0.8; }
 	div.t .find span svg { height: 14px; width: 14px; color: #492e32; }
@@ -244,7 +237,7 @@
 	div.t .link svg.i { width: 16px; height: 16px; margin-bottom: -2px; }
 	div.t .link svg.p { width: 8px; height: 8px; margin-bottom: -2px; position: absolute; top: 5px; right: 5px; }
 
-	div.m { display: grid; grid-template-columns: 680px 320px; }
+	div.m { display: grid; grid-template-columns: 680px 480px; }
 	div.g {}
 	div.h { background-color: #f8f8f8; }
 

@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span :title="currentDate">
         {{ currentDate }}
     </span>
 </template>

@@ -1,29 +1,29 @@
 import Vue from 'vue';
 import store from '@/store';
 import router from '@/router';
-import mixin from '@/mixin';
+import plugins from '@/plugins';
 import VIcon from 'vue-awesome/components/Icon.vue';
+import VueHtmlToPaper from 'vue-html-to-paper';
 import App from '@/App.vue';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
-Vue.prototype.APP_NAME = "System ENR";
-Vue.prototype.APP_NAME_FULL = "Enrollment System";
-Vue.component('v-icon', VIcon);
-
-Vue.http = axios.create({
-	baseURL: '/api',
-	timeout: 5000,
-	headers: {
-		'Content-Type': 'application/json',
-		'X-CSRFToken': Cookies.get('csrftoken')
-  }
+Vue.use(plugins);
+Vue.use(VueHtmlToPaper, {
+  name: '_blank',
+  specs: [
+    'fullscreen=no',
+    'titlebar=no',
+    'scrollbars=yes',
+    'height=600',
+    'width=800',
+    'top=100',
+    'left=300'
+  ],
+  styles: []
 });
-
-Vue.mixin(mixin);
+Vue.component('v-icon', VIcon);
 
 const vue = new Vue({
 	template: '<app/>',

@@ -1,7 +1,8 @@
 {
   "name": "system_enr",
   "version": "0.1.0",
-  "main": "localhost:8080",
+  "main": "http://localhost:8080",
+  "node-remote": "http://localhost:8080",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,12 +13,15 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "core-js": "^2.6.5",
+    "core-js": "2.6.5",
     "js-cookie": "^2.2.0",
     "nw-vue-devtools-prebuilt": "^0.0.10",
     "nwjs-builder-phoenix": "^1.15.0",
+    "qs": "^6.9.4",
     "vue": "^2.5.17",
+    "vue-html-to-paper": "^1.3.1",
     "vue-router": "^3.0.1",
+    "vue-web-cam": "^1.9.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -42,7 +46,10 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off",
+      "no-unused-vars": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
@@ -58,28 +65,46 @@
     "not ie <= 8"
   ],
   "build": {
-    "nwVersion": "0.40.1",
+    "nwVersion": "0.49.2",
     "strippedProperties": [
       "chromium-args"
+    ],
+    "targets": [
+      "zip",
+      "nsis7z"
+    ],
+    "excludes": [
+      "node_modules/*",
+      "src/**/*",
+      "public/**/*",
+      ".eslintrc",
+      ".gitignore",
+      "yarn.lock",
+      "package-lock.json",
+      "vue.config.js"
     ]
   },
   "window": {
     "title": "system_enr",
-    "icon": "favicon.png",
     "toolbar": true,
     "frame": false,
+    "fullscreen": false,
     "width": 1200,
     "height": 660,
     "position": "center",
     "min_width": 1200,
     "min_height": 660,
-    "max_width": 1200,
-    "max_height": 660,
-    "transparent": true
+    "transparent": true,
+    "icon": "/public/static/favicon-32.ico",
+    "print": {
+      "autoprint": true,
+      "silent": false,
+      "headerFooterEnabled": false
+    }
   },
   "webkit": {
     "plugin": true
   },
-  "chromium-args": "--load-extension='./node_modules/nw-vue-devtools-prebuilt/extension' --enable-node-worker --mixed-context",
+  "chromium-args": "--password-store=basic --disable-gpu-compositing --force-cpu-draw --load-extension='./node_modules/nw-vue-devtools-prebuilt/extension'",
   "manifestUrl": "http://127.0.0.1:3127/package.json"
 }

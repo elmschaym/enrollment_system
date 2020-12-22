@@ -1,6 +1,6 @@
 <template>
-    <span>
-        {{ currentTime.hh +":"+ currentTime.mm }}
+    <span :title="currentTime.hh +':'+ currentTime.mm">
+        {{ currentTime.hh +':'+ currentTime.mm }}
     </span>
 </template>
 
