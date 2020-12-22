@@ -52,8 +52,8 @@
 						<div>Room</div>
 						<div style="text-align: center">Units</div>
 					</div>
-					<div class="d" v-if="enrollment.hasOwnProperty('sect_enrol') && enrollment.sect_enrol.length > 0">
-						<div :key="i +'subj'+ s.id" v-for="(s,i) in enrollment.sect_enrol">
+					<div class="d" v-if="enrollment.hasOwnProperty('billing') && enrollment.billing.length > 0 && enrollment.billing[0].sect_enrol.length > 0">
+						<div :key="i +'subj'+ s.id" v-for="(s,i) in enrollment.billing[0].sect_enrol">
 							<div style="text-align: center"><v-icon name="square"></v-icon></div>
 							<div>{{ s.subject.code }}</div>
 							<div>{{ s.subject.name }}</div>
@@ -81,10 +81,10 @@
 						<div>Name</div>
 						<div>Fee</div>
 					</div>
-					<div class="d" v-if="miscFees.length > 0">
-						<div :key="'misc'+ m.id" v-for="m in miscFees">
-							<div>{{ m.name }}</div>
-							<div style="text-align: right">{{ m.fee | currency }}</div>
+					<div class="d" v-if="enrollment.hasOwnProperty('billing') && enrollment.billing.length > 0 && enrollment.billing[0].misc_bills.length > 0">
+						<div :key="'misc'+ m.id" v-for="m in enrollment.billing[0].misc_bills">
+							<div>{{ m.misc.name }}</div>
+							<div style="text-align: right">{{ m.misc.amount | currency }}</div>
 						</div>
 					</div>
 					<div class="z" v-else>
@@ -113,20 +113,19 @@
 			return {
 				isErrorConnect: false,
 				isFetching: false,
-				miscFees: [],
 				enrollment: {}
 			}
 		},
 		computed: {
 			totalFees() {
 				let total = 0;
-				if (this.miscFees.length > 0)
-					this.miscFees.forEach(f => { total += f.fee } );
+				if (this.enrollment.hasOwnProperty('billing') && this.enrollment.billing.length > 0 && this.enrollment.billing[0].misc_bills.length > 0)
+					this.enrollment.billing[0].misc_bills.forEach(f => { total += f.misc.amount } );
 				return total;
 			},
 			totalSubjects() {
-				if (this.enrollment.hasOwnProperty('sect_enrol'))
-					return this.enrollment.sect_enrol.length;
+				if (this.enrollment.hasOwnProperty('billing') && this.enrollment.billing.length > 0)
+					return this.enrollment.billing[0].sect_enrol.length;
 				return 0;
 			},
 			allowedUnits() {
@@ -136,14 +135,14 @@
 			},
 			enrolledUnits() {
 				let total = 0;
-				if (this.enrollment.hasOwnProperty('sect_enrol'))
-					this.enrollment.sect_enrol.forEach(x => { total += x.subject.units });
+				if (this.enrollment.hasOwnProperty('billing') && this.enrollment.billing.length > 0 && this.enrollment.billing[0].sect_enrol.length > 0)
+					this.enrollment.billing[0].sect_enrol.forEach(x => { total += x.subject.units });
 				return total;
 			}
 		},
 		methods: {
 			fetchEnrollment() {
-				this.$http.get('enrollment/'+ this.$route.params.enrol_id +'/?type=profile&enrollment_fields=id,acad_year,acad_status,semester,max_units,is_confirmed,student,sect_enrol,admission,billing&admission_fields=id,date_admitted,course,academic_program&acadprogram_fields=name&course_fields=id,name,name_alias,program_type&student_fields=id,school_id,firstname,lastname,middlename&sectenrol_fields=id,subject,section&subject_fields=id,code,name,units&section_fields=id,name,sched_days,sched_time,room&room_fields=name&billing_fields=id').then(res => {
+				this.$http.get('enrollment/'+ this.$route.params.enrol_id +'/?type=profile&enrollment_fields=id,acad_year,acad_status,semester,max_units,is_confirmed,student,admission,billing&admission_fields=id,date_admitted,course,academic_program&acadprogram_fields=name&course_fields=id,name,name_alias,program_type&student_fields=id,school_id,firstname,lastname,middlename&billing_fields=id,sect_enrol,misc_bills&sectenrol_fields=id,subject,section&miscbill_fields=id,misc&misc_fields=id,name,amount&subject_fields=id,code,name,units&section_fields=id,name,sched_days,sched_time,room&room_fields=name').then(res => {
 					if (res.data.hasOwnProperty('id')) {
 						this.enrollment = res.data;
 					}

@@ -43,7 +43,7 @@
 </script>
 
 <style scoped>
-    .cate-o { background-color: #f8f8f8; height: 32px; display: grid; grid-template-columns: 712px 300px; border-bottom: 1px solid #eaeaea; }
+    .cate-o { background-color: #f8f8f8; height: 32px; display: grid; grid-template-columns: auto 300px; border-bottom: 1px solid #eaeaea; }
     .link ul { display: block; margin: 0 16px; }
     .link ul li { display: inline-block; font-size: 11px; padding: 10px 12px; cursor: pointer; }
     .link ul li.active { border-bottom: 2px solid #290e12; font-weight: bold; }

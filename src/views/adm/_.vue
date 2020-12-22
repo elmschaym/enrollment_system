@@ -30,8 +30,8 @@
 				modules_m: [
                     { name: 'New Student', icon: 'plus-circle', link: 'stu-new-stude'},
                     { name: 'Admissions', icon: 'flag', link: 'adm-list-index'},
-                    { name: 'Students', icon: 'flag', link: 'stu-list-index'},
-                    { name: 'Enrollment', icon: 'flag', link: 'enr-list-index'}
+                    { name: 'Students', icon: 'flag', link: 'stu-list-index'}
+                    //{ name: 'Enrollment', icon: 'flag', link: 'enr-list-index'}
                 ],
                 modules_a: [
 					{ name: 'New Admittee', icon: 'plus', link: 'adm-new-admit'},

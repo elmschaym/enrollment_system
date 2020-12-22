@@ -31,11 +31,11 @@
                         <div class="r o">
                             <div class="j">Enrollment Payables</div>
                             <div class="k">
-                                <div><span>√</span> Tuition Fee (Lectures/Laboratories)</div>
-                                <div><span>√</span> Insurance (Semester)</div>
-                                <div><span>√</span> Library Fee</div>
-                                <div><span>√</span> IT Fee</div>
-                                <div><span>√</span> School ID (Registration)</div>
+                                <div><span></span> Tuition Fee (Lectures/Laboratories)</div>
+                                <div><span></span> Insurance (Semester)</div>
+                                <div><span></span> Library Fee</div>
+                                <div><span></span> IT Fee</div>
+                                <div><span></span> School ID (Registration)</div>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
             <ui-modal v-if="isModalShow" :modalClose="modalClose" class="moda-l">
                 <span slot="name">Enrolled Successfully</span>
                 <div slot="body-text">
-                    Success. Please proceed to Enroll Subject for selecting subjects and assigning sections.
+                    Please proceed to Enroll Subject for selecting subjects and assigning sections.
                 </div>
                 <div slot="body-okay">
                     <button @click="modalClose(true)">Okay</button>
@@ -102,6 +102,7 @@
                 student: { id: 0, school_id: '', fullname: '' },
                 courses: [],
                 selectedCourse: 1,
+                originalCourse: 1,
                 admission: {}
             }
         },
@@ -113,10 +114,11 @@
         methods: {
             setAdmissionFromSearch(v) {
                 this.admission = v;
-                this.selectedCourse = this.admission.course != null ? this.admission.course.id : 1;
+                this.selectedCourse = this.admission.course.id;
+                this.originalCourse = this.admission.course.id;
             },
             setCourse(c) {
-                if (this.admission.course.id == 1) {
+                if ((this.admission.course.id == 1 || this.originalCourse == 1) && c != 1) {
                         this.selectedCourse = c;
                         this.$http.put('admission/'+ this.admission.id +'/?action=update-course', { course: this.selectedCourse, academic_program: this.admission.academic_program.id, student: this.admission.student.id }).then( res => {
                         this.admission.course = { id: c };
@@ -189,7 +191,7 @@
     .p .u .r.o { margin: 16px 0; display: grid; grid-template-columns: 130px auto }
     .p .u .r.o .j { font-size: 11px; text-align: left; padding: 5px 0;}
     .p .u .r.o .k div { font-size: 11px; padding: 5px 0; }
-    .p .u .r.o .k div span { display: inline-block; height: 10px; width: 10px; border: 1px solid #b0b0b0; background-color: #fff; margin-right: 5px; font-size: 9px; padding: 0 0 0 2px; }
+    .p .u .r.o .k div span { display: inline-block; height: 8px; width: 8px; border: 1px double #b0b0b0; background-color: #b0b0b0; margin-right: 5px; }
 
     .q .r { position: relative; }
     .q .r .h { position: absolute; bottom: 20px; left: 12px; right: 12px; }

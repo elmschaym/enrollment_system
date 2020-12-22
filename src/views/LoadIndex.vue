@@ -43,7 +43,7 @@
 
 	.name { height: 286px; position: relative; }
 	.name svg { height: 128px; width: 128px; display: block; color: #fff; margin: 0 auto; position: absolute; }
-	.name span { font-size: 18px; text-transform: uppercase; font-weight: bold; color: #fff; display: block; text-align: center; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 208px; left: 60px; right: 60px; }
+	.name span { font-size: 18px; text-transform: uppercase; font-weight: bold; color: #fff; display: block; text-align: center; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 208px; left: 60px; right: 60px; visibility: hidden; }
 
 	.stat { height: 14px; }
 	.stat span {  display: block;  margin: 0 auto; position: relative; background-color: transparent; height: 2px; width: 32px; overflow-x: hidden; }

@@ -3,80 +3,81 @@
 		<div class="form-o">
 			<div class="w">
 				<div class="p">
-					<div class="u">
-						<div class="h">
-							<div class="pixx">
-								<v-icon name="user"></v-icon>
+					<div class="h">
+						<div class="pixx">
+							<v-icon name="user"></v-icon>
+						</div>
+						<div class="name">
+							<div class="n">{{ student.lastname }}, {{ student.firstname }} {{ student.middlename }}</div>
+							<div class="m"><span>{{ student.school_id }}</span> – {{ student.admission[0].course.program_type +' '+ student.admission[0].course.name_alias }}  </div>
+						</div>
+						<div class="butt">
+							<button @click="setStudentModalShow()">Switch Student <v-icon name="user"></v-icon></button>
+						</div>
+					</div>
+					<div class="r o">
+						<div class="x">
+							<div class="a">Enrolled Subjects <span style="float: right" @click="fetchSubjectsEnrolled()">Refresh</span></div>
+							<div class="b">
+								<div>Code</div>
+								<div>Section</div>
+								<div>Week</div>
+								<div>Time</div>
+								<div>Room</div>
+								<div style="text-align: center">Units</div>
 							</div>
-							<div class="name">
-								<div class="n">{{ student.lastname }}, {{ student.firstname }} {{ student.middlename }}</div>
-								<div class="m"><span>{{ student.school_id }}</span> – {{ student.admission[0].course.program_type +' '+ student.admission[0].course.name_alias }}  </div>
+							<div class="d" v-if="subjects.length > 0">
+								<div :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
+									<div>{{ s.subject.code }}</div>
+									<div>{{ s.section.name }}</div>
+									<div>{{ s.section.sched_days }}</div>
+									<div>{{ s.section.sched_time }}</div>
+									<div>{{ s.section.room.name }}</div>
+									<div style="text-align: center">{{ s.subject.units }} </div>
+								</div>
 							</div>
-							<div class="butt">
-								<button @click="setStudentModalShow()">Switch Student <v-icon name="user"></v-icon></button>
+							<div class="z" v-else>
+								No Enrolled Subjects
+							</div>
+							<div class="e" v-if="student.admission[0].hasOwnProperty('enrollment')">
+								<div>{{ totalSubjects }} Subject(s)</div>
+								<div style="text-align: right">{{ enrolledUnits }} / {{ allowedUnits}} Allowed Units</div>
 							</div>
 						</div>
-						<div class="r o">
-							<div class="x">
-								<div class="a">Enrolled Subjects <span style="float: right" @click="fetchSubjectsEnrolled()">Refresh</span></div>
-								<div class="b">
-									<div>Code</div>
-									<div>Section</div>
-									<div>Week</div>
-									<div>Time</div>
-									<div>Room</div>
-									<div style="text-align: center">Units</div>
-								</div>
-								<div class="d" v-if="subjects.length > 0">
-									<div :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
-										<div>{{ s.subject.code }}</div>
-										<div>{{ s.section.name }}</div>
-										<div>{{ s.section.sched_days }}</div>
-										<div>{{ s.section.sched_time }}</div>
-										<div>{{ s.section.room.name }}</div>
-										<div style="text-align: center">{{ s.subject.units }} </div>
-									</div>
-								</div>
-								<div class="z" v-else>
-									No Enrolled Subjects
-								</div>
-								<div class="e" v-if="student.admission[0].hasOwnProperty('enrollment')">
-									<div>{{ totalSubjects }} Subject(s)</div>
-									<div style="text-align: right">{{ enrolledUnits }} / {{ allowedUnits}} Allowed Units</div>
+						<div class="y">
+							<div class="a">Available Sections <span style="float: right" @click="fetchSections()">Refresh</span></div>
+							<div class="b">
+								<div></div>
+								<div>Code</div>
+								<div style="text-align: center">Slots</div>
+							</div>
+							<div class="d" v-if="sectionsAvailable.length > 0">
+								<div :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @click="enrolSection(s.id)" @contextmenu="sectionListCMenu($event, s, i)">
+									<div style="text-align: center"><v-icon :class="s.stat == 1 ? 'rr' : (s.stat == 2) ? 'gg' : 'bb'" name="square"></v-icon></div>
+									<div>{{ s.name }}</div>
+									<div style="text-align: center">{{ s.slots }}</div>
 								</div>
 							</div>
-							<div class="y">
-								<div class="a">Available Sections <span style="float: right" @click="fetchSections()">Refresh</span></div>
-								<div class="b">
-									<div></div>
-									<div>Code</div>
-									<div style="text-align: center">Slots</div>
-								</div>
-								<div class="d" v-if="sectionsAvailable.length > 0">
-									<div :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @click="enrolSection(s.id)" @contextmenu="sectionListCMenu($event, s, i)">
-										<div style="text-align: center"><v-icon :class="s.stat == 1 ? 'rr' : (s.stat == 2) ? 'gg' : 'bb'" name="square"></v-icon></div>
-										<div>{{ s.name }}</div>
-										<div style="text-align: center">{{ s.slots }}</div>
-									</div>
-								</div>
-								<div class="z" v-else>
-									No Section Available
-								</div>
-								<div class="e">
-									<span><v-icon class="bb" name="square"></v-icon> Available</span>
-									<span><v-icon class="rr" name="square"></v-icon> Conflict</span>
-									<span><v-icon class="gg" name="square"></v-icon> Enrolled</span>
-								</div>
+							<div class="z" v-else>
+								No Section Available
+							</div>
+							<div class="e">
+								<span><v-icon class="bb" name="square"></v-icon> Available</span>
+								<span><v-icon class="rr" name="square"></v-icon> Conflict</span>
+								<span><v-icon class="gg" name="square"></v-icon> Enrolled</span>
 							</div>
 						</div>
-						<div class="r">
-							<o-time-schedule v-if="subjects" :subjects="subjects"></o-time-schedule>
-						</div>
+					</div>
+					<div class="r">
+						<o-time-schedule v-if="subjects" :subjects="subjects"></o-time-schedule>
 					</div>
 				</div>
 				<div class="q">
 					<div class="t">
 						<list-e-dep-subject :setValue="setSubjectFromSearch" :stuid="student.school_id"></list-e-dep-subject>
+					</div>
+					<div class="r">
+						<div v-if="acadPreference.hasOwnProperty('is_enrollment_open') && !acadPreference.is_enrollment_open">Enrollment is CLOSED</div>
 					</div>
 					<div class="s">
 						<button v-show="student.admission[0].hasOwnProperty('enrollment') && !student.admission[0].enrollment[0].is_confirmed" :class="isFormOkay ? 'okay' : ''" @click="goSaveSubjects()" :disabled="isSavingForm || !isFormOkay"><v-icon name="plus"></v-icon> Confirm Subjects</button>
@@ -128,6 +129,7 @@
 				studentID: '',
 				student: { school_id: 0, firstname: '--', middlename: '--', lastname: '--', admission: [{ course: { program_type: '--', name: '--', name_alias: '--', enrollment: [{ id: 0, billing: [{ id: 0 }] }] }}] },
 				sectionsAvailable: [],
+				acadPreference: {},
 				subjects: [],
 				subject: {}
 			}
@@ -208,6 +210,7 @@
 						this.student = res.data;
 						this.isSetStudentModalShow = false;
 						this.fetchSubjectsEnrolled();
+						this.fetchAcadPreference();
 					} else {
 						this.isSwitchError = true;
 					}
@@ -215,6 +218,12 @@
 					this.isSwitchError = true;
 				}).finally( () => {
 					this.isSwitchStudent = false;
+				});
+			},
+			fetchAcadPreference() {
+				this.$http.get('academic_preference/?is_current=true').then(res => {
+					if (res.status == 200)
+						this.acadPreference = res.data;
 				});
 			},
 			fetchSubjectsEnrolled() {
@@ -226,7 +235,7 @@
 				e.preventDefault();
 				let cmenu = new window.nw.Menu(),
 					items = [
-						{ label: 'Enrol Section', click: () => this.enrolSection(s), key: 'e', modifiers: "ctrl", enabled: s.slots > 0 && s.stat == 0 },
+						{ label: 'Enrol Section', click: () => this.enrolSection(s), key: 'e', modifiers: "ctrl", enabled: s.slots > 0 && s.stat == 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open },
 						{ label: 'Refresh', click: this.fetchSections },
 						{ type: 'separator' },
 						{ label: s.name + ', ' + s.sched_days +' '+ s.sched_time, enabled: false }
@@ -238,7 +247,7 @@
 				e.preventDefault();
 				let cmenu = new window.nw.Menu(),
 					items = [
-						{ label: 'Remove Subject', click: () => this.removeSubject(s), key: 'x', modifiers: "ctrl" },
+						{ label: 'Remove Subject', click: () => this.removeSubject(s), key: 'x', modifiers: "ctrl", enabled: this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open },
 						{ label: 'Refresh', click: this.fetchSubjectsEnrolled },
 						{ type: 'separator' },
 						{ label: s.subject.code +' – '+ s.subject.units +' units', enabled: false }
@@ -248,7 +257,7 @@
 			},
 			enrolSection(s,i) {
 				let isSubjectNotEnrolled = this.subjects.some(s => s.subject.code == this.subject.code);
-				if (s.stat == 0 && s.slots > 0 && !isSubjectNotEnrolled && this.student.school_id != 0) {
+				if (s.stat == 0 && s.slots > 0 && !isSubjectNotEnrolled && this.student.school_id != 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open) {
 					this.$http.post('section_enroll/', { section: s.id, billing: this.student.admission[0].enrollment[0].billing[0].id }).then(res => {
 						s.slots -= 1;
 						s.stat = 2;
@@ -258,10 +267,12 @@
 				}
 			},
 			removeSubject(s) {
-				this.$http.delete('section_enroll/'+ s.id +'/?subid='+ s.subject.id).then(res => {
-					this.fetchSubjectsEnrolled();
-					this.fetchSections();
-				});
+				if (this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open) {
+					this.$http.delete('section_enroll/'+ s.id +'/?subid='+ s.subject.id).then(res => {
+						this.fetchSubjectsEnrolled();
+						this.fetchSections();
+					});
+				}
 			}
 		},
 		created() {
@@ -288,11 +299,8 @@
 	.form-o .w .p textarea { width: 100%; height: 50px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: 1px outset #f5f5f5; outline: none; cursor: pointer; }
 	.form-o .w .p label { display: block; font-size: 10px; margin: 10px 0 4px 2px; color: #111; }
 	.form-o .w div.info { font-size: 10px; padding: 2px 8px; },
-	
-	.p .u { margin-bottom: 16px }
-	.p .u, .p .v {  padding: 16px; }
 
-	.p .h { padding: 0 0 8px 0; border-bottom: 1px solid #d0d0c0; display: grid; grid-template-columns: 40px auto 128px; margin-bottom: 0px;}
+	.p .h { padding: 16px 0 8px 0; border-bottom: 1px solid #d0d0c0; display: grid; grid-template-columns: 40px auto 128px; margin-bottom: 0px;}
 	.p .h .pixx { height: 40px; width: 40px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .h .pixx svg { height: 32px; width: 32px; margin: 4px; color: #d5d5d0; }
 	.p .h .name { padding: 0 0 0 12px; }
@@ -336,7 +344,11 @@
 	.p .r.o .y .e span { display: block; text-align: center; }
 	.p .r.o .y .e span svg { height: 10px; width: 10px; }
 
-	.q .t { height: 542px; position: relative; padding: 12px; }
+
+	.q .t { height: 480px; position: relative; padding: 12px; }
+
+	.q .r { height: 62px; padding: 12px; }
+	.q .r div { color: #fd4646; background-color: #fde6e6; padding: 12px 6px; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
 	.q .s { text-align: center; background-color: #f0f0ea; height: 70px; padding: 20px 0; }
 	.q .s button { height: 24px; padding: 0px 12px; border: 1px solid #e0e0d0; background: linear-gradient(to bottom, #f0f0f0, #e0e0e0); border-radius: 2px; font-size: 11px; color: #888; }

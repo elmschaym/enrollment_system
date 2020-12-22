@@ -6,6 +6,7 @@
                     <li @click="goName('dep-fac-master-list')" :class="viewName == 'dep-fac-master-list' ? 'active' : 'click'"><div>Master List</div></li>
                     <li :class="viewName == 'dep-fac-assign-section' ? 'active' : ''"><div>Assign Section</div></li>
                     <li :class="viewName == 'dep-fac-teaching-load' ? 'active' : ''"><div>Teaching Load</div></li>
+                    <li :class="viewName == 'dep-fac-teaching-load' ? 'active' : ''"><div>Enter Grades</div></li>
                 </ul>
             </div>
             <div class="make">
