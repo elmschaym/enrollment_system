@@ -1,7 +1,7 @@
 <template>
 	<div class="find-c">
 		<div class="form">
-			<ui-select :setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+			<ui-select @setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
 			<button @click="fetchSubjects()"><v-icon name="circle-notch"></v-icon></button>
 		</div>
 		<div class="rslt">
@@ -38,15 +38,12 @@
 	import 'vue-awesome/icons/square';
 
 	export default {
+		emits: ['setValue'],
 		components: {
 			UiLoader: UILoader,
 			UiSelect: UISelect
 		},
 		props: {
-			setValue: {
-				type: Function,
-				required: true
-			},
 			stuid: {
 				type: Number
 			}
@@ -91,7 +88,7 @@
 			},
 			setSelected(v) {
 				this.selectedId = v.id;
-				this.setValue(v);
+				this.$emit('setValue', v);
 			},
 			setDepartment(v) {
 				this.departmentID = v;

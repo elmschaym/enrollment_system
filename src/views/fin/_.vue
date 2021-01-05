@@ -10,15 +10,10 @@
                         <li @click="goName('fin-misc')" :class="viewName == 'fin-misc' ? 'active' : ''"><div>Miscellaneous</div></li>
                     </ul>
                 </div>
-                <div class="make">
-                    <span v-show="false" @click="goMake()">
-                        <v-icon name="plus"></v-icon> Create Invoice
-                    </span>
-                </div>
             </div>
         </div>
         <div class="view">
-            <router-view></router-view>
+            <router-view @setViewName="setViewName"></router-view>
         </div>
         <status-bar></status-bar>
     </div>
@@ -47,20 +42,23 @@
             },
             goMake() {
                 this.$router.push({ name: 'adm-new' });
+            },
+            setViewName(v) {
+                this.viewName = v;
             }
         }
     }
 </script>
 
 <style scoped>
-    .wrap-f { height: calc(100vh - 24px); background-color: #fff; position: relative; display: grid; grid-template-rows: 32px auto 24px }
+    .wrap-f { height: 100%; background-color: #fff; position: relative; display: grid; grid-template-rows: 32px auto 24px }
     .head {}
     .view {}
 
-    .cate-o { background-color: #fbfbfb; height: 32px; display: grid; grid-template-columns: auto 300px; border-bottom: 1px solid #eaeaea; }
-    .link ul { display: block; margin: 0 16px; }
+    .cate-o { background-color: #fbfbfb; height: 32px; border-bottom: 1px solid #eaeaea; text-align: center }
+    .link ul { display: block; margin: 0 auto; }
     .link ul li { display: inline-block; font-size: 11px; padding: 10px 12px; cursor: pointer; }
-    .link ul li.active { border-bottom: 2px solid #290e12; font-weight: bold; }
+    .link ul li.active { border-bottom: 2px solid #290e12; }
     .link ul li.active div {  }
 
     .make { text-align: right; }

@@ -13,7 +13,7 @@
                 </span>
             </div>
         </div>
-        <router-view :setViewName="setViewName"></router-view>
+        <router-view @setViewName="setViewName"></router-view>
     </div>
 </template>
 
@@ -40,16 +40,16 @@
 </script>
 
 <style scoped>
-    .wrap-z { height: calc(100vh - 24px - 24px - 33px); }
+    .wrap-z { height: 100%; display: grid; grid-template-rows: 32px auto; }
 
     .cate-o { background-color: #f8f8f8; height: 32px; display: grid; grid-template-columns: auto 300px; border-bottom: 1px solid #eaeaea; }
     .link ul { display: block; margin: 0 16px; }
     .link ul li { display: inline-block; font-size: 11px; padding: 10px 12px; cursor: pointer; }
-    .link ul li.active { border-bottom: 2px solid #777; }
+    .link ul li.active { border-bottom: 1px solid #777; }
     .link ul li.active div {  }
 
     .make { text-align: right; }
     .make span { display: inline-block; background-color: transparent; padding: 10px 10px 9px 10px; border-left: 1px solid #e9e9e9; cursor: pointer; font-size: 11px; }
-    .make span.active { border-bottom: 2px solid #777; }
+    .make span.active { border-bottom: 1px solid #777; }
     .make span svg { width: 12px; height: 12px; margin-bottom: -2px; }
 </style>

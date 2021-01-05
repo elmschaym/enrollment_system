@@ -7,7 +7,7 @@
         <div class="y">
             <div class="find">
                 <input v-model="queryString" :placeholder="'Student ' + queryType" :disabled="disableInput"/>
-                <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType == 'id' ? 'name' : 'id' }}</button>
+                <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
             </div>
             <div class="rslt">
                 <div class="head">
@@ -17,7 +17,7 @@
                     <div :class="['l', {'active': selectedId == l.id}]" :key="l.id" v-for="l in list" @click="setSelectedAdm(l)">
                         <div class="i">
                             <div class="stu">{{ l.student.lastname }}, {{ l.student.firstname }} {{ l.student.middlename }}</div>
-                            <div class="own"><span>{{ l.student.school_id }}</span> – {{ l.id }}</div>
+                            <div class="own"><span>{{ l.student.school_id }}</span></div>
                         </div>
                         <div class="b">
                             <span></span>
@@ -36,6 +36,7 @@
     import 'vue-awesome/icons/coffee';
 
     export default {
+        emits: ['setValue'],
         components: {
             UiLoader: UILoader
         },
@@ -46,10 +47,6 @@
                 default: function() {
                     return { stat: true, mode: 'dep' }
                 }
-            },
-            setValue: {
-                type: Function,
-                required: true
             },
             fields: {
                 type: String,
@@ -90,7 +87,7 @@
             },
             setSelectedAdm(v) {
                 this.selectedId = v.id;
-                this.setValue(v);
+                this.$emit('setValue', v);
             },
             switchQueryType() {
                 this.queryType = this.queryType == 'name' ? 'id' : 'name';
@@ -117,7 +114,7 @@
     .x div span { display: inline-block; margin-right: 8px; width: 10px; }
     .x div.a { background-color: #fbfbfb }
 
-    .y { background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
+    .y { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .y .find { display: grid; grid-template-columns: auto 60px; }
     .y .find input { display: block; color: #391e22; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-radius: 5px 0 0 0; }
     .y .find button { display: block; color: #391e22; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border-radius: 0 5px 0 0; }
@@ -129,18 +126,18 @@
     .y .list { height: 280px; overflow-y: scroll; position: relative; }
     .y .list::-webkit-scrollbar { width: 4px; display: block; }
     .y .list::-webkit-scrollbar-track { background: transparent; }
-    .y .list::-webkit-scrollbar-thumb { background-color: #f0f0f0; }
+    .y .list::-webkit-scrollbar-thumb { background-color: #d0d0d0; border-radius: 2px }
 
     .y .list .l { border-bottom: 1px solid #f5f5f5; display: grid; grid-template-columns: auto 26px; cursor: pointer; }
     .l:hover, .l.active { background-color: #fbfbfb; }
     .l .i { height: 32px; }
-    .l .i .stu { font-size: 11px; padding: 5px 2px 2px 12px; text-overflow: clip; white-space: nowrap; }
-    .l .i .stu span { color: #505050; font-weight: normal; }
-    .l .i .own { font-size: 10px; color: #000; padding: 1px 2px 2px 12px; text-transform: uppercase; text-overflow: clip; white-space: nowrap; }
-    .l .i .own span { color: #222; border-right: 1px solid #f0f0f0; display: inline-block; }
+    .l .i .stu { font-size: 11px; padding: 5px 2px 2px 12px; text-overflow: clip; white-space: nowrap; color: #000; font-weight: normal; }
+    .l .i .stu span {}
+    .l .i .own { font-size: 11px; color: #222; padding: 1px 2px 2px 12px; text-transform: uppercase; text-overflow: clip; white-space: nowrap; }
+    .l .i .own span { color: #444; display: inline-block; }
     .l .b {}
     .l .b span { display: block; height: 32px; width: 26px; border-left: 1px solid #f0f0f0; }
-    .l.active .b span{ background-color: #ececec; }
+    .l.active .b span{ background-color: #ecece7; }
 
     .dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.7) }
 </style>

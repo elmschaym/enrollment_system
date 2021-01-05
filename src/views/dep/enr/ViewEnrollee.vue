@@ -163,7 +163,7 @@
 </script>
 
 <style scoped>
-	.wrap-e { background-color: #f9f9f9; height: calc(100vh - 48px ); }
+	.wrap-e { height: 100%; background-color: #f9f9f9; }
 	.p { padding: 16px; }
 
 	.p .h { display: grid; grid-template-columns: 72px auto 300px; margin-bottom: 0px; height: 72px; }

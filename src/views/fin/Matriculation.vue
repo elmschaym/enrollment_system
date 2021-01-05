@@ -3,10 +3,10 @@
         <div class="p">
             <div class="t">
                 <div class="n">To Bill</div>
-                <ui-select :setValue="setABillingType" :options="billingType" :presets="billingType[0]" :styles="['border-radius: 2px; width: 100%; padding: 6px 10px 6px 10px', '']"></ui-select>
+                <ui-select @setValue="setABillingType" :options="billingType" :presets="billingType[0]" :styles="['border-radius: 2px; width: 100%; padding: 6px 10px 6px 10px', '']"></ui-select>
             </div>
             <div class="s">
-                <find-e-admission :setValue="setAdmissionFromSearch" :filters="{ stat: false, mode: 'all' }"></find-e-admission>
+                <find-e-admission @setValue="setAdmissionFromSearch" :filters="{ stat: false, mode: 'all' }"></find-e-admission>
             </div>
         </div>
         <div class="q">
@@ -189,10 +189,10 @@
 </script>
 
 <style scoped>
-    .wrap-i { height: 100%; background-color: #f8f8f8; display: grid; grid-template-columns: 270px auto }
+    .wrap-i { height: 100%; background-color: #fbfbf7; display: grid; grid-template-columns: 270px auto }
 
-    .wrap-i .q { padding: 12px; height: calc(100vh - 32px - 24px - 24px); }
-    .wrap-i .p { border-right: 1px solid #f0f0f0; height: calc(100vh - 48px - 32px); background: linear-gradient(to right, #f8f8f8, #fcfcfc); }
+    .wrap-i .q { padding: 12px; height: 100%; background: #fff; }
+    .wrap-i .p { border-right: 1px solid #f0f0f0; height: 100%; background: #f8f8f2; }
 
     .p .t { padding: 12px 12px 6px 12px; display: grid; grid-template-columns: 60px auto }
     .p .t div.n { color: #391e22; border: none; padding: 6px 10px; text-align: center; height: 27px; margin-right: 4px; border-bottom: 1px solid rgba(0,0,0,0.24); }
@@ -201,16 +201,16 @@
 
     .q .u { height: 22px; display: grid; grid-template-columns: auto 200px; border-bottom: 1px solid #dadada; padding-bottom: 8px; }
     .q .u div { font-weight: lighter }
-    .q .u div span { font-weight: bold; margin-left: 5px; font-size: 11px; }
+    .q .u div span { font-weight: 600; margin-left: 5px; font-size: 12px; }
 
     .q .v { position: relative; }
     .q .v .r { display: grid; grid-template-columns: auto 320px; margin: 10px 0; }
-    .q .v .r .x { margin-right: 16px; background-color: #fcfcfc; height: 300px; border-style: solid; border-width: 1px; border-color: transparent #f5f5f5 #e0e0e0 #f5f5f5; }
+    .q .v .r .x { margin-right: 16px; background-color: #fff; height: 300px; border-style: solid; border-width: 1px; border-color: #e5e5e0; }
     .q .v .r .x .a { font-size: 11px; color: #111; padding: 6px 7px; background-color: #fff; }
     .q .v .r .x .a span { float: right; font-size: 10px; border-bottom: 1px outset #fff; display: inline-block; padding: 1px 4px; cursor: pointer; }
     .q .v .r .x .b, .q .v .r .x .d > div { display: grid; grid-template-columns: 80px auto 50px 75px }
     .q .v .r .x .z { text-align: center; padding: 16px; font-size: 11px; }
-    .q .v .r .x .b { background-color: #fcfcfc; border-bottom: 1px solid #fafafa; }
+    .q .v .r .x .b { background-color: #fff; border-bottom: 1px solid #fafafa; }
     .q .v .r .x .b div { padding: 7px; font-size: 10px; }
     .q .v .r .x .d { height: 220px; overflow-y: scroll; }
     .q .v .r .x .d > div {}
@@ -227,16 +227,16 @@
     .q .v .r .x .f button svg { width: 10px; height: 10px; margin-left: 8px; }
     .q .v .r .x .f span { border-radius: 2px; color: #000; padding: 0px 12px; border: none; background-color: #f5f5ed; font-size: 11px; border-style: solid; border-width: 1px; border-color: transparent #f5f5f5 #f0f0f0 #f5f5f5; }
 
-    .q .v .r .y .v { background-color: #fcfcfc; height: 380px; border-style: solid; border-width: 1px; border-color: transparent #f5f5f5 #e0e0e0 #f5f5f5; }
+    .q .v .r .y .v { background-color: #fff; height: 320px; border-style: solid; border-width: 1px; border-color: #e5e5e0 }
     .q .v .r .y .v .a { font-size: 11px; color: #111; padding: 6px 10px; background-color: #fff; text-align: center; }
     .q .v .r .y .v .b, .q .v .r .y .v .d > div { display: grid; grid-template-columns: auto 86px }
-    .q .v .r .y .v .b { border-bottom: 1px solid #fafafa; background-color: #fcfcfc; }
+    .q .v .r .y .v .b { border-bottom: 1px solid #fafafa; background-color: #fff; }
     .q .v .r .y .v .b div { padding: 7px 12px; font-size: 10px; }
-    .q .v .r .y .v .d { height: 300px; overflow-y: scroll;  }
+    .q .v .r .y .v .d { height: 240px; overflow-y: scroll;  }
     .q .v .r .y .v .d > div div { padding: 6px 12px; font-size: 11px; }
     .q .v .r .y .v .d > div div svg { width: 10px; height: 10px; color: #b0b0b0; }
     .q .v .r .y .v .d > div { border-bottom: 1px solid #fafafa; }
-    .q .v .r .y .v .z { height: 300px; text-align: center; padding: 16px; font-size: 11px; color: #d0d0d0; }
+    .q .v .r .y .v .z { height: 240px; text-align: center; padding: 16px; font-size: 11px; color: #d0d0d0; }
 
     .q .v .r .y .v .t { display: grid; grid-template-columns: auto 86px; border-top: 1px solid #f2f2f2; }
     .q .v .r .y .v .t div { padding: 7px 12px; font-size: 11px; }

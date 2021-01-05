@@ -1,21 +1,22 @@
 <template>
-    <div class="wrap-z">
+    <div class="wrap-t">
+        <div class="p">
+        </div>
+        <div class="q">
+        </div>        
     </div>
 </template>
 
 <script>
     export default {
-        props: {
-            setViewName: {
-                type: Function
-            }
-        },
+        emits: ['setViewName'],
         data() {
             return {
+
             }
         },
         mounted() {
-            this.setViewName(this.$route.name);
+            this.$emit('setViewName', this.$route.name);
             this.$store.commit('setModuleName', 'Department – Teaching Load');
             console.log(this.$route.query.faculty_id);
         }
@@ -23,5 +24,7 @@
 </script>
 
 <style scoped>
-
+    .wrap-t { height: auto; display: grid; grid-template-columns: auto 270px; }
+    .wrap-t .p { height: 100%; padding: 16px; position: relative; background-color: #fff }
+    .wrap-t .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f0 }
 </style>

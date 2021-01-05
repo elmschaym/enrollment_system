@@ -10,7 +10,7 @@
 				<v-icon name="search"></v-icon>
 			</div>
 			<div class="w">
-				<button @click="switchQueryType()">{{ queryType == 'id' ? 'name' : 'id' }}</button>
+				<button @click="switchQueryType()">{{ queryType }}</button>
 			</div>
 		</div>
 		<div class="list-o">
@@ -33,7 +33,7 @@
 						<div class="ttr" @click="$router.push({ name: 'stu-view-index', params: { stuid : l.school_id }})" :key="l.school_id +'_'+ l.id" v-for="l in students">
 							<div class="ttd"><v-icon name="square"></v-icon></div>
 							<div class="ttd">{{ l.school_id }}</div>
-							<div class="ttd"><b>{{ l.lastname +', '+ l.firstname +' '+ l.middlename }}</b></div>
+							<div class="ttd" style="font-weight: 600">{{ l.lastname +', '+ l.firstname +' '+ l.middlename }}</div>
 							<div class="ttd">{{ parseGender(l.gender) }}</div>
 							<div class="ttd">{{ l.home_address }}</div>    
 							<div class="ttd">{{ l.campus_address }}</div>
@@ -148,7 +148,7 @@
 	.list-o .data .tbl .tbd::-webkit-scrollbar-track { background: #f6f6f0; }
 	.list-o .data .tbl .tbd::-webkit-scrollbar-thumb { background-color: #d7d7d0; border-radius: 3px; }
 
-	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 10px; font-weight: bold; background-color: #efefef }
+	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; font-weight: 600; background-color: #efefef }
 	.list-o .data .tbl .ttd { padding: 10px 10px 10px 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow: hidden; white-space: nowrap; }
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #f5f5f0; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover { background-color: #f6f6f0; }

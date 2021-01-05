@@ -5,7 +5,7 @@
 				<div class="p">
 					<span>Adiong Memorial Polytechnic State College	</span>
 				</div>
-				<div class="q">Enrollment System</div>
+				<div class="q">Management System</div>
 			</div>
 		</div>
 		<div class="form">
@@ -85,38 +85,44 @@
                 });
 			}
 		},
+		created() {
+			if (window.screen.availWidth > 1900) {
+				window.nwWin.resizeTo(1368, 768);
+				window.nwWin.zoomLevel = 0.6;
+			}
+		},
 		mounted() {
 		}
 	}
 </script>
 
 <style scoped>
-	.wrap-a { height: 100%; display: grid; grid-template-columns: 796px 404px; position: relative; background: linear-gradient(to left bottom, #fafafa, #f0f0f0); }
-	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #08979d, #055b5c); border-radius: 0 0 660px 0; box-shadow: 0 4px 9px rgba(0,0,0,0.4); -webkit-app-region: drag; overflow: hidden; }
+	.wrap-a { height: 100%; display: grid; grid-template-columns: auto 404px; position: relative; background: linear-gradient(to left bottom, #fafafa, #f0f0f0); }
+	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #08979d, #055b5c); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; }
 	.form { position: relative; height: 100%; background: transparent; }
 
 	.form .x { position: absolute; top: 4px; right: 4px; }
 	.form .x button { background-color: transparent; border: none; font-size: 18px; color: #08979d; height: 22px; width: 22px; line-height: 18px; cursor: pointer; outline: none }
 
-	.form .w { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 5px 13px rgba(0,0,0,0.4) }
+	.form .w { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
 	.form .w .h { padding: 8px 0 20px 0;  }
-	.form .w .h b { display: block; text-align: center; color: #fff; font-family: "Open Sans"; font-size: 28px; font-weight: 600; }
+	.form .w .h b { display: block; text-align: center; color: #fff; font-size: 28px; font-weight: 600; }
 	.form .w .h i { display: block; color: #56373c; font-size: 10px; font-weight: bold; text-align: center; font-style: normal; }
 
 	.form .w .f { padding: 5px 0; position: relative }
-	.form .w .f svg { position: absolute; right: 12px; top: 16px; height: 12px; width: 12px; color: #055b5c; }
-	.form .w input { border-radius: 5px; color: #391e22; padding: 8px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; width: 100%; font-family: "Open Sans"; font-size: 12px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; cursor: pointer; }
+	.form .w .f svg { position: absolute; right: 12px; top: 16px; height: 12px; width: 12px; color: #888; }
+	.form .w input { border-radius: 5px; color: #000; padding: 8px 12px; border: none;  background-color: #fdfdfd; width: 100%; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); outline: none; cursor: pointer; }
 	.form .w .s { padding-top: 16px; }
 	.form .w input.error { background-color: #ffebeb; }
-	.form .w button { text-align: center; padding: 8px 16px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #c0c0c0 #e0e0e0; font-size: 10px; font-family: "Open Sans"; display: block; width: 75%; margin: 0 auto; border-radius: 5px; outline: none; background-color: #fbfbfb; color: #a0a0a0; font-weight: bold }
+	.form .w button { text-align: center; padding: 8px 16px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); font-size: 12px; display: block; width: 75%; margin: 0 auto; border-radius: 5px; outline: none; background-color: #fbfbfb; color: #a0a0a0; font-weight: 600 }
 	.form .w button.ready { box-shadow: 0 4px 9px rgba(0,0,0,0.15); background: linear-gradient(to bottom, #fafafa, #f0f0f0); color: #391e22; cursor: pointer; }
 
 	.bnnr .name { position: absolute; top: 120px; left: 32px; right: 32px; }
 	.bnnr .name .p { color: #111; }
-	.bnnr .name .p span { border-bottom: 16px solid #f0f0f0; font-size: 64px; text-transform: uppercase; color: #fff; font-weight: bold; display: block; padding: 0 0 10px 0; text-shadow: 0 -1px 1px rgba(0,0,0,0.4); }
-	.bnnr .name .q { font-size: 36px; text-transform: uppercase; color: #e0e0d0; font-weight: bold; margin-top: 10px; text-shadow: 0 1px 1px rgba(0,0,0,0.4); }
+	.bnnr .name .p span { font-size: 64px; text-transform: uppercase; color: #fff; font-weight: bold; itext-shadow: 0 -1px 1px rgba(0,0,0,0.4); ivisibility: hidden; background-color: #fff; }
+	.bnnr .name .q { border-top: 16px solid #f0f0f0; font-size: 36px; text-transform: uppercase; color: #e0e0d0; font-weight: bold; margin-top: 20px; padding-top: 5px; }
 
-	div.l { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 5px 13px rgba(0,0,0,0.4) }
+	div.l { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
 	
 	.loader, .loader:before, .loader:after { border-radius: 0; width: 8px; height: 8px; -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation: load7 1.8s infinite ease-in-out; animation: load7 1.8s infinite ease-in-out; }
 	.loader { color: #fff; font-size: 10px; margin: 80px auto; position: relative; text-indent: -9999em; -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation-delay: -0.16s; animation-delay: -0.16s; }

@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap-m" :style="wMain">
+	<div class="wrap-m">
 		<title-bar></title-bar>
 		<div class="m">
 			<div class="sidecon">
@@ -11,6 +11,7 @@
 				</ul>
 			</div>
 			<div class="content">
+				<tool-bar></tool-bar>
 				<router-view></router-view>
 			</div>
 		</div>
@@ -19,6 +20,7 @@
 
 <script>
 	import TitleBar from '@/components/TitleBar.vue';
+	import ToolBar from '@/components/ToolBar.vue';
 
 	import 'vue-awesome/icons/th';
 	import 'vue-awesome/icons/cog';
@@ -28,7 +30,8 @@
 
 	export default {
 		components: {
-			TitleBar
+			TitleBar,
+			ToolBar
 		},
 		data() {
 			return {
@@ -48,6 +51,12 @@
 				this.$router.push({ name });
 			}
 		},
+		created() {
+			/**if (window.screen.availWidth > 1900) {
+				window.nwWin.resizeTo(1600, 900);
+				window.nwWin.zoomLevel = 0.9;
+			} **/
+		},
 		mounted() {
 			this.sconName = 'dbd-index';
 		}
@@ -55,15 +64,16 @@
 </script>
 
 <style scoped>
-	.wrap-m { height: 100vh; background-color: #fff; box-sizing: border-box; border-radius: 5px 5px 0 0; box-shadow: 0 5px 11px rgba(0,0,0,0.4); }
+	.wrap-m { height: 100vh; background-color: #fff; box-sizing: border-box; border-radius: 5px 5px 0 0; }
 			
-	.m { display: grid; grid-template-columns: 28px auto; }
-	.m .content { height: calc(100vh - 24px); width: 100%; overflow-y: hidden; }
+	.m { height: calc(100% - 24px); display: grid; grid-template-columns: 28px auto; }
+	.m .content { height: 100%; overflow: hidden; display: grid; grid-template-rows: 24px auto; }
 
-	.m .sidecon { background-color: #00222E; border-right: 1px solid #101010; }
-	.m .sidecon ul { padding: 20px 0; }
+	.m .sidecon { background-color: #555753; border-right: 1px solid #2E3436; }
+	.m .sidecon ul { padding: 24px 0; }
 	.m .sidecon ul li { height: 36px; padding: 10px 5px; cursor: pointer; }
 	.m .sidecon ul li span {}
 	.m .sidecon ul li span svg { height: 16px; width: 16px; color: #f0f0f0; }
-	.m .sidecon ul li.active { background-color: #243544; }
+	.m .sidecon ul li.active { background-color: #2E3436; }
+	.m .sidecon ul li.active svg { color: #fff; }
 </style>

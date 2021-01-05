@@ -2,7 +2,7 @@
     <div class="find-c">
         <div class="find">
             <input v-model="query" :placeholder="'Subject '+ queryType"/>
-            <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType == 'code' ? 'name' : 'code' }}</button>
+            <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
         </div>
         <div class="rslt">
             <div class="tabs">
@@ -13,8 +13,8 @@
             <div class="list">
                 <div :class="['l', {'active': selectedId == l.id}]" :key="l.id" v-for="l in subjects" @click="setSelected(l)">
                     <div class="i">
-                        <div style="font-size: 10px" :title="l.section.length +' Sections'">{{ l.code }}</div>
-                        <div style="font-size: 11px">{{ l.name }}</div>
+                        <div style="font-size: 11px" :title="l.section.length +' Sections'">{{ l.code }}</div>
+                        <div style="font-size: 11px; font-weight: normal">{{ l.name }}</div>
                         <div style="text-align: right;">{{ l.section.length > 0 ? l.section.length : '' }}</div>
                     </div>
                 </div>
@@ -30,14 +30,9 @@
     import 'vue-awesome/icons/coffee';
 
     export default {
+        emits: ['setValue'],
         components: {
             UiLoader: UILoader
-        },
-        props: {
-            setValue: {
-                type: Function,
-                required: true
-            }
         },
         data() {
             return {
@@ -65,7 +60,7 @@
             },
             setSelected(v) {
                 this.selectedId = v.id;
-                this.setValue(v);
+                this.$emit('setValue', v);
             },
             switchQueryType() {
                 this.queryType = this.queryType == 'name' ? 'code' : 'name';

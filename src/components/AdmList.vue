@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="wrap-l">
 		<div class="find-o">
 			<div class="u">
 				<span><v-icon class="a" name="square"></v-icon> Admitted</span>
@@ -11,7 +11,7 @@
 				<v-icon name="search"></v-icon>
 			</div>
 			<div class="w">
-				<button @click="switchQueryType()">{{ queryType == 'id' ? 'name' : 'id' }}</button>
+				<button @click="switchQueryType()">{{ queryType }}</button>
 			</div>
 		</div>
 		<div class="list-o">
@@ -32,7 +32,7 @@
 						<div class="ttr" @click="$router.push({ name: 'adm-view-admit', params: { admit_id : l.id}})" :key="l.id" v-for="l in admissions">
 							<div class="ttd"><v-icon name="square"></v-icon></div>
 							<div class="ttd">{{ l.student.school_id }}</div>
-							<div class="ttd"><b>{{ l.student.lastname +', '+ l.student.firstname +' '+ l.student.middlename }}</b></div>
+							<div class="ttd" style="font-weight: 600">{{ l.student.lastname +', '+ l.student.firstname +' '+ l.student.middlename }}</div>
 							<div class="ttd">{{ l.course == null ? '&lt;None&gt;' : l.course.name }}</div>    
 							<div class="ttd">{{ l.academic_program.name }}</div>
 							<div class="ttd">{{ l.date_admitted }}</div>
@@ -131,7 +131,9 @@
 </script>
 
 <style scoped>
-	.list-o { margin: 0 16px; background-color: #fbfbfb; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); font-size: 12px; }
+	.wrap-l { height: 100%; background-color: #fbfbf7; }
+
+	.list-o { margin: 0 16px; background-color: #fff; border: 1px solid #edede9; font-size: 12px; }
 	.list-o .data .tbl { position: relative; }
 	.list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 28px 82px auto 250px 210px 110px }
 	.list-o .data .tbl .tbd { height: 440px; overflow: hidden; position: relative; }
@@ -139,8 +141,8 @@
 	.list-o .data .tbl .tbd::-webkit-scrollbar-track { background: #f6f6f0; }
 	.list-o .data .tbl .tbd::-webkit-scrollbar-thumb { background-color: #d7d7d0; border-radius: 3px; }
 
-	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 10px; background-color: #efefef; font-weight: bold }
-	.list-o .data .tbl .ttd { padding: 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; }
+	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #f8f8f2; font-weight: 600 }
+	.list-o .data .tbl .ttd { padding: 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow: hidden; white-space: nowrap; }
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #f5f5f0; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover { background-color: #f6f6f0; }
 	.list-o .data .tbl .ttd b {}
@@ -161,7 +163,7 @@
 	.list-o .page button { background: #fff; padding: 2px 10px; font-size: 8px; border: 1px outset #fff; }
 	.list-o .page button svg { width: 10px; height: 10px; margin-bottom: -2px; }
 
-	.find-o { margin: 16px 16px 10px 16px; display: grid; grid-template-columns: auto 200px 50px; border: none; }
+	.find-o { margin: 0 16px 10px 16px; display: grid; grid-template-columns: auto 200px 50px; border: none; padding-top: 16px; }
 	.find-o .u {}
 	.find-o .u span { font-size: 11px; padding: 10px 0; display: inline-block; height: 24px; margin-right: 12px; }
 	.find-o .u span svg { width: 10px; height: 10px; margin-right: 4px; }

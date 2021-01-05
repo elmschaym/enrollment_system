@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap-m">
         <div class="find-o">
             <div class="u">
                 <span><v-icon class="c" name="square"></v-icon> Active</span>
@@ -68,11 +68,7 @@
     import 'vue-awesome/icons/square';
 
     export default {
-        props: {
-            setViewName: {
-                type: Function
-            }
-        },
+        emits: ['setViewName'],
         components: {
             UiSelect: UISelect,
             UiLoader: UILoader
@@ -120,7 +116,11 @@
                         { label: l.last_name +', '+ l.first_name, enabled: false }
                     ];
                 items.forEach( m => cmenu.append(new window.nw.MenuItem(m)) );
-                cmenu.popup(e.pageX, e.pageY);
+                let zoomFactor = Math.pow(1, window.nwWin.zoomLevel);
+                cmenu.popup(
+                    Math.round(zoomFactor * e.clientX),
+                    Math.round(zoomFactor * e.clientY)
+                );
             }
         },
         watch: {
@@ -133,7 +133,7 @@
             }
         },
         created() {
-            this.setViewName(this.$route.name);
+            this.$emit('setViewName', this.$route.name);
             this.$store.commit('setModuleName', 'Department – Faculty List');
             let d = this.$storageGet('user_info').department;
             this.userDepartment = d.id;
@@ -145,11 +145,12 @@
 </script>
 
 <style scoped>
-    .list-o { margin: 0 16px; background-color: #fbfbfb; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); font-size: 12px; }
+    .wrap-m { height: 100%; background-color: #fbfbf7; }
+    .list-o { margin: 0 16px; background-color: #fff; border: 1px solid #edede9; font-size: 12px; }
     .list-o .data .tbl {}
     .list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 28px auto 220px 90px 170px 100px }
     .list-o .data .tbl .tbd { height: 440px; position: relative; }
-    .list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 10px; background-color: #efefef; font-weight: bold }
+    .list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #f8f8f2; font-weight: 600 }
     .list-o .data .tbl .ttd { padding: 10px 0 10px 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; }
     .list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #f5f5f0; cursor: pointer; }
     .list-o .data .tbl .tbd .ttr:hover { background-color: #f6f6f0; }

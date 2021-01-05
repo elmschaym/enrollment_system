@@ -13,6 +13,7 @@
     import 'vue-awesome/icons/caret-down';
 
     export default {
+        emits: ['setValue'],
         props: {
             options: {
                 type: Array,
@@ -21,10 +22,6 @@
             styles: {
                 type: Array,
                 required: false
-            },
-            setValue: {
-                type: Function,
-                required: true
             },
             presets: {
                 type: Object,
@@ -40,13 +37,13 @@
         methods: {
             hasSelected(i) {
                 this.selected = (this.options[i]).name;
-                this.setValue((this.options[i]).id);
+                this.$emit('setValue', (this.options[i]).id);
                 this.isSelect = false;
             }
         },
         mounted() {
             this.selected = this.presets.name;
-            this.setValue(this.presets.id);
+            this.$emit('setValue', this.presets.id);
         }
     }
 </script>

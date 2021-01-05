@@ -39,7 +39,7 @@
                             <div class="c">
                                 <div>
                                     <label for="">Academic Programme</label>
-                                    <ui-select :setValue="setAcademicType" :options="acad_programs" :styles="['border-radius: 2px; width: 95%; padding: 6px 10px 6px 10px', '']"></ui-select>
+                                    <ui-select @setValue="setAcademicType" :options="acad_programs" :styles="['border-radius: 2px; width: 95%; padding: 6px 10px 6px 10px', '']"></ui-select>
                                 </div>
                                 <div>
                                     <label for="">Admission Date</label>
@@ -94,7 +94,7 @@
                 <div class="q">
                     <div class="r a">
                         <div class="g">
-                            <find-e-student :setValue="setStudIDFromSearch"></find-e-student>
+                            <find-e-student @setValue="setStudIDFromSearch"></find-e-student>
                         </div>
                     </div>
                     <div class="s">
@@ -111,7 +111,7 @@
                     <button @click="printAdmission()">Print Admission</button>
                 </div>
             </ui-modal>
-             <ui-modal v-if="isModalShow && !isSubmitOkay" :modalClose="modalClose" class="moda-l">
+             <ui-modal v-if="isModalShow && !isSubmitOkay" @modalClose="modalClose" class="moda-l">
                 <span slot="name">Admission Error</span>
                 <div slot="body-text">
                     There was an error processing your request. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
@@ -240,7 +240,7 @@
     .p .h .pixx { height: 40px; width: 40px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .p .h .pixx svg { height: 32px; width: 32px; margin: 4px; color: #d5d5d0; }
     .p .h .name { padding: 0 0 0 12px; }
-    .p .h .name .n { font-size: 12px; font-weight: bold; margin: 4px 0; }
+    .p .h .name .n { font-size: 12px; font-weight: 600; margin: 4px 0; }
     .p .h .name .m { font-size: 11px;  }
     .p .h .butt { display: grid; grid-template-columns: 50% 50%; }
 

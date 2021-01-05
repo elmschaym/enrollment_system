@@ -55,8 +55,10 @@ const routes = [
                             { path: 'master', component: () => import('../views/adm/list/Master.vue'), name: 'adm-list-master' }
                         ]
                     },
-                    { path: 'new-admit', component: () => import('../views/adm/new/Admittee.vue'), name: 'adm-new-admit' },
-                    { path: 'new-saved', component: () => import('../views/adm/new/AdmitteeSaved.vue'), name: 'adm-new-saved' },
+                    { path: 'new-admittee', component: () => import('../views/adm/new/Admittee.vue'), name: 'adm-new-admittee' },
+                    { path: 'new-admittee-saved', component: () => import('../views/adm/new/AdmitteeSaved.vue'), name: 'adm-new-admittee-saved' },
+                    { path: 'new-student', component: () => import('../views/adm/new/Student.vue'), name: 'adm-new-student' },
+                    { path: 'new-student-admit', component: () => import('../views/adm/new/StudentAdmit.vue'), name: 'adm-new-student-admit' },
                     { path: ':admit_id/view', component: () => import('../views/adm/view/Admittee.vue'), name: 'adm-view-admit' }
 
                 ]
@@ -125,7 +127,9 @@ const routes = [
         children: [
             {   path: '', component: () => import('../views/sub/_.vue'),
                 children: [
-                    { path: 'index', component: () => import('../views/sub/Index.vue'), name: 'sub-index' }
+                    { path: 'index', component: () => import('../views/sub/AssignRequisites.vue'), name: 'sub-index' },
+                    { path: 'assign-xreq', component: () => import('../views/sub/AssignRequisites.vue'), name: 'sub-assign-xreq' },
+                    { path: 'student-eval', component: () => import('../views/sub/StudentEvaluation.vue'), name: 'sub-student-eval' }
                 ]
             }
         ]

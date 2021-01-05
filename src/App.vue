@@ -8,7 +8,8 @@
 	export default {
 		created() {	
 			//window.nw.Window.get().setResizable(false);
-			//window.nw.Window.get().setMaximumSize(window.screen.availWidth, window.screen.availHeight);
+			//window.nw.Window.get().setMaximumSize();
+			//console.log(window.screen.availWidth, window.screen.availHeight);
 		}
 	}
 </script>

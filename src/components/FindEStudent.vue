@@ -2,7 +2,7 @@
     <div class="find-c">
         <div class="find">
             <input v-model="query" :placeholder="'Student '+ queryType" :disabled="disableInput"/>
-            <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType == 'id' ? 'name' : 'id' }}</button>
+            <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
         </div>
         <div class="rslt">
             <div class="head">
@@ -33,6 +33,7 @@
     import 'vue-awesome/icons/coffee';
 
     export default {
+        emits: ['setValue'],
         components: {
             UiLoader: UILoader
         },
@@ -40,10 +41,6 @@
             disableInput: {
                 type: Boolean,
                 required: false
-            },
-            setValue: {
-                type: Function,
-                required: true
             }
         },
         data() {
@@ -73,7 +70,7 @@
             },
             setSelectedStud(v) {
                 this.selectedId = v.id;
-                this.setValue(v);
+                this.$emit('setValue', v);
             },
             switchQueryType() {
                 this.queryType = this.queryType == 'name' ? 'id' : 'name';
@@ -91,7 +88,7 @@
 <style scoped>
     .find-c { background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
     .find { display: grid; grid-template-columns: auto 60px; }
-    .find input { display: block; color: #391e22; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-radius: 5px 0 0 0; }
+    .find input { display: block; color: #391e22; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 12px; outline: none; border-radius: 5px 0 0 0; }
     .find button { display: block; color: #391e22; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border-radius: 0 5px 0 0; }
     .find button svg { width: 12px; height: 12px; float: right; }
 
@@ -106,9 +103,9 @@
     .list .l { border-bottom: 1px solid #f5f5f5; display: grid; grid-template-columns: auto 26px; cursor: pointer; }
     .l:hover, .l.active { background-color: #fbfbfb; }
     .l .i { height: 32px; }
-    .l .i .stu { font-size: 11px; color: #000; padding: 5px 2px 2px 12px; text-overflow: clip; white-space: nowrap; }
-    .l .i .stu span { color: #505050; font-weight: normal; }
-    .l .i .own { font-size: 10px; color: #808080; padding: 1px 2px 2px 12px; }
+    .l .i .stu { font-size: 11px; color: #000; padding: 5px 2px 2px 12px; text-overflow: clip; white-space: nowrap; color: #222; font-weight: 600; }
+    .l .i .stu span {  }
+    .l .i .own { font-size: 11px; color: #808080; padding: 1px 2px 2px 12px; }
     .l .i .own span { color: #222; }
     .l .b {}
     .l .b span { display: block; height: 32px; width: 26px; border-left: 1px solid #f0f0f0; }

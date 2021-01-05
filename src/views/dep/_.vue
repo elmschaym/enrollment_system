@@ -45,7 +45,7 @@
 </script>
 
 <style scoped>
-	.wrap-x { display: grid; grid-template-columns: 160px auto; background-color: #fff }
-	.side {}
-	.view { height: calc(100vh - 24px); display: grid; grid-template-rows: calc(100vh - 48px) 24px }
+	.wrap-x { height: inherit; display: grid; grid-template-columns: 160px auto; background-color: #fff }
+	.side { height: 100%; }
+	.view { height: calc(100% - 24px); display: grid; grid-template-rows: auto 24px; }
 </style>

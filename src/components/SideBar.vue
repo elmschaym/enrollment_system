@@ -4,7 +4,7 @@
             <div class="usr">
                 <div class="u">
                     <span></span>
-                    <b>{{ usr.name }} <v-icon name="edit"></v-icon></b>
+                    <b>{{ usr.name }} <v-icon name="user-circle"></v-icon></b>
                     <i>{{ usr.role }}</i>
                 </div>
             </div>
@@ -64,6 +64,7 @@
     import 'vue-awesome/icons/universal-access';
     import 'vue-awesome/icons/calendar'
     import 'vue-awesome/icons/lock';
+    import 'vue-awesome/icons/user-circle';
 
     export default {
         props: {
@@ -99,41 +100,41 @@
 </script>
 
 <style scoped>
-    .sidebar { background: #132436; height: calc(100vh - 24px); border-right: 1px solid #d5d8dc; position: relative; }
+    .sidebar { background: #EEEEEC; height: calc(100vh - 24px); border-right: 1px solid #E8E8E2; position: relative; }
 
     .sidebar .name { height: 40px; background-color: #00222E; font-size: 24px; text-align: center; font-weight: 600; padding: 8px 0; }
     .sidebar .name b { color: #fff; }
     .sidebar .name span { color: #fff; }
     
-    .sidebar .list { height: calc(100vh - 56px); padding: 20px 0; border-top: 1px solid #00222E; border-bottom: 1px solid #00222E; }
+    .sidebar .list { height: calc(100% - 48px); padding: 20px 0; }
     .list ul {}
     .list ul li { display: block; position: relative; }
-    .list ul li.l > div { display: block; padding: 6px 8px 6px 14px; border-top: 1px solid #00222E }
-    .list ul li.l > div svg { height: 10px; width: 10px; color: #eee; }
-    .list ul li.l > div > span { margin-left: 10px; color: #eee; font-size: 11px; }
-    .list ul li.l > div:hover { background-color: #243544; cursor: pointer; }
-    .list ul li.l.active > div { background-color: #243544; cursor: pointer; border-right: 2px solid #00222E; margin-right: -2px; }
+    .list ul li.l > div { display: block; padding: 6px 8px 6px 14px; border-top: 1px solid #E8E8E2 }
+    .list ul li.l > div svg { height: 12px; width: 12px; color: #111; margin-bottom: -1px; }
+    .list ul li.l > div > span { margin-left: 16px; color: #111; font-size: 11px; }
+    .list ul li.l > div:hover { background-color: #E8E8E2; cursor: pointer; }
+    .list ul li.l.active > div { background-color: #E8E8E2; cursor: pointer; border-right: 2px solid #888A85; margin-right: -2px; }
 
     .list .q > div { padding: 2px 4px; margin-bottom: 12px; position: relative; }
-    .list .q > div input { width: 100%; padding: 6px; color: #391e22; border: 1px solid #f0f0f0; background-color: #fdfdfd; width: 100%; font-size: 12px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; border-radius: 2px; line-height: 12px; height: 28px; }
+    .list .q > div input { width: 100%; padding: 6px; color: #391e22; background-color: #E0E0DB; width: 100%; font-size: 12px; border-width: 1px; border-style: solid; border-color: #EEEEEC #D3D7CF #D0D0D0 #D3D7CF; border-radius: 2px; line-height: 12px; height: 28px; }
     .list .q > div svg { color: #00222E; position: absolute; right: 8px; top: 10px; width: 14px; height: 14px; }
 
     .list .p {}
-    .list .h { margin-top: 8px; padding: 7px 14px; }
-    .list .h span { font-size: 9px; text-transform: uppercase; color: #ddd; }
+    .list .h { margin-top: 8px; padding: 7px 14px; border-top: 1px solid #E8E8E2; }
+    .list .h span { font-size: 9px; text-transform: uppercase; color: #111; }
 
     .list .usr {}
-    .list .usr .u { border-bottom: 1px solid #00222E; }
-    .list .usr .u span { display: block; height: 84px; width: 84px; background-color: #00222E; margin: 0 auto; border-radius: 42px 42px 42px 0; }
-    .list .usr .u b { color: #f0f0f0; display: block; padding: 8px 8px 4px 8px; font-size: 11px; position: relative; }
+    .list .usr .u {}
+    .list .usr .u span { display: block; height: 84px; width: 84px; background-color: #2E3436; margin: 0 auto; border-radius: 42px 42px 42px 0; }
+    .list .usr .u b { color: #111; display: block; padding: 8px 8px 2px 8px; font-size: 12px; position: relative; font-weight: 600; }
     .list .usr .u b svg { width: 12px; height: 12px; position: absolute; right: 8px; }
-    .list .usr .u i { color: #d0d0d0; display: block; font-size: 9px; border-bottom: 1px solid #00222E; padding: 0 8px 8px 8px; font-style: normal; }
+    .list .usr .u i { color: #333; display: block; font-size: 10px; padding: 0 8px 8px 8px; font-style: normal; }
 
-    .user { height: 32px; display: grid; grid-template-columns: 32px 138px; padding: 4px 6px; background-color: #00222E }
+    .user { height: 24px; display: grid; grid-template-columns: 32px 138px; padding: 4px 6px; background-color: #E8E8E2 }
     .user .m {}
     .user .n {}
-    .user .n span { display: block; color: #fff; font-size: 10px; }
-    .user .n span b { color: #fff; font-size: 10px; font-weight: 300; }
-    .user .n span i { display: block; margin-top: 2px; color: #fff; font-size: 9px; font-style: normal; font-weight: 100 }
+    .user .n span { display: block; color: #111; font-size: 10px; }
+    .user .n span b { color: #111; font-size: 10px; font-weight: 300; }
+    .user .n span i { display: block; margin-top: 2px; color: #111; font-size: 9px; font-style: normal; font-weight: 100 }
     .user .m span { width: 20px; height: 20px; border-radius: 20px; background-color: #a0a0a0; margin: 2px 0; }
 </style>

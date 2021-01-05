@@ -5,10 +5,10 @@
                 <input v-model="find.query" placeholder="Find admission..."/>
             </div>
             <div class="v">
-                <ui-select :setValue="setDept" :options="[{ id: 0, name: 'by department'}, { id: 0, name: 'by course'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
+                <ui-select @setValue="setDept" :options="[{ id: 0, name: 'by department'}, { id: 0, name: 'by course'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
             </div>
             <div class="w">
-                <ui-select :setValue="setType" :options="[{ id: 0, name: 'by id'}, { id: 0, name: 'by name'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
+                <ui-select @setValue="setType" :options="[{ id: 0, name: 'by id'}, { id: 0, name: 'by name'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
             </div>
             <div class="x">
                 <button><v-icon name="search"></v-icon></button>
@@ -69,7 +69,6 @@
     import 'vue-awesome/icons/square';
 
     export default {
-        props: ['viewName', 'admitType'],
         components: {
             UiSelect: UISelect,
             UiLoader: UILoader

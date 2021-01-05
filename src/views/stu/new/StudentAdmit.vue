@@ -39,7 +39,7 @@
                             <div class="c">
                                 <div>
                                     <label for="">Academic Programme</label>
-                                    <ui-select :setValue="setAcademicType" :options="acad_programs" :styles="['border-radius: 2px; width: 95%; padding: 6px 10px 6px 10px', '']"></ui-select>
+                                    <ui-select @setValue="setAcademicType" :options="acad_programs" :styles="['border-radius: 2px; width: 95%; padding: 6px 10px 6px 10px', '']"></ui-select>
                                 </div>
                                 <div>
                                     <label for="">Admission Date</label>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <ui-modal v-if="isModalShow && isSubmitOkay" :modalClose="modalClose" class="moda-l">
+            <ui-modal v-if="isModalShow && isSubmitOkay" @modalClose="modalClose" class="moda-l">
                 <span slot="name">Admitted Successfully</span>
                 <div slot="body-text">
                     Proceed to preferred Department for Enrollment and Course selection.
@@ -112,7 +112,7 @@
                     <button @click="printAdmission()">Print Admission</button>
                 </div>
             </ui-modal>
-             <ui-modal v-if="isModalShow && !isSubmitOkay" :modalClose="modalClose" class="moda-l">
+             <ui-modal v-if="isModalShow && !isSubmitOkay" @modalClose="modalClose" class="moda-l">
                 <span slot="name">Admission Error</span>
                 <div slot="body-text">
                     There was an error processing your request. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>

@@ -5,10 +5,10 @@
                 <input v-model="find.query" placeholder="Find student by id or name"/>
             </div>
             <div class="v">
-                <ui-select :setValue="setQueryType" :options="[{ id: 0, name: 'by id'}, { id: 0, name: 'by name'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
+                <ui-select @setValue="setQueryType" :options="[{ id: 0, name: 'by id'}, { id: 0, name: 'by name'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
             </div>
             <div class="w">
-                <ui-select :setValue="setQuerySem" :options="[{ id: 0, name: 'by id'}, { id: 0, name: 'by name'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
+                <ui-select @setValue="setQuerySem" :options="[{ id: 0, name: 'by id'}, { id: 0, name: 'by name'}]" :styles="['border-radius: 2px; width: 95%']"></ui-select>
             </div>
             <div class="x">
                 <button><v-icon name="filter"></v-icon></button>
@@ -69,7 +69,6 @@
     import 'vue-awesome/icons/square';
 
     export default {
-        props: ['viewName', 'admitType'],
         components: {
             UiSelect: UISelect,
             UiLoader: UILoader
@@ -97,10 +96,10 @@
                     this.isFetching = false;
                 });
             },
-            setQueryType(d) {
+            setQueryType(e, d) {
                 this.find.type = d;
             },
-            setQuerySem(t) {
+            setQuerySem(e, t) {
                 this.find.sem = t;
             },
             enrolleeListCMenu(e, l) {

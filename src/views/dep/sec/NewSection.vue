@@ -1,104 +1,102 @@
 <template>
-    <div>
-        <div class="form-o">
-            <div class="w">
-                <div class="p">
-                    <div class="u">
-                        <div class="h">
-                            <div class="code">
-                                {{ subject.code }}
-                            </div>
-                            <div class="name">
-                                <div class="n">{{ subject.name }}</div>
-                                <div class="m">{{ subject.units }} Units</div>
-                            </div>
-                            <div class="butt">
-                                <button @click="addSection()" :class="isFormOkay ? 'okay' : ''" :disabled="!isFormOkay"><v-icon name="plus"></v-icon> Add Sched</button>
-                            </div>
+    <div class="form-o">
+        <div class="w">
+            <div class="p">
+                <div class="u">
+                    <div class="h">
+                        <div class="code">
+                            {{ subject.code }}
                         </div>
-                        <div class="r s">
-                            <div class="c">
-                                <div>
-                                    <label for="">Week Day</label>
-                                    <ui-select :setValue="setSchedDay" :options="daysList" :styles="['width: 95%']"></ui-select>
-                                </div>
-                                <div>
-                                    <label for="">Start Time</label>
-                                    <ui-select :setValue="setSchedTimeStart" :options="timeStartList" :styles="['width: 95%']"></ui-select>
-                                </div>
-                                <div>
-                                    <label for="">End Time</label>
-                                    <ui-select :setValue="setSchedTimeEnd" :options="timeEndList" :styles="['width: 95%']"></ui-select>
-                                </div>
-                                <div>
-                                    <label for="">Slots</label>
-                                    <input type="text" v-model="schedule.slots"/>
-                                </div>
-                            </div>
+                        <div class="name">
+                            <div class="n">{{ subject.name }}</div>
+                            <div class="m">{{ subject.units }} Units</div>
                         </div>
-                        <div class="r o">
-                            <div class="x">
-                                <div class="a">Room List</div>
-                                <div class="b" v-if="roomsList.length > 0">
-                                    <div :key="'list'+ r.id" v-for="r in roomsList"><v-icon name="square"></v-icon> {{ r.name }}<span style="float: right">{{r.slots}}</span></div>
-                                </div>
-                                <div class="n" v-else>
-                                    <div>No room available</div>
-                                </div>
-                            </div>
-                            <div class="y">
-                                <div class="a">Available Rooms</div>
-                                <div class="b" v-if="roomsList.length > 0">
-                                    <div :key="'open'+ r.id" v-for="r in roomsList" @click="setSchedRoom(r.id)" :class="r.id == schedule.room ? 'active': ''">{{ r.name }}</div>
-                                </div>
-                                <div class="b" v-else>
-                                    No room available. Please select another time or day.
-                                </div>
-                                <div class="c" v-if="tempSched.day != ''">
-                                    <div>{{ tempSched.day }}</div>
-                                    <div>{{ tempSched.name }}</div>
-                                    <div>{{ tempSched.time }}</div>
-                                    <div>{{ getRoom(schedule.room) }}</div>
-                                    <div @click="clearTempSched()">&times;</div>
-                                </div>
-                            </div>
+                        <div class="butt">
+                            <button @click="addSection()" :class="isFormOkay ? 'okay' : ''" :disabled="!isFormOkay"><v-icon name="plus"></v-icon> Add Sched</button>
                         </div>
-                        <div class="r t">
-                            <div class="x">
-                                <div>Section</div>
-                                <div>Day</div>
-                                <div>Time Schedule</div>
-                                <div>Room</div>
-                                <div>Slots</div>
+                    </div>
+                    <div class="r s">
+                        <div class="c">
+                            <div>
+                                <label for="">Week Day</label>
+                                <ui-select @setValue="setSchedDay" :options="daysList" :styles="['width: 95%']"></ui-select>
                             </div>
-                            <div class="y" v-if="sections.length > 0">
-                                <div :class="['i', i%2!=0 ? 'odd' : '']" v-for="(s,i) in sections" :key="'sect'+s.name +'-'+i">
-                                    <div>{{ s.name }}</div>
-                                    <div>{{ s.sched_days }}</div>
-                                    <div>{{ s.sched_time }}</div>
-                                    <div>{{ s.room.name }}</div>
-                                    <div>{{ s.slots }}</div>
-                                    <div title="Remove"><v-icon name="trash"></v-icon></div>
-                                </div>
+                            <div>
+                                <label for="">Start Time</label>
+                                <ui-select @setValue="setSchedTimeStart" :options="timeStartList" :styles="['width: 95%']"></ui-select>
                             </div>
-                            <div class="y" v-else>
-                                <div class="z">No Available Sections</div>
+                            <div>
+                                <label for="">End Time</label>
+                                <ui-select @setValue="setSchedTimeEnd" :options="timeEndList" :styles="['width: 95%']"></ui-select>
+                            </div>
+                            <div>
+                                <label for="">Slots</label>
+                                <input type="text" v-model="schedule.slots"/>
                             </div>
                         </div>
                     </div>
-                    <div class="dsbd" v-if="subject.id == 0"></div>
+                    <div class="r o">
+                        <div class="x">
+                            <div class="a">Room List</div>
+                            <div class="b" v-if="roomsList.length > 0">
+                                <div :key="'list'+ r.id" v-for="r in roomsList"><v-icon name="square"></v-icon> {{ r.name }}<span style="float: right">{{r.slots}}</span></div>
+                            </div>
+                            <div class="n" v-else>
+                                <div>No room available</div>
+                            </div>
+                        </div>
+                        <div class="y">
+                            <div class="a">Available Rooms</div>
+                            <div class="b" v-if="roomsList.length > 0">
+                                <div :key="'open'+ r.id" v-for="r in roomsList" @click="setSchedRoom(r.id)" :class="r.id == schedule.room ? 'active': ''">{{ r.name }}</div>
+                            </div>
+                            <div class="b" v-else>
+                                No room available. Please select another time or day.
+                            </div>
+                            <div class="c" v-if="tempSched.day != ''">
+                                <div>{{ tempSched.day }}</div>
+                                <div>{{ tempSched.name }}</div>
+                                <div>{{ tempSched.time }}</div>
+                                <div>{{ getRoom(schedule.room) }}</div>
+                                <div @click="clearTempSched()">&times;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="r t">
+                        <div class="x">
+                            <div>Section</div>
+                            <div>Day</div>
+                            <div>Time Schedule</div>
+                            <div>Room</div>
+                            <div>Slots</div>
+                        </div>
+                        <div class="y" v-if="sections.length > 0">
+                            <div :class="['i', i%2!=0 ? 'odd' : '']" v-for="(s,i) in sections" :key="'sect'+s.name +'-'+i">
+                                <div>{{ s.name }}</div>
+                                <div>{{ s.sched_days }}</div>
+                                <div>{{ s.sched_time }}</div>
+                                <div>{{ s.room.name }}</div>
+                                <div>{{ s.slots }}</div>
+                                <div title="Remove"><v-icon name="trash"></v-icon></div>
+                            </div>
+                        </div>
+                        <div class="y" v-else>
+                            <div class="z">No Available Sections</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="q">
-                    <div class="t">
-                        <find-e-subject :setValue="setSubjectFromSearch"></find-e-subject>
-                    </div>
-                    <div class="s">
-                        <button :class="isFormOkay ? 'okay' : ''" @click="goSaveSection()" :disabled="isSavingForm || !isFormOkay"><v-icon name="plus"></v-icon> Open Section</button>
-                    </div>
+                <div class="dsbd" v-if="subject.id == 0"></div>
+            </div>
+            <div class="q">
+                <div class="t">
+                    <find-e-subject @setValue="setSubjectFromSearch"></find-e-subject>
+                </div>
+                <div class="s">
+                    <button :class="['br-confirm', isFormOkay ? 'okay' : '']" @click="goSaveSection()" :disabled="isSavingForm || !isFormOkay"><v-icon name="plus"></v-icon> Open Section</button>
                 </div>
             </div>
-            <ui-loader v-if="isSavingForm"></ui-loader>
         </div>
+        <ui-loader v-if="isSavingForm"></ui-loader>
     </div>
 </template>
 
@@ -259,10 +257,10 @@
 </script>
 
 <style scoped>
-    .form-o { position: relative; }
-    .form-o .w { display: grid; grid-template-columns: auto 312px; }
-    .form-o .w .p { padding: 0 16px; position: relative; height: calc(100vh - 48px); }
-    .form-o .w .q { border-left: 1px solid #f0f0f0; height: calc(100vh - 48px); background: linear-gradient(to right, #f8f8f8, #fcfcfc); }
+    .form-o { position: relative; height: auto; }
+    .form-o .w { height: 100%; display: grid; grid-template-columns: auto 312px; }
+    .form-o .w .p { height: 100%; padding: 0 16px; position: relative; background-color: #fff }
+    .form-o .w .q { height: 100%; display: grid; grid-template-rows: auto 70px; border-left: 1px solid #f0f0f0; background: #f8f8f2; }
 
     .form-o .w .p label { display: block; font-size: 11px; margin: 10px 0 4px 2px; color: #111; }
     .form-o .w div.info { font-size: 10px; padding: 2px 8px; },
@@ -271,9 +269,9 @@
     .p .u, .p .v {  padding: 16px; }
 
     .p .h { padding: 0 0 8px 0; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 58px 468px 110px; margin-bottom: 0px; }
-    .p .h .code { display: flex; align-items: center; justify-content: center; font-size: 16px; color: #444; font-weight: bold; background-color: #f5f5f0; white-space: nowrap; overflow-x: hidden; padding-top: 6px; padding-bottom: 6px; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+    .p .h .code { display: flex; align-items: center; justify-content: center; font-size: 16px; color: #444; font-weight: 600; background-color: #f5f5f0; white-space: nowrap; overflow-x: hidden; padding-top: 6px; padding-bottom: 6px; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .p .h .name { padding: 0 0 0 12px; }
-    .p .h .name .n { font-size: 12px; font-weight: bold; margin: 2px 0; }
+    .p .h .name .n { font-size: 12px; font-weight: 600; margin: 2px 0; }
     .p .h .name .m { font-size: 11px;  }
     .p .h .butt {}
     .p .h .butt button { width: 100%; border-radius: 2px; color: #808080; padding: 3px 8px 2px 8px; border: none; background-color: #f0f0ea; font-size: 11px; outline: none; cursor: pointer;  }
@@ -287,16 +285,16 @@
 
     .p .r.o { display: grid; grid-template-columns: 136px auto; margin: 16px 0 24px 0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .p .r.o .x { background-color: #fff; }    
-    .p .r.o .x .a { font-size: 11px; color: #111; padding: 6px 12px; border-top: 1px solid #f7f7f7; background-color: #f9f9f7; font-weight: bold }
+    .p .r.o .x .a { font-size: 11px; color: #111; padding: 6px 12px; border-top: 1px solid #f7f7f7; background-color: #f9f9f7; font-weight: 600 }
     .p .r.o .x .b,  .p .r.o .x .n { height: 200px; overflow-y: scroll; }
     .p .r.o .x .b > div { padding: 6px 12px; font-size: 11px; border-bottom: 1px solid #fafafa; }
     .p .r.o .x .b > div svg { width: 10px; height: 10px; color: #d0d0ca; margin-right: 6px; }
     .p .r.o .x .n > div { padding: 12px; font-size: 11px; text-align: center; }
 
     .p .r.o .y {}
-    .p .r.o .y .a { font-size: 11px; color: #111; padding: 6px 0; text-align: center; border-top: 1px solid #f7f7f7; background-color: #f9f9f7; font-weight: bold }
+    .p .r.o .y .a { font-size: 11px; color: #111; padding: 6px 0; text-align: center; border-top: 1px solid #f7f7f7; background-color: #f9f9f7; font-weight: 600 }
     .p .r.o .y .b { display: flex; padding: 16px; justify-content: center; height: 175px; }
-    .p .r.o .y .b > div { border-radius: 2px; color: #000; padding: 6px 12px; border: none; background-color: #fff; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.24); margin: 5px; height: 24px; }
+    .p .r.o .y .b > div { border-radius: 2px; color: #000; padding: 6px 12px; border: none; background-color: #fff; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #f0f0ea; margin: 5px; height: 24px; }
     .p .r.o .y .b > div.active { background-color: #f6f6f2; }
     .p .r.o .y .c { display: grid; grid-template-columns: 60px 75px auto 65px 25px; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
     .p .r.o .y .c div { padding: 6px 7px; font-size: 11px; }
@@ -304,20 +302,19 @@
     .p .r.t { margin: 16px 0; background-color: #fcfcfa; }
     .p .r.t .x, .p .r.t .y .i { display: grid; grid-template-columns: 120px 100px auto 100px 70px 28px; }
     .p .r.t .x { border-top: 1px solid #f4f4f0; border-bottom: 1px solid #f4f4f0; background-color: #f9f9f7; }
-    .p .r.t .x div { font-size: 10px; padding: 6px 7px; font-weight: bold }
+    .p .r.t .x div { font-size: 11px; padding: 6px 7px; font-weight: 600 }
 
-
-    .p .r.t .y { height: 160px; border-bottom: 1px solid #f4f4f0; overflow-y: scroll; }
+    .p .r.t .y { height: 141px; overflow-y: scroll; }
     .p .r.t .y .i div { font-size: 11px; padding: 6px 7px; border-bottom: 1px solid #fbfbfb; }
     .p .r.t .y .i.odd { background-color: #fcfcfa }
     .p .r.t .y .z { padding: 7px 6px; text-align: center; font-size: 11px; }
     .p .r.t .y .i div svg { width: 10px; height: 10px; color: #777; cursor: pointer; }
     .p .r.t .y .i div.x[title]:hover:after { content: attr(title); position: absolute; background-color: #fff; color: #333; }
 
-    .q .t { height: 542px; position: relative; padding: 12px; }
+    .q .t { position: relative; padding: 12px; }
 
     .q .s { text-align: center; background-color: #f0f0ea; height: 70px; padding: 20px 0; }
-    .q .s button { height: 24px; padding: 0px 12px; border: 1px solid #e0e0d0; background: linear-gradient(to bottom, #f0f0f0, #e0e0e0); border-radius: 2px; font-size: 11px; color: #888; }
+    .q .s button {}
     .q .s button svg { height: 10px; width: 10px; color: #808080; }
     .q .s button.okay { border: 1px outset #e0e0d0; color: #000; }
     .q .s button.okay svg { color: #000; }

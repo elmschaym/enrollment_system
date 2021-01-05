@@ -217,6 +217,7 @@
 			}
 		},
 		mounted() {
+			this.$store.commit('setModuleName', 'Dashboard');
 		}
 	}
 </script>
@@ -245,12 +246,12 @@
 	.modu .list { background-color: #fefefe; padding: 24px 0 0 0; border: 1px solid #fdfdfd; box-shadow: 0 4px 9px rgba(0,0,0,0.15); }
 
 	.modu .r { display: grid; grid-template-columns: 25% 25% 25% 25%; padding: 0 0 32px 0; }
-	.modu .r .l { height: 61px; background-color: #e0e0e0; width: 100px; margin: 0 auto; position: relative; border-width: 1px; border-style: solid; border-color: transparent #f0f0f0 #e0e0e0 #f0f0f0; cursor: pointer; ibox-shadow: 0 4px 10px rgba(0,0,0,0.15); overflow: hidden; border-radius: 20px 0 4px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.15);}
+	.modu .r .l { height: 61px; background-color: #e0e0e0; width: 100px; margin: 0 auto; position: relative; border-width: 1px; border-style: solid; border-color: transparent #f0f0f0 #e0e0e0 #f0f0f0; cursor: pointer; ibox-shadow: 0 4px 10px rgba(0,0,0,0.15); overflow: hidden; border-radius: 20px 0 4px 0; }
 	.modu .r .l span { border-radius: 20px 0 0 0; display: block; height: 58px; overflow: hidden; margin-top: -1px; text-align: right; }
 	.modu .r .l span svg { width: 32px; height: 32px; color: #56373c; margin: 4px 8px 8px 8px; color: #c0c0b0; border-radius: 100%; }
 	.modu .r .l b { display: block; position: absolute; height: 20px; bottom: 0; width: 100%; font-size: 11px; text-align: left; padding: 6px 4px 4px 8px; background-color: #fff; color: #333; font-weight: 600; border-radius: 0 0 4px 0;  }
-	.modu .r .l:hover b { background-color: transparent; transition: 300ms ease-in-out }
-	.modu .r .l:hover span svg { margin: 8px auto; transition: 300ms ease-in-out; width: 48px; height: 48px; border-radius: 100%; box-shadow: 0 4px 9px rgba(0,0,0,0.15); }
+	.imodu .r .l:hover b { background-color: transparent; transition: 300ms ease-in-out }
+	.imodu .r .l:hover span svg { margin: 8px auto; transition: 300ms ease-in-out; width: 48px; height: 48px; border-radius: 100%; box-shadow: 0 4px 9px rgba(0,0,0,0.15); }
 
 	.serv { height: 296px; background-color: #fff; box-shadow: 0 4px 9px rgba(0,0,0,0.15); margin: 24px; position: relative; border-bottom: 5px solid #f5f5f5; }
 	.serv .head { background-color: #f5f5f5; color: #111; font-weight: bold; font-size: 10px; padding: 5px; text-align: center; }

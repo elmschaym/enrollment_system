@@ -9,7 +9,6 @@
             <ui-date :refreshDate="refreshDate"></ui-date>
         </div>
         <div class="q">
-            <span title="Serve at 127.0.0.1:8080">127.0.0.1</span>
             <span>Connected</span>
             <span title="Secure Connection">
                 <v-icon name="lock"></v-icon>
@@ -63,5 +62,5 @@
     .stat-s .p span.b { border-left: 1px solid #eaeaea; }
     .stat-s .q { text-align: right;  }
     .stat-s .q span { padding: 6px 8px; display: inline-block; border-left: 1px solid #eaeaea; }
-    .stat-s svg { height: 10px; width: 10px; color: #505050; }
+    .stat-s svg { height: 9px; width: 9px; color: #505050; }
 </style>

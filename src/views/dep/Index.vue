@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap-i">
     </div>
 </template>
 
@@ -16,4 +16,5 @@
 </script>
 
 <style scoped>
+    .wrap-i { height: inherit; }
 </style>

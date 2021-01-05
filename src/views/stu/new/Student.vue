@@ -31,7 +31,7 @@
 							<div class="c">
 								<div>
 									<label for="">Gender</label>
-									<ui-select :setValue="setStudentGender" :options="$store.state.forms.student.gender" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px']"></ui-select>
+									<ui-select @setValue="setStudentGender" :options="$store.state.forms.student.gender" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px']"></ui-select>
 								</div>
 								<div>
 									<label for="">Religion</label>
@@ -39,7 +39,7 @@
 								</div>
 								<div>
 									<label for="">Civil Status</label>
-									<ui-select :setValue="setStudentCivilStatus" :options="$store.state.forms.student.civil_status" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px', '']"></ui-select>
+									<ui-select @setValue="setStudentCivilStatus" :options="$store.state.forms.student.civil_status" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px', '']"></ui-select>
 								</div>
 								<div>
 									<label for="">Date of Birth</label>
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 			</div>
-			<ui-modal v-if="isGenSIDError" :modalClose="modalAClose" class="moda-l">
+			<ui-modal v-if="isGenSIDError" @modalClose="modalAClose" class="moda-l">
 				<span slot="name">Connection Error</span>
 				<div slot="body-text">
 					There was an error connecting on server. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 400 No Connection</span>
@@ -151,7 +151,7 @@
 					<button @click="modalAClose()">Reconnect</button>
 				</div>
 			</ui-modal>
-			<ui-modal v-if="isSubmitError" :modalClose="modalBClose" class="moda-l">
+			<ui-modal v-if="isSubmitError" @modalClose="modalBClose" class="moda-l">
 				<span slot="name">Internal Error</span>
 				<div slot="body-text">
 					There was an error processing your request. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
@@ -208,7 +208,7 @@
 		},
 		methods: {
 			genStudentID() {
-				this.$http.get('gen_student_id').then( res => {
+				this.$http.get('gen_student_id/').then( res => {
 					this.student.school_id = res.data.stud_id;
 				}).catch( () => {
 					this.isGenSIDError = true;
@@ -303,11 +303,11 @@
 	.form-o .w .p { padding: 0 16px; }
 	.form-o .w .q { border-left: 1px solid #f0f0f0; height: calc(100vh - 48px); background: linear-gradient(to right, #f8f8f8, #fcfcfc); }
 
-	.form-o .w .p input { width: 100%; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p select { border-radius: 5px; color: #000; padding: 5px 12px 5px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; cursor: pointer; }
 	.form-o .w .p textarea { width: 100%; height: 50px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p label { display: block; font-size: 11px; margin: 10px 0 4px 2px; color: #111; }
-	.form-o .w .p button { width: 100%; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w div.info { font-size: 10px; padding: 2px 8px; }
 
 	.p .h { padding: 0 0 8px 0; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 418px 200px; margin-bottom: 0px; color: #505040; }

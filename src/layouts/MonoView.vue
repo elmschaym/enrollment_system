@@ -63,12 +63,12 @@
 	div.m { display: grid; grid-template-columns: 28px auto; }
 	div.m .content .c { height: calc(100vh - 48px); width: 100%; }
 
-	div.m .sidecon { background-color: #00222E; border-right: 1px solid #101010; }
-	div.m .sidecon ul { padding: 20px 0; }
+	div.m .sidecon { background-color: #555753; border-right: 1px solid #101010; }
+	div.m .sidecon ul { padding: 24px 0; }
 	div.m .sidecon ul li { height: 36px; padding: 10px 5px; cursor: pointer; }
 	div.m .sidecon ul li span {}
 	div.m .sidecon ul li span svg { height: 16px; width: 16px; color: #f0f0f0; }
-	div.m .sidecon ul li.active { background-color: #243544; }
+	div.m .sidecon ul li.active { background-color: #2E3436; }
 
 	div.m .content .c { overflow-y: hidden; }
 	div.m .content .s {}

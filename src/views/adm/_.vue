@@ -28,13 +28,13 @@
 		data() {
 			return {
 				modules_m: [
-                    { name: 'New Student', icon: 'plus-circle', link: 'stu-new-stude'},
+                    { name: 'New Student', icon: 'plus-circle', link: 'adm-new-student'},
                     { name: 'Admissions', icon: 'flag', link: 'adm-list-index'},
                     { name: 'Students', icon: 'flag', link: 'stu-list-index'}
                     //{ name: 'Enrollment', icon: 'flag', link: 'enr-list-index'}
                 ],
                 modules_a: [
-					{ name: 'New Admittee', icon: 'plus', link: 'adm-new-admit'},
+					{ name: 'New Admittee', icon: 'plus', link: 'adm-new-admittee'},
 					{ name: 'Dashboard', icon: 'th', link: 'dbd-index'}
 				]
 			}
@@ -43,7 +43,7 @@
 </script>
 
 <style scoped>
-	.wrap-x { display: grid; grid-template-columns: 160px auto; background-color: #fff }
-	.side {}
-	.view { height: calc(100vh - 24px); display: grid; grid-auto-rows: calc(100vh - 48px) 24px }
+	.wrap-x { height: inherit; display: grid; grid-template-columns: 160px auto; background-color: #fff }
+	.side { height: 100%; }
+	.view { height: calc(100% - 24px); display: grid; grid-template-rows: auto 24px; }
 </style>
