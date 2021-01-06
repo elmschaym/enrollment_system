@@ -1,17 +1,17 @@
 <template>
-    <div>
+    <div class="wrap-z">
         <div class="cate-o">
             <div class="link">
                 <ul>
-                    <li @click="goName('adm-all')" :class="viewName == 'adm-all' || viewName == 'adm-index'? 'active' : ''"><div>Master</div></li>
-                    <li @click="goName('adm-inpatient')" :class="viewName == 'adm-inpatient' ? 'active' : ''"><div>Pre-Admit</div></li>
-                    <li @click="goName('adm-probation')" :class="viewName == 'adm-probation' ? 'active' : ''"><div>Probation</div></li>
-                    <li @click="goName('adm-discharged')" :class="viewName == 'adm-discharged' ? 'active' : ''"><div>Background</div></li>
+                    <li @click="goName('adm-list-adm-master')" :class="viewName == 'adm-list-adm-master'? 'active' : ''"><div>Admittees</div></li>
+                    <li @click="goName('adm-list-stu-master')" :class="viewName == 'adm-list-stu-master' ? 'active' : ''"><div>Students</div></li>
+                    <li :class="viewName == 'adm-probation' ? 'active' : ''"><div>Enrollees</div></li>
+                    <li :class="viewName == 'adm-discharged' ? 'active' : ''"><div>Graduates</div></li>
                 </ul>
             </div>
             <div class="make">
                 <span @click="goMake()">
-                    <v-icon name="plus"></v-icon> Admission
+                    <v-icon name="plus"></v-icon> Admittee
                 </span>
             </div>
         </div>
@@ -25,7 +25,7 @@
     export default {
         data() {
             return {
-                viewName: 'adm-index'
+                viewName: 'adm-list-adm-master'
             }
         },
         methods: {
@@ -36,20 +36,23 @@
                 }
             },
             goMake() {
-                this.$router.push({ name: 'adm-new-admit' });
+                this.$router.push({ name: 'adm-new-admittee' });
             }
         }
     }
 </script>
 
 <style scoped>
+    .wrap-z { height: 100%; display: grid; grid-template-rows: 32px auto; }
+
     .cate-o { background-color: #f8f8f8; height: 32px; display: grid; grid-template-columns: auto 300px; border-bottom: 1px solid #eaeaea; }
     .link ul { display: block; margin: 0 16px; }
     .link ul li { display: inline-block; font-size: 11px; padding: 10px 12px; cursor: pointer; }
-    .link ul li.active { border-bottom: 2px solid #290e12; }
+    .link ul li.active { border-bottom: 1px solid #777; }
     .link ul li.active div {  }
 
     .make { text-align: right; }
-    .make span { display: inline-block; background-color: #f8f8f8; font-size: 11px; padding: 10px 10px 9px 10px; border-left: 1px solid #e9e9e9; cursor: pointer; }
+    .make span { display: inline-block; background-color: transparent; padding: 10px 10px 9px 10px; border-left: 1px solid #e9e9e9; cursor: pointer; font-size: 11px; }
+    .make span.active { border-bottom: 1px solid #777; }
     .make span svg { width: 12px; height: 12px; margin-bottom: -2px; }
 </style>

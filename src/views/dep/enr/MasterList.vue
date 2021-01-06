@@ -156,7 +156,7 @@
 <style scoped>
 	.wrap-m { height: 100%; background-color: #fbfbf7; }
 
-	.list-o { margin: 16px; background-color: #fff; border: 1px solid #edede9; font-size: 12px; }
+	.list-o { margin: 0 16px; background-color: #fff; border: 1px solid #edede9; font-size: 12px; }
 	.list-o .data .tbl {}
 	.list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 28px 100px auto 220px 140px 100px 120px }
 	.list-o .data .tbl .tbd { height: 440px; position: relative; overflow: hidden; }
@@ -165,7 +165,7 @@
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #f5f5f0; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover { background-color: #f6f6f0; }
 	.list-o .data .tbl .ttd b {}
-	.list-o .data .tbl .ttd svg { width: 10px; height: 10px; margin-bottom: 2px; color: #fff; border: 1px outset #fff; }
+	.list-o .data .tbl .ttd svg { width: 10px; height: 10px; margin-bottom: 2px; color: #fff; border: 1px solid #c0c0ba; }
 	.list-o .data .tbl .ttd svg.n { color: #fff; }
 	.list-o .data .tbl .ttd svg.c { color: #ccc; }
 	.list-o .data .tbl .tth svg { width: 12px; height: 12px; color: #404040; margin-bottom: -3px; }
@@ -181,20 +181,20 @@
 	.list-o .page .c { text-align: center; }
 	.list-o .page .r { text-align: right; }
 	.list-o .page .r button { margin-left: 4px; }
-	.list-o .page button { background: #fff; padding: 2px 10px; font-size: 8px; border: 1px outset #fff; }
+	.list-o .page button { background: #fff; padding: 2px 10px; font-size: 8px; border: 1px solid #d0d0d0; }
 	.list-o .page button svg { width: 10px; height: 10px; margin-bottom: -2px; }
 
-	.find-o { margin: 16px 16px 10px 16px; display: grid; grid-template-columns: auto 200px 50px; border: none; }
+	.find-o { margin: 0 16px 10px 16px; display: grid; grid-template-columns: auto 200px 50px; border: none; padding-top: 16px; }
 	.find-o .u {}
 	.find-o .u span { font-size: 11px; padding: 10px 0; display: inline-block; height: 24px; margin-right: 12px; }
 	.find-o .u span svg { width: 10px; height: 10px; margin-right: 4px; }
-	.find-o .u span svg.n { color: #fff; border: 1px outset #fff;  }
-	.find-o .u span svg.c { color: #ccc; border: 1px outset #fff;  }
-	.find-o .u span svg.s { color: #808080; border: 1px outset #fff;  }
+	.find-o .u span svg.n { color: #fff; border: 1px solid #c0c0ba;  }
+	.find-o .u span svg.c { color: #ccc; border: 1px solid #c0c0ba;  }
+	.find-o .u span svg.s { color: #808080; border: 1px solid #c0c0ba;  }
 
 	.find-o .v { position: relative; }
-	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px outset #f5f5f5; outline: none; border-right: none;  }
+	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none; border-right: none;  }
 	.find-o .v svg { position: absolute; top: 6px; right: 8px; height: 12px; width: 12px; }
 	.find-o .w {}
-	.find-o .w button { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px outset #f5f5f5; outline: none;  }
+	.find-o .w button { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none;  }
 </style>

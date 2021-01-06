@@ -18,7 +18,6 @@
         mounted() {
             this.$emit('setViewName', this.$route.name);
             this.$store.commit('setModuleName', 'Department – Teaching Load');
-            console.log(this.$route.query.faculty_id);
         }
     }
 </script>

@@ -4,7 +4,7 @@
 		<div class="m">
 			<div class="sidecon">
 				<ul>
-					<li :class="sconName == 'dbd-index' ? 'active' : ''"><span @click="goScon('dbd-index')"><v-icon name="bars"></v-icon></span></li>
+					<li :class="sconName == 'dbd-index' ? 'active' : ''"><span @click="goScon('dbd-index')"><v-icon name="th-large"></v-icon></span></li>
 					<li :class="sconName == 'not-index' ? 'active' : ''"><span @click="goScon('not-index')"><v-icon name="bell"></v-icon></span></li>
 					<li :class="sconName == 'usr-index' ? 'active' : ''"><span @click="goScon('usr-index')"><v-icon name="user-circle"></v-icon></span></li>
 					<li :class="sconName == 'set-index' ? 'active' : ''"><span @click="goScon('set-index')"><v-icon name="cog"></v-icon></span></li>
@@ -26,13 +26,10 @@
 	import TitleBar from '@/components/TitleBar.vue';
 	import StatusBar from '@/components/StatusBar.vue';
 
-	import 'vue-awesome/icons/th';
+	import 'vue-awesome/icons/th-large';
 	import 'vue-awesome/icons/cog';
-	import 'vue-awesome/icons/bars';
-	import 'vue-awesome/icons/envelope';
 	import 'vue-awesome/icons/bell';
 	import 'vue-awesome/icons/user-circle';
-	import 'vue-awesome/icons/search';
 
 
 	export default {

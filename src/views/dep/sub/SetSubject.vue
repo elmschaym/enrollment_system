@@ -358,7 +358,7 @@
 
 	.form-o .o {}
 
-	.moda-l input { width: 90%; display: block; text-align: center; border-radius: 2px; color: #000; padding: 6px 8px 6px 8px; border: none; background-color: #fdfdfd; font-size: 13px; outline: none; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.24); margin: 20px auto; }
+	.moda-l input { width: 80%; display: block; text-align: center; border-radius: 2px; color: #000; padding: 6px 8px 6px 8px; border: none; background-color: #fdfdfd; font-size: 13px; outline: none; cursor: pointer; margin: 20px auto; border-bottom: 1px solid #bebeb9; }
 	.moda-l .e { color: #cd4646; text-align: center;; padding: 6px; background-color: #fde6e6; width: 90%; margin: 0 auto; }
 
 	.v { position: relative; }

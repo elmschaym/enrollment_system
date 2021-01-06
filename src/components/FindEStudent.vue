@@ -103,7 +103,7 @@
     .list .l { border-bottom: 1px solid #f5f5f5; display: grid; grid-template-columns: auto 26px; cursor: pointer; }
     .l:hover, .l.active { background-color: #fbfbfb; }
     .l .i { height: 32px; }
-    .l .i .stu { font-size: 11px; color: #000; padding: 5px 2px 2px 12px; text-overflow: clip; white-space: nowrap; color: #222; font-weight: 600; }
+    .l .i .stu { font-size: 11px; color: #000; padding: 5px 2px 2px 12px; text-overflow: clip; white-space: nowrap; color: #222; }
     .l .i .stu span {  }
     .l .i .own { font-size: 11px; color: #808080; padding: 1px 2px 2px 12px; }
     .l .i .own span { color: #222; }

@@ -26,7 +26,7 @@
 				this.$sleep(4000).then(() => {
 					let token = this.$storageGet('api_token', 'local') || false;
 					if (token)
-						this.$router.push({ name: 'adm-list-index' });
+						this.$router.push({ name: 'dbd-index' });
 					else
 						this.$router.push({ name: 'usr-signin'});
 				});
@@ -39,11 +39,11 @@
 </script>
 
 <style scoped>
-	.load-i { position: absolute; top: calc((100vh - 300px)/2); left: calc((100vw - 300px)/2); width: 300px; height: 300px; background: linear-gradient(to bottom, #478ba2, #de5b6d); border-radius: 20px; box-shadow: 0 5px 11px rgba(0,0,0,0.5); z-index: 9999; }
+	.load-i { position: absolute; top: calc((100vh - 300px)/2); left: calc((100vw - 300px)/2); width: 300px; height: 300px; background: linear-gradient(to bottom, #478ba2, #de5b6d); border-radius: 20px; box-shadow: 0 5px 11px rgba(0,0,0,0.5); z-index: 9999; overflow: hidden }
 
 	.name { height: 286px; position: relative; }
 	.name svg { height: 128px; width: 128px; display: block; color: #fff; margin: 0 auto; position: absolute; }
-	.name span { font-size: 18px; text-transform: uppercase; font-weight: bold; color: #fff; display: block; text-align: center; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 208px; left: 60px; right: 60px; visibility: hidden; }
+	.name span { font-size: 18px; text-transform: uppercase; font-weight: bold; color: #fff; display: block; text-align: center; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 228px; left: -9999px; right: 60px; z-index: -9999; }
 
 	.stat { height: 14px; }
 	.stat span {  display: block;  margin: 0 auto; position: relative; background-color: transparent; height: 2px; width: 32px; overflow-x: hidden; }

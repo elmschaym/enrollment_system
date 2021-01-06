@@ -29,13 +29,13 @@
 			return {
 				modules_m: [
                     { name: 'New Student', icon: 'plus-circle', link: 'adm-new-student'},
-                    { name: 'Admissions', icon: 'flag', link: 'adm-list-index'},
-                    { name: 'Students', icon: 'flag', link: 'stu-list-index'}
+                    { name: 'Admittee List', icon: 'flag', link: 'adm-list-adm-master'},
+                    { name: 'Students List', icon: 'flag', link: 'adm-list-stu-master'}
                     //{ name: 'Enrollment', icon: 'flag', link: 'enr-list-index'}
                 ],
                 modules_a: [
 					{ name: 'New Admittee', icon: 'plus', link: 'adm-new-admittee'},
-					{ name: 'Dashboard', icon: 'th', link: 'dbd-index'}
+					{ name: 'Admission', icon: 'th', link: 'adm-index'}
 				]
 			}
 		}

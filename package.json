@@ -2,7 +2,7 @@
   "name": "system_enr",
   "version": "0.1.0",
   "main": "http://localhost:8080",
-  "node-remote": "http://192.168.254.101:8080",
+  "node-remote": "http://localhost:8080",
   "license": "",
   "scripts": {
     "serve": "vue-cli-service serve",

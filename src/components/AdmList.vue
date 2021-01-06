@@ -29,10 +29,10 @@
 						<ui-loader></ui-loader>
 					</div>
 					<div class="tbd" v-else-if="admissions.length > 0">
-						<div class="ttr" @click="$router.push({ name: 'adm-view-admit', params: { admit_id : l.id}})" :key="l.id" v-for="l in admissions">
+						<div class="ttr" @click="$router.push({ name: 'adm-view-admittee', params: { admit_id : l.id}})" :key="l.id" v-for="l in admissions" @contextmenu="admitteeListCMenu($event, l)">
 							<div class="ttd"><v-icon name="square"></v-icon></div>
 							<div class="ttd">{{ l.student.school_id }}</div>
-							<div class="ttd" style="font-weight: 600">{{ l.student.lastname +', '+ l.student.firstname +' '+ l.student.middlename }}</div>
+							<div class="ttd">{{ l.student.lastname +', '+ l.student.firstname +' '+ l.student.middlename }}</div>
 							<div class="ttd">{{ l.course == null ? '&lt;None&gt;' : l.course.name }}</div>    
 							<div class="ttd">{{ l.academic_program.name }}</div>
 							<div class="ttd">{{ l.date_admitted }}</div>
@@ -101,6 +101,22 @@
 					this.isFetching = false;
 				});
 			},
+			admitteeListCMenu(e, l) {
+                e.preventDefault();
+                let cmenu = new window.nw.Menu(),
+                    items = [
+                        { label: 'Modify Admittee', click: () => this.$router.push({ name: 'adm-mod-admittee', query: { faculty_id: l.id } }) },
+                        { label: 'Refresh', click: this.fetchAdmission, key: 'F5', },
+                        { type: 'separator' },
+                        { label: l.student.lastname +', '+ l.student.firstname, enabled: false }
+                    ];
+                items.forEach( m => cmenu.append(new window.nw.MenuItem(m)) );
+                let zoomFactor = Math.pow(1, window.nwWin.zoomLevel);
+                cmenu.popup(
+                    Math.round(zoomFactor * e.clientX),
+                    Math.round(zoomFactor * e.clientY)
+                );
+            },
 			switchQueryType() {
 				this.queryType = this.queryType == 'name' ? 'id' : 'name';
 			},
@@ -141,12 +157,12 @@
 	.list-o .data .tbl .tbd::-webkit-scrollbar-track { background: #f6f6f0; }
 	.list-o .data .tbl .tbd::-webkit-scrollbar-thumb { background-color: #d7d7d0; border-radius: 3px; }
 
-	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #f8f8f2; font-weight: 600 }
+	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #edede9; font-weight: 600 }
 	.list-o .data .tbl .ttd { padding: 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow: hidden; white-space: nowrap; }
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #f5f5f0; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover { background-color: #f6f6f0; }
 	.list-o .data .tbl .ttd b {}
-	.list-o .data .tbl .ttd svg { width: 10px; height: 10px; margin-bottom: 2px; color: #fff; border: 1px outset #fff; }
+	.list-o .data .tbl .ttd svg { width: 10px; height: 10px; margin-bottom: 2px; color: #fff; border: 1px solid #c0c0ba; }
 	.list-o .data .tbl .tth svg { width: 12px; height: 12px; color: #404040; margin-bottom: -3px; }
 	.list-o .data .tbl .tth svg.s { float: right; width: 10px; height: 10px; color: #404040; margin-bottom: -2px; }
 
@@ -160,20 +176,20 @@
 	.list-o .page .c { text-align: center; }
 	.list-o .page .r { text-align: right; }
 	.list-o .page .r button { margin-left: 4px; }
-	.list-o .page button { background: #fff; padding: 2px 10px; font-size: 8px; border: 1px outset #fff; }
+	.list-o .page button { background: #fff; padding: 2px 10px; font-size: 8px; border: 1px solid #d0d0d0; }
 	.list-o .page button svg { width: 10px; height: 10px; margin-bottom: -2px; }
 
 	.find-o { margin: 0 16px 10px 16px; display: grid; grid-template-columns: auto 200px 50px; border: none; padding-top: 16px; }
 	.find-o .u {}
 	.find-o .u span { font-size: 11px; padding: 10px 0; display: inline-block; height: 24px; margin-right: 12px; }
 	.find-o .u span svg { width: 10px; height: 10px; margin-right: 4px; }
-	.find-o .u span svg.a { color: #fff; border: 1px outset #fff;  }
-	.find-o .u span svg.o { color: #ccc; border: 1px outset #fff;  }
-	.find-o .u span svg.i { color: #808080; border: 1px outset #fff;  }
+	.find-o .u span svg.a { color: #fff; border: 1px solid #c0c0ba;  }
+	.find-o .u span svg.o { color: #ccc; border: 1px solid #c0c0ba;  }
+	.find-o .u span svg.i { color: #808080; border: 1px solid #c0c0ba;  }
 
 	.find-o .v { position: relative; }
-	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px outset #f5f5f5; outline: none; border-right: none;  }
+	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none; border-right: none;  }
 	.find-o .v svg { position: absolute; top: 6px; right: 8px; height: 12px; width: 12px; }
 	.find-o .w {}
-	.find-o .w button { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px outset #f5f5f5; outline: none;  }
+	.find-o .w button { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none;  }
 </style>

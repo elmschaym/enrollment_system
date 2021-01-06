@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="h">
-                    <span>MANAGEMENT</span>
+                    <span>MANAGEMENT</span> <v-icon name="folder-open"></v-icon>
                 </div>
                 <ul class="p">
                     <li v-for="m in modules_m" :key="m.name+m.icon" @click="goSbar(m.link)" :class="['l', m.link == sbarName ? 'active' : '']">
@@ -27,7 +27,7 @@
                     </li>
                 </ul>
                 <div class="h" v-show="modules_a">
-                    <span>ADMINISTRATION</span>
+                    <span>BOOKMARKS</span> <v-icon name="bookmark"></v-icon>
                 </div>
                 <ul class="p" v-show="modules_a">
                     <li v-for="m in modules_a" :key="m.name+m.icon" @click="goSbar(m.link)" :class="['l', m.link == sbarName ? 'active' : '']">
@@ -65,6 +65,8 @@
     import 'vue-awesome/icons/calendar'
     import 'vue-awesome/icons/lock';
     import 'vue-awesome/icons/user-circle';
+    import 'vue-awesome/icons/bookmark';
+    import 'vue-awesome/icons/folder-open';
 
     export default {
         props: {
@@ -122,6 +124,7 @@
     .list .p {}
     .list .h { margin-top: 8px; padding: 7px 14px; border-top: 1px solid #E8E8E2; }
     .list .h span { font-size: 9px; text-transform: uppercase; color: #111; }
+    .list .h svg { width: 9px; height: 9px; float: right; color: #777; margin: 2px 0; }
 
     .list .usr {}
     .list .usr .u {}

@@ -51,16 +51,23 @@ const routes = [
                     {   path: 'index', component: () => import('../views/adm/Index.vue'), name: 'adm-index' },
                     {   path: 'list', component: () => import('../views/adm/list/_.vue'),
                         children: [
-                            { path: 'index', component: () => import('../views/adm/list/Master.vue'), name: 'adm-list-index' },
-                            { path: 'master', component: () => import('../views/adm/list/Master.vue'), name: 'adm-list-master' }
+                            { path: 'adm-master', component: () => import('../views/adm/list/AdmMaster.vue'), name: 'adm-list-adm-master' },
+                            { path: 'stu-master', component: () => import('../views/adm/list/StuMaster.vue'), name: 'adm-list-stu-master' }
                         ]
                     },
                     { path: 'new-admittee', component: () => import('../views/adm/new/Admittee.vue'), name: 'adm-new-admittee' },
                     { path: 'new-admittee-saved', component: () => import('../views/adm/new/AdmitteeSaved.vue'), name: 'adm-new-admittee-saved' },
                     { path: 'new-student', component: () => import('../views/adm/new/Student.vue'), name: 'adm-new-student' },
                     { path: 'new-student-admit', component: () => import('../views/adm/new/StudentAdmit.vue'), name: 'adm-new-student-admit' },
-                    { path: ':admit_id/view', component: () => import('../views/adm/view/Admittee.vue'), name: 'adm-view-admit' }
-
+                    { path: 'view/adm/:admit_id', component: () => import('../views/adm/view/adm/Admittee.vue'), name: 'adm-view-admittee' },
+                    { path: 'view/stu/:stude_id', component: () => import('../views/adm/view/stu/_.vue'),
+                        children: [
+                            { path: 'index', component: () => import('../views/adm/view/stu/Index.vue'), name: 'adm-view-student-index' },
+                            { path: 'admit', component: () => import('../views/adm/view/stu/Admit.vue'), name: 'adm-view-student-admit' },
+                            { path: 'enrol', component: () => import('../views/adm/view/stu/Enrol.vue'), name: 'adm-view-student-enrol' },
+                            { path: 'infos', component: () => import('../views/adm/view/stu/Infos.vue'), name: 'adm-view-student-infos' }
+                        ]
+                    }
                 ]
             }
         ]

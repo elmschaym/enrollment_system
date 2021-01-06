@@ -89,6 +89,7 @@
 <script>
 	import UILoader from '../components/UILoader.vue';
 
+	import 'vue-awesome/icons/search';
 	import 'vue-awesome/icons/user';
 	import 'vue-awesome/icons/bed';
 	import 'vue-awesome/icons/users';

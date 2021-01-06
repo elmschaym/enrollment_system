@@ -104,7 +104,7 @@
     .sched-s .e .l div { height: 16px; font-size: 10px; color: #000; padding: 3px 0; }
     .sched-s .e .l div span { float: right; }
     .sched-s .e .d { display: grid; grid-template-rows: 16px 16px 16px 16px 16px 16px 16px }
-    .sched-s .e .d .y { height: 16px; display: flex; border-top: 1px solid #909090; border-left: 1px solid #909090; }
-    .sched-s .e .d .y .x { width: 26px; height: 16px; border-right: 1px solid #909090; border-bottom: 1px solid #909090; }
+    .sched-s .e .d .y { height: 16px; display: flex; border-top: 1px solid #a0a099; border-left: 1px solid #a0a099; }
+    .sched-s .e .d .y .x { width: 26px; height: 16px; border-right: 1px solid #a0a099; border-bottom: 1px solid #a0a099; }
     .sched-s .e .d .y .x.active { background-color: #f7f0c6; font-size: 8px; text-align: center; color: #000; word-break: break-all; display: flex; align-items: center; justify-content: center; }
 </style>

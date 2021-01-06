@@ -170,7 +170,7 @@
 	.p .h .pixx { height: 72px; width: 72px; border-radius: 36px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .h .pixx svg { height: 64px; width: 64px; margin: 4px; color: #d5d5d0; }
 	.p .h .name { padding: 4px 0 0 12px; }
-	.p .h .name .n { font-size: 12px; font-weight: bold;  }
+	.p .h .name .n { font-size: 12px; font-weight: 600;  }
 	.p .h .name .m { display: grid; grid-template-columns: 100px auto }
 	.p .h .name .m .d > div { margin-top: 5px; font-size: 11px; color: #444; }
 	.p .h .name .m .e > div { margin-top: 5px; font-size: 11px; color: #111; }
@@ -181,7 +181,7 @@
 	.q .r.o {}
 	.q .r.o { display: grid; grid-template-columns: auto 350px; margin: 8px 16px; }
 	.q .r.o .x { margin-right: 16px;}
-	.q .r.o .x .a { font-size: 11px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); background-color: #fff; font-weight: bold; text-align: center }
+	.q .r.o .x .a { font-size: 11px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); background-color: #fff; font-weight: 600; text-align: center }
 	.q .r.o .x .b, .q .r.o .x .d > div { display: grid; grid-template-columns: 20px 70px auto 55px 155px 60px 40px  }
 	.q .r.o .x .z { text-align: center; padding: 16px; font-size: 11px; }
 	.q .r.o .x .b { background-color: #fefefe; margin-top: 2px; iborder-bottom: 1px solid #fafafa; }
@@ -199,7 +199,7 @@
 	.q .r.o .x .f button svg { width: 10px; height: 10px; margin-left: 8px; }
 
 	.q .r.o .y { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
-	.q .r.o .y .a { font-size: 11px; color: #111; padding: 6px 0; text-align: center; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); background-color: #fff; font-weight: bold }
+	.q .r.o .y .a { font-size: 11px; color: #111; padding: 6px 0; text-align: center; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); background-color: #fff; font-weight: 600 }
 	.q .r.o .y .b, .q .r.o .y .d > div { display: grid; grid-template-columns: auto 86px }
 	.q .r.o .y .b { border-bottom: 1px solid #fafafa; background-color: #fefefe; margin-top: 2px; }
 	.q .r.o .y .b div { padding: 7px 12px; font-size: 10px; }
