@@ -22,6 +22,7 @@
     "vue-html-to-paper": "^1.3.1",
     "vue-router": "^3.0.1",
     "vue-web-cam": "^1.9.0",
+    "vuejs-datepicker": "^1.6.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -108,6 +109,6 @@
   "developer": {
     "showDevToolsOnStartup": true
   },
-  "chromium-args": "--password-store=basic --disable-gpu-compositing --force-cpu-draw --load-extension='./node_modules/nw-vue-devtools-prebuilt/extension' --remote-debugging-port=9222",
+  "chromium-args": "--password-store=basic --load-extension='./node_modules/nw-vue-devtools-prebuilt/extension' --remote-debugging-port=9222",
   "manifestUrl": "http://127.0.0.1:3127/package.json"
 }

@@ -153,7 +153,7 @@
     .list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #f8f8f2; font-weight: 600 }
     .list-o .data .tbl .ttd { padding: 10px 0 10px 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; }
     .list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #f5f5f0; cursor: pointer; }
-    .list-o .data .tbl .tbd .ttr:hover { background-color: #f6f6f0; }
+    .list-o .data .tbl .tbd .ttr:hover { background-color: #fbfbf7; }
     .list-o .data .tbl .ttd b {}
     .list-o .data .tbl .ttd svg { width: 10px; height: 10px; margin-bottom: 2px; color: #fff; border: 1px solid #c0c0ba; }
     .list-o .data .tbl .ttd svg.a { color: #ccc; }

@@ -224,9 +224,9 @@
 </script>
 
 <style scoped>
-	.wrap-d{ background-color: #f8f8f8; }
+	.wrap-d { height: 100%; background-color: #fbfbf7; }
 
-	div.t { display: grid; grid-template-columns: 680px 372px 120px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
+	div.t { display: grid; grid-template-columns: 680px auto 120px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
 	div.t .find { height: 40px; padding: 6px 16px; position: relative; background-color: #fcfcfc; }
 	div.t .find span { display: block; height: 28px; width: 40px; position: absolute; top: 7px; right: 17px; background-color: #f0f0f0; padding: 6px 13px; color: #fff; opacity: 0.8; }
 	div.t .find span svg { height: 14px; width: 14px; color: #492e32; }
@@ -239,12 +239,12 @@
 	div.t .link svg.i { width: 16px; height: 16px; margin-bottom: -2px; }
 	div.t .link svg.p { width: 8px; height: 8px; margin-bottom: -2px; position: absolute; top: 5px; right: 5px; }
 
-	div.m { display: grid; grid-template-columns: 680px 480px; }
+	div.m { display: grid; grid-template-columns: auto 480px; }
 	div.g {}
 	div.h { background-color: #f8f8f8; }
 
 	.modu { width: 640px; margin: 24px auto 16px auto; }
-	.modu .list { background-color: #fefefe; padding: 24px 0 0 0; border: 1px solid #fdfdfd; box-shadow: 0 4px 9px rgba(0,0,0,0.15); }
+	.modu .list { background-color: #fff; padding: 24px 0 0 0; border: 1px solid #f0f0ea; }
 
 	.modu .r { display: grid; grid-template-columns: 25% 25% 25% 25%; padding: 0 0 32px 0; }
 	.modu .r .l { height: 61px; background-color: #e0e0e0; width: 100px; margin: 0 auto; position: relative; border-width: 1px; border-style: solid; border-color: transparent #f0f0f0 #e0e0e0 #f0f0f0; cursor: pointer; ibox-shadow: 0 4px 10px rgba(0,0,0,0.15); overflow: hidden; border-radius: 20px 0 4px 0; }
@@ -254,7 +254,7 @@
 	.imodu .r .l:hover b { background-color: transparent; transition: 300ms ease-in-out }
 	.imodu .r .l:hover span svg { margin: 8px auto; transition: 300ms ease-in-out; width: 48px; height: 48px; border-radius: 100%; box-shadow: 0 4px 9px rgba(0,0,0,0.15); }
 
-	.serv { height: 296px; background-color: #fff; box-shadow: 0 4px 9px rgba(0,0,0,0.15); margin: 24px; position: relative; border-bottom: 5px solid #f5f5f5; }
+	.serv { height: 296px; background-color: #fff; margin: 24px; position: relative; border-bottom: 5px solid #f0f0ea; }
 	.serv .head { background-color: #f5f5f5; color: #111; font-weight: bold; font-size: 10px; padding: 5px; text-align: center; }
 	.serv .list { height: 270px; overflow-y: scroll; }
 	.serv .list .l { display: grid; grid-template-columns: 60px 170px 42px; cursor: pointer; }
@@ -273,7 +273,7 @@
 	.serv .list .l .c div svg { width: 20px; height: 20px; margin-bottom: -3px }
 	.serv .none { text-align: center; padding: 16px; font-size: 12px; }
 
-	.feed { height: 196px; background-color: #fff; box-shadow: 0 4px 9px rgba(0,0,0,0.15); margin: 24px 24px 20px 24px; border-bottom: 5px solid #f5f5f5; }
+	.feed { height: 196px; background-color: #fff; margin: 24px 24px 20px 24px; border-bottom: 5px solid #f0f0ea; }
 	.feed .head { background-color: #f5f5f5; color: #111; font-weight: bold; font-size: 10px; padding: 5px; text-align: center; }
 	.feed .list { height: 170px; overflow-y: scroll; }
 	.feed .list .l { display: grid; grid-template-columns: 130px 112px 30px; padding: 4px 7px; border-bottom: 1px solid #f8f8f8; cursor: pointer; }
@@ -286,7 +286,7 @@
 	.feed .list .l .c span { font-size: 10px; color: #444; background-color: #f7f7f7; padding: 0 2px; }
 
 
-	.todo { height: 300px; width: 640px; margin: 0 auto; background-color: #fff; box-shadow: 0 4px 9px rgba(0,0,0,0.15); }
+	.todo { height: 300px; width: 640px; margin: 0 auto; background-color: #fff; border: 1px solid #f0f0ea; }
 	.todo .head { font-size: 10px; font-weight: bold; background-color: #f5f5f5; padding: 4px 0 0 4px;  }
 	.todo .head span { display: inline-block; padding: 3px 12px; background-color: #fff; }
 	.todo .list {}

@@ -104,19 +104,19 @@
 </script>
 
 <style scoped>
-	.find-c { background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+	.find-c { height: inherit; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: grid; grid-template-rows: 26px auto }
 	.find-c input { width: 100%; color: #391e22; padding: 8px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; cursor: pointer; border-radius: 5px 5px 0 0; }
 
-	.form { display: grid; grid-template-columns: 255px 32px; } 
-	.form button { width: 100%; color: #000; padding: 3px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+	.form { display: grid; grid-template-columns: auto 32px; } 
+	.form button { display: block; height: 26px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.form button svg { width: 10px; height: 10px; }
 
-	.rslt {  position: relative; }
+	.rslt { height: 100%; position: relative; }
 	.head { font-size: 8px; text-transform: uppercase; padding: 4px 12px; background-color: #fafafa; }
 
 	.tabs, .list .l .i { display: grid; grid-template-columns: 23px 50px auto 40px }
 	.tabs { margin: 2px 0 0 0; padding: 6px 0; font-size: 10px; color: #333; background-color: #fafaf9 }
-	.list { height: 380px; overflow-y: scroll; }
+	.list { height: inherit; min-height: 300px; overflow-y: scroll; }
 	.list::-webkit-scrollbar { width: 4px; display: block; }
 	.list::-webkit-scrollbar-track { background: transparent; }
 	.list::-webkit-scrollbar-thumb { background-color: #56373c; }

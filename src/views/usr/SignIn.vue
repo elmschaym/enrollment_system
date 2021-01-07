@@ -86,10 +86,6 @@
 			}
 		},
 		created() {
-			if (window.screen.availWidth > 1900) {
-				window.nwWin.resizeTo(1368, 768);
-				window.nwWin.zoomLevel = 0.6;
-			}
 		},
 		mounted() {
 		}

@@ -99,7 +99,7 @@
                     this.$sleep(250).then(this.fetchList);
             },
             queryType(n) {
-                if (n.length > 0)
+                if (this.queryString.length > 0)
                     this.$sleep(250).then(this.fetchList);
             }
         }

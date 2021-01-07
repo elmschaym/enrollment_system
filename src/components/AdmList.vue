@@ -105,7 +105,7 @@
                 e.preventDefault();
                 let cmenu = new window.nw.Menu(),
                     items = [
-                        { label: 'Modify Admittee', click: () => this.$router.push({ name: 'adm-mod-admittee', query: { faculty_id: l.id } }) },
+                        { label: 'Modify Admittee', click: () => this.$router.push({ name: 'adm-mod-admittee', query: { admit_id: l.id } }) },
                         { label: 'Refresh', click: this.fetchAdmission, key: 'F5', },
                         { type: 'separator' },
                         { label: l.student.lastname +', '+ l.student.firstname, enabled: false }

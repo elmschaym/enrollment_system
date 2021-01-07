@@ -156,9 +156,9 @@
 
     .cate-o { background-color: #fbfbf7; height: 32px; display: grid; grid-template-columns: auto 100px; border-bottom: 1px solid #eaeaea; }
     .cate-o .link ul { display: block; margin: 0 16px; }
-    .cate-o .link ul li { display: inline-block; font-size: 11px; padding: 10px 12px; cursor: pointer; }
-    .cate-o .link ul li.active { border-bottom: 1px solid #290e12; }
-    .cate-o .link ul li.active div {  }
+    .cate-o .link ul li { display: inline-block; padding: 0  12px; }
+    .cate-o .link ul li div { font-size: 11px; padding: 10px 0; cursor: pointer; }
+    .cate-o .link ul li.active div { border-bottom: 1px solid #290e12; }
 
     .cate-o .make { text-align: right; }
     .cate-o .make span { display: inline-block; background-color: transparent; font-size: 11px; padding: 10px 10px 10px 10px; border-left: 1px solid #e9e9e9; cursor: pointer; }

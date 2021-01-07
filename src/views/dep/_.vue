@@ -27,7 +27,7 @@
 			return {
 				modules_m: [
 					{ name: 'Enroll Subject', icon: 'plus', link: 'dep-set-subject'},
-					{ name: 'Enrollee', icon: 'flag', link: 'dep-enr-master-list'},
+					{ name: 'Enrollee List', icon: 'flag', link: 'dep-enr-master-list'},
 					//{ name: 'Subjects', icon: 'flag', link: 'dep-list-subject'},
 					//{ name: 'Sections', icon: 'flag', link: 'dep-list-section'},
 					//{ name: 'Rooms', icon: 'flag', link: 'dep-list-room'},
@@ -36,8 +36,7 @@
 				],
 				modules_a: [
 					{ name: 'New Enrollee', icon: 'plus-circle', link: 'dep-enr-new-enrollee'},
-					{ name: 'New Section', icon: 'plus-circle', link: 'dep-sec-new-section'},
-					{ name: 'Dashboard', icon: 'th', link: 'dep-index'}
+					{ name: 'New Section', icon: 'plus-circle', link: 'dep-sec-new-section'}
 				]
 			}
 		}

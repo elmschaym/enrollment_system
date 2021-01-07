@@ -78,7 +78,7 @@
         },
         watch: {
             query(n) {
-                if (n != '')
+                if (n.length > 0)
                     this.$sleep(250).then(this.fetchList);
             }
         }

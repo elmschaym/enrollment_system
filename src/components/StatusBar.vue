@@ -2,7 +2,6 @@
     <div class="stat-s">
         <div class="o">
             <span title="Go Back" @click="goPrev()"><v-icon name="angle-left"></v-icon></span>
-            <span @click="refreshView()">Refresh</span>
         </div>
         <div class="p">
             <ui-time class="b" @updateDate="updateDate"></ui-time>
@@ -55,7 +54,7 @@
 <style scoped>
     .stat-s {  height: 24px; display: grid; grid-template-columns: 350px auto 350px; background-color: #f5f5f5; border-top: 1px solid #f0f0f0; font-size: 9px; font-weight: 100 }
     .stat-s .o { text-align: left; }
-    .stat-s .o span { padding: 6px 12px; display: inline-block; border-right: 1px solid #eaeaea; cursor: pointer; background-color: #f9f9f9; }
+    .stat-s .o span { padding: 6px 12px; display: inline-block; border-right: 1px solid #eaeaea; cursor: pointer; }
     .stat-s .o span svg { height: 10px; width: 10px; }
     .stat-s .p { text-align: center; }
     .stat-s .p span { padding: 6px 12px; display: inline-block; border-right: 1px solid #eaeaea; }

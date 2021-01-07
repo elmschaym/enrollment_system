@@ -42,7 +42,10 @@
 							</div>
 							<div>
 								<label for="">Date of Birth</label>
-								<input v-model="student.birthdate" type="date"/>
+								<div  style="display: grid; grid-template-columns: auto 24px">
+									<input v-model="student.birthdate" placeholder="yyyy-mm-dd" maxlength="10"/>
+									<button @click="isDatePickerShow = !isDatePickerShow" style="padding: 5px;"><v-icon name="calendar" style="width: 10px; height: 10px; color: #666"></v-icon></button>
+								</div>
 							</div>
 						</div>
 						
@@ -107,6 +110,8 @@
 						</div>
 					</div>
 				</div>
+				<date-picker class="dp-wrap" @selected="setBirthdateDP($event)" v-if="isDatePickerShow" format="yyyy-MM-dd" :inline="true"></date-picker>
+				<div class="dp-back" v-if="isDatePickerShow"></div>
 			</div>
 			<div class="q">
 				<div class="c">
@@ -162,6 +167,8 @@
 </template>
 
 <script>
+	import DatePicker from 'vuejs-datepicker';
+
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
 	import UIModal from '@/components/UIModal.vue';
@@ -169,13 +176,15 @@
 
 	import 'vue-awesome/icons/plus';
 	import 'vue-awesome/icons/chevron-right';
+	import 'vue-awesome/icons/calendar';
 
 	export default {
 		components: {
 			UiSelect: UISelect,
 			UiLoader: UILoader,
 			UiModal: UIModal,
-			VueWebCam: WebCam
+			VueWebCam: WebCam,
+			DatePicker
 		},
 		data() {
 			return {
@@ -188,7 +197,8 @@
 				camera: null,
 				deviceId: null,
 				devices: [],
-				isCameraCapture: true
+				isCameraCapture: true,
+				isDatePickerShow: false
 			}
 		},
 		computed: {
@@ -226,6 +236,13 @@
 						this.$sleep(2500).then( () => { this.isSavingForm = false });
 					});
 				}
+			},
+			setBirthdateDP(event) {
+				this.isDatePickerShow = false;
+				let dd = event.getDate() < 10 ? 0 + event.getDate().toString() : event.getDate(),
+					nn = event.getMonth() + 1,
+					mm = nn < 10 ? 0 + nn.toString() : nn;
+				this.student.birthdate = event.getFullYear().toString() +'-'+ mm +'-'+ dd;
 			},
 			setStudentGender(v) {
 				this.student.gender = v;
@@ -296,7 +313,7 @@
 <style scoped>
 	.form-o { position: relative; height: auto;  }
 	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 312px; }
-	.form-o .w .p { height: 100%; padding: 0 16px; }
+	.form-o .w .p { height: 100%; padding: 0 16px; position: relative; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
 	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
@@ -341,8 +358,9 @@
 	.q .s button.okay { border: 1px outset #e0e0d0; color: #000; }
 	.q .s button.okay svg { color: #000; }
 
-	.form-o .o {}
-
 	.v { position: relative; }
+
 	.dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.7) }
+	.dp-wrap { position: absolute; top: 150px; left: calc((100% - 300px) / 2); z-index: 9999; }
+	.dp-back { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.15) }
 </style>

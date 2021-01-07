@@ -188,7 +188,11 @@
 						{ label: s.name + ', ' + s.sched_days +' '+ s.sched_time, enabled: false }
 					];
 				items.forEach( m => cmenu.append(new window.nw.MenuItem(m)) );
-				cmenu.popup(e.pageX, e.pageY);
+				let zoomFactor = Math.pow(1, window.nwWin.zoomLevel);
+				cmenu.popup(
+					Math.round(zoomFactor * e.clientX),
+					Math.round(zoomFactor * e.clientY)
+				);
 			},
 			subjectListCMenu(e, s) {
 				console.log(s);
@@ -201,7 +205,11 @@
 						{ label: s.subject.code +' – '+ s.subject.units +' units', enabled: false }
 					];
 				items.forEach( m => cmenu.append(new window.nw.MenuItem(m)) );
-				cmenu.popup(e.pageX, e.pageY);
+				let zoomFactor = Math.pow(1, window.nwWin.zoomLevel);
+				cmenu.popup(
+					Math.round(zoomFactor * e.clientX),
+					Math.round(zoomFactor * e.clientY)
+				);
 			},
 			handleSection(s,i) {
 				if (this.faculty.hasOwnProperty('id') && s.stat == 0 && ((this.maximumLoad - this.totalLoad) > this.subject.units)) {
@@ -243,7 +251,7 @@
 	.p .h .name .n { font-size: 12px; font-weight: 600; margin: 4px 0; }
 	.p .h .name .m { font-size: 11px;  }
 	.p .h .butt { display: flex; align-items: center; }
-	.p .h .butt button { width: 100%; border-radius: 2px; color: #000; padding: 3px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
+	.p .h .butt button { width: 100%; border-radius: 2px; color: #000; padding: 3px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .h .butt button svg { width: 10px; height: 10px; margin-left: 8px; }
 
 	.p .r.o { border-bottom: 4px solid #c0c0ba; }
