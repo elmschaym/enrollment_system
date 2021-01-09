@@ -7,7 +7,7 @@
 				<span><v-icon class="s" name="square"></v-icon> No Subjects</span>
 			</div>
 			<div class="v">
-				<input v-model="queryString" :placeholder="'Find student by '+ queryType"/>
+				<input v-model="queryString" :placeholder="'Find Student \\'+ queryType"/>
 				<v-icon name="search"></v-icon>
 			</div>
 			<div class="w">

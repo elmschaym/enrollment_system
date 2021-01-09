@@ -1,84 +1,105 @@
 <template>
     <div class="tool-b">
-        <div class="x">
-            <ul>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="goLink('dbd-index')">Dashboard</div>
-                    </div>
-                 </li>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="toMenu('adm')">Admission</div>
-                        <div class="m" v-show="subm.adm">
-                            <div class="o h" @click="goLink('adm-new-admittee', 'adm')">New Admittee <span>Ctrl+Alt+A</span></div>
-                            <div class="o" @click="goLink('adm-list-adm-master', 'adm')">Master List</div>
+        <div class="w">
+            <div class="x">
+                <ul>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="goLink('dbd-index')">Dashboard</div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="toMenu('stu')">Students</div>
-                        <div class="m" v-show="subm.stu">
-                            <div class="o h" @click="goLink('adm-new-student', 'stu')">New Student <span>Ctrl+Alt+S</span></div>
-                            <div class="o" @click="goLink('adm-list-stu-master', 'stu')">Master List</div>
+                     </li>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="toMenu('adm')">Admission</div>
+                            <div class="m" v-show="subm.adm">
+                                <div class="o h" @click="goLink('adm-new-admittee', 'adm')">New Admittee <span>Ctrl+Alt+A</span></div>
+                                <div class="o" @click="goLink('adm-list-adm-master', 'adm')">Master List</div>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="toMenu('dep')">Department</div>
-                        <div class="m" v-show="subm.dep">
-                            <div class="o" @click="goLink('dep-set-subject', 'dep')">Enrol Subject <span>Ctrl+Alt+R</span></div>
-                            <div class="o" @click="goLink('dep-sec-new-section', 'dep')">New Section &nbsp;<span>Ctrl+Alt+C</span></div>
-                            <div class="o h" @click="goLink('dep-enr-new-enrollee', 'dep')">New Enrollee <span>Ctrl+Alt+E</span></div>
-                            <div class="o" @click="goLink('dep-enr-master-list', 'dep')">Enrollee List</div>
-                            <div class="o" @click="goLink('dep-fac-master-list', 'dep')">Instructors</div>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="toMenu('stu')">Student</div>
+                            <div class="m" v-show="subm.stu">
+                                <div class="o h" @click="goLink('adm-new-student', 'stu')">New Student <span>Ctrl+Alt+S</span></div>
+                                <div class="o" @click="goLink('adm-list-stu-master', 'stu')">Master List</div>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="toMenu('fin')">Finances</div>
-                        <div class="m" v-show="subm.fin">
-                            <div class="o" @click="goLink('fin-index', 'fin')">Enrollment Billing</div>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="toMenu('dep')">Department</div>
+                            <div class="m" v-show="subm.dep">
+                                <div class="o" @click="goLink('dep-set-subject', 'dep')">Enrol Subject <span>Ctrl+Alt+R</span></div>
+                                <div class="o" @click="goLink('dep-sec-new-section', 'dep')">New Section &nbsp;<span>Ctrl+Alt+C</span></div>
+                                <div class="o h" @click="goLink('dep-enr-new-enrollee', 'dep')">New Enrollee <span>Ctrl+Alt+E</span></div>
+                                <div class="o" @click="goLink('dep-enr-master-list', 'dep')">Enrollee List</div>
+                                <div class="o" @click="goLink('dep-fac-master-list', 'dep')">Instructors</div>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="goLink('sub-index', 'sub')">Subjects</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="goLink('cou-index', 'cou')">Courses</div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="toMenu('fin')">Finance</div>
+                            <div class="m" v-show="subm.fin">
+                                <div class="o" @click="goLink('fin-index', 'fin')">Enrollment Billing</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="goLink('sub-index', 'sub')">Subjects</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <div class="n" @click="goLink('cou-index', 'cou')">Courses</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="y">
+                <ul>
+                    <li>
+                        <div class="l">
+                            <div class="n" style="color: #9b9b97" @click="isModalShow = !isModalShow">sysuno 1.0-a</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="y">
-            <ul>
-                <li>
-                    <div class="l">
-                        <div class="n" @click="goLink('cou-index', 'cou')">Help</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <ui-modal v-if="isModalShow" @modalClose="modalClose" :hasBG="false" class="moda-l">
+            <span slot="name">About</span>
+            <div slot="body-text">
+                <div class="nn">sysuno v0.1-alpha</div>
+                <div class="ii">Management System</div>
+                <div class="ss"><v-icon name="code"></v-icon> with <v-icon name="heart"></v-icon></div>
+            </div>
+            <div slot="body-okay">
+                <button @click="modalClose()">Okay</button>
+            </div>
+        </ui-modal>
     </div>
 </template>
 
 <script>
+    import UIModal from './UIModal.vue';
+
     import 'vue-awesome/icons/bars';
     import 'vue-awesome/icons/minus';
+    import 'vue-awesome/icons/code';
+    import 'vue-awesome/icons/heart';
 
     export default {
+        components: {
+            UiModal: UIModal
+        },
         data() {
             return {
                 user: { name: 'Paul', role: 'Administrator' },
                 subm: { adm: false, stu: false, dep: false, fin: false, sub: false, cou: false },
-                bars: false
+                bars: false,
+                isModalShow: false
             }
         },
         methods: {
@@ -96,15 +117,19 @@
                 let d = { adm: false, stu: false, dep: false, fin: false, sub: false, cou: false };
                 d[name] = !this.subm[name];
                 this.subm = d;
+            },
+            modalClose(v) {
+                this.isModalShow = false;
             }
         }
     }
 </script>
 
 <style scoped>
-    .tool-b { height: 24px; background-color: #f8f8f2; display: grid; grid-template-columns: auto 200px; border-bottom: 1px solid #EEEEEC; }
+    .tool-b {}
 
-    .tool-b .x {}
+    .tool-b .w { height: 24px; background-color: #f8f8f2; display: grid; grid-template-columns: auto 200px; border-bottom: 1px solid #EEEEEC; }
+    .w .x {}
     ul { display: block; list-style-type: none }
     ul li { display: inline-block;  }
     ul li .l { position: relative; }
@@ -118,5 +143,11 @@
     ul li .l .m .o:hover { background-color: #315BEF; color: #fff; }
     ul li .l .m .o:hover span { color: #fff; }
 
-    .tool-b .y { text-align: right; }
+    .w .y { text-align: right; }
+
+    .moda-l {}
+    .moda-l .nn { padding: 12px 0 2px 0; text-align: center; font-size: 14px; font-weight: 600; color: #222; }
+    .moda-l .ii { font-size: 10px; color: #333; text-align: center }
+    .moda-l .ss { padding: 10px 0; font-size: 10px; text-align: center; color: #555; }
+    .moda-l .ss svg { width: 12px; height: 12px; margin: 0 2px -2px 2px; }
 </style>

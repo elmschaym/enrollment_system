@@ -316,9 +316,9 @@
 	.form-o .w .p { height: 100%; padding: 0 16px; position: relative; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
-	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p select { border-radius: 5px; color: #000; padding: 5px 12px 5px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; cursor: pointer; }
-	.form-o .w .p textarea { width: 100%; height: 50px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p textarea { width: 100%; height: 50px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p label { display: block; font-size: 11px; margin: 10px 0 4px 2px; color: #111; }
 	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w div.info { font-size: 10px; padding: 2px 8px; }
@@ -330,10 +330,10 @@
 
 	.w .p .r { position: relative; }
 	.w .p .r .c { display: grid; margin-bottom: 5px; }
-	.p .r.a .c { grid-template-columns: 200px 140px 170px 125px }
-	.p .r.d .c { grid-template-columns: 100px 207px 158px 170px }
+	.p .r.a .c { grid-template-columns: auto 140px auto 125px }
+	.p .r.d .c { grid-template-columns: 100px auto 158px 170px }
 	.p .r.d .c > div { position: relative; }
-	.p .r.b .c { grid-template-columns: 350px 286px }
+	.p .r.b .c { grid-template-columns: auto 286px }
 	.p .u {}
 	.p .u, .p .v {  padding: 16px 16px 0 16px; }
 

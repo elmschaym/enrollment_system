@@ -1,8 +1,8 @@
 <template>
     <div class="find-c">
         <div class="find">
-            <input v-model="query" :placeholder="'Subject '+ queryType"/>
-            <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
+            <input v-model="query" :placeholder="'Find Subject \\'+ queryType"/>
+            <button @click="switchQueryType()"><v-icon v-show="false" name="book-reader"></v-icon> {{ queryType }}</button>
         </div>
         <div class="rslt">
             <div class="tabs">
@@ -27,7 +27,7 @@
 <script>
     import UILoader from './UILoader.vue';
 
-    import 'vue-awesome/icons/coffee';
+    import 'vue-awesome/icons/book-reader';
 
     export default {
         emits: ['setValue'],

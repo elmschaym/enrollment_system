@@ -212,7 +212,7 @@
 				);
 			},
 			handleSection(s,i) {
-				if (this.faculty.hasOwnProperty('id') && s.stat == 0 && ((this.maximumLoad - this.totalLoad) > this.subject.units)) {
+				if (this.faculty.hasOwnProperty('id') && s.stat == 0 && ((this.maximumLoad - this.totalLoad) >= this.subject.units)) {
 					this.$http.put('section/'+ s.id +'/?action=faculty-handle', { faculty: this.faculty.id }).then(res => {
 						this.fetchSubjectsHandled();
 					});

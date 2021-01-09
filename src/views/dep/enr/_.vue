@@ -50,6 +50,6 @@
 
     .make { text-align: right; }
     .make span { display: inline-block; background-color: #f8f8f8; padding: 10px 10px 9px 10px; border-left: 1px solid #e9e9e9; cursor: pointer; font-size: 11px; }
-    .make span.active { border-bottom: 1px solid #999; }
+    .make span.active {}
     .make span svg { width: 12px; height: 12px; margin-bottom: -2px; }
 </style>

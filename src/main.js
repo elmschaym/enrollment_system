@@ -12,14 +12,7 @@ Vue.config.devtools = true;
 Vue.use(plugins);
 Vue.use(VueHtmlToPaper, {
   name: '_blank',
-  specs: [
-    'fullscreen=no',
-    'titlebar=no',
-    'scrollbars=yes',
-    'height=600',
-    'width=800',
-    'top=100',
-    'left=300'
+  specs: ['fullscreen=no', 'titlebar=no', 'scrollbars=yes', 'height=600', 'width=800', 'top=100', 'left=300'
   ],
   styles: []
 });

@@ -8,6 +8,7 @@
             <ui-date :refreshDate="refreshDate"></ui-date>
         </div>
         <div class="q">
+            <span v-if="false"><v-icon name="spinner" :spin="true" alt="loading"></v-icon></span>
             <span>Connected</span>
             <span title="Secure Connection">
                 <v-icon name="lock"></v-icon>
@@ -22,6 +23,7 @@
 
     import 'vue-awesome/icons/lock';
     import 'vue-awesome/icons/angle-left';
+    import 'vue-awesome/icons/spinner';
 
     export default {
         components: {

@@ -9,17 +9,20 @@
 			</div>
 		</div>
 		<div class="form">
-			<div class="x"><button @click="appClose()">&times;</button></div>
+			<div class="x">
+				<span @click="winMinimize()"><v-icon name="minus"></v-icon></span>
+				<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span>
+			</div>
 			<div v-if="!isConnecting" class="w">
 				<div class="h">
 					<b>Connect</b>
 				</div>
 				<div class="f">
-					<input type="text" v-model="username" placeholder="Username" :class="{ 'error': isErrorConnect }"/>
+					<input type="text" v-model="username" placeholder="Username" :class="{ 'error': isErrorConnect }" maxlength="32"/>
 					<v-icon :name="isUsername ? 'user-circle' : 'user'"></v-icon>
 				</div>
 				<div class="f">
-					<input type="password" v-model="password" placeholder="Password" :class="{ 'error': isErrorConnect }"/>
+					<input type="password" v-model="password" placeholder="Password" :class="{ 'error': isErrorConnect }" maxlength="64"/>
 					<v-icon :name="isPassword ? 'lock' : 'unlock'"></v-icon>
 				</div>
 				<div class="s">
@@ -38,6 +41,8 @@
 	import 'vue-awesome/icons/user-circle';
 	import 'vue-awesome/icons/lock';
 	import 'vue-awesome/icons/unlock';
+	import 'vue-awesome/icons/times';
+	import 'vue-awesome/icons/minus';
 
 	export default {
 		data() {
@@ -78,16 +83,15 @@
 					this.$sleep(2000).then( () => this.isErrorConnect = false, 2000);
 				});
 			},
-			appClose() {
+			winClose() {
 				this.$sleep(500).then(() => {
-                    window.nwWin.hide();
-                    window.nwWin.close(true);
-                });
+					window.nwWin.hide();
+					window.nwWin.close(true);
+				});
+			},
+			winMinimize() {
+				window.nwWin.minimize();
 			}
-		},
-		created() {
-		},
-		mounted() {
 		}
 	}
 </script>
@@ -97,8 +101,10 @@
 	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #08979d, #055b5c); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; }
 	.form { position: relative; height: 100%; background: transparent; }
 
-	.form .x { position: absolute; top: 4px; right: 4px; }
-	.form .x button { background-color: transparent; border: none; font-size: 18px; color: #08979d; height: 22px; width: 22px; line-height: 18px; cursor: pointer; outline: none }
+	.form .x { position: absolute; top: 4px; right: 4px; display: grid; grid-template-columns: 24px 24px; }
+	.form .x span { display: block; width: 24px; height: 24px; cursor: pointer; padding: 5px 5px; color: #555; }
+	.form .x span svg { width: 10px; height: 10px; }
+	.form .x span:hover { color: #000; }
 
 	.form .w { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
 	.form .w .h { padding: 8px 0 20px 0;  }

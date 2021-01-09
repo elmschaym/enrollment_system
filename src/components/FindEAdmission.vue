@@ -6,7 +6,7 @@
         </div>
         <div class="y">
             <div class="find">
-                <input v-model="queryString" :placeholder="'Student ' + queryType" :disabled="disableInput"/>
+                <input v-model="queryString" :placeholder="'Find Student \\' + queryType" :disabled="disableInput"/>
                 <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
             </div>
             <div class="rslt">
@@ -107,7 +107,7 @@
 </script>
 
 <style scoped>
-    .wrap-f {}
+    .wrap-f { height: inherit; }
 
     .x { display: grid; grid-template-columns: 50% 50%; margin-bottom: 12px; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .x div { background-color: #fff; padding: 7px 8px; font-size: 11px; }

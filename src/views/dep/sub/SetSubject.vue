@@ -11,7 +11,7 @@
 						<div class="m"><span>{{ student.school_id }}</span> – {{ student.admission[0].course.program_type +' '+ student.admission[0].course.name_alias }}  </div>
 					</div>
 					<div class="butt">
-						<button @click="setStudentModalShow()">Switch Student <v-icon name="user"></v-icon></button>
+						<button @click="setStudentModalShow()">Switch <v-icon name="user"></v-icon></button>
 					</div>
 				</div>
 				<div class="r o">
@@ -233,7 +233,7 @@
 				e.preventDefault();
 				let cmenu = new window.nw.Menu(),
 					items = [
-						{ label: 'Enrol Section', click: () => this.enrolSection(s), key: 'e', modifiers: "ctrl", enabled: s.slots > 0 && s.stat == 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open },
+						{ label: 'Enrol Section', click: () => this.enrolSection(s), key: 'e', modifiers: "ctrl", enabled: s.slots > 0 && s.stat == 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open && ((this.allowedUnits - this.enrolledUnits) >= this.subject.units) },
 						{ label: 'Refresh', click: this.fetchSections },
 						{ type: 'separator' },
 						{ label: s.name + ', ' + s.sched_days +' '+ s.sched_time, enabled: false }
@@ -263,7 +263,7 @@
 			},
 			enrolSection(s,i) {
 				let isSubjectNotEnrolled = this.subjects.some(s => s.subject.code == this.subject.code);
-				if (s.stat == 0 && s.slots > 0 && !isSubjectNotEnrolled && this.student.school_id != 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open) {
+				if (s.stat == 0 && s.slots > 0 && !isSubjectNotEnrolled && this.student.school_id != 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open && ((this.allowedUnits - this.enrolledUnits) >= this.subject.units)) {
 					this.$http.post('section_enroll/', { section: s.id, billing: this.student.admission[0].enrollment[0].billing[0].id }).then(res => {
 						s.slots -= 1;
 						s.stat = 2;
@@ -300,7 +300,7 @@
 	.form-o .w .p { height: 100%; padding: 0 16px; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: 420px auto 70px; }
 
-	.p .h { padding: 16px 0 8px 0; border-bottom: 1px solid #d0d0c0; display: grid; grid-template-columns: 40px auto 128px; margin-bottom: 0px;}
+	.p .h { padding: 16px 0 8px 0; border-bottom: 1px solid #d0d0c0; display: grid; grid-template-columns: 40px auto 90px; margin-bottom: 0px;}
 	.p .h .pixx { height: 40px; width: 40px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .h .pixx svg { height: 32px; width: 32px; margin: 4px; color: #d5d5d0; }
 	.p .h .name { padding: 0 0 0 12px; }

@@ -1,9 +1,9 @@
 <template>
-    <div class="wrap-m">
+    <div :class="['wrap-m', hasBG ? 'has-bg' : '']">
         <div class="moda">
             <div class="head">
                 <div class="icon" @click="isClosed()">
-                    <b style="background-color: #FE6254;"></b>
+                    <span><v-icon name="times"></v-icon></span>
                 </div>
                 <div class="name">
                     <slot name="name"><span>Modal</span></slot>
@@ -22,10 +22,18 @@
 </template>
 
 <script>
-    import 'vue-awesome/icons/caret-down';
+    import 'vue-awesome/icons/times';
 
     export default {
         emits: ['modalClose'],
+        props: {
+            hasBG: {
+                type: Boolean,
+                default: function() {
+                    return true;
+                }
+            }
+        },
         data() {
             return {
             }
@@ -39,11 +47,14 @@
 </script>
 
 <style scoped>
-    .wrap-m { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.95); display: flex; justify-content: center; align-items: center; }
-    .moda { width: 280px; height: 200px; background-color: #fff; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 9999; border-radius: 5px 5px 0 0; }
-    .moda .head { display: grid; grid-template-columns: 24px auto; background: #f5f5f0; border-bottom: 1px solid #f0f0f0; height: 24px; border-radius: 5px 5px 0 0; }
+    .wrap-m { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; }
+    .wrap-m.has-bg { background-color: rgba(255,255,255,0.95); }
+
+    .moda { width: 280px; height: 200px; background-color: #fff; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 9999; }
+    .moda .head { display: grid; grid-template-columns: 24px auto; background: #f5f5f0; border-bottom: 1px solid #f0f0f0; height: 24px; }
     .moda .head .icon { display: block; width: 24px; height: 24px; cursor: pointer; padding: 5px 5px; }
-    .moda .head .icon b { display: block; width: 14px; height: 14px; border-radius: 100%; font-size: 10px; color: #444; text-align: center  }
+    .moda .head .icon span { display: block; font-size: 10px; color: #444; }
+    .moda .head .icon span svg { width: 11px; height: 11px }
     .moda .head .name { padding: 6px; text-align: center; }
     .moda .head .name span { margin-right: 24px; font-size: 11px }
 
