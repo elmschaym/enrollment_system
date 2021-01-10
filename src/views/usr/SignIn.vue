@@ -98,7 +98,7 @@
 
 <style scoped>
 	.wrap-a { height: 100%; display: grid; grid-template-columns: auto 404px; position: relative; background: linear-gradient(to left bottom, #fafafa, #f0f0f0); }
-	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #08979d, #055b5c); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; }
+	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #08979d, #055b5c); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; user-select: none; }
 	.form { position: relative; height: 100%; background: transparent; }
 
 	.form .x { position: absolute; top: 4px; right: 4px; display: grid; grid-template-columns: 24px 24px; }

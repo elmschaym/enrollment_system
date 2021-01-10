@@ -4,9 +4,9 @@
             <div class="link">
                 <ul>
                     <li @click="goName('dep-fac-master-list')" :class="viewName == 'dep-fac-master-list' ? 'active' : 'click'"><div>Master List</div></li>
-                    <li :class="viewName == 'dep-fac-assign-section' ? 'active' : ''"><div>Assign Section</div></li>
-                    <li :class="viewName == 'dep-fac-teaching-load' ? 'active' : ''"><div>Teaching Load</div></li>
-                    <li :class="viewName == 'dep-fac-enter-grades' ? 'active' : ''"><div>Enter Grades</div></li>
+                    <li :class="viewName == 'dep-fac-assign-section' ? 'active' : ''"><div style="cursor: default;">Assign Section</div></li>
+                    <li :class="viewName == 'dep-fac-teaching-load' ? 'active' : ''"><div style="cursor: default;">Teaching Load</div></li>
+                    <li @click="goName('dep-fac-enter-grades')" :class="viewName == 'dep-fac-enter-grades' ? 'active' : ''"><div>Enter Grades</div></li>
                 </ul>
             </div>
             <div class="make">

@@ -91,24 +91,16 @@
 				</div>
 			</div>
 		</div>
-		<ui-modal v-if="isModalShow && isSubmitOkay" @modalClose="modalClose" class="moda-l">
-			<span slot="name">Admitted Successfully</span>
-			<div slot="body-text">
-				Proceed to preferred Department for Enrollment and Course selection.
+		<ui-modal-listener v-if="isModalShow && isSubmitOkay" @modalClose="modalClose" @listenedYes="printAdmission" listenLabel="Print Admission" class="moda-l">
+			<div slot="text">
+				Student admitted successfully. Proceed to preferred Department for Enrollment and Course selection.
 			</div>
-			<div slot="body-okay">
-				<button @click="printAdmission()">Print Admission</button>
+		</ui-modal-listener>
+		<ui-modal-informer v-if="isModalShow && !isSubmitOkay" @informedOkay="modalClose" class="moda-l">
+			<div slot="text">
+				Student couldn't be admitted. There has been an existing admission and/or your request is invalid.<br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
 			</div>
-		</ui-modal>
-		<ui-modal v-if="isModalShow && !isSubmitOkay" @modalClose="modalClose" class="moda-l">
-			<span slot="name">Admission Error</span>
-			<div slot="body-text">
-				There was an error processing your request. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
-			</div>
-			<div slot="body-okay">
-				<button @click="modalClose()">Okay</button>
-			</div>
-		</ui-modal>
+		</ui-modal-informer>
 		<ui-loader v-if="isSavingForm"></ui-loader>
 	</div>
 </template>
@@ -118,7 +110,8 @@
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
 	import FindEStudent from '@/components/FindEStudent.vue';
-	import UIModal from '@/components/UIModal.vue';
+	import UIModalListener from '@/components/UIModalListener.vue';
+	import UIModalInformer from '@/components/UIModalInformer.vue';
 
 	import 'vue-awesome/icons/user';
 
@@ -127,7 +120,8 @@
 			UiSelect: UISelect,
 			UiLoader: UILoader,
 			FindEStudent,
-			UiModal: UIModal,
+			UiModalListener: UIModalListener,
+			UiModalInformer: UIModalInformer,
 			DatePicker
 		},
 		data() {

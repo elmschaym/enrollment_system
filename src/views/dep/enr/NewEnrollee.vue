@@ -56,15 +56,11 @@
                 </div>
             </div>
         </div>
-        <ui-modal v-if="isModalShow" @modalClose="modalClose" class="moda-l">
-            <span slot="name">Enrolled Successfully</span>
-            <div slot="body-text">
-                Please proceed to Enroll Subject for selecting subjects and assigning sections.
+        <ui-modal-informer v-if="isModalShow" @modalClose="modalClose" @informedOkay="modalClose" :hasBG="true" class="moda-l">
+            <div slot="text">
+                Student Enrolled Successfully. Please proceed to Enroll Subject for selecting subjects and assigning sections.
             </div>
-            <div slot="body-okay">
-                <button @click="modalClose(true)">Okay</button>
-            </div>
-        </ui-modal>
+        </ui-modal-informer>
         <ui-loader v-if="isSavingForm"></ui-loader>
     </div>
 </template>
@@ -73,7 +69,7 @@
     import UISelect from '@/components/UISelect.vue';
     import UILoader from '@/components/UILoader.vue';
     import OCourse from '@/components/OCourse.vue';
-    import UIModal from '@/components/UIModal.vue';
+    import UIModalInformer from '@/components/UIModalInformer.vue';
     import FindEAdmission from '@/components/FindEAdmission.vue';
 
     import 'vue-awesome/icons/user';
@@ -83,7 +79,7 @@
         components: {
             UiSelect: UISelect,
             UiLoader: UILoader,
-            UiModal: UIModal,
+            UiModalInformer: UIModalInformer,
             FindEAdmission,
             OCourse
         },

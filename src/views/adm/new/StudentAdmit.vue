@@ -94,24 +94,11 @@
 				</div>
 			</div>
 		</div>
-		<ui-modal v-if="isModalShow && isSubmitOkay" @modalClose="modalClose" class="moda-l">
-			<span slot="name">Admitted Successfully</span>
-			<div slot="body-text">
-				Proceed to preferred Department for Enrollment and Course selection.
+		<ui-modal-listener v-if="isModalShow && isSubmitOkay" @modalClose="modalClose" @listenedYes="printAdmission" listenLabel="Print Admission" class="moda-l">
+			<div slot="text">
+				Student admitted successfully. Proceed to preferred Department for Enrollment and Course selection.
 			</div>
-			<div slot="body-okay">
-				<button @click="printAdmission()">Print Admission</button>
-			</div>
-		</ui-modal>
-		<ui-modal v-if="isModalShow && !isSubmitOkay" @modalClose="modalClose" class="moda-l">
-			<span slot="name">Admission Error</span>
-			<div slot="body-text">
-				There was an error processing your request. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
-			</div>
-			<div slot="body-okay">
-				<button @click="modalClose()">Okay</button>
-			</div>
-		</ui-modal>
+		</ui-modal-listener>
 		<ui-loader v-if="isSavingForm"></ui-loader>
 	</div>
 </template>
@@ -120,7 +107,7 @@
 	import DatePicker from 'vuejs-datepicker';
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
-	import UIModal from '@/components/UIModal.vue';
+	import UIModalListener from '@/components/UIModalListener.vue';
 
 	import 'vue-awesome/icons/user';
 
@@ -128,7 +115,7 @@
 		components: {
 			UiSelect: UISelect,
 			UiLoader: UILoader,
-			UiModal: UIModal,
+			UiModalListener: UIModalListener,
 			DatePicker
 		},
 		data() {

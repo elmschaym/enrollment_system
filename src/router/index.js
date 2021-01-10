@@ -161,7 +161,8 @@ const routes = [
                         children: [
                             { path: 'master-list', component: () => import('../views/dep/fac/MasterList.vue'), name: 'dep-fac-master-list' },
                             { path: 'assign-section', component: () => import('../views/dep/fac/AssignSection.vue'), name: 'dep-fac-assign-section' },
-                            { path: 'teaching-load', component: () => import('../views/dep/fac/TeachingLoad.vue'), name: 'dep-fac-teaching-load' }
+                            { path: 'teaching-load', component: () => import('../views/dep/fac/TeachingLoad.vue'), name: 'dep-fac-teaching-load' },
+                            { path: 'enter-grades', component: () => import('../views/dep/fac/EnterGrades.vue'), name: 'dep-fac-enter-grades' }
                         ]
                     },
                     {   path: 'enr', component: () => import('../views/dep/enr/_.vue'),

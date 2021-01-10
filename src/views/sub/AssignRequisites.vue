@@ -49,7 +49,7 @@
 										<div class="bb"></div>
 										<div class="ii">
 											<div class="ff">
-												<div class="c">{{ p.requisite.code }}</div>
+												<div class="c" @click="changeSubjectByOld(p)">{{ p.requisite.code }}</div>
 												<div class="n">{{ p.requisite.name }}</div>
 												<div class="e" title="Remove" @click="removeRequisiteOld(p)">&times;</div>
 											</div>
@@ -62,7 +62,10 @@
 							</div>
 						</div>
 					</div>
-					<ui-modal-decider v-if="isModalDeciderShow" :hasBG="true" @modalClose="modalDeciderClose" @decidedYes="removeDecidedYes">
+					<ui-modal-decider v-if="isModalDeciderShow" :hasBG="false" @modalClose="modalDeciderClose" @decidedYes="removeDecidedYes">
+						<span slot="text">
+							Do you want to remove <b style="font-weight: 600; padding: 0 2px">{{ queue_to_rem.requisite.code }}</b>?
+						</span>
 					</ui-modal-decider>
 					<ui-loader v-if="isFetchingList"></ui-loader>
 				</div>
@@ -98,7 +101,7 @@
 				subject: {},
 				pre_reqs_new: [],
 				pre_reqs_old: [],
-				queue_to_rem: 0
+				queue_to_rem: {}
 			}
 		},
 		computed: {
@@ -130,14 +133,18 @@
 				this.pre_reqs_new.splice(i, 1);
 			},
 			removeRequisiteOld(p) {
-				this.queue_to_rem = p.id;
+				this.queue_to_rem = p;
 				this.isModalDeciderShow = true;
 			},
 			removeDecidedYes(v) {
-				this.$http.delete('subject_requisite/'+ this.queue_to_rem +'/?type=full').then(res => {
+				this.$http.delete('subject_requisite/'+ this.queue_to_rem.id +'/?type=full').then(res => {
 					this.fetchRequisites(false);
 				});
 				this.isModalDeciderShow = false;
+			},
+			changeSubjectByOld(p) {
+				this.subject = { ...p.requisite };
+				this.fetchRequisites(true);
 			},
 			fetchRequisites(v) {
 				this.isFetchingList = v;
@@ -216,7 +223,7 @@
 	.y .list .bb { width: 20px; height: 20px; border-bottom: 1px solid #e0e0da; }
 	.y .list .ii { padding: 8px 0; }
 	.y .list .ii .ff { height: 40px; background-color: #fff; border: 1px solid #ebebe7; display: grid; grid-template-columns: 50px auto 20px; overflow: hidden }
-	.y .list .ii .ff .c { display: flex; justify-content: left; align-items: center; font-size: 13px; font-weight: 600; padding: 4px; background-color: #fbfbf7; }
+	.y .list .ii .ff .c { display: flex; justify-content: left; align-items: center; font-size: 13px; font-weight: 600; padding: 4px; background-color: #fbfbf7; cursor: pointer; }
 	.y .list .ii .ff .n { display: flex; justify-content: left; align-items: center; font-size: 11px; padding: 4px; background-color: #fff; }
 	.y .list .ii .ff .e { display: flex; justify-content: center; align-items: center; background-color: #fbfbf7; cursor: pointer; }
 

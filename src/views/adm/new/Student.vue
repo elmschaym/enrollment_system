@@ -144,24 +144,16 @@
 				</div>
 			</div>
 		</div>
-		<ui-modal v-if="isGenSIDError" @modalClose="modalAClose" class="moda-l">
-			<span slot="name">Connection Error</span>
-			<div slot="body-text">
+		<ui-modal-listener v-if="isGenSIDError" @modalClose="modalAClose" @listendYes="modalAClose" listenLabel="Reconnect" class="moda-l">
+			<div slot="text">
 				There was an error connecting on server. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 400 No Connection</span>
 			</div>
-			<div slot="body-okay">
-				<button @click="modalAClose()">Reconnect</button>
-			</div>
-		</ui-modal>
-		<ui-modal v-if="isSubmitError" @modalClose="modalBClose" class="moda-l">
-			<span slot="name">Internal Error</span>
-			<div slot="body-text">
+		</ui-modal-listener>
+		<ui-modal-informer v-if="isSubmitError" @informedOkay="modalBClose" class="moda-l">
+			<div slot="text">
 				There was an error processing your request. Please contact your server administrator to fix this issue. <br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
 			</div>
-			<div slot="body-okay">
-				<button @click="modalBClose()">Okay</button>
-			</div>
-		</ui-modal>
+		</ui-modal-informer>
 		<ui-loader v-if="isSavingForm"></ui-loader>
 	</div>
 </template>
@@ -171,7 +163,8 @@
 
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
-	import UIModal from '@/components/UIModal.vue';
+	import UIModalListener from '@/components/UIModalListener.vue';
+	import UIModalInformer from '@/components/UIModalInformer.vue';
 	import { WebCam } from 'vue-web-cam';
 
 	import 'vue-awesome/icons/plus';
@@ -182,7 +175,8 @@
 		components: {
 			UiSelect: UISelect,
 			UiLoader: UILoader,
-			UiModal: UIModal,
+			UiModalListener: UIModalListener,
+			UiModalInformer: UIModalInformer,
 			VueWebCam: WebCam,
 			DatePicker
 		},

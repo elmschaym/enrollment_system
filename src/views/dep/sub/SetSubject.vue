@@ -83,17 +83,12 @@
 				</div>
 			</div>
 		</div>
-		<ui-modal v-if="isSetStudentModalShow" @modalClose="setStudentModalClose" class="moda-l">
-			<span slot="name">Enter Student ID</span>
-			<div slot="body-text">
-				<input v-model="studentID" placeholder="Student ID"/>
-				<div v-show="isSwitchError" class="e">StudentNotFoundError</div>
+		<ui-modal-listener v-if="isSetStudentModalShow" @modalClose="setStudentModalClose" @listenedYes="setStudentFromModal" :listenLabel="isSwitchStudent ? 'Switching...' : 'Switch Student'" :hasBG="true" class="moda-l">
+			<div slot="text" style="width: 60%">
+				<input v-model="studentID" placeholder="Enter Student ID"/>
+				<div v-show="isSwitchError" class="e">Student Not Found</div>
 			</div>
-			<div slot="body-okay">
-				<button v-if="!isSwitchStudent" @click="setStudentFromModal" :disabled="studentID == ''">Switch Student</button>
-				<button v-else>Switching...</button>
-			</div>
-		</ui-modal>
+		</ui-modal-listener>
 		<ui-loader v-if="isSavingForm"></ui-loader>
 	</div>
 </template>
@@ -101,7 +96,7 @@
 <script>
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
-	import UIModal from '@/components/UIModal.vue';
+	import UIModalListener from '@/components/UIModalListener.vue';
 	import OTimeSchedule from '@/components/OTimeSchedule.vue';
 	import ListEDepSubject from '@/components/ListEDepSubject.vue';
 
@@ -113,7 +108,7 @@
 		components: {
 			UiSelect: UISelect,
 			UiLoader: UILoader,
-			UiModal: UIModal,
+			UiModalListener: UIModalListener,
 			OTimeSchedule,
 			ListEDepSubject
 		},
@@ -154,8 +149,10 @@
 				this.fetchSections();
 			},
 			setStudentFromModal() {
-				this.fetchStudent();
-				this.isSwitchStudent = true;
+				if (this.studentID.length > 0) {
+					this.fetchStudent();
+					this.isSwitchStudent = true;
+				}
 			},
 			setStudentModalShow() {
 				this.studentID = '';
@@ -163,8 +160,10 @@
 				this.isSetStudentModalShow = true;
 			},
 			setStudentModalClose(v) {
-				this.studentID = '';
-				this.isSetStudentModalShow = false;
+				if (this.student.school_id != 0) {
+					this.isSetStudentModalShow = false;
+					this.studentID = '';
+				}
 			},
 			goSaveSubjects() {
 				this.isSavingForm = true;
@@ -358,8 +357,9 @@
 
 	.form-o .o {}
 
-	.moda-l input { width: 80%; display: block; text-align: center; border-radius: 2px; color: #000; padding: 6px 8px 6px 8px; border: none; background-color: #fdfdfd; font-size: 13px; outline: none; cursor: pointer; margin: 20px auto; border-bottom: 1px solid #bebeb9; }
-	.moda-l .e { color: #cd4646; text-align: center;; padding: 6px; background-color: #fde6e6; width: 90%; margin: 0 auto; }
+	.moda-l .n { font-size: 12px; }
+	.moda-l input { width: 100%; display: block; text-align: center; color: #000; padding: 6px 8px 6px 8px; border: none; font-size: 14px; outline: none; cursor: pointer; margin: 10px auto; border-bottom: 1px solid #bebeb9; }
+	.moda-l .e { color: #cd4646; text-align: center;padding: 6px; width: 90%; margin: 0 auto; }
 
 	.v { position: relative; }
 	.dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.7) }

@@ -3,7 +3,7 @@
 		<div class="name">
 			<v-icon name="leaf" style="left: 60px; top: 50px; z-index: 1000"/>
 			<v-icon name="leaf" style="left: 100px; top: 90px; z-index: 1002"/>
-			<span>system_enr</span>
+			<span v-if="isLoading">sysuno v1.0-alpha</span>
 		</div>
 		<div class="stat" v-if="isLoading">
 			<span><b></b></span>
@@ -43,7 +43,7 @@
 
 	.name { height: 286px; position: relative; }
 	.name svg { height: 128px; width: 128px; display: block; color: #fff; margin: 0 auto; position: absolute; }
-	.name span { font-size: 18px; text-transform: uppercase; font-weight: bold; color: #fff; display: block; text-align: center; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 228px; left: -9999px; right: 60px; z-index: -9999; }
+	.name span { font-size: 18px; font-weight: 100; color: #fff; display: block; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 238px; text-align: center; width: 100%; }
 
 	.stat { height: 14px; }
 	.stat span {  display: block;  margin: 0 auto; position: relative; background-color: transparent; height: 2px; width: 32px; overflow-x: hidden; }

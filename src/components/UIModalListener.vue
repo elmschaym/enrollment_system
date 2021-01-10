@@ -5,13 +5,13 @@
                 <slot name="text">Are you sure you want to continue?</slot>
             </div>
             <div class="cide">
-                <div class="n" @click="hasNo()">
-                    No
+                <div class="y" @click="hasListen()">
+                    {{ listenLabel }}
                 </div>
                 <div class="b">
                 </div>
-                <div class="y" @click="hasYes()">
-                    Yes
+                <div class="n" @click="hasClosed()">
+                    &times;
                 </div>
             </div>
         </div>
@@ -22,8 +22,14 @@
     import 'vue-awesome/icons/times';
 
     export default {
-        emits: ['modalClose', 'decidedYes'],
+        emits: ['modalClose', 'listenedYes'],
         props: {
+            listenLabel: {
+                type: String,
+                default: function() {
+                    return 'OK';
+                }
+            },
             hasBG: {
                 type: Boolean,
                 default: function() {
@@ -36,11 +42,11 @@
             }
         },
         methods: {
-            hasNo() {
+            hasClosed() {
                 this.$emit('modalClose', true);
             },
-            hasYes() {
-                this.$emit('decidedYes', true);
+            hasListen() {
+                this.$emit('listenedYes', true);
             }
         }
     }
@@ -52,9 +58,9 @@
 
     .moda { width: 280px; height: auto; background-color: #fff; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 9999; }
 
-    .text { height: 70px; display: flex; justify-content: center; align-items: center; padding: 12px; text-align: center; line-height: 17px; font-size: 12px; }
+    .text { height: 140px; display: flex; justify-content: center; align-items: center; padding: 12px; text-align: center; line-height: 17px; font-size: 12px; }
 
-    .cide { height: 30px; display: grid; grid-template-columns: auto 1px auto; border-top: 1px solid #f0f0ea; }
+    .cide { height: 30px; display: grid; grid-template-columns: auto 1px 30px; border-top: 1px solid #f0f0ea; }
     .cide > div { height: 100%; display: flex; justify-content: center; align-items: center; font-weight: 600; font-size: 11px; background-color: #fbfbf7 }
     .cide > div:hover { background-color: #f0f0ea }
     .cide .n {}

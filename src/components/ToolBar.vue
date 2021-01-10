@@ -68,22 +68,18 @@
                 </ul>
             </div>
         </div>
-        <ui-modal v-if="isModalShow" @modalClose="modalClose" :hasBG="false" class="moda-l">
-            <span slot="name">About</span>
-            <div slot="body-text">
+        <ui-modal-informer v-if="isModalShow" @informedOkay="modalClose" :hasBG="false" class="moda-l">
+            <div slot="text">
                 <div class="nn">sysuno v0.1-alpha</div>
                 <div class="ii">Management System</div>
                 <div class="ss"><v-icon name="code"></v-icon> with <v-icon name="heart"></v-icon></div>
             </div>
-            <div slot="body-okay">
-                <button @click="modalClose()">Okay</button>
-            </div>
-        </ui-modal>
+        </ui-modal-informer>
     </div>
 </template>
 
 <script>
-    import UIModal from './UIModal.vue';
+    import UIModalInformer from './UIModalInformer.vue';
 
     import 'vue-awesome/icons/bars';
     import 'vue-awesome/icons/minus';
@@ -92,7 +88,7 @@
 
     export default {
         components: {
-            UiModal: UIModal
+            UiModalInformer: UIModalInformer
         },
         data() {
             return {
