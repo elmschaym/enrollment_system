@@ -214,7 +214,7 @@
 	.x .ff .e { display: flex; justify-content: center; align-items: center; background-color: #fbfbf7; cursor: pointer; }
 
 	.x .subm { background-color: #fff; border-top: 1px solid #f8f8f2; padding: 14px 0; text-align: center;  }
-	.x .subm button { height: 22px; border: none; }
+	.x .subm button { height: 22px; border: none; font-size: 11px; }
 	.x .subm button.okay { border: 1px outset #e0e0d0; color: #000; background-color: #fff }
 
 	.u .y .data { display: grid; grid-template-columns: 90px auto; padding: 20px; }
@@ -232,5 +232,5 @@
 	.y .code .bb { height: 20px; width: 20px; margin-top: 20px; border-top: 1px solid #e0e0da; }
 
 	.y .subm { background-color: #fff; border-top: 1px solid #f8f8f2; padding: 14px 0; text-align: center;  }
-	.y .subm button { height: 22px; border: 1px solid #e0e0d0; color: #000; background-color: #fff }
+	.y .subm button { height: 22px; border: 1px solid #e0e0d0; color: #000; background-color: #fff; font-size: 11px; }
 </style>

@@ -35,20 +35,20 @@
 					<div class="ii">{{ student.student.school_id }} – {{ student.student.admission[0].course.program_type }} {{ student.student.admission[0].course.name_alias }}</div>
 				</div>
 				<div class="g" v-if="student.hasOwnProperty('grade')">
-					<div class="sg">
-						<ui-select @setValue="setGrade" :options="gradeList" :styles="['width: 100%;']"></ui-select>
+					<div class="sg" style="padding-right: 4px">
+						<ui-select @setValue="setGrade" :options="gradeList" :styles="['width: 100%;']" :changed="studentIndex"></ui-select>
 						<span>Grade</span>
 						<b v-if="student.grade != null"></b>
 					</div>
-					<div class="sb"></div>
-					<div class="sf">
-						<ui-select @setValue="setGradeFinal" :options="gradeList" :styles="['width: 100%']"></ui-select>
+					<div class="sf" style="padding-left: 4px">
+						<ui-select @setValue="setGradeFinal" :options="gradeList" :styles="['width: 100%']" :changed="studentIndex"></ui-select>
 						<span>Final Grade</span>
 						<b v-if="student.grade != 'INC'"></b>
 					</div>
 				</div>
-				<div class="h" v-if="student.hasOwnProperty('grade') && student.grade == null ">
-					<button :disabled="grade.initial == ''" @click="goSubmitGrade()">Submit Grade</button>
+				<div class="h" v-if="student.hasOwnProperty('grade') && (student.grade == null || (student.grade == 'INC' && student.grade_final == null))">
+					<button :disabled="grade.initial == '' && grade.final == ''" @click="goSubmitGrade()">Submit Grade</button>
+					<ui-loader v-if="isSubmitGrade" styles="background-color: rgba(255,255,255,0.5);"></ui-loader>
 				</div>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 				section: {},
 				sectEnrol: [],
 				student: {},
-				studentIndex: 0,
+				studentIndex: -1,
 				gradeList: [],
 				grade: { initial: '', final: '' }
 			}
@@ -88,7 +88,7 @@
 			setSectionFromSearch(v) {
 				this.section = v;
 				this.student = {};
-				this.studentIndex = 0,
+				this.studentIndex = -1;
 				this.fetchStudents();
 			},
 			setGrade(v) {
@@ -103,23 +103,29 @@
 			},
 			fetchStudents() {
 				this.isFetchingList = true;
-				this.$sleep(1000).then(() => {
-					this.$http.get('section/'+ this.section.id +'/?section_fields=id,sect_enrol&sectenrol_fields=id,grade,grade_final,student&student_fields=id,school_id,firstname,middlename,lastname,admission&admission_fields=id,course&course_fields=id,name_alias,program_type&admissionf_status=CUR').then(res => {
+				this.$http.get('section/'+ this.section.id +'/?section_fields=id,sect_enrol&sectenrol_fields=id,grade,grade_final,student&student_fields=id,school_id,firstname,middlename,lastname,admission&admission_fields=id,course&course_fields=id,name_alias,program_type&admissionf_status=CUR').then(res => {
 					if (res.data.hasOwnProperty('sect_enrol'))
 						this.sectEnrol = res.data.sect_enrol;
-					}).finally(() => {
-						this.isFetchingList = false;
-					});
+				}).finally(() => {
+					this.isFetchingList = false;
 				});
 			},
 			goSubmitGrade() {
-				if (this.grade.initial != '') {
+				if ((this.student.grade == null && this.grade.initial != '') || (this.student.grade == 'INC' && this.student.grade_final == null && this.grade.final != '')) {
 					this.isSubmitGrade= true;
-					this.$http.put('section_enroll/'+ this.student.id +'/?action=submit-grade', { grade: this.grade.initial }).then(res => {
+					let data = { grade: this.grade.initial }, action = 'submit-grade-initial';
+					if (this.student.grade == 'INC' && (this.grade.final != '')) {
+						data = { grade_final: this.grade.final };
+						action = 'submit-grade-final';
+					}
+					this.$http.put('section_enroll/'+ this.student.id +'/?action='+ action, data).then(res => {
 						const s = this.sectEnrol[this.studentIndex];
-						s.grade = this.grade.initial;
+						if (action == 'submit-grade-initial')
+							s.grade = this.grade.initial;
+						else if (action == 'submit-grade-final')
+							s.grade_final = this.grade.final;
 						this.sectEnrol[this.studentIndex] = s;
-					}).catch( () => {
+					}).finally(() => {
 						this.isSubmitGrade = false;
 					});
 				}
@@ -172,12 +178,12 @@
 	.p .v .f .nn { font-size: 13px; font-weight: 600; color: #111; padding-bottom: 2px;  }
 	.p .v .f .ii { font-size: 11px; color: #222; }
 
-	.p .v .g { display: grid; grid-template-columns: auto 5px auto; padding: 10px 0 20px 0; }
+	.p .v .g { display: grid; grid-template-columns: 50% 50%; padding: 10px 0 20px 0; }
 	.p .v .g div { position: relative }
 	.p .v .g div span { display: block; padding: 5px 0; text-align: center; font-size: 11px; }
 	.p .v .g div b { display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;  background-color: rgba(255,255,255,0.3); }
 
-	.p .v .h { padding: 0; }
+	.p .v .h { padding: 0; position: relative; height: 350px; }
 	.p .v .h button { height: 28px; display: block; border: 1px solid #f0f0ea; background-color: #fbfbf7; font-size: 11px; font-weight: 600; width: 100% }
 	.p .v .h button:hover { background-color: #f0f0ea; }
 </style>

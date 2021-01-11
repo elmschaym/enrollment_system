@@ -195,7 +195,6 @@
 				);
 			},
 			subjectListCMenu(e, s) {
-				console.log(s);
 				e.preventDefault();
 				let cmenu = new window.nw.Menu(),
 					items = [

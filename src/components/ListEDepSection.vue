@@ -14,7 +14,7 @@
 					<div class="i">
 						<div style="font-size: 11px">{{ l.name }}</div>
 						<div style="font-size: 11px;">{{ l.sched_days }} {{ l.sched_time }}</div>
-						<div style="font-size: 10px">{{ l.subject.code }}</div>
+						<div style="font-size: 11px">{{ l.subject.code }}</div>
 					</div>
 				</div>
 			</div>

@@ -184,7 +184,10 @@ const routes = [
         children: [
             {   path: '', component: () => import('../views/cou/_.vue'),
                 children: [
-                    { path: 'index', component: () => import('../views/cou/Index.vue'), name: 'cou-index' }
+                    { path: 'index', component: () => import('../views/cou/MasterList.vue'), name: 'cou-index' },
+                    { path: 'master-list', component: () => import('../views/cou/MasterList.vue'), name: 'cou-master-list' },
+                    { path: 'assign-subj', component: () => import('../views/cou/AssignSubjects.vue'), name: 'cou-assign-subj' },
+                    { path: 'cou-create', component: () => import('../views/cou/Create.vue'), name: 'cou-create' }
                 ]
             }
         ]

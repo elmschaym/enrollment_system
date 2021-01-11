@@ -92,6 +92,10 @@
 			winMinimize() {
 				window.nwWin.minimize();
 			}
+		},
+		mounted() {
+			console.log(window.nwWin.frame);
+			window.nwWin.setShadow(true);
 		}
 	}
 </script>

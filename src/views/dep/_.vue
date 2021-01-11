@@ -16,7 +16,7 @@
 
 	import 'vue-awesome/icons/plus';
 	import 'vue-awesome/icons/lock';
-	import 'vue-awesome/icons/flag';
+	import 'vue-awesome/icons/leaf';
 
 	export default {
 		components: {
@@ -27,12 +27,12 @@
 			return {
 				modules_m: [
 					{ name: 'Enroll Subject', icon: 'plus', link: 'dep-set-subject'},
-					{ name: 'Enrollee List', icon: 'flag', link: 'dep-enr-master-list'},
-					//{ name: 'Subjects', icon: 'flag', link: 'dep-list-subject'},
-					//{ name: 'Sections', icon: 'flag', link: 'dep-list-section'},
-					//{ name: 'Rooms', icon: 'flag', link: 'dep-list-room'},
-					//{ name: 'Course Offer', icon: 'flag', link: 'dep-list-course'},
-					{ name: 'Instructors', icon: 'flag', link: 'dep-fac-master-list'},
+					{ name: 'Enrollee List', icon: 'leaf', link: 'dep-enr-master-list'},
+					//{ name: 'Subjects', icon: 'leaf', link: 'dep-list-subject'},
+					//{ name: 'Sections', icon: 'leaf', link: 'dep-list-section'},
+					//{ name: 'Rooms', icon: 'leaf', link: 'dep-list-room'},
+					//{ name: 'Course Offer', icon: 'leaf', link: 'dep-list-course'},
+					{ name: 'Instructors', icon: 'leaf', link: 'dep-fac-master-list'},
 				],
 				modules_a: [
 					{ name: 'New Enrollee', icon: 'plus-circle', link: 'dep-enr-new-enrollee'},

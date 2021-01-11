@@ -147,7 +147,7 @@
 	.find { display: grid; grid-template-columns: auto 60px; border-top: 1px solid #e0e0da; }
 	.find .i { background-color: #fefefe; position: relative; }
 	.find .i span { position: absolute;; top: 2px; right: 5px; padding: 5px; cursor: pointer; }
-	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 12px; outline: none; }
+	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; }
 	.find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; }
 	.find button svg { width: 12px; height: 12px; float: right; }
 </style>
