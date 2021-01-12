@@ -27,7 +27,7 @@
 								<div style="text-align: center">Units</div>
 							</div>
 							<div class="d" v-if="subjects.length > 0">
-								<div :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
+								<div :class="selectIdH == s.id ? 'active': ''" :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
 									<div>{{ s.subject.code }}</div>
 									<div>{{ s.name }}</div>
 									<div>{{ s.sched_days }}</div>
@@ -52,7 +52,7 @@
 								<div style="text-align: center">Slots</div>
 							</div>
 							<div class="d" v-if="sectionsAvailable.length > 0">
-								<div :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @contextmenu="sectionListCMenu($event, s, i)">
+								<div :class="selectIdS == s.id ? 'active': ''" :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @contextmenu="sectionListCMenu($event, s, i)">
 									<div style="text-align: center"><v-icon :class="s.stat == 1 ? 'rr' : (s.stat == 2) ? 'gg' : 'bb'" name="square"></v-icon></div>
 									<div>{{ s.name }}</div>
 									<div style="text-align: center">{{ s.slots }}</div>
@@ -108,7 +108,9 @@
 				faculty: {},
 				sectionsAvailable: [],
 				subjects: [],
-				subject: {}
+				subject: {},
+				selectIdH: -1,
+				selectIdS: -1
 			}
 		},
 		computed: {
@@ -133,6 +135,7 @@
 				return this.$store.state.forms.faculty.positions.find(x => x.id == v).name;
 			},
 			fetchSections() {
+				this.selectIdS = -1;
 				if (this.subject.hasOwnProperty('id')) {
 					const irange = (size, startAt = 0) => [...Array(size).keys()].map(i => i + startAt),
 						crange = (startChar, endChar) => String.fromCharCode(...irange(endChar.charCodeAt(0) - startChar.charCodeAt(0) + 1, startChar.charCodeAt(0)));
@@ -174,12 +177,15 @@
 				});
 			},
 			fetchSubjectsHandled() {
+				this.selectIdH = -1;
 				this.$http.get('section/?action=lister&refer=faculty&facid='+ this.$route.query.faculty_id +'&section_fields=id,name,sched_days,sched_time,room,subject&subject_fields=id,code,units&room_fields=id,name').then(res => {
 					this.subjects = res.data;
 				});
 			},
 			sectionListCMenu(e, s) {
 				e.preventDefault();
+				this.selectIdS = s.id;
+				this.selectIdH = -1;
 				let cmenu = new window.nw.Menu(),
 					items = [
 						{ label: 'Handle Section', click: () => this.handleSection(s), key: 'e', modifiers: "ctrl", enabled: s.stat == 0 },
@@ -196,6 +202,8 @@
 			},
 			subjectListCMenu(e, s) {
 				e.preventDefault();
+				this.selectIdH = s.id;
+				this.selectIdS = -1;
 				let cmenu = new window.nw.Menu(),
 					items = [
 						{ label: 'Remove Subject', click: () => this.removeSubject(s), key: 'x', modifiers: "ctrl" },
@@ -211,6 +219,7 @@
 				);
 			},
 			handleSection(s,i) {
+				this.selectIdS = -1;
 				if (this.faculty.hasOwnProperty('id') && s.stat == 0 && ((this.maximumLoad - this.totalLoad) >= this.subject.units)) {
 					this.$http.put('section/'+ s.id +'/?action=faculty-handle', { faculty: this.faculty.id }).then(res => {
 						this.fetchSubjectsHandled();
@@ -218,6 +227,7 @@
 				}
 			},
 			removeSubject(s) {
+				this.selectIdH = -1;
 				this.$http.put('section/'+ s.id +'/?action=faculty-unhandle', { faculty: this.faculty.id }).then(res => {
 					this.fetchSubjectsHandled();
 					this.fetchSections();
@@ -264,7 +274,7 @@
 	.p .r.o .x .b div { padding: 7px; font-size: 10px; }
 	.p .r.o .x .d { height: 207px; overflow-y: scroll; }
 	.p .r.o .x .d > div { cursor: pointer; }
-	.p .r.o .x .d > div:hover { background-color: #efefea }
+	.p .r.o .x .d > div:hover, .p .r.o .x .d > div.active { background-color: #efefea }
 	.p .r.o .x .d > div div { padding: 6px 7px; font-size: 11px; border-bottom: 1px solid #fafafa; }
 	.p .r.o .x .e { display: grid; grid-template-columns: 40% 60%; font-size: 10px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); height: 24px; }
 
@@ -281,7 +291,7 @@
 	.p .r.o .y svg.bb { color: #9ee1e2; }
 	.p .r.o .y svg.gg { color: #d0d0d0; }
 	.p .r.o .y .d > div { cursor: pointer; border-bottom: 1px solid #fafafa; }
-	.p .r.o .y .d > div:hover { background-color: #efefea }
+	.p .r.o .y .d > div:hover, .p .r.o .y .d > div.active { background-color: #efefea }
 	.p .r.o .y .z { height: 206px; text-align: center; padding: 16px; font-size: 11px; }
 	.p .r.o .y .e { height: 24px; font-size: 10px; display: grid; grid-template-columns: 33% 34% 33%; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .r.o .y .e span { display: block; text-align: center; }

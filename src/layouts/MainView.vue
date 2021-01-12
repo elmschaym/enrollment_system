@@ -63,7 +63,7 @@
 </script>
 
 <style scoped>
-	.wrap-m { height: 100vh; background-color: #fff; box-sizing: border-box; border-radius: 5px 5px 0 0; }
+	.wrap-m { height: 100vh; background-color: #fff; box-sizing: border-box; border-radius: 5px; }
 			
 	.m { height: calc(100% - 24px); display: grid; grid-template-columns: 28px auto; }
 	.m .content { height: 100%; overflow: hidden; display: grid; grid-template-rows: 24px auto; }

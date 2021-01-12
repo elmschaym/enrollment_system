@@ -55,7 +55,7 @@
 </script>
 
 <style scoped>
-	div.w { height: 100vh; background: #fff; box-sizing: border-box; border-radius: 5px 5px 0 0; }
+	div.w { height: 100vh; background: #fff; box-sizing: border-box; border-radius: 5px; }
 		
 	div.m { display: grid; grid-template-columns: 28px auto; }
 	div.m .content .c { height: calc(100vh - 48px); width: 100%; }

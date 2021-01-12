@@ -132,7 +132,7 @@
     ul li .l .n { font-size: 11px; color: #222; padding: 6px 8px; }
     ul li .l .n:hover { color: #444; }
 
-    ul li .l .m { padding: 5px 0; position: absolute; top: 100%; width: auto; height: auto; background-color: #fff; z-index: 9999; box-shadow: 0 4px 9px rgba(0,0,0,0.24); }
+    ul li .l .m { padding: 5px 0; position: absolute; top: 100%; width: auto; height: auto; background-color: #fff; z-index: 9999; box-shadow: 0 1px 3px rgba(0,0,0,0.24); }
     ul li .l .m .o { font-size: 11px; color: #222; padding: 5px 16px; white-space: nowrap;  }
     ul li .l .m .o.h { border-bottom: 1px solid #efefea; }
     ul li .l .m .o span { margin-left: 40px; color: #7e7e7a; display: inline-block; text-align: right; }

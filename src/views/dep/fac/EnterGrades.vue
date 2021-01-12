@@ -2,6 +2,13 @@
 	<div class="wrap-t">
 		<div class="p">
 			<div class="u">
+				<div class="data" v-if="section.hasOwnProperty('id')">
+					<div class="cc">{{ section.name }}</div>
+					<div class="nn">
+						<div class="tt">{{ section.sched_days }} {{ section.sched_time }}</div>
+						<div class="ss">{{ section.subject.code }} – {{ section.subject.name }}</div>
+					</div>
+				</div>
 				<div class="list" v-if="section.hasOwnProperty('id')">
 					<div class="h">
 						<div>ID</div>
@@ -23,13 +30,6 @@
 				</div>
 			</div>
 			<div class="v">
-				<div class="d" v-if="section.hasOwnProperty('id')">
-					<div class="cc">{{ section.name }}</div>
-					<div class="nn">
-						<div class="tt">{{ section.sched_days }} {{ section.sched_time }}</div>
-						<div class="ss">{{ section.subject.code }}</div>
-					</div>
-				</div>
 				<div class="f" v-if="student.hasOwnProperty('student')">
 					<div class="nn">{{ student.student.lastname }}, {{ student.student.firstname }}</div>
 					<div class="ii">{{ student.student.school_id }} – {{ student.student.admission[0].course.program_type }} {{ student.student.admission[0].course.name_alias }}</div>
@@ -150,40 +150,40 @@
 
 <style scoped>
 	.wrap-t { height: auto; display: grid; grid-template-columns: auto 270px; }
-	.wrap-t .p { height: 100%; position: relative; background-color: #fff; display: grid; grid-template-columns: auto 270px; padding: 16px; }
+	.wrap-t .p { height: 100%; position: relative; display: grid; grid-template-columns: auto 270px; padding: 16px;  background-color: #fbfbf7; }
 	.wrap-t .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f0 }
 
 	.q .t { padding: 12px; }
 
 	.p .u { height: inherit; }
 
-	.p .u .list { border: 1px solid #f0f0ea; }
+	.p .u .list { background-color: #fff; }
 	.p .u .list .h, .p .u .list .l .i { display: grid; grid-template-columns: 60px auto 70px 50px 60px }
-	.p .u .list .h { padding: 4px 6px; background-color: #f8f8f2; border-bottom: 1px solid #f0f0ea; font-size: 11px; }
+	.p .u .list .h { padding: 4px 6px; background-color: #fbfbf7; font-size: 11px; }
 	.p .u .list .h div { font-weight: normal }
-	.p .u .list .l { height: 500px; max-height: 500px; overflow-y: hidden; position: relative; }
+	.p .u .list .l { height: 460px; max-height: 460px; overflow-y: hidden; position: relative;  border-bottom: 1px solid #f0f0ea; border-top: 1px solid #f0f0ea; }
 	.p .u .list .l .i { padding: 7px 6px; font-size: 11px; border-bottom: 1px solid #fbfbf7; cursor: pointer; }
-	.p .u .list .l .i:hover, .p .u .list .l .i.active { background-color: #f0f0f2 }
+	.p .u .list .l .i:hover, .p .u .list .l .i.active { background-color: #f8f8f2 }
 	.p .u .list .l .i div { white-space: nowrap; text-overflow: clip; overflow: hidden }
 
-	.p .v { padding: 0 0 0 16px; }
+	.p .u .data { display: grid; grid-template-columns: 70px auto; padding: 0 0 12px 0; }
+	.p .u .data .cc { display: flex; justify-content: center; align-items: center; font-size: 14px; background-color: #f0f0ea; font-weight: 600 }
+	.p .u .data .nn { padding: 0 12px; }
+	.p .u .data .nn .tt { font-size: 14px; font-weight: 600; color: #111; }
+	.p .u .data .nn .ss { color: #222; }
 
-	.p .v .d { display: grid; grid-template-columns: 70px auto; border-bottom: 1px solid #f0f0ea; padding: 0 0 12px 0; }
-	.p .v .d .cc { display: flex; justify-content: center; align-items: center; font-size: 14px; background-color: #f0f0ea; font-weight: 600 }
-	.p .v .d .nn { padding: 0 8px; }
-	.p .v .d .nn .tt { font-size: 14px; font-weight: 600; color: #111; }
-	.p .v .d .nn .ss { color: #222; }
+	.p .v { margin: 30px 0 0 16px; }
 
-	.p .v .f { margin-top: 10px; padding: 8px 0; }
+	.p .v .f { background-color: #fff; padding: 16px 16px 8px 16px; }
 	.p .v .f .nn { font-size: 13px; font-weight: 600; color: #111; padding-bottom: 2px;  }
 	.p .v .f .ii { font-size: 11px; color: #222; }
 
-	.p .v .g { display: grid; grid-template-columns: 50% 50%; padding: 10px 0 20px 0; }
+	.p .v .g { background-color: #fff; display: grid; grid-template-columns: 50% 50%; padding: 10px 16px 20px 16px; }
 	.p .v .g div { position: relative }
 	.p .v .g div span { display: block; padding: 5px 0; text-align: center; font-size: 11px; }
 	.p .v .g div b { display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;  background-color: rgba(255,255,255,0.3); }
 
-	.p .v .h { padding: 0; position: relative; height: 350px; }
-	.p .v .h button { height: 28px; display: block; border: 1px solid #f0f0ea; background-color: #fbfbf7; font-size: 11px; font-weight: 600; width: 100% }
+	.p .v .h { padding: 0; position: relative; height: 280px; }
+	.p .v .h button { height: 28px; display: block; border: none; background-color: #fbfbf7; font-size: 11px; font-weight: 600; width: 100% }
 	.p .v .h button:hover { background-color: #f0f0ea; }
 </style>

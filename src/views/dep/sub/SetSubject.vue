@@ -26,7 +26,7 @@
 							<div style="text-align: center">Units</div>
 						</div>
 						<div class="d" v-if="subjects.length > 0">
-							<div :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
+							<div :class="selectIdH == s.id ? 'active': ''" :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
 								<div>{{ s.subject.code }}</div>
 								<div>{{ s.section.name }}</div>
 								<div>{{ s.section.sched_days }}</div>
@@ -51,7 +51,7 @@
 							<div style="text-align: center">Slots</div>
 						</div>
 						<div class="d" v-if="sectionsAvailable.length > 0">
-							<div :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @click="enrolSection(s.id)" @contextmenu="sectionListCMenu($event, s, i)">
+							<div :class="selectIdS == s.id ? 'active': ''" :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @click="enrolSection(s.id)" @contextmenu="sectionListCMenu($event, s, i)">
 								<div style="text-align: center"><v-icon :class="s.stat == 1 ? 'rr' : (s.stat == 2) ? 'gg' : 'bb'" name="square"></v-icon></div>
 								<div>{{ s.name }}</div>
 								<div style="text-align: center">{{ s.slots }}</div>
@@ -124,7 +124,9 @@
 				sectionsAvailable: [],
 				acadPreference: {},
 				subjects: [],
-				subject: {}
+				subject: {},
+				selectIdH: -1,
+				selectIdS: -1
 			}
 		},
 		computed: {
@@ -175,6 +177,7 @@
 				});
 			},
 			fetchSections() {
+				this.selectIdS = -1;
 				if (this.subject.hasOwnProperty('id')) {
 					var irange = (size, startAt = 0) => [...Array(size).keys()].map(i => i + startAt),
                         crange = (startChar, endChar) => String.fromCharCode(...irange(endChar.charCodeAt(0) - startChar.charCodeAt(0) + 1, startChar.charCodeAt(0)));
@@ -230,6 +233,7 @@
 			},
 			sectionListCMenu(e, s) {
 				e.preventDefault();
+				this.selectIdS = s.id;
 				let cmenu = new window.nw.Menu(),
 					items = [
 						{ label: 'Enrol Section', click: () => this.enrolSection(s), key: 'e', modifiers: "ctrl", enabled: s.slots > 0 && s.stat == 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open && ((this.allowedUnits - this.enrolledUnits) >= this.subject.units) },
@@ -246,6 +250,7 @@
 			},
 			subjectListCMenu(e, s) {
 				e.preventDefault();
+				this.selectIdH = s.id;
 				let cmenu = new window.nw.Menu(),
 					items = [
 						{ label: 'Remove Subject', click: () => this.removeSubject(s), key: 'x', modifiers: "ctrl", enabled: this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open },
@@ -261,6 +266,7 @@
 				);
 			},
 			enrolSection(s,i) {
+				this.selectIdS = -1;
 				let isSubjectNotEnrolled = this.subjects.some(s => s.subject.code == this.subject.code);
 				if (s.stat == 0 && s.slots > 0 && !isSubjectNotEnrolled && this.student.school_id != 0 && this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open && ((this.allowedUnits - this.enrolledUnits) >= this.subject.units)) {
 					this.$http.post('section_enroll/', { section: s.id, billing: this.student.admission[0].enrollment[0].billing[0].id }).then(res => {
@@ -272,6 +278,7 @@
 				}
 			},
 			removeSubject(s) {
+				this.selectIdH = -1;
 				if (this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open) {
 					this.$http.delete('section_enroll/'+ s.id +'/?subid='+ s.subject.id).then(res => {
 						this.fetchSubjectsEnrolled();
@@ -320,7 +327,7 @@
 	.p .r.o .x .b div { padding: 7px; font-size: 10px; }
 	.p .r.o .x .d { height: 237px; overflow-y: scroll; }
 	.p .r.o .x .d > div { cursor: pointer; }
-	.p .r.o .x .d > div:hover { background-color: #efefea }
+	.p .r.o .x .d > div:hover, .p .r.o .x .d > div.active { background-color: #efefea }
 	.p .r.o .x .d > div div { padding: 6px 7px; font-size: 11px; border-bottom: 1px solid #fafafa; }
 	.p .r.o .x .e { display: grid; grid-template-columns: 40% 60%; font-size: 10px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); height: 24px; }
 
@@ -337,7 +344,7 @@
 	.p .r.o .y svg.bb { color: #9ee1e2; }
 	.p .r.o .y svg.gg { color: #d0d0d0; }
 	.p .r.o .y .d > div { cursor: pointer; border-bottom: 1px solid #fafafa; }
-	.p .r.o .y .d > div:hover { background-color: #efefea }
+	.p .r.o .y .d > div:hover,	.p .r.o .y .d > div.active { background-color: #efefea }
 	.p .r.o .y .z { height: 236px; text-align: center; padding: 16px; font-size: 11px; }
 	.p .r.o .y .e { height: 24px; font-size: 10px; display: grid; grid-template-columns: 33% 34% 33%; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .r.o .y .e span { display: block; text-align: center; }

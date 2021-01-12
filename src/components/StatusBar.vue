@@ -54,7 +54,7 @@
 </script>
 
 <style scoped>
-    .stat-s {  height: 24px; display: grid; grid-template-columns: 350px auto 350px; background-color: #f5f5f5; border-top: 1px solid #f0f0f0; font-size: 9px; font-weight: 100 }
+    .stat-s {  height: 24px; display: grid; grid-template-columns: 350px auto 350px; background-color: #f5f5f5; border-top: 1px solid #f0f0f0; font-size: 9px; font-weight: 100; }
     .stat-s .o { text-align: left; }
     .stat-s .o span { padding: 6px 12px; display: inline-block; border-right: 1px solid #eaeaea; cursor: pointer; }
     .stat-s .o span svg { height: 10px; width: 10px; }

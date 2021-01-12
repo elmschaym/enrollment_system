@@ -133,7 +133,7 @@
                 }
             },
             fetchCourses() {
-                this.$http.get('course/?action=lister&course_fields=id,name,name_alias,total_units,program_type').then( res => {
+                this.$http.get('course/?action=lister&refer=department-own&course_fields=id,name,name_alias,total_units,program_type').then( res => {
                     if (res.status == 200)
                         this.courses = res.data;
                     else
