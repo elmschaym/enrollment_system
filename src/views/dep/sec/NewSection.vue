@@ -197,8 +197,7 @@
 			goSaveSection() {
 				this.isSavingForm = true
 				if (this.isFormOkay) {
-					this.$http.post('section/', { subject: this.subject.id, room: this.schedule.room, name: this.tempSched.name, sched_days: this.tempSched.day, sched_time: this.tempSched.time }).then( res => {
-						console.log('sec_added');
+					this.$http.post('section/', { subject: this.subject.id, room: this.schedule.room, name: this.tempSched.name, sched_days: this.tempSched.day, sched_time: this.tempSched.time }).then(res => {
 					}).catch( () => {
 						this.isErrorConnect = true;
 					}).finally( () => {
@@ -241,7 +240,9 @@
 			this.$store.commit('setModuleName', 'Department – New Section');
 			this.generateSchedCodes();
 			this.generateTimeList();
-			this.fetchRoomList();
+		},
+		mounted() {
+			this.fetchRoomList();			
 		}
 	}
 </script>

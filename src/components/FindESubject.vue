@@ -77,6 +77,8 @@
         },
         created() {
             this.userDepartment = this.$storageGet('user_info').department.id;
+        },
+        mounted() {
             this.fetchSubjects();
         }
     }

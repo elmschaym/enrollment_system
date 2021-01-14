@@ -7,14 +7,20 @@
                         <span>{{ i+1 }}</span>
                     </div>
                 </div>
-                <div class="b">
+                <div class="b" v-if="a.course.id > 1">
                     <div>
                         <b>{{ a.course.program_type }} {{ a.course.name }}</b>
                         <span>{{ a.course.department.name }} ({{ a.course.department.name_alias }})</span>
                     </div>
                 </div>
+                <div class="b" v-else>
+                    <div>
+                        <b>No Enrollment Found</b>
+                        <span>Student has admission but not enrolled in any academic programme.</span>
+                    </div>
+                </div>
             </div>
-            <div class="q">
+            <div class="q" v-if="a.course.id > 1">
                 <div class="a">
                     <div>
                         <b>{{ 0 }}</b>

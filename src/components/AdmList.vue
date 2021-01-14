@@ -55,6 +55,9 @@
 				</div>
 			</div>
 		</div>
+		<div :class="['item-o', { 'toggled': isModifyAdmittee }]">
+			<button @click="isModifyAdmittee = false">&times;</button>
+		</div>
 	</div>
 </template>
 
@@ -85,6 +88,7 @@
 				isErrorConnect: false,
 				isListReachEnd: false,
 				isDataReachEnd: false,
+				isModifyAdmittee: false,
 				admissions: [],
 				listStart: 0,
 				listLimit: 14,
@@ -92,6 +96,9 @@
 			}
 		},
 		methods: {
+			modifyAdmittee(l) {
+				this.isModifyAdmittee = true;
+			},
 			fetchAdmission() {
 				this.isFetching = true;
 				this.$http.get('admission/?action='+ this.queryAction +'&start='+ this.listStart +'&limit='+ this.listLimit +'&type='+ this.queryType +'&query='+ this.queryString +'&admission_fields=id,date_admitted,status,student,course,academic_program&student_fields=school_id,firstname,middlename,lastname&course_fields=id,name&acadprogram_fields=id,name').then( res => {
@@ -107,7 +114,7 @@
                 this.selectId = l.id;
                 let cmenu = new window.nw.Menu(),
                     items = [
-                        { label: 'Modify Admittee', click: () => this.$router.push({ name: 'adm-mod-admittee', query: { admit_id: l.id } }) },
+                        { label: 'Modify Admittee', click: () => this.modifyAdmittee(l) },
                         { label: 'Refresh', click: this.fetchAdmission, key: 'F5', },
                         { type: 'separator' },
                         { label: l.student.lastname +', '+ l.student.firstname, enabled: false }
@@ -142,14 +149,14 @@
 				this.fetchAdmission();
 			}
 		},
-		created() {
+		mounted() {
 			this.fetchAdmission();
 		}
 	}
 </script>
 
 <style scoped>
-	.wrap-l { height: 100%; background-color: #fbfbf7; }
+	.wrap-l { height: 100%; background-color: #fbfbf7; position: relative; }
 
 	.list-o { margin: 0 16px; background-color: #fff; font-size: 12px; }
 	.list-o .data .tbl { position: relative; }
@@ -194,4 +201,7 @@
 	.find-o .v svg { position: absolute; top: 6px; right: 8px; height: 12px; width: 12px; }
 	.find-o .w {}
 	.find-o .w button { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none;  }
+
+	.item-o { position: absolute; height: 440px; width: 300px; background-color: #fff; right: -310px; top: 60px; border: 1px solid #fbfbf7; box-shadow: 0 4px 9px rgba(0,0,0,0.15); transition: all 250ms ease-in-out; }
+	.item-o.toggled { right: 10px; }
 </style>

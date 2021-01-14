@@ -235,11 +235,11 @@
 			}
 		},
 		created() {
-			this.fetchFaculty();
-		},
-		mounted() {
             this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Department – Assign Section');
+		},
+		mounted() {
+			this.fetchFaculty();
 		}
 	}
 </script>

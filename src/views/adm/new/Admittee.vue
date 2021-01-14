@@ -216,8 +216,10 @@
 			}
 		},
 		created() {
-			this.fetchAcademicProgram();
 			this.$store.commit('setModuleName', 'Admission – New Admittee');
+		},
+		mounted() {
+			this.fetchAcademicProgram();
 		}
 	}
 </script>

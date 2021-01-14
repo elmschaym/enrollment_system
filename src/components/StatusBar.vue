@@ -35,8 +35,6 @@
                 refreshDate: false
             }
         },
-        computed: {
-        },
         methods: {
             updateDate() {
                 this.refreshDate = !this.refreshDate;
@@ -47,8 +45,6 @@
             goPrev() {
                 this.$router.go(-1);
             }
-        },
-        mounted() {
         }
     }
 </script>

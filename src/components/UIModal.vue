@@ -34,10 +34,6 @@
                 }
             }
         },
-        data() {
-            return {
-            }
-        },
         methods: {
             isClosed() {
                 this.$emit('modalClose', true);

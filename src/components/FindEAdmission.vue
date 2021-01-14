@@ -109,7 +109,7 @@
 <style scoped>
     .wrap-f { height: inherit; }
 
-    .x { display: grid; grid-template-columns: 50% 50%; margin-bottom: 12px; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+    .x { display: grid; grid-template-columns: 50% 50%; margin-bottom: 12px; box-shadow: 0 1px 1px rgba(0,0,0,0.15); }
     .x div { background-color: #fff; padding: 7px 8px; font-size: 11px; }
     .x div span { display: inline-block; margin-right: 8px; width: 10px; }
     .x div.a { background-color: #fbfbfb }

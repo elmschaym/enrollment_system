@@ -174,10 +174,9 @@
 				}
 			}
 		},
-		mounted() {
+		created() {
 			this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Subjects – Assign Requisites');
-			//this.fetchRequisites(false);
 		}
 	}
 </script>

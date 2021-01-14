@@ -32,10 +32,6 @@
 				}
 			}
 		},
-		data() {
-			return {
-			}
-		},
 		methods: {
 			hasOkayed() {
 				this.$emit('informedOkay', true);

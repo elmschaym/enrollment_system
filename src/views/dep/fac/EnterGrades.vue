@@ -140,9 +140,11 @@
 				this.gradeList.push({ id: 'INC', name: 'INC' });
 			}
 		},
-		mounted() {
+		created() {
 			this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Department – Enter Grades');
+		},
+		mounted() {
 			this.populateGradeList();
 		}
 	}
@@ -169,7 +171,7 @@
 	.p .u .data { display: grid; grid-template-columns: 70px auto; padding: 0 0 12px 0; }
 	.p .u .data .cc { display: flex; justify-content: center; align-items: center; font-size: 14px; background-color: #f0f0ea; font-weight: 600 }
 	.p .u .data .nn { padding: 0 12px; }
-	.p .u .data .nn .tt { font-size: 14px; font-weight: 600; color: #111; }
+	.p .u .data .nn .tt { font-size: 14px; font-weight: 600; color: #111; padding-bottom: 4px; }
 	.p .u .data .nn .ss { color: #222; }
 
 	.p .v { margin: 30px 0 0 16px; }

@@ -147,9 +147,11 @@
 				this.$sleep(250).then(this.fetchEnrollees);
 			}
 		},
-		mounted() {
+		created() {
 			this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Department – Enrollee List');
+		},
+		mounted() {
 			this.fetchEnrollees();
 		}
 	}

@@ -26,7 +26,6 @@
 		data() {
 			return {
 				modules_m: [
-					{ name: 'Enroll Subject', icon: 'plus', link: 'dep-set-subject'},
 					{ name: 'Enrollee List', icon: 'leaf', link: 'dep-enr-master-list'},
 					//{ name: 'Subjects', icon: 'leaf', link: 'dep-list-subject'},
 					//{ name: 'Sections', icon: 'leaf', link: 'dep-list-section'},
@@ -35,8 +34,9 @@
 					{ name: 'Instructors', icon: 'leaf', link: 'dep-fac-master-list'},
 				],
 				modules_a: [
-					{ name: 'New Enrollee', icon: 'plus-circle', link: 'dep-enr-new-enrollee'},
-					{ name: 'New Section', icon: 'plus-circle', link: 'dep-sec-new-section'}
+					{ name: 'New Enrollee', icon: 'plus', link: 'dep-enr-new-enrollee'},
+					{ name: 'New Section', icon: 'plus', link: 'dep-sec-new-section'},
+					{ name: 'Enroll Subject', icon: 'plus-circle', link: 'dep-set-subject'}
 				]
 			}
 		}

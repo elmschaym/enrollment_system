@@ -31,10 +31,6 @@
                 }
             }
         },
-        data() {
-            return {
-            }
-        },
         methods: {
             hasNo() {
                 this.$emit('modalClose', true);

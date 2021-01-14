@@ -182,7 +182,7 @@
                 });
             }
         },
-        mounted() {
+        created() {
             this.$store.commit('setModuleName', 'Finances – Billing');
         }
     }

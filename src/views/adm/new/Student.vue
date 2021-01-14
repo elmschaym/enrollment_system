@@ -7,22 +7,18 @@
 						<div class="name">Basic Information</div>
 					</div>
 					<div class="r a">
-						<div class="c">
+						<div class="c" style="padding-top: 10px">
 							<div>
-								<label for="">First Name</label>
-								<input style="width: 95%" v-model="student.firstname"/>
+								<input style="width: 95%" v-model="student.firstname" placeholder="First Name" maxlength="32"/>
 							</div>
 							<div>
-								<label for="">Middle Name</label>
-								<input style="width: 95%" v-model="student.middlename"/>
+								<input style="width: 95%" v-model="student.middlename" placeholder="Middle Name" maxlength="32"/>
 							</div>
 							<div>
-								<label for="">Last Name</label>
-								<input style="width: 95%" v-model="student.lastname"/>
+								<input style="width: 95%" v-model="student.lastname" placeholder="Last Name" maxlength="32"/>
 							</div>
 							<div>
-								<label for="">Student ID</label>
-								<button>{{ student.school_id }}</button>
+								<button>ID: {{ student.school_id }}</button>
 							</div>
 						</div>
 					</div>
@@ -34,7 +30,7 @@
 							</div>
 							<div>
 								<label for="">Religion</label>
-								<input style="width: 95%" placeholder="" v-model="student.religion"/>
+								<input style="width: 95%" placeholder="" v-model="student.religion" maxlength="32" />
 							</div>
 							<div>
 								<label for="">Civil Status</label>
@@ -51,15 +47,13 @@
 						
 					</div>
 					<div class="r b">
-						<div class="c">
+						<div class="c" style="padding-top: 10px">
 							<div>
-								<label for="">Home Address</label>
-								<textarea v-model="student.home_address" style="width: 95%"></textarea>
+								<textarea v-model="student.home_address" style="width: 95%" placeholder="Home Address" maxlength="255" ></textarea>
 								<div class="info"></div>
 							</div>
 							<div>
-								<label for="">Campus Address</label>
-								<textarea v-model="student.campus_address"></textarea>
+								<textarea v-model="student.campus_address" placeholder="Campus Address" maxlength="255" ></textarea>
 								<div class="info"></div>
 							</div>
 						</div>
@@ -70,43 +64,47 @@
 						<div class="name">Other Information</div>
 					</div>
 					<div class="r a">
-						<div class="c">
-							<div>
-								<label for="">First Name</label>
-								<input style="width: 95%" v-model="studentx.mother_firstname" placeholder="Mother"/>
-							</div>
-							<div>
-								<label for="">Middle Name</label>
-								<input style="width: 95%" v-model="studentx.mother_middlename" placeholder="Mother"/>
-							</div>
-							<div>
-								<label for="">Last Name</label>
-								<input style="width: 95%" v-model="studentx.mother_lastname" placeholder="Mother"/>
-							</div>
-							<div>
-								<label for="">Occupation</label>
-								<input style="width: 95%" v-model="studentx.mother_occupation" placeholder="Mother"/>
-							</div>
+						<div class="c" style="padding-right: 8px">
+							<fieldset>
+								<legend>Father's Details</legend>
+								<div style="display: grid; grid-template-columns: auto 100px">
+									<div style="padding-right: 10px">
+										<input style="width: 100%" v-model="studentx.father_firstname" placeholder="First Name" maxlength="32" />
+									</div>
+									<div>
+										<input style="width: 100%" v-model="studentx.father_middlename" placeholder="Middle Name"  maxlength="32" />
+									</div>
+								</div>
+								<div style="display: grid; grid-template-columns: 120px auto">
+									<div style="padding-right: 10px">
+										<input style="width: 100%" v-model="studentx.father_lastname" placeholder="Last Name" maxlength="32" />
+									</div>
+									<div>
+										<input style="width: 100%" v-model="studentx.father_occupation" placeholder="Occupation" maxlength="32" />
+									</div>
+								</div>
+							</fieldset>
 						</div>
-					</div>
-					<div class="r a">
-						<div class="c">
-							<div>
-								<label for="">First Name</label>
-								<input style="width: 95%" v-model="studentx.father_firstname" placeholder="Father"/>
-							</div>
-							<div>
-								<label for="">Middle Name</label>
-								<input style="width: 95%" v-model="studentx.father_middlename" placeholder="Father"/>
-							</div>
-							<div>
-								<label for="">Last Name</label>
-								<input style="width: 95%" v-model="studentx.father_lastname" placeholder="Father"/>
-							</div>
-							<div>
-								<label for="">Occupation</label>
-								<input style="width: 95%" v-model="studentx.father_occupation" placeholder="Father"/>
-							</div>
+						<div class="c" style="padding-left: 8px">
+							<fieldset>
+								<legend>Mother's Details</legend>
+								<div style="display: grid; grid-template-columns: auto 100px">
+									<div style="padding-right: 10px">
+										<input style="width: 100%" v-model="studentx.mother_firstname" placeholder="First Name" maxlength="32" />
+									</div>
+									<div>
+										<input style="width: 100%" v-model="studentx.mother_middlename" placeholder="Middle Name" maxlength="32" />
+									</div>
+								</div>
+								<div style="display: grid; grid-template-columns: 120px auto">
+									<div style="padding-right: 10px">
+										<input style="width: 100%" v-model="studentx.mother_lastname" placeholder="Last Name" maxlength="32" />
+									</div>
+									<div>
+										<input style="width: 100%" v-model="studentx.mother_occupation" placeholder="Occupation" maxlength="32" />
+									</div>
+								</div>
+							</fieldset>
 						</div>
 					</div>
 				</div>
@@ -298,6 +296,8 @@
 		},
 		created() {
 			this.$store.commit('setModuleName', 'Students – New Student');
+		},
+		mounted() {
 			this.genStudentID();
 			this.isCameraCapture = false;
 		}
@@ -307,29 +307,37 @@
 <style scoped>
 	.form-o { position: relative; height: auto;  }
 	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 312px; }
-	.form-o .w .p { height: 100%; padding: 0 16px; position: relative; }
+	.form-o .w .p { height: 100%; position: relative; display: grid; grid-template-rows: 210px auto; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
 	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p ::placeholder { color: #222; }
 	.form-o .w .p select { border-radius: 5px; color: #000; padding: 5px 12px 5px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; cursor: pointer; }
 	.form-o .w .p textarea { width: 100%; height: 50px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p label { display: block; font-size: 11px; margin: 10px 0 4px 2px; color: #111; }
 	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w div.info { font-size: 10px; padding: 2px 8px; }
 
-	.p .h { padding: 0 0 8px 0; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 418px 200px; margin-bottom: 0px; color: #505040; }
-	.p .h .name { font-weight: bold; }
+	.p .h { iborder-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: auto 200px; margin-bottom: 0px; color: #505040; }
+	.p .h .name { font-weight: 600; }
 	.p .h .butt { text-align: right }
 	.p .h .butt button { border-width: 1px; border-style: outset; border-color: #f0f0f0; font-size: 11px; background: linear-gradient(to bottom, #e6d1d8, #f5f5dc); padding: 2px 8px; }
 
-	.w .p .r { position: relative; }
-	.w .p .r .c { display: grid; margin-bottom: 5px; }
-	.p .r.a .c { grid-template-columns: auto 140px auto 125px }
-	.p .r.d .c { grid-template-columns: 100px auto 158px 170px }
-	.p .r.d .c > div { position: relative; }
-	.p .r.b .c { grid-template-columns: auto 286px }
-	.p .u {}
-	.p .u, .p .v {  padding: 16px 16px 0 16px; }
+	.p .u { padding: 16px; border-bottom: 1px solid #f8f8f2; }
+	.p .v { padding: 16px; background-color: #fbfbf7; }
+
+	.p .r { position: relative; }
+	.p .r .c { display: grid; margin-bottom: 5px; }
+	.p .u .r.a .c { grid-template-columns: auto 140px auto 125px }
+	.p .u .r.d .c { grid-template-columns: 100px auto 158px 170px }
+	.p .u .r.d .c > div { position: relative; }
+	.p .u .r.b .c { grid-template-columns: auto 286px }
+	
+	.p .v .r.a { display: grid; grid-template-columns: 50% 50% }
+	.p .v .r.a .c {}
+	.p .v .r.a .c div { margin-bottom: 8px; }
+	.p .v .r.a .c fieldset legend { font-size: 11px; padding: 5px 8px; }
+	.p .v .r.a .c fieldset { background-color: #fff; border: 1px solid #e0e0da; padding: 12px; }
 
 	.q .c { border-bottom: 1px solid #f0efef; padding: 8px; }
 	.q .c .cam { height: 220px; background-color: #222; position: relative; }
@@ -357,4 +365,5 @@
 	.dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.7) }
 	.dp-wrap { position: absolute; top: 150px; left: calc((100% - 300px) / 2); z-index: 9999; }
 	.dp-back { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.15) }
+
 </style>

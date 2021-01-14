@@ -207,8 +207,10 @@
 			this.student.id = student.id;
 			this.student.school_id = student.school_id;
 			this.student.fullname = student.fullname;
-			this.fetchAcademicProgram();
 			this.$store.commit('setModuleName', 'Admission – New Admittee');
+		},
+		mounted() {
+			this.fetchAcademicProgram();
 		}
 	}
 </script>

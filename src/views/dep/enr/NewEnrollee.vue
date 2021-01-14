@@ -148,8 +148,10 @@
         },
         created() {
             this.$emit('setViewName', this.$route.name);
-            this.fetchCourses();
             this.$store.commit('setModuleName', 'Department – New Enrollee');
+        },
+        mounted() {
+            this.fetchCourses();
         }
     }
 </script>

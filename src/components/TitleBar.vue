@@ -1,7 +1,7 @@
 <template>
 	<div class="t-bar">
 		<div class="wind">
-			<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span><span @click="winMinimize()"><v-icon name="minus"></v-icon></span><span @click="winMaximize()"><v-icon name="window-maximize"></v-icon></span>
+			<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span><span @click="winMinimize()"><v-icon name="window-minimize"></v-icon></span><span @click="winMaximize()"><v-icon name="window-maximize"></v-icon></span>
 		</div>
 		<div class="name" ref="tbName">{{ moduleName }}</div>
 		<div class="menu">
@@ -35,7 +35,7 @@
 	import 'vue-awesome/icons/angle-left';
 	import 'vue-awesome/icons/angle-right';
 	import 'vue-awesome/icons/times';
-	import 'vue-awesome/icons/minus';
+	import 'vue-awesome/icons/window-minimize';
 	import 'vue-awesome/icons/window-maximize';
 
 	export default {
@@ -107,7 +107,7 @@
 </script>
 
 <style scoped>
-	.t-bar { display: grid; grid-template-columns: 82px auto 82px; width: 100vw; background: #f8f8f2; height: 24px; border-radius: 5px 5px 0 0; }
+	.t-bar { display: grid; grid-template-columns: 82px auto 82px; width: 100vw; background: linear-gradient(to left bottom, #f7f7f7, #e2e2e2); height: 24px; border-radius: 5px 5px 0 0; }
 	.name { padding: 6px; text-align: center; -webkit-app-region: drag; font-weight: 100; font-size: 11px; }
 	.name span { font-size: 11px; color: #40403a; font-weight: bold; line-height: 12px; }
 	.wind { padding: 0 5px; display: grid; grid-template-columns: 24px 24px 24px; }

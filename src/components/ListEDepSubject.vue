@@ -114,8 +114,10 @@
 			let d = this.$storageGet('user_info').department;
 			this.departmentID = d.id;
 			this.userDepartment = d;
+		},
+		mounted() {
 			this.fetchDepartments();
-		}
+		},
 	}
 </script>
 

@@ -87,6 +87,8 @@
 		created() {
 			let d = this.$storageGet('user_info').id;
 			this.faculty.id = d;
+		},
+		mounted() {
 			this.fetchSubjects();
 		}
 	}

@@ -16,7 +16,7 @@
 								<ui-loader></ui-loader>
 							</div>
 							<div class="tbd" v-else-if="courses.length > 0">
-								<div :class="['ttr', selectId == c.id ? 'active' : '']" :key="'cou-list_'+ c.id" v-for="c in courses" @contextmenu="courseListCMenu($event, c)">
+								<div :class="['ttr', selectCourseId == c.id ? 'active' : '']" :key="'cou-list_'+ c.id" v-for="c in courses" @contextmenu="courseListCMenu($event, c)">
 									<div class="ttd">{{ c.program_type }}</div>
 									<div class="ttd">{{ c.name }} ({{ c.name_alias }})</div>
 									<div class="ttd">{{ c.department.name }}</div>    
@@ -43,6 +43,26 @@
 				</div>
 			</div>
 			<div class="q">
+				<div class="d">
+					<div class="i">
+						<input type="text" placeholder="Find Course \name"/>
+						<v-icon name="search"></v-icon>
+					</div>
+					<div class="f">
+						<div @click="filterDept = 0" :class="filterDept == 0 ? 'active' : ''">
+							<b>All</b>
+							<span>√</span>
+						</div>
+						<div></div>
+						<div :class="filterDept == 1 ? 'active' : ''">
+							<ui-select @setValue="setDepartment" :options="departments" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+							<span>√</span>
+						</div>
+					</div>
+				</div>
+				<div class="s">
+					<button>Filter</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -51,6 +71,8 @@
 <script>
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
+
+	import 'vue-awesome/icons/search';
 
 	export default {
 		components: {
@@ -69,10 +91,18 @@
 				listStart: 0,
 				listLimit: 14,
 				courses: [],
-				selectId: 0
+				selectCourseId: 0,
+				departments: [],
+				departmentId: 0,
+				filterDept: 0
 			}
 		},
 		methods: {
+			setDepartment(v) {
+				if (v > 0)
+					this.filterDept = 1;
+				this.departmentId = v;
+			},
 			fetchCourses() {
 				this.isFetchingList = true;
 				this.$http.get('course/?action='+ this.queryAction +'&start='+ this.listStart +'&limit='+ this.listLimit +'&type='+ this.queryType +'&query='+ this.queryString +'&refer=department-all&course_fields=id,name,name_alias,program_type,total_units,department,acadprogram&department_fields=id,name,name_alias&acadprogram_fields=id,name').then( res => { 
@@ -85,7 +115,7 @@
 			},
 			courseListCMenu(e, l) {
 				e.preventDefault();
-				this.selectId = l.id;
+				this.selectCourseId = l.id;
 				let cmenu = new window.nw.Menu(),
 					items = [
 						{ label: 'Modify Course', click: () => this.$router.push({ name: 'adm-mod-admittee', query: { admit_id: l.id } }) },
@@ -100,6 +130,11 @@
 					Math.round(zoomFactor * e.clientY)
 				);
 			},
+			fetchDepartments() {
+				this.$http.get('department/?action=lister').then(res => {
+					this.departments = res.data;
+				});
+			},
 			goNextList() {
 				this.listStart++;
 				this.fetchCourses();
@@ -110,9 +145,12 @@
 				this.fetchCourses();
 			}
 		},
-		mounted() {
+		created() {
 			this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Courses – Master List');
+		},
+		mounted() {
+			this.fetchDepartments();
 			this.fetchCourses();
 		}
 	}
@@ -156,4 +194,20 @@
 	.list-o .page button svg { width: 10px; height: 10px; margin-bottom: -2px; }
 	.list-o .page button:disabled { border: 1px solid #fff; color: #777; cursor: default; }
 	.list-o .page .r span { background: #fff; padding: 0 10px; font-size: 9px; border: 1px solid #fff; }
+
+	.q .d { margin: 10px 10px 0 10px; padding: 12px; background-color: #fff; }
+	.q .d .f { display: grid; grid-template-columns: 50px 6px auto; padding: 10px 0 0 0; }
+	.q .d .f > div { background-color: #fbfbf7; position: relative; }
+	.q .d .f b { height: 27px; display: flex; justify-content: center; align-items: center; font-weight: normal; background-color: #fff; border-style: solid; border-width: 1px; border-color: #f0f0f0 #eaeae6 #d0d0ca #eaeae6; font-size: 11px; }
+	.q .d .f > div span { position: absolute; top: -5px; right: 5px; font-size: 10px; color: #111; display: none }
+	.q .d .f > div.active span { display: block}
+
+	.q .d .i { position: relative; }
+	.q .d .i input { display: block; width: 100%; color: #111; background-color: #fdfdfd; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0f0 #eaeaea #d0d0d0 #eaeaea; position: relative; border-radius: 2px; padding: 6px 10px 6px 10px; height: 28px; font-size: 11px; }
+	.q .d .i svg { position: absolute; top: 10px; right: 10px; width: 10px; height: 10px; }
+
+	.q .s { margin: 0 10px; }
+	.q .s button { height: 28px; display: block; border: none; background-color: #fbfbf7; font-size: 11px; font-weight: 600; width: 100% }
+	.q .s button:hover { background-color: #f0f0ea; }
 </style>
+ 

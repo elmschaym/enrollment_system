@@ -87,7 +87,7 @@
                 this.codes = codes;
             }
         },
-        created() {
+        mounted() {
             this.generateSchedules();
             this.generateTimeList();
             this.generateSchedCodes();

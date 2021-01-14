@@ -18,7 +18,7 @@
 	import 'vue-awesome/icons/plus';
 	import 'vue-awesome/icons/edit';
 	import 'vue-awesome/icons/th';
-	import 'vue-awesome/icons/flag';
+	import 'vue-awesome/icons/leaf';
 
 	export default {
 		components: {
@@ -28,14 +28,13 @@
 		data() {
 			return {
 				modules_m: [
-                    { name: 'New Student', icon: 'plus-circle', link: 'adm-new-student'},
-                    { name: 'Admittee List', icon: 'flag', link: 'adm-list-adm-master'},
-                    { name: 'Students List', icon: 'flag', link: 'adm-list-stu-master'}
-                    //{ name: 'Enrollment', icon: 'flag', link: 'enr-list-index'}
-                ],
-                modules_a: [
-					{ name: 'New Admittee', icon: 'plus', link: 'adm-new-admittee'},
-					{ name: 'Admission', icon: 'th', link: 'adm-index'}
+					{ name: 'Admittee List', icon: 'leaf', link: 'adm-list-adm-master'},
+					{ name: 'Students List', icon: 'leaf', link: 'adm-list-stu-master'}
+					//{ name: 'Enrollment', icon: 'flag', link: 'enr-list-index'}
+				],
+				modules_a: [
+					{ name: 'New Student', icon: 'plus', link: 'adm-new-student'},
+					{ name: 'New Admittee', icon: 'plus', link: 'adm-new-admittee'}
 				]
 			}
 		}

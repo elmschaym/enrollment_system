@@ -12,17 +12,10 @@
                         <div class="l">
                             <div class="n" @click="toMenu('adm')">Admission</div>
                             <div class="m" v-show="subm.adm">
-                                <div class="o h" @click="goLink('adm-new-admittee', 'adm')">New Admittee <span>Ctrl+Alt+A</span></div>
-                                <div class="o" @click="goLink('adm-list-adm-master', 'adm')">Master List</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="l">
-                            <div class="n" @click="toMenu('stu')">Student</div>
-                            <div class="m" v-show="subm.stu">
-                                <div class="o h" @click="goLink('adm-new-student', 'stu')">New Student <span>Ctrl+Alt+S</span></div>
-                                <div class="o" @click="goLink('adm-list-stu-master', 'stu')">Master List</div>
+                                <div class="o" @click="goLink('adm-new-admittee', 'adm')">New Admittee <span>Ctrl+Alt+A</span></div>
+                                <div class="o h" @click="goLink('adm-new-student', 'adm')">New Student &nbsp; &nbsp;<span>Ctrl+Alt+S</span></div>
+                                <div class="o" @click="goLink('adm-list-stu-master', 'adm')">Students List</div>
+                                <div class="o" @click="goLink('adm-list-adm-master', 'adm')">Admittee List</div>
                             </div>
                         </div>
                     </li>
@@ -40,7 +33,7 @@
                     </li>
                     <li>
                         <div class="l">
-                            <div class="n" @click="toMenu('fin')">Finance</div>
+                            <div class="n" @click="toMenu('fin')">Billings</div>
                             <div class="m" v-show="subm.fin">
                                 <div class="o" @click="goLink('fin-index', 'fin')">Enrollment Billing</div>
                             </div>

@@ -10,7 +10,7 @@
 		</div>
 		<div class="form">
 			<div class="x">
-				<span @click="winMinimize()"><v-icon name="minus"></v-icon></span>
+				<span @click="winMinimize()"><v-icon name="window-minimize"></v-icon></span>
 				<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span>
 			</div>
 			<div v-if="!isConnecting" class="w">
@@ -42,7 +42,7 @@
 	import 'vue-awesome/icons/lock';
 	import 'vue-awesome/icons/unlock';
 	import 'vue-awesome/icons/times';
-	import 'vue-awesome/icons/minus';
+	import 'vue-awesome/icons/window-minimize';
 
 	export default {
 		data() {
@@ -94,7 +94,6 @@
 			}
 		},
 		mounted() {
-			console.log(window.nwWin.frame);
 			window.nwWin.setShadow(true);
 		}
 	}
@@ -118,6 +117,7 @@
 	.form .w .f { padding: 5px 0; position: relative }
 	.form .w .f svg { position: absolute; right: 12px; top: 16px; height: 12px; width: 12px; color: #888; }
 	.form .w input { border-radius: 5px; color: #000; padding: 8px 12px; border: none;  background-color: #fdfdfd; width: 100%; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); outline: none; cursor: pointer; }
+	.form .w input::placeholder { color: #222; }
 	.form .w .s { padding-top: 16px; }
 	.form .w input.error { background-color: #ffebeb; }
 	.form .w button { text-align: center; padding: 8px 16px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); font-size: 12px; display: block; width: 75%; margin: 0 auto; border-radius: 5px; outline: none; background-color: #fbfbfb; color: #a0a0a0; font-weight: 600 }

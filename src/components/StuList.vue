@@ -150,7 +150,7 @@
 				this.fetchStudents();
 			}
 		},
-		created() {
+		mounted() {
 			this.fetchStudents();
 		}
 	}

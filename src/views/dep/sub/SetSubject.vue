@@ -288,14 +288,16 @@
 			}
 		},
 		created() {
+			this.$store.commit('setModuleName', 'Department – Enrol Student');
+		},
+		mounted() {
 			let stuid = this.$storageGet('dep_set_subject_stuid', 'session');
 			if (stuid) {
 				this.isSetStudentModalShow = false;
 				this.studentID = stuid;
 				this.fetchStudent();
 				this.$storageDel('dep_set_subject_stuid', 'session');
-			}
-			this.$store.commit('setModuleName', 'Department – Enrol Student');
+			}			
 		}
 	}
 </script>
@@ -367,6 +369,7 @@
 	.moda-l .n { font-size: 12px; }
 	.moda-l input { width: 100%; display: block; text-align: center; color: #000; padding: 6px 8px 6px 8px; border: none; font-size: 14px; outline: none; cursor: pointer; margin: 10px auto; border-bottom: 1px solid #bebeb9; }
 	.moda-l .e { color: #cd4646; text-align: center;padding: 6px; width: 90%; margin: 0 auto; }
+	.moda-l input::placeholder { color: #222; }
 
 	.v { position: relative; }
 	.dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.7) }
