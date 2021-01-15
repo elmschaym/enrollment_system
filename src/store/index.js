@@ -6,9 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		isReloadView: false,
-		appWidth: 0,
-		appHeight: 0,
-		module: { name: 'system_enr' },
+		module: { name: 'sysuno' },
 		forms: {
 			admission: {
 				academic_type: [
@@ -55,12 +53,6 @@ export default new Vuex.Store({
 		},
 		setReloadView(state) {
 			state.isReloadView = !state.isReloadView;
-		},
-		setAppWidth(state, payload) {
-			state.appWidth = payload;
-		},
-		setAppHeight(state, payload) {
-			state.appHeight = payload;
 		}
 	}
 });

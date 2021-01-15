@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import InitView from '../layouts/InitView.vue';
 import MainView from '../layouts/MainView.vue';
 import MonoView from '../layouts/MonoView.vue';
+import ItemView from '../layouts/ItemView.vue';
 
 import LoadIndex from '../views/LoadIndex.vue';
 import UsrSignIn from '../views/usr/SignIn.vue';
@@ -190,6 +191,12 @@ const routes = [
                     { path: 'cou-create', component: () => import('../views/cou/Create.vue'), name: 'cou-create' }
                 ]
             }
+        ]
+    },
+
+    { path: '/adm/item', component: ItemView,
+        children: [
+            { path: 'modify-admittee', component: () => import('../views/adm/item/Index.vue'), name: 'adm-item-modify-admittee' }
         ]
     },
 

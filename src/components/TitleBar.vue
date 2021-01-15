@@ -1,10 +1,18 @@
 <template>
 	<div class="t-bar">
 		<div class="wind">
-			<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span><span @click="winMinimize()"><v-icon name="window-minimize"></v-icon></span><span @click="winMaximize()"><v-icon name="window-maximize"></v-icon></span>
+			<span @click="winClose()" tooltip="close" v-if="winButtons[0]">
+				<v-icon name="times"></v-icon>
+			</span>
+			<span @click="winMinimize()" v-if="winButtons[1]">
+				<v-icon name="window-minimize"></v-icon>
+			</span>
+			<span @click="winMaximize()" v-if="winButtons[2]">
+				<v-icon name="window-maximize"></v-icon>
+			</span>
 		</div>
 		<div class="name" ref="tbName">{{ moduleName }}</div>
-		<div class="menu">
+		<div class="menu" v-if="hasMenu">
 			<div class="l">
 				<div @click="refreshView()"><v-icon name="exchange-alt"></v-icon></div>
 			</div>
@@ -39,6 +47,22 @@
 	import 'vue-awesome/icons/window-maximize';
 
 	export default {
+		props: {
+			winButtons: {
+				type: Array,
+				required: false,
+				default: function() {
+					return [1,1,1];
+				}
+			},
+			hasMenu: {
+				type: Boolean,
+				required: false,
+				default: function() {
+					return true;
+				}
+			}
+		},
 		data() {
 			return {
 				isFullScreen: false,
@@ -72,7 +96,7 @@
 			endSession() {
 				window.localStorage.removeItem('api_token');
 				this.$sleep(500).then(() => {
-					this.$router.push('/');
+					this.$router.push({ name: 'usr-signin' });
 				});
 			},
 			winClose() {
@@ -87,12 +111,8 @@
 			winMaximize() {
 				if (this.isFullScreen) {
 					window.nwWin.restore();
-					this.$store.commit('setAppWidth', window.nwWin.min_width);
-					this.$store.commit('setAppHeight', window.nwWin.min_height);
 				}
 				else {
-					this.$store.commit('setAppWidth', window.nwWin.max_width);
-					this.$store.commit('setAppHeight', window.nwWin.max_height);
 					window.nwWin.maximize();
 				}
 				this.isFullScreen = !this.isFullScreen;
@@ -101,13 +121,13 @@
 		created() {
 			let user = this.$storageGet('user_info', 'local');
 			this.user.name = user.first_name +' '+ user.last_name;
-			this.user.role = this.$store.state.forms.faculty.positions.find( p => p.id === user.position ).name;  
+			this.user.role = this.$store.state.forms.faculty.positions.find(p => p.id === user.position ).name;  
 		}
 	}
 </script>
 
 <style scoped>
-	.t-bar { display: grid; grid-template-columns: 82px auto 82px; width: 100vw; background: linear-gradient(to left bottom, #f7f7f7, #e2e2e2); height: 24px; border-radius: 5px 5px 0 0; }
+	.t-bar { display: grid; grid-template-columns: 82px auto 82px; width: 100vw; background: linear-gradient(to left bottom, #f7f7f7, #e2e2e2); height: 24px; }
 	.name { padding: 6px; text-align: center; -webkit-app-region: drag; font-weight: 100; font-size: 11px; }
 	.name span { font-size: 11px; color: #40403a; font-weight: bold; line-height: 12px; }
 	.wind { padding: 0 5px; display: grid; grid-template-columns: 24px 24px 24px; }

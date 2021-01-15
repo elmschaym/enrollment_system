@@ -37,13 +37,6 @@
 				sconName: 'dbd-index'
 			}
 		},
-		computed: {
-			wMain() {
-				let w = this.$store.state.appWidth,
-					h = this.$store.state.appHeight;
-				return 'height: '+ h;
-			}
-		},
 		methods: {
 			goScon(name) {
 				this.sconName = name;
@@ -51,10 +44,6 @@
 			}
 		},
 		created() {
-			/**if (window.screen.availWidth > 1900) {
-				window.nwWin.resizeTo(1600, 900);
-				window.nwWin.zoomLevel = 0.9;
-			} **/
 		},
 		mounted() {
 			this.sconName = 'dbd-index';
@@ -63,7 +52,7 @@
 </script>
 
 <style scoped>
-	.wrap-m { height: 100vh; background-color: #fff; box-sizing: border-box; border-radius: 5px; }
+	.wrap-m { height: 100vh; background-color: #fff; box-sizing: border-box; ibox-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 			
 	.m { height: calc(100% - 24px); display: grid; grid-template-columns: 28px auto; }
 	.m .content { height: 100%; overflow: hidden; display: grid; grid-template-rows: 24px auto; }

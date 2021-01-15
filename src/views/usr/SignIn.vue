@@ -50,7 +50,8 @@
 				isConnecting: false,
 				isErrorConnect: false,
 				username: "",
-				password: ""
+				password: "",
+				isShow: false
 			}
 		},
 		computed: {
@@ -93,15 +94,35 @@
 				window.nwWin.minimize();
 			}
 		},
-		mounted() {
-			window.nwWin.setShadow(true);
+		created() {
+			this.$sleep(500).then(() => {
+				if (window.screen.availWidth > 1900) {
+					window.nwWin.width = 1500;
+					window.nwWin.height = 800;
+					window.nwWin.setMinimumSize(1500, 800);
+					window.nwWin.zoomLevel = 1.1;
+				} else {
+					window.nwWin.width = 1200;
+					window.nwWin.height = 660;
+					window.nwWin.setMinimumSize(1200, 660);
+				}
+				window.nwWin.setPosition('center');
+			});
+
+			this.$sleep(1000).then(() => {
+				window.nwWin.show();
+			});
+
+			let token = this.$storageGet('api_token', 'local') || false;
+			if (token)
+				this.$router.push({ name: 'dbd-index' });
 		}
 	}
 </script>
 
 <style scoped>
 	.wrap-a { height: 100%; display: grid; grid-template-columns: auto 404px; position: relative; background: linear-gradient(to left bottom, #fafafa, #f0f0f0); }
-	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #08979d, #055b5c); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; user-select: none; }
+	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #fff, #fff); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; user-select: none; }
 	.form { position: relative; height: 100%; background: transparent; }
 
 	.form .x { position: absolute; top: 4px; right: 4px; display: grid; grid-template-columns: 24px 24px; }
@@ -109,14 +130,14 @@
 	.form .x span svg { width: 10px; height: 10px; }
 	.form .x span:hover { color: #000; }
 
-	.form .w { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
+	.form .w { position: absolute; top: calc((100% - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #222, #666); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
 	.form .w .h { padding: 8px 0 20px 0;  }
 	.form .w .h b { display: block; text-align: center; color: #fff; font-size: 28px; font-weight: 600; }
 	.form .w .h i { display: block; color: #56373c; font-size: 10px; font-weight: bold; text-align: center; font-style: normal; }
 
 	.form .w .f { padding: 5px 0; position: relative }
 	.form .w .f svg { position: absolute; right: 12px; top: 16px; height: 12px; width: 12px; color: #888; }
-	.form .w input { border-radius: 5px; color: #000; padding: 8px 12px; border: none;  background-color: #fdfdfd; width: 100%; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); outline: none; cursor: pointer; }
+	.form .w input { height: 30px; border-radius: 5px; color: #000; padding: 8px 12px; border: none;  background-color: #fdfdfd; width: 100%; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); outline: none; cursor: pointer; }
 	.form .w input::placeholder { color: #222; }
 	.form .w .s { padding-top: 16px; }
 	.form .w input.error { background-color: #ffebeb; }
@@ -125,10 +146,10 @@
 
 	.bnnr .name { position: absolute; top: 120px; left: 32px; right: 32px; }
 	.bnnr .name .p { color: #111; }
-	.bnnr .name .p span { font-size: 64px; text-transform: uppercase; color: #fff; font-weight: bold; itext-shadow: 0 -1px 1px rgba(0,0,0,0.4); ivisibility: hidden; background-color: #fff; }
-	.bnnr .name .q { border-top: 16px solid #f0f0f0; font-size: 36px; text-transform: uppercase; color: #e0e0d0; font-weight: bold; margin-top: 20px; padding-top: 5px; }
+	.bnnr .name .p span { font-size: 64px; text-transform: uppercase; color: #222; font-weight: bold; text-shadow: 0 -1px 1px rgba(0,0,0,0.4); background-color: #222; }
+	.bnnr .name .q { border-top: 16px solid #333; font-size: 36px; text-transform: uppercase; color: #444; font-weight: 600; margin-top: 20px; padding-top: 5px; }
 
-	div.l { position: absolute; top: calc((100vh - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #478ba2, #de5b6d); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
+	div.l { position: absolute; top: calc((100% - 230px)/2); height: 266px; width: 260px; right: 72px; background: linear-gradient(to left bottom, #222, #666); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
 	
 	.loader, .loader:before, .loader:after { border-radius: 0; width: 8px; height: 8px; -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation: load7 1.8s infinite ease-in-out; animation: load7 1.8s infinite ease-in-out; }
 	.loader { color: #fff; font-size: 10px; margin: 80px auto; position: relative; text-indent: -9999em; -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation-delay: -0.16s; animation-delay: -0.16s; }

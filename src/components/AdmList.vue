@@ -26,7 +26,7 @@
 						<div class="tth">Date Admitted</div>
 					</div>
 					<div class="tbd" v-if="isFetching">
-						<ui-loader></ui-loader>
+						<u-i-loader></u-i-loader>
 					</div>
 					<div class="tbd" v-else-if="admissions.length > 0">
 						<div :class="['ttr', selectId == l.id ? 'active' : '']" @click="$router.push({ name: 'adm-view-admittee', params: { admit_id : l.id}})" :key="l.id" v-for="l in admissions" @contextmenu="admitteeListCMenu($event, l)">
@@ -55,13 +55,12 @@
 				</div>
 			</div>
 		</div>
-		<div :class="['item-o', { 'toggled': isModifyAdmittee }]">
-			<button @click="isModifyAdmittee = false">&times;</button>
-		</div>
+		<u-i-window-edit v-if="isModifyAdmittee"></u-i-window-edit>
 	</div>
 </template>
 
 <script>
+	import UIWindowEdit from './UIWindowEdit.vue';
 	import UISelect from './UISelect.vue';
 	import UILoader from './UILoader.vue';
 	import 'vue-awesome/icons/angle-right';
@@ -76,8 +75,9 @@
 	export default {
 		props: ['viewName', 'admitType'],
 		components: {
-			UiSelect: UISelect,
-			UiLoader: UILoader
+			UISelect,
+			UILoader,
+			UIWindowEdit
 		},
 		data() {
 			return {
@@ -97,7 +97,6 @@
 		},
 		methods: {
 			modifyAdmittee(l) {
-				this.isModifyAdmittee = true;
 			},
 			fetchAdmission() {
 				this.isFetching = true;
@@ -146,6 +145,7 @@
 				this.$sleep(250).then(this.fetchAdmission);
 			},
 			'$store.state.isReloadView'() {
+				console.log(1);
 				this.fetchAdmission();
 			}
 		},
