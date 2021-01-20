@@ -29,7 +29,7 @@
 			initializeSetup() {
 				this.isLoading = true;
 				this.$sleep(4000).then(() => {
-					this.$router.push({ name: 'usr-signin'});
+					this.$router.push({ name: 'usr-signin', query: { set_dimen: 1 } });
 				});
 			}
 		},

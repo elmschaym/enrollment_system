@@ -8,7 +8,7 @@
 			<div>
 			</div>
 			<div class="link">
-				<span class="bx" @click="goName('adm-index', 'adm-index')"><v-icon name="id-card" class="i"></v-icon></span>
+				<span class="bx" @click="goName('adm-index', 'adm-index')"><v-icon name="id-card" class="i"></v-icon> Modules</span>
 			</div>
 		</div>
 	</div>
@@ -128,16 +128,13 @@
 <style scoped>
 	.wrap-d { height: 100%; background-color: #fbfbf7; }
 
-	div.t { display: grid; grid-template-columns: 680px auto 40px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
+	div.t { display: grid; grid-template-columns: 680px auto 100px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
 	div.t .find { height: 40px; padding: 6px 16px; position: relative; background-color: #fcfcfc; }
 	div.t .find span { display: block; height: 28px; width: 40px; position: absolute; top: 7px; right: 17px; background-color: #f0f0f0; padding: 6px 13px; color: #fff; opacity: 0.8; }
 	div.t .find span svg { height: 14px; width: 14px; color: #492e32; }
 	div.t .find input { color: #391e22; padding: 8px 12px; border: 1px solid #f0f0f0; background-color: #fff; width: 100%; font-size: 12px; border: 1px solid #e8e8e8; outline: none; cursor: pointer; height: 30px; font-weight: 200 }
 
 	div.t .link { height: 40px; }
-	div.t .link span { position: relative; display: inline-block; padding: 12px; width: 40px; height: 40px; font-size: 11px; border-left: 1px solid #f0f0f0; cursor: pointer; background-color: #fcfcfc; }
-	div.t .link span.bx { color: #202020; }
-	div.t .link span.by { color: #404040; }
-	div.t .link svg.i { width: 16px; height: 16px; margin-bottom: -2px; }
-	div.t .link svg.p { width: 8px; height: 8px; margin-bottom: -2px; position: absolute; top: 5px; right: 5px; }
+	div.t .link span { position: relative; display: inline-block; padding: 12px; height: 40px; font-size: 11px; border-left: 1px solid #f0f0f0; cursor: pointer; }
+	div.t .link svg { width: 16px; height: 16px; margin-bottom: -2px; margin-right: 5px; }
 </style>

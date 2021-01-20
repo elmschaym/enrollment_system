@@ -188,6 +188,7 @@ const routes = [
                     { path: 'index', component: () => import('../views/cou/MasterList.vue'), name: 'cou-index' },
                     { path: 'master-list', component: () => import('../views/cou/MasterList.vue'), name: 'cou-master-list' },
                     { path: 'assign-subj', component: () => import('../views/cou/AssignSubjects.vue'), name: 'cou-assign-subj' },
+                    { path: 'view-prospectus', component: () => import('../views/cou/ViewProspectus.vue'), name: 'cou-view-prospectus' },
                     { path: 'cou-create', component: () => import('../views/cou/Create.vue'), name: 'cou-create' }
                 ]
             }

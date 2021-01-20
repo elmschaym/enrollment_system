@@ -24,7 +24,7 @@
                             <div style="text-align: center">Units</div>
                             <div>Tuition</div>
                         </div>
-                        <div class="d" v-if="enrollment.hasOwnProperty('enrollment') && enrollment.enrollment[0].billing[0].sect_enrol.length > 0">
+                        <div class="d" v-if="enrollment.hasOwnProperty('enrollment') && enrollment.enrollment[0].billing.length > 0 && enrollment.enrollment[0].billing[0].sect_enrol.length > 0">
                             <div :key="i +'subj'+ s.id" v-for="(s,i) in enrollment.enrollment[0].billing[0].sect_enrol">
                                 <div>{{ s.subject.code }}</div>
                                 <div>{{ s.subject.name }}</div>
@@ -45,11 +45,11 @@
                         </div>
                         <div class="f" v-if="enrollment.hasOwnProperty('enrollment')">
                             <div>
-                                Account Status: <span>{{ enrollment.enrollment[0].billing[0].is_paid ? 'PAID' : 'UNPAID' }}</span>
+                                Account Status: <span>{{ (enrollment.enrollment[0].billing.length == 0 || isAccountPaid) ? 'PAID' : 'UNPAID' }}</span>
                             </div>
                             <div style="text-align: right">
-                                <button v-if="!enrollment.enrollment[0].billing[0].is_paid" :disabled="!admission.hasOwnProperty('student')">Pay Account</button>
-                                <button :disabled="!admission.hasOwnProperty('student')" style="margin-left: 10px;">Print Receipt <v-icon name="print"></v-icon></button>
+                                <button style="width: 90px" v-if="enrollment.enrollment[0].billing.length > 0 && !isAccountPaid" :disabled="isPayingAccount" @click="payAccount()">{{ isPayingAccount ? '' : 'Pay Account' }} <v-icon v-if="isPayingAccount" name="spinner" :spin="true"></v-icon></button>
+                                <button v-if="isAccountPaid" @click="printReceipt()" style="margin-left: 10px;">Print Receipt <v-icon name="print"></v-icon></button>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                                 <div>Name</div>
                                 <div>Fee</div>
                             </div>
-                            <div class="d" v-if="enrollment.hasOwnProperty('enrollment') && enrollment.enrollment[0].billing[0].misc_bills.length > 0">
+                            <div class="d" v-if="enrollment.hasOwnProperty('enrollment') && enrollment.enrollment[0].billing.length > 0 &&  enrollment.enrollment[0].billing[0].misc_bills.length > 0">
                                 <div :key="'misc'+ m.id" v-for="m in enrollment.enrollment[0].billing[0].misc_bills">
                                     <div>{{ m.misc.name }}</div>
                                     <div>{{ m.misc.amount | currency }}</div>
@@ -107,7 +107,10 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="isFetching" class="dsbd"></div>
+                <div id="print-rec" style="display: none">
+                    receipt...
+                </div>
+                <div v-if="isFetchingList" class="dsbd"></div>
             </div>
         </div>
     </div>
@@ -118,6 +121,7 @@
     import UISelect from '@/components/UISelect.vue';
 
     import 'vue-awesome/icons/print';
+    import 'vue-awesome/icons/spinner';
 
     export default {
         components: {
@@ -127,7 +131,9 @@
         },
         data() {
             return {
-                isFetching: false,
+                isFetchingList: false,
+                isPayingAccount: false,
+                isAccountPaid: false,
                 admission: {},
                 billingType: [
                     { id: 0, name: 'Enrollment' },
@@ -140,13 +146,13 @@
         computed: {
             totalMiscFee() {
                 let total = 0;
-                if (this.enrollment.hasOwnProperty('enrollment') && this.enrollment.enrollment[0].billing[0].misc_bills.length > 0)
+                if (this.enrollment.hasOwnProperty('enrollment') && this.enrollment.enrollment[0].billing.length > 0 && this.enrollment.enrollment[0].billing[0].misc_bills.length > 0)
                     this.enrollment.enrollment[0].billing[0].misc_bills.forEach(m => total += m.misc.amount);
                 return total;
             },
             totalTuitFee() {
                 let total = 0;
-                if (this.enrollment.hasOwnProperty('enrollment') && this.enrollment.enrollment[0].billing[0].sect_enrol.length > 0)
+                if (this.enrollment.hasOwnProperty('enrollment') && this.enrollment.enrollment[0].billing.length > 0 && this.enrollment.enrollment[0].billing[0].sect_enrol.length > 0)
                     this.enrollment.enrollment[0].billing[0].sect_enrol.forEach(s => total += (50*s.subject.units));
                 return total;
             },
@@ -162,6 +168,7 @@
         },
         methods: {
             setAdmissionFromSearch(v) {
+                this.isAccountPaid = false;
                 this.admission = v;
                 this.fetchEnrollment();
             },
@@ -169,17 +176,30 @@
 
             },
             fetchEnrollment() {
-                this.isFetching = true;
+                this.isFetchingList = true;
                 this.$http.get('admission/'+ this.admission.id +'/?admission_fields=id,enrollment&enrollment_fields=id,acad_year,acad_status,semester,max_units,is_confirmed,billing&billing_fields=id,sect_enrol,misc_bills&miscbill_fields=id,misc&misc_fields=id,name,amount&sectenrol_fields=id,subject&subject_fields=id,name,code,units&billingf_to_bill=ENR&billingf_is_paid=false').then(res => {
                     if (res.data.hasOwnProperty('id')) {
                         this.enrollment = res.data;
-                        this.isFetching = false;
+                        this.isFetchingList = false;
                     }
                 }).catch(() => {
-                    this.isFetching = false;
+                    this.isFetchingList = false;
                 }).finally(() => {
-                    this.isFetching = false;
+                    this.isFetchingList = false;
                 });
+            },
+            payAccount() {
+                this.isPayingAccount = true;
+                this.$http.put('billing/'+ this.enrollment.enrollment[0].billing[0].id +'/?action=pay-account', {}).then(res => {
+                    this.isAccountPaid = true;
+                }).catch(() => {
+                    this.isAccountPaid = false;
+                }).finally(() => {
+                    this.isPayingAccount = false;
+                });
+            },
+            printReceipt() {
+                this.$htmlToPaper('print-rec');
             }
         },
         created() {

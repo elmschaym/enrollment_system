@@ -96,7 +96,7 @@
 			endSession() {
 				window.localStorage.removeItem('api_token');
 				this.$sleep(500).then(() => {
-					this.$router.push({ name: 'usr-signin' });
+					this.$router.push({ name: 'usr-signin', query: { set_dimen: 0 } });
 				});
 			},
 			winClose() {

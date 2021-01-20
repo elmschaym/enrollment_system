@@ -1,7 +1,7 @@
 <template>
 	<div class="find-c">
 		<div class="form">
-			<ui-select @setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+			<ui-select @setValue="setDepartment" :options="departments" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
 			<button @click="fetchSubjects()"><v-icon name="book"></v-icon></button>
 		</div>
 		<div class="rslt">
@@ -51,8 +51,11 @@
 			UiSelect: UISelect
 		},
 		props: {
-			stuid: {
-				type: Number
+			departments: {
+				type: Array,
+				default: function() {
+					return [];
+				}
 			}
 		},
 		data() {
@@ -64,22 +67,10 @@
 				isErrorConnect: false,
 				selectedId: 0,
 				subjects: [],
-				departments: [],
-				departmentId: 0,
-				userDepartment: 0
-			}
-		},
-		computed: {
-			presetDepartment() {
-				return this.userDepartment;
+				departmentId: 0
 			}
 		},
 		watch: {
-			stuid(n) {
-				if (n > 0) {
-					this.fetchSubjects();
-				}
-			},
 			queryString(n) {
 				this.queryAction =  n.length > 0 ? 'finder' : 'lister';
 				this.$sleep(250).then(this.fetchSubjects);
@@ -94,11 +85,6 @@
 					this.$sleep(500).then( () => { this.isFetching = false; });
 				});
 			},
-			fetchDepartments() {
-				this.$http.get('department/?action=lister').then(res => {
-					this.departments = res.data;
-				});
-			},
 			setSelected(v) {
 				this.selectedId = v.id;
 				this.$emit('setValue', v);
@@ -109,15 +95,7 @@
 			switchQueryType() {
 				this.queryType = this.queryType == 'name' ? 'code' : 'name';
 			}
-		},
-		created() {
-			let d = this.$storageGet('user_info').department;
-			this.departmentId = d.id;
-			this.userDepartment = d;
-		},
-		mounted() {
-			this.fetchDepartments();
-		},
+		}
 	}
 </script>
 

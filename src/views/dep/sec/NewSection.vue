@@ -12,7 +12,7 @@
 							<div class="m">{{ subject.units }} Units</div>
 						</div>
 						<div class="butt">
-							<button @click="addSection()" :class="isFormOkay ? 'okay' : ''" :disabled="!isFormOkay"><v-icon name="plus"></v-icon> Add Sched</button>
+							<button @click="addSection()" :class="isSchedOkay ? 'okay' : ''" :disabled="!isSchedOkay"><v-icon name="plus"></v-icon> Add Sched</button>
 						</div>
 					</div>
 					<div class="r s">
@@ -128,9 +128,16 @@
 			}
 		},
 		computed: {
-			isFormOkay() {
+			isSchedOkay() {
 				for (let o in this.schedule) {
 					if (this.schedule[o] == -1)
+						return false;
+				}
+				return true;
+			},
+			isFormOkay() {
+				for (let o in this.tempSched) {
+					if (this.tempSched[o] == '')
 						return false;
 				}
 				return true;
@@ -161,7 +168,7 @@
 				this.$set(this.schedule, 'time_end', t);
 			},
 			setSchedRoom(r) {
-				if (this.schedule.room == -1)
+				if (this.tempSched.day == '')
 					this.$set(this.schedule, 'room', r);
 			},
 			getRoom(r) {
@@ -177,7 +184,7 @@
 					sched = { day: d, name: w+'-'+c, code: c, time: t, week: w };
 					this.tempSched = sched;
 				}
-				else if (this.tempSched.name != (w+c)) {
+				else if (this.tempSched.name != (w+c) && this.tempSched.day.indexOf(d) == -1) {
 					sched = this.tempSched;
 					if (d != this.tempSched.day)
 						sched.day = this.tempSched.day+d;
@@ -282,13 +289,13 @@
 	.p .r.o .y .a { font-size: 11px; color: #111; padding: 6px 0; text-align: center; }
 	.p .r.o .y .b { display: flex; padding: 16px; justify-content: center; height: 175px; }
 	.p .r.o .y .b > div { border-radius: 2px; color: #000; padding: 10px 20px; border: none; background-color: #fff; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #f0f0ea; margin: 5px; height: 32px; }
-	.p .r.o .y .b > div.active { background-color: #fff; }
+	.p .r.o .y .b > div.active { background-color: #f0f0ea; }
 	.p .r.o .y .c { display: grid; grid-template-columns: 60px 75px auto 65px 25px; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
 	.p .r.o .y .c div { padding: 6px 7px; font-size: 11px; }
 
 	.p .r.t { padding: 10px 4px; border-top: 1px solid #f0f0ea; }
 	.r.t .x { display: grid; grid-template-columns: 50% 50%; grid-auto-rows: 48px; height: 192px; overflow-y: scroll; }
-	.r.t .x .i { width: 200px; height: 32px; display: grid; grid-template-columns: 42px auto; border: 1px solid #f0f0ea; margin: 8px auto; }
+	.r.t .x .i { width: 200px; height: 32px; display: grid; grid-template-columns: 60px auto; border: 1px solid #f0f0ea; margin: 8px auto; }
 	.r.t .x .i .sn { height: 100%; background: #f0f0ea; color: #999; font-size: 13px; font-weight: 600; padding: 7px 0; text-align: center; }
 	.r.t .x .i .st { padding: 2px 5px; background: #fbfbf7; }
 	.r.t .x .i .st .nn { font-size: 11px; color: #111; margin-bottom: 2px; }

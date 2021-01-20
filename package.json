@@ -103,9 +103,5 @@
   "webkit": {
     "plugin": true
   },
-  "developer": {
-    "showDevToolsOnStartup": true
-  },
-  "chromium-args": "--password-store=basic --load-extension='./node_modules/nw-vue-devtools-prebuilt/extension' --remote-debugging-port=9222",
-  "manifestUrl": "http://127.0.0.1:3127/package.json"
+  "chromium-args": "--password-store=basic --load-extension='./node_modules/nw-vue-devtools-prebuilt/extension'"
 }

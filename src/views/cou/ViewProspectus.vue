@@ -10,36 +10,7 @@
                 </div>
                 <div v-if="course.hasOwnProperty('id')" class="t">
                     <div class="u">
-                        <div class="a">
-                            <div class="x">
-                                <div class="g">
-                                    Year Level
-                                </div>
-                                <div class="h">
-                                    <button>First</button>
-                                    <button>Second</button>
-                                    <button>Third</button>
-                                    <button>Fourth</button>
-                                    <button>Fifth</button>
-                                </div>
-                            </div>
-                            <div class="z">
-                            </div>
-                            <div class="y">
-                                <div class="g">
-                                    Semester
-                                </div>
-                                <div class="h">
-                                    <button>1st</button>
-                                    <button>2nd</button>
-                                    <button>Sum</button>
-                                </div>
-                            </div>
-                        </div>
                         <ui-loader v-if="isFetchingList"></ui-loader>
-                    </div>
-                    <div class="v">
-                        <list-e-subject v-if="departments.length > 0" @setValue="setSubjectFromList" :departments="departments"></list-e-subject>
                     </div>
                 </div>                
             </div>
@@ -48,7 +19,6 @@
 </template>
 
 <script>
-    import ListESubject from '@/components/ListESubject.vue';
     import ListECourse from '@/components/ListECourse.vue';
     import UILoader from '@/components/UILoader.vue';
 
@@ -56,7 +26,6 @@
         emits: ['setViewName'],
         components: {
             UiLoader: UILoader,
-            ListESubject,
             ListECourse
         },
         data() {
@@ -64,7 +33,6 @@
                 isFetchingList: false,
                 departments: [],
                 course: {},
-                subject: {},
                 subjCourses: []
             }
         },
@@ -73,9 +41,6 @@
                 this.course = v;
                 this.subject = {};
                 this.fetchSubjects();
-            },
-            setSubjectFromList(v) {
-                this.subject = v;
             },
             fetchDepartments() {
                 this.$http.get('department/?action=lister').then(res => {
@@ -98,7 +63,7 @@
         },
         mounted() {
             this.$emit('setViewName', this.$route.name);
-            this.$store.commit('setModuleName', 'Courses – Assign Subjects');
+            this.$store.commit('setModuleName', 'Courses – View Prospectus');
             this.fetchDepartments();
         }
     }
@@ -111,21 +76,6 @@
     .wrap-m .w .q { height: 100%; border-left: 1px solid #f0f0f0; display: grid; grid-template-rows: 32px auto }
 
     .q .s { padding: 10px; font-size: 12px; font-weight: 600; border-bottom: 1px solid #f0f0ea; }
-    .q .t { display: grid; grid-template-columns: auto 350px; background-color: #fff; }
-
-    .q .t .u { height: 100%; position: relative;}
-    .q .t .u .a { display: grid; grid-template-columns: auto 10px 160px; }
-    .q .t .u .a .x {}
-    .q .t .u .a .g { height: 24px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #f0f0ea; background-color: #fbfbf7; font-size: 11px; }
-    .q .t .u .a .h button { border: none; font-size: 10px; height: 24px; background-color: #fff }
-
-    .q .t .u .a .x .h { display: grid; grid-template-columns: 20% 20% 20% 20% 20%; border-bottom: 1px solid #f0f0ea; }
-
-    .q .t .u .a .y {}
-    .q .t .u .a .y .h { display: grid; grid-template-columns: 33.33% 33.33% 33.33%; border-bottom: 1px solid #f0f0ea; }
-
-    .q .t .u .a .z { border-left: 1px solid #f0f0ea; border-right: 1px solid #f0f0ea; background-color: #fbfbf7; }
-
-    .q .t .v { height: 100%; padding: 16px 12px; background-color: #fbfbf7; border-left: 1px solid #f0f0ea; }
-
+    .q .t {}
+    .q .t .u { height: 100%; position: relative; }
 </style>

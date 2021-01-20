@@ -95,23 +95,25 @@
 			}
 		},
 		created() {
-			this.$sleep(500).then(() => {
-				if (window.screen.availWidth > 1900) {
-					window.nwWin.width = 1500;
-					window.nwWin.height = 800;
-					window.nwWin.setMinimumSize(1500, 800);
-					window.nwWin.zoomLevel = 1.1;
-				} else {
-					window.nwWin.width = 1200;
-					window.nwWin.height = 660;
-					window.nwWin.setMinimumSize(1200, 660);
-				}
-				window.nwWin.setPosition('center');
-			});
+			if (this.$route.query.set_dimen == 1) {
+				this.$sleep(500).then(() => {
+					if (window.screen.availWidth > 1900) {
+						window.nwWin.width = 1500;
+						window.nwWin.height = 800;
+						window.nwWin.setMinimumSize(1500, 800);
+						window.nwWin.zoomLevel = 1.1;
+					} else {
+						window.nwWin.width = 1200;
+						window.nwWin.height = 660;
+						window.nwWin.setMinimumSize(1200, 660);
+					}
+					window.nwWin.setPosition('center');
+				});
 
-			this.$sleep(1000).then(() => {
-				window.nwWin.show();
-			});
+				this.$sleep(1000).then(() => {
+					window.nwWin.show();
+				});
+			}
 
 			let token = this.$storageGet('api_token', 'local') || false;
 			if (token)

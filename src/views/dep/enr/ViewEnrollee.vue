@@ -72,7 +72,7 @@
 					</div>
 					<div class="f" v-if="enrollment.hasOwnProperty('id')">
 						<div><button :disabled="enrollment.is_confirmed" @click="modifySubjects()"><v-icon name="edit"></v-icon> Modify Subjects</button></div>
-						<div style="text-align: right"><button @click="fetchEnrollment()">Refresh</button> <button :disabled="!enrollment.is_confirmed" style="margin-left: 10px;">Print EBF <v-icon name="print"></v-icon></button></div>
+						<div style="text-align: right"><button @click="fetchEnrollment()">Refresh</button> <button :disabled="!enrollment.is_confirmed" style="margin-left: 10px;" @click="printEBF()">Print EBF <v-icon name="print"></v-icon></button></div>
 					</div>
 				</div>
 				<div class="y">
@@ -95,6 +95,9 @@
 						<div style="font-weight: bold ">{{ totalFees | currency }}</div>
 					</div>
 				</div>
+			</div>
+			<div id="print-ebf">
+				EBF
 			</div>
 		</div>
 	</div>
@@ -151,13 +154,17 @@
 			modifySubjects() {
 				this.$storageSet('dep_set_subject_stuid', this.enrollment.student.school_id, 'session');
 				this.$router.push({ name: 'dep-set-subject' });
-			}
-		},
-		mounted() {
-			this.$store.commit('setModuleName', 'Enrollee Manifest');
+			},
+            printEBF() {
+                this.$htmlToPaper('print-ebf');
+            }
 		},
 		created() {
+			this.$store.commit('setModuleName', 'Enrollee Manifest');
+		},
+		mounted() {
 			this.fetchEnrollment();
+			
 		}
 	}
 </script>
@@ -195,7 +202,7 @@
 	
 	.q .r.o .x .f { padding: 16px 0; display: grid; grid-template-columns: 50% 50%; }
 	.q .r.o .x .f button { border-radius: 2px; color: #000; padding: 4px 12px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
-	.q .r.o .x .f button:disabled { box-shadow: 0 1px 3px rgba(0,0,0,0.12); cursor: not-allowed; }
+	.q .r.o .x .f button:disabled { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
 	.q .r.o .x .f button svg { width: 10px; height: 10px; margin-left: 8px; }
 
 	.q .r.o .y { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }

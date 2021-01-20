@@ -5,6 +5,7 @@
 				<ul>
 					<li @click="goName('cou-master-list')" :class="viewName == 'cou-master-list' || viewName == 'cou-index' ? 'active' : ''"><div>Mater List</div></li>
 					<li @click="goName('cou-assign-subj')" :class="viewName == 'cou-assign-subj' ? 'active' : ''"><div>Assign Subjects</div></li>
+					<li @click="goName('cou-view-prospectus')" :class="viewName == 'cou-view-prospectus' ? 'active' : ''"><div>View Prospectus</div></li>
 				</ul>
 			</div>
 			<div class="make">

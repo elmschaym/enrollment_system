@@ -75,6 +75,7 @@
 	import 'vue-awesome/icons/search';
 
 	export default {
+		emits: ['setViewName'],
 		components: {
 			UiSelect: UISelect,
 			UiLoader: UILoader
