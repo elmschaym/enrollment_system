@@ -1,18 +1,22 @@
 <template>
-	<div class="_t">
+	<div class="_cmp_tbr">
 		<div class="wind">
-			<span @click="winClose()" tooltip="close" v-if="winButtons[0]">
+			<span @click="winClose()" tooltip="close">
 				<b>&times;</b>
 			</span>
-			<span @click="winMinimize()" v-if="winButtons[1]">
+			<span @click="winMinimize()">
 				<b>-</b>
 			</span>
-			<span @click="winMaximize()" v-if="winButtons[2]">
+			<span @click="winMaximize()">
 				<b>+</b>
 			</span>
 		</div>
+		<div class="link">
+		</div>
 		<div class="name" ref="tbName">{{ moduleName }}</div>
-		<div class="menu" v-if="hasMenu">
+		<div class="link" style="text-align: right">
+		</div>
+		<div class="menu">
 			<div class="l">
 				<div @click="refreshView()"><v-icon name="exchange-alt"></v-icon></div>
 			</div>
@@ -47,22 +51,7 @@
 	import 'vue-awesome/icons/window-maximize';
 
 	export default {
-		props: {
-			winButtons: {
-				type: Array,
-				required: false,
-				default: function() {
-					return [1,1,1];
-				}
-			},
-			hasMenu: {
-				type: Boolean,
-				required: false,
-				default: function() {
-					return true;
-				}
-			}
-		},
+		emits: ['showMenu'],
 		data() {
 			return {
 				isFullScreen: false,
@@ -73,23 +62,9 @@
 		computed: {
 			moduleName() {
 				return this.$store.state.module.name;
-			},
-			isPrev() {
-				if (this.$route.name == 'dbd-index')
-					return false;
-				return true;
-			},
-			isNext() {
-				return false;
 			}
 		},
 		methods: {
-            goPrev() {
-                this.$router.go(-1);
-            },
-            goNext() {
-                this.$router.go(1);
-            },
             refreshView() {
                 this.$store.commit('setReloadView');
             },
@@ -126,9 +101,9 @@
 </script>
 
 <style scoped>
-	._t { display: grid; grid-template-columns: 82px auto 82px; width: 100vw; background: linear-gradient(to bottom, #fbfbfb, #ebebeb); height: 28px; }
-	.name { padding: 6px; text-align: center; -webkit-app-region: drag; font-weight: 100; font-size: 11px; font-weight: 600; }
-	.name span { font-size: 12px; color: #40403a; font-weight: bold; line-height: 12px; }
+	._cmp_tbr { display: grid; grid-template-columns: 82px 160px auto 160px 82px; width: 100vw; background: linear-gradient(to bottom, #fbfbfb, #ebebeb); height: 28px; }
+	.name { padding: 8px 6px; -webkit-app-region: drag; font-size: 12x; font-weight: 600; text-align: center }
+	.name span { font-size: 11px; color: #40403a; font-weight: bold; line-height: 12px; }
 	.wind { padding: 4px 5px; display: grid; grid-template-columns: 20px 20px 20px; }
 	.wind span { display: block; width: 20px; height: 20px; cursor: pointer; padding: 5px 5px; color: #555; }
 	.wind span b { display: block; width: 10px; height: 10px; border-radius: 5px; background-color: #707070; font-weight: normal; font-size: 10px; text-align: center; }
@@ -154,7 +129,6 @@
 	.menu .l div { padding: 4px 5px; background: #fdfdf9; border: 1px solid #f0f0ea; border-radius: 2px; text-align: center; cursor: pointer; }
 	.menu .l div svg { width: 9px; height: 9px; margin-top: -2px; }
 
-	.navi .l { margin: 2px 0; }
-	.navi .l button { padding: 4px 7px; background: #fdfdf9; border: 1px solid #f0f0ea; border-radius: 2px; text-align: center; font-size: 12px; line-height: 12px }
-	.navi .l button svg { width: 9px; height: 9px; margin-top: -2px; }
+	.link { padding: 8px 0; }
+	.link span { font-size: 11px; color: #40403a; font-weight: normal; line-height: 12px; margin-right: 10px; }
 </style>

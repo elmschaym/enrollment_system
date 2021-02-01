@@ -137,7 +137,8 @@ const routes = [
                 children: [
                     { path: 'index', component: () => import('../views/sub/AssignRequisites.vue'), name: 'sub-index' },
                     { path: 'assign-xreq', component: () => import('../views/sub/AssignRequisites.vue'), name: 'sub-assign-xreq' },
-                    { path: 'student-eval', component: () => import('../views/sub/StudentEvaluation.vue'), name: 'sub-student-eval' }
+                    { path: 'student-eval', component: () => import('../views/sub/StudentEvaluation.vue'), name: 'sub-student-eval' },
+                    { path: 'create', component: () => import('../views/sub/Create.vue'), name: 'sub-create' },
                 ]
             }
         ]

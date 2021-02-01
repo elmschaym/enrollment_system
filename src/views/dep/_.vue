@@ -1,50 +1,77 @@
 <template>
-	<div class="wrap-x">
-		<div class="side">
-			<side-bar :modules_m="modules_m" :modules_a="modules_a"/>
-		</div>
-		<div class="view">
-			<router-view></router-view>
-			<status-bar></status-bar>
+	<div class="_wrp_dep">
+		<title-bar-dep @showMenu="menuModal"></title-bar-dep>
+		<div class="_wrp_dep_view">
+			<side-con dashboard="dep-index"></side-con>
+			<div class="view">
+				<div class="view_wrap">
+					<router-view></router-view>
+					<status-bar></status-bar>
+				</div>
+				<o-menu-reg :menus="menus[menuName]" :menuName="names[menuName].name" v-if="showMenu" @menuClose="menuClose"></o-menu-reg>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import SideBar from '@/components/SideBar.vue';
+	import TitleBarDep from '@/components/TitleBarDep.vue';
+	import SideCon from '@/components/SideCon.vue';
 	import StatusBar from '@/components/StatusBar.vue';
-
-	import 'vue-awesome/icons/plus';
-	import 'vue-awesome/icons/lock';
-	import 'vue-awesome/icons/leaf';
+	import OMenuReg from '@/components/OMenuReg.vue';
 
 	export default {
 		components: {
-			SideBar,
-			StatusBar
+			TitleBarDep,
+			StatusBar,
+			SideCon,
+			OMenuReg
 		},
 		data() {
 			return {
-				modules_m: [
-					{ name: 'Enrollee List', icon: 'leaf', link: 'dep-enr-master-list'},
-					//{ name: 'Subjects', icon: 'leaf', link: 'dep-list-subject'},
-					//{ name: 'Sections', icon: 'leaf', link: 'dep-list-section'},
-					//{ name: 'Rooms', icon: 'leaf', link: 'dep-list-room'},
-					//{ name: 'Course Offer', icon: 'leaf', link: 'dep-list-course'},
-					{ name: 'Instructors', icon: 'leaf', link: 'dep-fac-master-list'},
-				],
-				modules_a: [
-					{ name: 'New Enrollee', icon: 'plus', link: 'dep-enr-new-enrollee'},
-					{ name: 'New Section', icon: 'plus', link: 'dep-sec-new-section'},
-					{ name: 'Enroll Subject', icon: 'plus-circle', link: 'dep-set-subject'}
-				]
+				showMenu: false,
+				menuName: '',
+				menus: {
+					create: [
+						{ name: 'Enrollee', icon: 'address-book', link: 'dep-enr-new-enrollee' },
+						{ name: 'Section', icon: 'crop', link: 'dep-sec-new-section' }
+					],
+					lister: [
+						{ name: 'Enrollees', icon: 'id-card', link: 'dep-enr-master-list' },
+						{ name: 'Faculties', icon: 'users', link: 'dep-fac-master-list' }
+					],
+					assign: [
+						{ name: 'Student Subjects', icon: 'braille', link: 'dep-set-subject' }
+					],
+					tools: [
+						{ name: 'Generate Prospectus', icon: 'clone', link: 'dep-gen-prospectus' }
+					]
+				},
+				names: {
+					create: { name: 'Create New Instance' },
+					lister: { name: 'Master List' },
+					assign: { name: 'Enrollment Manager' },
+					tools: { name: 'Tools' },
+				}
+			}
+		},
+		methods: {
+			menuModal(v) {
+				this.showMenu = !this.showMenu;
+				this.menuName = v;
+			},
+			menuClose() {
+				this.showMenu = false;
 			}
 		}
 	} 
 </script>
 
 <style scoped>
-	.wrap-x { height: inherit; display: grid; grid-template-columns: 160px auto; background-color: #fff }
-	.side { height: 100%; }
-	.view { height: calc(100% - 24px); display: grid; grid-template-rows: auto 24px; }
+	._wrp_dep { height: inherit; background-color: #fff }
+
+	._wrp_dep_view { height: 100%; display: grid; grid-template-columns: 28px auto; }
+
+	.view { height: inherit; position: relative; }
+	.view_wrap { height: calc(100% - 28px); display: grid; grid-template-rows: auto 24px; }
 </style>

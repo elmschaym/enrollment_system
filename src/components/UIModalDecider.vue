@@ -1,5 +1,5 @@
 <template>
-    <div :class="['wrap-m', hasBG ? 'has-bg' : '']">
+    <div :class="['_com_umd', hasBG ? 'has-bg' : '']">
         <div class="moda">
             <div class="text">
                 <slot name="text">Are you sure you want to continue?</slot>
@@ -43,8 +43,8 @@
 </script>
 
 <style scoped>
-    .wrap-m { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; }
-    .wrap-m.has-bg { background-color: rgba(255,255,255,0.95); }
+    ._com_umd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; }
+    ._com_umd.has-bg { background-color: rgba(255,255,255,0.95); }
 
     .moda { width: 280px; height: auto; background-color: #fff; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 9999; }
 

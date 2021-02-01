@@ -6,7 +6,15 @@
 
 <script>
 	export default {
-		created() {	
+		created() {
+			/**if (this.$route.query.hasOwnProperty('chech_width') && window.screen.availWidth > 1900) {
+				if (window.nwWin.zoomLevel != 1.1) {
+						window.nwWin.width = 1500;
+						window.nwWin.height = 800;
+						window.nwWin.setMinimumSize(1500, 800);
+						window.nwWin.zoomLevel = 1.1;
+				}
+			} **/
 		}
 	}
 </script>

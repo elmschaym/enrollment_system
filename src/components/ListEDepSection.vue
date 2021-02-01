@@ -1,5 +1,5 @@
 <template>
-	<div class="find-c">
+	<div class="_com_leds">
 		<div class="rslt">
 			<div class="tabs">
 				<div>Code</div>
@@ -23,7 +23,7 @@
 		</div>
 		<div class="find">
 			<div class="i">
-				<input v-model="queryString" :placeholder="'Find Section \\'+ queryType"/>
+				<input v-model="queryString" :placeholder="'Find Section  ['+ queryType +']'"/>
 				<span v-if="queryString.length > 0" @click="queryString = ''">&times;</span>
 			</div>
 			<button @click="switchQueryType()">{{ queryType }}</button>
@@ -95,7 +95,7 @@
 </script>
 
 <style scoped>
-	.find-c { height: inherit; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: grid; grid-template-rows: auto 28px }
+	._com_leds { height: inherit; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: grid; grid-template-rows: auto 28px }
 
 	.form { display: grid; grid-template-columns: auto 32px; } 
 	.form input { width: 100%; color: #391e22; padding: 8px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; cursor: pointer; }
@@ -123,6 +123,7 @@
 	.find .i { background-color: #fefefe; position: relative; }
 	.find .i span { position: absolute;; top: 2px; right: 5px; padding: 5px; cursor: pointer; }
 	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; }
+	.find .i input::placeholder { color: #202020; }
 	.find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; }
 	.find button svg { width: 12px; height: 12px; float: right; }
 </style>

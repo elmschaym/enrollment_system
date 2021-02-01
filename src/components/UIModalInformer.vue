@@ -1,5 +1,5 @@
 <template>
-	<div :class="['wrap-m', hasBG ? 'has-bg' : '']">
+	<div :class="['_com_umi', hasBG ? 'has-bg' : '']">
 		<div class="moda">
 			<div class="body">
 				<div class="text">
@@ -41,8 +41,8 @@
 </script>
 
 <style scoped>
-	.wrap-m { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; z-index: 9998; }
-	.wrap-m.has-bg { background-color: rgba(255,255,255,0.95); }
+	._com_umi { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; z-index: 9998; }
+	._com_umi.has-bg { background-color: rgba(255,255,255,0.95); }
 
 	.moda { width: 280px; background-color: #fff; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 9999; }
 	.head { display: grid; grid-template-columns: 24px auto; background: #f5f5f0; border-bottom: 1px solid #f0f0f0; height: 24px; }

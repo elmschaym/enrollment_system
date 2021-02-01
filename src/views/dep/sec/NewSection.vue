@@ -8,70 +8,87 @@
 							{{ subject.code }}
 						</div>
 						<div class="name">
-							<div class="n">{{ subject.name }}</div>
-							<div class="m">{{ subject.units }} Units</div>
-						</div>
-						<div class="butt">
-							<button @click="addSection()" :class="isSchedOkay ? 'okay' : ''" :disabled="!isSchedOkay"><v-icon name="plus"></v-icon> Add Sched</button>
-						</div>
-					</div>
-					<div class="r s">
-						<div class="c">
-							<div>
-								<label for="">Week Day</label>
-								<ui-select @setValue="setSchedDay" :options="daysList" :styles="['width: 95%']"></ui-select>
+							<div class="m">
+								<div>Instructor</div>
+								<div>UNASSIGNED</div>
 							</div>
-							<div>
-								<label for="">Start Time</label>
-								<ui-select @setValue="setSchedTimeStart" :options="timeStartList" :styles="['width: 95%']"></ui-select>
+							<div class="m">
+								<div>Units</div>
+								<div>{{ subject.units }}</div>
 							</div>
-							<div>
-								<label for="">End Time</label>
-								<ui-select @setValue="setSchedTimeEnd" :options="timeEndList" :styles="['width: 95%']"></ui-select>
-							</div>
-							<div>
-								<label for="">Slots</label>
-								<input type="text" v-model="schedule.slots"/>
+							<div class="m">
+								<div>Description</div>
+								<div>--</div>
 							</div>
 						</div>
 					</div>
-					<div class="r o">
-						<div class="x">
-							<div class="a">Room List</div>
-							<div class="b" v-if="roomsList.length > 0">
-								<div :key="'list'+ r.id" v-for="r in roomsList"><v-icon name="square"></v-icon> {{ r.name }}<span style="float: right">{{r.slots}}</span></div>
+					<div class="g">
+						<div class="r n">
+							<div class="name">
+								<span>{{ subject.name }}</span>
 							</div>
-							<div class="n" v-else>
-								<div>No room available</div>
-							</div>
-						</div>
-						<div class="y">
-							<div class="a">Available Rooms</div>
-							<div class="b" v-if="roomsList.length > 0">
-								<div :key="'open'+ r.id" v-for="r in roomsList" @click="setSchedRoom(r.id)" :class="r.id == schedule.room ? 'active': ''">{{ r.name }}</div>
-							</div>
-							<div class="b" v-else>
-								No room available. Please select another time or day.
-							</div>
-							<div class="c" v-if="tempSched.day != ''">
-								<div>{{ tempSched.day }}</div>
-								<div>{{ tempSched.name }}</div>
-								<div>{{ tempSched.time }}</div>
-								<div>{{ getRoom(schedule.room) }}</div>
-								<div @click="clearTempSched()">&times;</div>
+							<div class="butt">
+								<button @click="addSection()" :class="isSchedOkay ? 'okay' : ''" :disabled="!isSchedOkay"><v-icon name="plus"></v-icon> Add Sched</button>
 							</div>
 						</div>
-					</div>
-					<div class="r t">
-						<div class="x" v-if="sections.length > 0">
-							<div class="i" v-for="(s,i) in sections" :key="'sect'+s.name +'-'+i">
-								<div class="sn">{{ s.name }}</div>
-								<div class="st">
-									<div class="nn">{{ s.sched_days }} {{ s.sched_time }}</div>
-									<div class="mm">{{ s.room.name }} <span>{{ s.slots }} slots</span></div>
+						<div class="r s">
+							<div class="c">
+								<div>
+									<label for="">Week Day</label>
+									<ui-select @setValue="setSchedDay" :options="daysList" :styles="['width: 95%']"></ui-select>
+								</div>
+								<div>
+									<label for="">Start Time</label>
+									<ui-select @setValue="setSchedTimeStart" :options="timeStartList" :styles="['width: 95%']"></ui-select>
+								</div>
+								<div>
+									<label for="">End Time</label>
+									<ui-select @setValue="setSchedTimeEnd" :options="timeEndList" :styles="['width: 95%']"></ui-select>
+								</div>
+								<div>
+									<label for="">Slots</label>
+									<input type="text" v-model="schedule.slots"/>
 								</div>
 							</div>
-							<div style="clear: both"></div>
+						</div>
+						<div class="r o">
+							<div class="x">
+								<div class="a">Room List</div>
+								<div class="b" v-if="roomsList.length > 0">
+									<div :key="'list'+ r.id" v-for="r in roomsList"><v-icon name="square"></v-icon> {{ r.name }}<span style="float: right">{{r.slots}}</span></div>
+								</div>
+								<div class="n" v-else>
+									<div>No room available</div>
+								</div>
+							</div>
+							<div class="y">
+								<div class="a">Available Rooms</div>
+								<div class="b" v-if="roomsList.length > 0">
+									<div :key="'open'+ r.id" v-for="r in roomsList" @click="setSchedRoom(r.id)" :class="r.id == schedule.room ? 'active': ''">{{ r.name }}</div>
+								</div>
+								<div class="b" v-else>
+									No room available. Please select another time or day.
+								</div>
+								<div class="c" v-if="tempSched.day != ''">
+									<div>{{ tempSched.day }}</div>
+									<div>{{ tempSched.name }}</div>
+									<div>{{ tempSched.time }}</div>
+									<div>{{ getRoom(schedule.room) }}</div>
+									<div @click="clearTempSched()">&times;</div>
+								</div>
+							</div>
+						</div>
+						<div class="r t">
+							<div class="x" v-if="sections.length > 0">
+								<div class="i" v-for="(s,i) in sections" :key="'sect'+s.name +'-'+i">
+									<div class="sn">{{ s.name }}</div>
+									<div class="st">
+										<div class="nn">{{ s.sched_days }} {{ s.sched_time }}</div>
+										<div class="mm">{{ s.room.name }} <span>{{ s.slots }} slots</span></div>
+									</div>
+								</div>
+								<div style="clear: both"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -97,6 +114,7 @@
 
 	import 'vue-awesome/icons/square';
 	import 'vue-awesome/icons/trash';
+	import 'vue-awesome/icons/plus';
 
 	export default {
 		components: {
@@ -257,18 +275,25 @@
 <style scoped>
 	.form-o { position: relative; height: auto; }
 	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 312px; }
-	.form-o .w .p { height: 100%; position: relative; background-color: #fff }
+	.form-o .w .p { height: 100%; position: relative; background-color: #fff; }
 	.form-o .w .q { height: 100%; display: grid; grid-template-rows: auto 70px; border-left: 1px solid #f0f0f0; background: #f8f8f2; }
 
-	.p .h { padding: 12px; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 72px auto 90px; margin-bottom: 0px; }
-	.p .h .code { display: flex; align-items: center; justify-content: center; font-size: 16px; color: #444; font-weight: 600; background-color: #f5f5f0; white-space: nowrap; overflow-x: hidden; padding-top: 6px; padding-bottom: 6px; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+	.p .u { height: 100%; display: grid; grid-template-columns: 220px auto }
+
+	.p .h { height: 100%; background-color: #fbfbf7; border-right: 1px solid #f0f0ea; }
+	.p .h .code { height: 96px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #444; font-weight: 600; background-color: #f0f0ea; white-space: nowrap; overflow-x: hidden; }
 	.p .h .name { padding: 2px 0 0 12px; }
-	.p .h .name .n { font-size: 13px; font-weight: 600; margin: 2px 0; }
-	.p .h .name .m { font-size: 11px;  }
-	.p .h .butt { padding: 6px 0; }
-	.p .h .butt button { width: 100%; border-radius: 2px; color: #808080; padding: 3px 8px 2px 8px; border: none; background-color: #f0f0ea; font-size: 11px; outline: none; cursor: pointer;  }
-	.p .h .butt button.okay { color: #000; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
-	.p .h .butt button svg { width: 12px; height: 12px; }
+	.p .h .name .m { display: grid; grid-template-columns: 120px 100px  }
+	.p .h .name .m > div { font-size: 11px; padding: 2px 0; }
+
+	.p .g {}
+
+	.p .g .r.n { display: grid; grid-template-columns: auto 100px; padding: 8px 12px }
+	.p .g .r.n .name { padding: 5px 0; }
+	.p .g .r.n .name span { font-size: 12px; font-weight: 600; color: #202020; }
+	.p .g .r.n .butt button { width: 100%; border-radius: 2px; color: #808080; padding: 4px 8px; border: none; background-color: #f0f0ea; font-size: 11px; outline: none; cursor: pointer;  }
+	.p .g .r.n .butt button.okay { color: #000; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+	.p .g .r.n .butt button svg { width: 12px; height: 12px; }
 
 	.p .r { position: relative; }
 	.p .s { padding: 12px; background-color: #fbfbf7 }
@@ -295,11 +320,11 @@
 
 	.p .r.t { padding: 10px 4px; border-top: 1px solid #f0f0ea; }
 	.r.t .x { display: grid; grid-template-columns: 50% 50%; grid-auto-rows: 48px; height: 192px; overflow-y: scroll; }
-	.r.t .x .i { width: 200px; height: 32px; display: grid; grid-template-columns: 60px auto; border: 1px solid #f0f0ea; margin: 8px auto; }
-	.r.t .x .i .sn { height: 100%; background: #f0f0ea; color: #999; font-size: 13px; font-weight: 600; padding: 7px 0; text-align: center; }
-	.r.t .x .i .st { padding: 2px 5px; background: #fbfbf7; }
+	.r.t .x .i { width: 220px; height: 32px; display: grid; grid-template-columns: 70px auto; border: 1px solid #f0f0ea; margin: 8px auto; }
+	.r.t .x .i .sn { height: 100%; background: #f0f0ea; color: #555; font-size: 13px; font-weight: 600; padding: 7px 0; text-align: center; }
+	.r.t .x .i .st { padding: 2px 5px; background: #fff; }
 	.r.t .x .i .st .nn { font-size: 11px; color: #111; margin-bottom: 2px; }
-	.r.t .x .i .st .mm { font-size: 10px; color: #444; }
+	.r.t .x .i .st .mm { font-size: 11px; color: #444; }
 	.r.t .x .i .st .mm span { margin-left: 6px; }
 	.r.t .x .z { padding: 16px; text-align: center; }
 

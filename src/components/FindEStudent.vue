@@ -1,7 +1,7 @@
 <template>
-    <div class="find-c">
+    <div class="_f">
         <div class="find">
-            <input v-model="query" :placeholder="'Find Student \\'+ queryType" :disabled="disableInput"/>
+            <input v-model="query" :placeholder="'Enter Student  ['+ queryType +']'" :disabled="disableInput"/>
             <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
         </div>
         <div class="rslt">
@@ -89,9 +89,10 @@
 </script>
 
 <style scoped>
-    .find-c { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+    ._f { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .find { display: grid; grid-template-columns: auto 60px; }
     .find input { height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-bottom: 1px solid #f0f0f0; border-top: 1px solid #f0f0f0; }
+    .find input::placeholder { color: #202020; }
     .find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; border-top: 1px solid #f0f0ea; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; }
     .find button svg { width: 12px; height: 12px; float: right; }
 

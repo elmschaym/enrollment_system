@@ -71,6 +71,7 @@
 	import 'vue-awesome/icons/plus';
 	import 'vue-awesome/icons/filter';
 	import 'vue-awesome/icons/square';
+	import 'vue-awesome/icons/search';
 
 	export default {
 		emits: ['setViewName'],

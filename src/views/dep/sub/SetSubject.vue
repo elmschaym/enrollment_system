@@ -6,69 +6,73 @@
 					<div class="pixx">
 						<v-icon name="user"></v-icon>
 					</div>
-					<div class="name">
-						<div class="n">{{ student.lastname }}, {{ student.firstname }} {{ student.middlename }}</div>
-						<div class="m"><span>{{ student.school_id }}</span> – {{ student.admission[0].course.program_type +' '+ student.admission[0].course.name_alias }}  </div>
-					</div>
-					<div class="butt">
-						<button @click="setStudentModalShow()">Switch <v-icon name="user"></v-icon></button>
-					</div>
 				</div>
-				<div class="r o">
-					<div class="x">
-						<div class="a">Enrolled Subjects <span style="float: right" @click="fetchSubjectsEnrolled()">Refresh</span></div>
-						<div class="b">
-							<div>Code</div>
-							<div>Section</div>
-							<div>Week</div>
-							<div>Time</div>
-							<div>Room</div>
-							<div style="text-align: center">Units</div>
+				<div class="g">
+					<div class="r s">
+						<div class="name">
+							<div class="n">{{ student.lastname }}, {{ student.firstname }} {{ student.middlename }}</div>
+							<div class="c">{{ student.school_id }}, &nbsp; {{ student.admission[0].course.program_type +' '+ student.admission[0].course.name_alias }}</div>
 						</div>
-						<div class="d" v-if="subjects.length > 0">
-							<div :class="selectIdH == s.id ? 'active': ''" :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
-								<div>{{ s.subject.code }}</div>
-								<div>{{ s.section.name }}</div>
-								<div>{{ s.section.sched_days }}</div>
-								<div>{{ s.section.sched_time }}</div>
-								<div>{{ s.section.room.name }}</div>
-								<div style="text-align: center">{{ s.subject.units }} </div>
+						<div class="butt">
+							<button @click="setStudentModalShow()">Switch <v-icon name="user"></v-icon></button>
+						</div>
+					</div>
+					<div class="r o">
+						<div class="x">
+							<div class="a">Enrolled Subjects <span style="float: right" @click="fetchSubjectsEnrolled()">Refresh</span></div>
+							<div class="b">
+								<div>Code</div>
+								<div>Section</div>
+								<div>Week</div>
+								<div>Time</div>
+								<div>Room</div>
+								<div style="text-align: center">Units</div>
+							</div>
+							<div class="d" v-if="subjects.length > 0">
+								<div :class="selectIdH == s.id ? 'active': ''" :key="'subj'+ s.id" v-for="(s,i) in subjects" @contextmenu="subjectListCMenu($event, s, i)">
+									<div>{{ s.subject.code }}</div>
+									<div>{{ s.section.name }}</div>
+									<div>{{ s.section.sched_days }}</div>
+									<div>{{ s.section.sched_time }}</div>
+									<div>{{ s.section.room.name }}</div>
+									<div style="text-align: center">{{ s.subject.units }} </div>
+								</div>
+							</div>
+							<div class="z" v-else>
+								No Enrolled Subjects
+							</div>
+							<div class="e" v-if="student.admission[0].hasOwnProperty('enrollment')">
+								<div>{{ totalSubjects }} Subject(s)</div>
+								<div style="text-align: right">{{ enrolledUnits }} / {{ allowedUnits}} Allowed Units</div>
 							</div>
 						</div>
-						<div class="z" v-else>
-							No Enrolled Subjects
-						</div>
-						<div class="e" v-if="student.admission[0].hasOwnProperty('enrollment')">
-							<div>{{ totalSubjects }} Subject(s)</div>
-							<div style="text-align: right">{{ enrolledUnits }} / {{ allowedUnits}} Allowed Units</div>
-						</div>
-					</div>
-					<div class="y">
-						<div class="a">Available Sections <span style="float: right" @click="fetchSections()">Refresh</span></div>
-						<div class="b">
-							<div></div>
-							<div>Code</div>
-							<div style="text-align: center">Slots</div>
-						</div>
-						<div class="d" v-if="sectionsAvailable.length > 0">
-							<div :class="selectIdS == s.id ? 'active': ''" :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @click="enrolSection(s.id)" @contextmenu="sectionListCMenu($event, s, i)">
-								<div style="text-align: center"><v-icon :class="s.stat == 1 ? 'rr' : (s.stat == 2) ? 'gg' : 'bb'" name="square"></v-icon></div>
-								<div>{{ s.name }}</div>
-								<div style="text-align: center">{{ s.slots }}</div>
+						<div class="y">
+							<div class="a">Available Sections <span style="float: right" @click="fetchSections()">Refresh</span></div>
+							<div class="b">
+								<div></div>
+								<div>Code</div>
+								<div style="text-align: center">Slots</div>
+							</div>
+							<div class="d" v-if="sectionsAvailable.length > 0">
+								<div :class="selectIdS == s.id ? 'active': ''" :key="'sect'+ s.id" v-for="(s,i) in sectionsAvailable" @click="enrolSection(s.id)" @contextmenu="sectionListCMenu($event, s, i)">
+									<div style="text-align: center"><v-icon :class="s.stat == 1 ? 'rr' : (s.stat == 2) ? 'gg' : 'bb'" name="square"></v-icon></div>
+									<div>{{ s.name }}</div>
+									<div style="text-align: center">{{ s.slots }}</div>
+								</div>
+							</div>
+							<div class="z" v-else>
+								No Section Available
+							</div>
+							<div class="e">
+								<span><v-icon class="bb" name="square"></v-icon> Available</span>
+								<span><v-icon class="rr" name="square"></v-icon> Conflict</span>
+								<span><v-icon class="gg" name="square"></v-icon> Enrolled</span>
 							</div>
 						</div>
-						<div class="z" v-else>
-							No Section Available
-						</div>
-						<div class="e">
-							<span><v-icon class="bb" name="square"></v-icon> Available</span>
-							<span><v-icon class="rr" name="square"></v-icon> Conflict</span>
-							<span><v-icon class="gg" name="square"></v-icon> Enrolled</span>
-						</div>
 					</div>
-				</div>
-				<div class="r">
-					<o-time-schedule v-if="subjects" :subjects="subjects"></o-time-schedule>
+					<div class="r t">
+						<o-time-schedule v-if="subjects" :subjects="subjects"></o-time-schedule>
+					</div>
 				</div>
 			</div>
 			<div class="q">
@@ -85,7 +89,7 @@
 		</div>
 		<ui-modal-listener v-if="isSetStudentModalShow" @modalClose="setStudentModalClose" @listenedYes="setStudentFromModal" :listenLabel="isSwitchStudent ? 'Switching...' : 'Switch Student'" :hasBG="true" class="moda-l">
 			<div slot="text" style="width: 60%">
-				<input v-model="studentID" placeholder="Enter Student ID"/>
+				<input v-model="studentID" placeholder="Enter Student ID" autofocus="" />
 				<div v-show="isSwitchError" class="e">Student Not Found</div>
 			</div>
 		</ui-modal-listener>
@@ -103,6 +107,7 @@
 	import 'vue-awesome/icons/user';
 	import 'vue-awesome/icons/square';
 	import 'vue-awesome/icons/plus';
+	import 'vue-awesome/icons/id-card';
 
 	export default {
 		components: {
@@ -305,41 +310,51 @@
 <style scoped>
 	.form-o { height: auto; position: relative; }
 	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 312px; }
-	.form-o .w .p { height: 100%; padding: 0 16px; }
+	.form-o .w .p { height: 100%; display: grid; grid-template-columns: 200px auto }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: 420px auto 70px; }
 
-	.p .h { padding: 16px 0 8px 0; border-bottom: 1px solid #d0d0c0; display: grid; grid-template-columns: 40px auto 90px; margin-bottom: 0px;}
-	.p .h .pixx { height: 40px; width: 40px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
-	.p .h .pixx svg { height: 32px; width: 32px; margin: 4px; color: #d5d5d0; }
-	.p .h .name { padding: 0 0 0 12px; }
-	.p .h .name .n { font-size: 12px; font-weight: 600; margin: 4px 0; }
-	.p .h .name .m { font-size: 11px;  }
-	.p .h .butt { display: flex; align-items: center; }
-	.p .h .butt button { width: 100%; border-radius: 2px; color: #000; padding: 3px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
-	.p .h .butt button svg { width: 10px; height: 10px; margin-left: 8px; }
+	.p .h { height: 100%; background-color: #272537; border-right: 1px solid #f0f0ea; }
+	.p .h .pixx { height: 180px; background-color: #373547; display: flex; align-items: center; justify-content: center; }
+	.p .h .pixx svg { height: 100px; width: 100px; color: #d0d0d0; }
+	.p .h .name { padding: 5px 8px; }
+	.p .h .name .n { font-size: 12px; ifont-weight: 600; margin: 4px 0; color: #ddd; }
+	.p .h .name .m {}
+	.p .h .name .m svg { width: 16px; height: 12px; color: #ddd; margin-bottom: -1px }
+	.p .h .name .m span { font-size: 11px; margin-left: 5px; color: #ddd; }
 
-	.p .r.o { border-bottom: 4px solid #c0c0ba; }
-	.p .r.o { display: grid; grid-template-columns: auto 200px; padding: 16px 0; }
+	.p .g {}
+	.p .r.s { display: grid; grid-template-columns: auto 100px; padding: 8px 12px; border-bottom: 1px solid #f0f0ea; }
+	.p .r.s .name { padding: 4px; }
+	.p .r.s .name div.n { font-size: 12px; color: #000; ifont-weight: 600; padding-bottom: 2px; }
+	.p .r.s .name div.c { font-size: 12px; color: #222; }
+	.p .r.s .name div.n svg { width: 16px; height: 11px; color: #444; margin-right: 2px;  }
+
+	.p .r.s .butt { padding: 8px 0; }
+	.p .r.s .butt button { width: 100%; border-radius: 2px; color: #000; padding: 4px 8px 4px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
+	.p .r.s .butt button svg { width: 10px; height: 10px; margin-left: 8px; }
+
+	.p .r.o { margin: 10px; }
+	.p .r.o { display: grid; grid-template-columns: auto 200px; padding: 8px 0; }
 	.p .r.o .x { background-color: #fff; border-right: 1px solid #f0f0f0; iborder-bottom: 1px solid #f0f0f0; }    
-	.p .r.o .x .a { font-size: 11px; color: #111; padding: 6px 7px; border-top: 1px solid #f7f7f7; background-color: #fff; }
-	.p .r.o .x .a span { font-size: 10px; background-color: #fff; padding: 2px 4px; border: 1px outset #fff; cursor: pointer; display: inline-block; margin-top: -2px; }
-	.p .r.o .x .b, .p .r.o .x .d > div { display: grid; grid-template-columns: 70px 55px 50px auto 60px 40px  }
-	.p .r.o .x .z { height: 237px; text-align: center; padding: 16px; font-size: 11px; }
+	.p .r.o .x .a { font-size: 11px; color: #111; padding: 6px 7px; background-color: #fff; }
+	.p .r.o .x .a span { font-size: 10px; background-color: #fff; padding: 2px 4px; border: 1px solid #e0e0da; cursor: pointer; display: inline-block; margin-top: -2px; }
+	.p .r.o .x .b, .p .r.o .x .d > div { display: grid; grid-template-columns: 65px 65px 50px auto 60px 40px  }
+	.p .r.o .x .z { height: 277px; text-align: center; padding: 16px; font-size: 11px; }
 	.p .r.o .x .b { background-color: #f7f7f7; iborder-bottom: 1px solid #fafafa; }
 	.p .r.o .x .b div { padding: 7px; font-size: 10px; }
-	.p .r.o .x .d { height: 237px; overflow-y: scroll; }
+	.p .r.o .x .d { height: 277px; overflow-y: scroll; }
 	.p .r.o .x .d > div { cursor: pointer; }
 	.p .r.o .x .d > div:hover, .p .r.o .x .d > div.active { background-color: #efefea }
 	.p .r.o .x .d > div div { padding: 6px 7px; font-size: 11px; border-bottom: 1px solid #fafafa; }
 	.p .r.o .x .e { display: grid; grid-template-columns: 40% 60%; font-size: 10px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); height: 24px; }
 
 	.p .r.o .y {}
-	.p .r.o .y .a { font-size: 11px; color: #111; padding: 6px 10px; border-top: 1px solid #f7f7f7; background-color: #fff; }
-	.p .r.o .y .a span { font-size: 10px; background-color: #fff; padding: 2px 4px; border: 1px outset #fff; cursor: pointer; display: inline-block; margin-top: -2px; }
+	.p .r.o .y .a { font-size: 11px; color: #111; padding: 6px 0 6px 10px; background-color: #fff; }
+	.p .r.o .y .a span { font-size: 10px; background-color: #fff; padding: 2px 4px; border: 1px solid #e0e0da; cursor: pointer; display: inline-block; margin-top: -2px; }
 	.p .r.o .y .b, .p .r.o .y .d > div { display: grid; grid-template-columns: 30px auto 86px }
 	.p .r.o .y .b { border-bottom: 1px solid #fafafa; background-color: #f7f7f7; }
 	.p .r.o .y .b div { padding: 7px 12px; font-size: 10px; }
-	.p .r.o .y .d { height: 236px; overflow-y: scroll; }
+	.p .r.o .y .d { height: 276px; overflow-y: scroll; }
 	.p .r.o .y .d > div div { padding: 6px 12px; font-size: 11px; }
 	.p .r.o .y .d > div div svg { width: 10px; height: 10px; }
 	.p .r.o .y svg.rr { color: #fa897b; }
@@ -347,11 +362,12 @@
 	.p .r.o .y svg.gg { color: #d0d0d0; }
 	.p .r.o .y .d > div { cursor: pointer; border-bottom: 1px solid #fafafa; }
 	.p .r.o .y .d > div:hover,	.p .r.o .y .d > div.active { background-color: #efefea }
-	.p .r.o .y .z { height: 236px; text-align: center; padding: 16px; font-size: 11px; }
+	.p .r.o .y .z { height: 276px; text-align: center; padding: 16px; font-size: 11px; }
 	.p .r.o .y .e { height: 24px; font-size: 10px; display: grid; grid-template-columns: 33% 34% 33%; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .r.o .y .e span { display: block; text-align: center; }
 	.p .r.o .y .e span svg { height: 10px; width: 10px; }
 
+	.p .r.t { border-top: 4px solid #c0c0ba; padding: 0 0 10px 0; margin: 0 10px; }
 
 	.q .t { position: relative; padding: 12px; }
 

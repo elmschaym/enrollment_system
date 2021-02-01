@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap-z">
     </div>
 </template>
 
@@ -18,4 +18,5 @@
 </script>
 
 <style scoped>
+    .wrap-z { height: 100% }
 </style>

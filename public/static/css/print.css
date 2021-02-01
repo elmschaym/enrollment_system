@@ -1,5 +1,2 @@
-@media print {
-	header nav, footer {
-		display: none;
-	}
-}
+* { box-sizing: border-box; font-size: 12px; font-family: 'Blinker', sans-serif; color: #000; }
+input, button, select, textarea { font-family: 'Blinker', sans-serif; outline: none; cursor: pointer; line-height: 1 }

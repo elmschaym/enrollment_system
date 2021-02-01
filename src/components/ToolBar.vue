@@ -1,5 +1,5 @@
 <template>
-    <div class="tool-b">
+    <div class="_t">
         <div class="w">
             <div class="x">
                 <ul>
@@ -115,9 +115,9 @@
 </script>
 
 <style scoped>
-    .tool-b {}
+    ._t { height: 24px; background-color: #f8f8f2; ibackground: linear-gradient(to bottom, #f8f8f2, #ebebe7); }
 
-    .tool-b .w { height: 24px; background-color: #f8f8f2; display: grid; grid-template-columns: auto 200px; border-bottom: 1px solid #EEEEEC; }
+    ._t .w { display: grid; grid-template-columns: auto 200px; border-bottom: 1px solid #EEEEEC; }
     .w .x {}
     ul { display: block; list-style-type: none }
     ul li { display: inline-block;  }

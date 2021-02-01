@@ -6,17 +6,18 @@
                     <div class="pixx">
                         <v-icon name="user"></v-icon>
                     </div>
-                    <div class="name">
-                        <div class="n" v-if="admission.student != null">{{ admission.student.lastname }}, {{ admission.student.firstname }} {{ admission.student.middlename }}</div>
-                        <div class="m" v-if="admission.student != null">{{ admission.student.school_id }} – {{ admission.id }}</div>
+                </div>
+                <div class="u">
+                    <div class="r n">
+                        <div class="f" v-if="admission.student != null">{{ admission.student.lastname }}, {{ admission.student.firstname }} {{ admission.student.middlename }}</div>
+                        <div class="g" v-if="admission.student != null">
+                            <span>{{ admission.student.school_id }}</span></div>
                     </div>
-                    <div class="butt" v-if="admission.student != null">
+                    <div class="r s" v-if="admission.student != null">
                         <div>Academic Program</div><div>{{ admission.academic_program.name }}</div>
                         <div>Date Admitted</div><div>{{ admission.date_admitted }}</div>
                         <div>Admission Status</div><div>{{ admission.status }}</div>
                     </div>
-                </div>
-                <div class="u">
                     <div class="r t">
                         <div class="j">
                             <span>Preferred Program (Course)</span>
@@ -28,14 +29,17 @@
                         </div>
                     </div>
                     <div class="r o">
-                        <div class="j">Enrollment Payables</div>
-                        <div class="k">
-                            <div><span></span> Tuition Fee (Lectures/Laboratories)</div>
-                            <div><span></span> Insurance (Semester)</div>
-                            <div><span></span> Library Fee</div>
-                            <div><span></span> IT Fee</div>
-                            <div><span></span> School ID (Registration)</div>
-                        </div>
+                        <fieldset>
+                            <legend>Enrollment Payables</legend>
+                            <div class="k">
+                                <div><span></span> Tuition Fee (Lectures/Laboratories)</div>
+                                <div><span></span> Insurance (Semester)</div>
+                                <div><span></span> Library Fee</div>
+                                <div><span></span> IT Fee</div>
+                                <div><span></span> School ID (Registration)</div>
+                            </div>
+                        </fieldset>
+
                     </div>
                 </div>
                 <div class="dsbd" v-if="!admission.hasOwnProperty('id')"></div>
@@ -73,6 +77,7 @@
     import FindEAdmission from '@/components/FindEAdmission.vue';
 
     import 'vue-awesome/icons/user';
+    import 'vue-awesome/icons/id-card';
 
     export default {
         emits: ['setViewName'],
@@ -157,33 +162,42 @@
 </script>
 
 <style scoped>
-    .form-o { position: relative; height: auto; }
+    .form-o { height: 100%; position: relative; }
     .form-o .w { height: 100%; display: grid; grid-template-columns: auto 270px; }
-    .form-o .w .p { height: 100%; padding: 16px; position: relative; background-color: #fff }
+    .form-o .w .p { height: 100%; position: relative; display: grid; grid-template-columns: 200px auto  }
     .form-o .w .q { height: 100%; display: grid; grid-template-rows: auto 70px; border-left: 1px solid #f0f0f0; background: #f8f8f2; }
 
-    .p .h { padding: 0 0 8px 0; display: grid; grid-template-columns: 48px auto 250px; margin-bottom: 0px; height: 60px; border-bottom: 1px solid #e0e0e0; }
-    .p .h .pixx { height: 48px; width: 48px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
-    .p .h .pixx svg { height: 40px; width: 40px; margin: 4px; color: #d5d5d0; }
-    .p .h .name { padding: 0 0 0 12px; }
-    .p .h .name .n { font-size: 12px; font-weight: 600; margin: 4px 0; }
-    .p .h .name .m { font-size: 11px; margin: 2px 0; }
-    .p .h .butt { display: grid; grid-template-columns: 100px 150px; grid-template-rows: 16px 16px 16px; padding: 4px 0; }
-    .p .h .butt div { font-size: 11px; text-overflow: clip; white-space: nowrap; }
+    .p .h { height: 100%; background-color: #272537; border-right: 1px solid #f0f0ea; }
+    .p .h .pixx { height: 180px; background-color: #373547; display: flex; align-items: center; justify-content: center; }
+    .p .h .pixx svg { height: 100px; width: 100px; color: #d0d0d0; }
+    .p .h .name { padding: 5px 8px; }
+    .p .h .name .n { font-size: 12px; ifont-weight: 600; margin: 4px 0; color: #fff; }
+    .p .h .name .m {}
+    .p .h .name .m svg { width: 16px; height: 12px; color: #fff; margin-bottom: -1px }
+    .p .h .name .m span { font-size: 11px; margin-left: 5px; color: #eee; }
 
-    .p .u {  padding:  16px 0; background-color: #fff }
+    .p .u { background-color: #fff }
     .p .u .r { position: relative; }
 
-    .p .u .r.t {}
-    .p .u .r.t .j { font-size: 11px; text-align: left; padding: 5px 0; font-weight: 600; }
-    .p .u .r.t .k { display: grid; grid-template-columns: 50% 50%; border-left: 2px solid #b0b0b0; border-right: 2px solid #b0b0b0; padding: 10px 0; }
+    .p .u .r.n { padding: 12px 16px; border-bottom: 1px solid #f0f0ea; }
+    .p .u .r.n .f { font-size: 12px; color: #000; ifont-weight: 600; padding-bottom: 2px; }
+    .p .u .r.n .g { font-size: 12px; color: #222; }
+
+
+    .p .u .r.s { display: grid; grid-template-columns: 50% 50%;  padding: 8px 16px; }
+    .p .u .r.s > div { margin-bottom: 5px; font-size: 11px; }
+    .p .u .r.t { padding: 8px 16px; }
+    .p .u .r.t .j { font-size: 11px; text-align: left; padding: 5px 0; }
+    .p .u .r.t .k { display: grid; grid-template-columns: 50% 50%; border: 2px solid #f0f0ea;  padding: 10px 0; }
     .p .u .r.t .k > div { padding: 5px 10px; }
     .p .u .r.t .k > div.active >>> .cour-s { background-color: #f0f0e5; }
 
-    .p .u .r.o { margin: 16px 0; display: grid; grid-template-columns: 130px auto }
+    .p .u .r.o { padding:  16px; display: grid; grid-template-columns: 300px auto }
     .p .u .r.o .j { font-size: 11px; text-align: left; padding: 5px 0; font-weight: 600; }
     .p .u .r.o .k div { font-size: 11px; padding: 5px 0; }
     .p .u .r.o .k div span { display: inline-block; height: 8px; width: 8px; border: 1px double #b0b0b0; background-color: #b0b0b0; margin-right: 5px; }
+    .p .u .r.o fieldset { border: 1px solid #f0f0ea; padding: 10px; }
+    .p .u .r.o fieldset legend { font-size: 11px; color: #222; padding: 5px; }
 
     .q .r { position: relative; }
     .q .r .h { position: absolute; bottom: 20px; left: 12px; right: 12px; }

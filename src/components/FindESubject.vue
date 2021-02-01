@@ -1,7 +1,7 @@
 <template>
-    <div class="find-c">
+    <div class="_c">
         <div class="find">
-            <input v-model="query" :placeholder="'Find Subject \\'+ queryType"/>
+            <input v-model="query" :placeholder="'Find Subject  ['+ queryType +']'"/>
             <button @click="switchQueryType()"><v-icon v-show="false" name="book-reader"></v-icon> {{ queryType }}</button>
         </div>
         <div class="rslt">
@@ -85,9 +85,10 @@
 </script>
 
 <style scoped>
-    .find-c { background-color: #fff; box-shadow:  0 1px 1px rgba(0,0,0,0.24); }
+    ._c { background-color: #fff; box-shadow:  0 1px 1px rgba(0,0,0,0.24); }
     .find { display: grid; grid-template-columns: auto 60px; }
     .find input { display: block; height: 30px; color: #391e22; padding: 5px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-radius: 5px 0 0 0; }
+    .find input::placeholder { color: #202020; }
     .find button { display: block; height: 30px; color: #391e22; padding: 4px 8px 4px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border-radius: 0 5px 0 0; }
     .find button svg { width: 12px; height: 12px; float: right; }
 
@@ -98,9 +99,6 @@
     .tabs { padding: 6px 12px; font-size: 10px; color: #333; border-top: 1px solid #f0f0f0; background-color: #fafaf9 }
 
     .list { height: 380px; overflow-y: scroll; position: relative; }
-    .list::-webkit-scrollbar { width: 4px; display: block; }
-    .list::-webkit-scrollbar-track { background: transparent; }
-    .list::-webkit-scrollbar-thumb { background-color: #b0b0b0; }
 
     .list .l { border-bottom: 1px solid #f9f9f9; cursor: pointer; }
     .list .l:hover, .l.active { background-color: #fbfbf7; }

@@ -1,12 +1,12 @@
 <template>
-    <div class="wrap-f">
+    <div class="_w">
         <div class="x" v-if="filters.hasOwnProperty('stat') && filters.stat">
             <div @click="queryFilter = 'dep'" :class="queryFilter == 'dep' ? 'a' : ''" style="border-right: 1px solid #f0f0f0"><span>{{ queryFilter == 'dep' ? "√" : "□" }}</span> Department</div>
             <div @click="queryFilter = 'all'" :class="queryFilter == 'all' ? 'a' : ''" ><span>{{ queryFilter == 'all' ? "√" : "□" }}</span> All</div>
         </div>
         <div class="y">
             <div class="find">
-                <input v-model="queryString" :placeholder="'Find Student \\' + queryType" :disabled="disableInput"/>
+                <input v-model="queryString" :placeholder="'Enter Student  [' + queryType +']'" :disabled="disableInput"/>
                 <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
             </div>
             <div class="rslt">
@@ -67,7 +67,7 @@
                 selectedId: 0,
                 list: [],
                 queryType: 'id',
-                queryFilter: 'dep'
+                queryFilter: ''
             }
         },
         methods: {
@@ -107,7 +107,7 @@
 </script>
 
 <style scoped>
-    .wrap-f { height: inherit; }
+    ._w { height: inherit; }
 
     .x { display: grid; grid-template-columns: 50% 50%; margin-bottom: 12px; box-shadow: 0 1px 1px rgba(0,0,0,0.15); }
     .x div { background-color: #fff; padding: 7px 8px; font-size: 11px; }
@@ -117,6 +117,7 @@
     .y { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .y .find { display: grid; grid-template-columns: auto 60px; }
     .y .find input { display: block; color: #391e22; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-radius: 5px 0 0 0; }
+    .y .find input::placeholder { color: #202020; }
     .y .find button { display: block; color: #391e22; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border-radius: 0 5px 0 0; }
     .y .find button svg { width: 12px; height: 12px; float: right; }
 

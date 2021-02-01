@@ -1,59 +1,82 @@
 <template>
-	<div class="wrap-c">
-		<div class="cate-o">
-			<div class="link">
-				<ul>
-					<li @click="goName('cou-master-list')" :class="viewName == 'cou-master-list' || viewName == 'cou-index' ? 'active' : ''"><div>Mater List</div></li>
-					<li @click="goName('cou-assign-subj')" :class="viewName == 'cou-assign-subj' ? 'active' : ''"><div>Assign Subjects</div></li>
-					<li @click="goName('cou-view-prospectus')" :class="viewName == 'cou-view-prospectus' ? 'active' : ''"><div>View Prospectus</div></li>
-				</ul>
-			</div>
-			<div class="make">
-				<span @click="goName('cou-create')"><v-icon name="plus"></v-icon> Create</span>
+	<div class="_wrp_reg">
+		<title-bar-reg @showMenu="menuModal"></title-bar-reg>
+		<div class="_wrp_reg_view">
+			<side-con dashboard="adm-index"></side-con>
+			<div class="view">
+				<div class="view_wrap">
+					<router-view></router-view>
+					<status-bar></status-bar>
+				</div>
+				<o-menu-reg :menus="menus[menuName]" :menuName="names[menuName].name" v-if="showMenu" @menuClose="menuClose"></o-menu-reg>
 			</div>
 		</div>
-		<router-view @setViewName="setViewName"></router-view>
-		<status-bar></status-bar>
 	</div>
 </template>
 
 <script>
+	import TitleBarReg from '@/components/TitleBarReg.vue';
+	import SideCon from '@/components/SideCon.vue';
 	import StatusBar from '@/components/StatusBar.vue';
-	import 'vue-awesome/icons/plus';
+	import OMenuReg from '@/components/OMenuReg.vue';
 
 	export default {
 		components: {
-			StatusBar
+			TitleBarReg,
+			StatusBar,
+			SideCon,
+			OMenuReg
 		},
 		data() {
 			return {
-				viewName: 'cou-master-list'
+				showMenu: false,
+				menuName: '',
+				menus: {
+					create: [
+						{ name: 'Admittee', icon: 'id-card', link: 'adm-new-admittee' },
+						{ name: 'Subject', icon: 'book', link: 'sub-create' },
+						{ name: 'Course', icon: 'book-reader', link: 'cou-create' },
+						{ name: 'Student', icon: 'address-book', link: 'adm-new-student' },
+					],
+					lister: [
+						{ name: 'Students', icon: 'address-book', link: 'adm-list-stu-master' },
+						{ name: 'Admittees', icon: 'id-card', link: 'adm-list-adm-master' },
+						{ name: 'Courses', icon: 'book-reader', link: 'cou-master-list' }
+					],
+					assign: [
+						{ name: 'Subject Requisites', icon: 'map-signs', link: 'sub-assign-xreq' },
+						{ name: 'Course Programme', icon: 'map', link: 'cou-assign-subj' }
+					],
+					tools: [
+						{ name: 'Generate Prospectus', icon: 'clone', link: 'cou-view-prospectus' },
+						{ name: 'Student Evaluation', icon: 'industry', link: 'sub-student-eval' }
+					]
+				},
+				names: {
+					create: { name: 'Create New Instance' },
+					lister: { name: 'Master List' },
+					assign: { name: 'Program Manager' },
+					tools: { name: 'Tools' },
+				}
 			}
 		},
 		methods: {
-			goName(name) {
-				if( name != this.$route.name ) {
-					this.viewName = name;
-					this.$router.push({ name });
-				}
+			menuModal(v) {
+				this.showMenu = !this.showMenu;
+				this.menuName = v;
 			},
-			setViewName(v) {
-				this.viewName = v;
+			menuClose() {
+				this.showMenu = false;
 			}
 		}
-	}
+	} 
 </script>
 
 <style scoped>
-	.wrap-c { height: 100%; background-color: #fff; position: relative; display: grid; grid-template-rows: 32px auto 24px }
+	._wrp_reg { height: inherit; background-color: #fff }
 
-	.cate-o { background-color: #fbfbf7; height: 32px; display: grid; grid-template-columns: auto 300px; border-bottom: 1px solid #f0f0ea; }
-	.link ul { display: block; padding: 0 4px; }
-	.link ul li { display: inline-block; padding: 0  12px; }
-	.link ul li div { font-size: 11px; padding: 10px 0; cursor: pointer; }
-	.link ul li.active div { border-bottom: 1px solid #290e12; }
+	._wrp_reg_view { height: 100%; display: grid; grid-template-columns: 28px auto; }
 
-	.make { text-align: right; padding: 0 4px; }
-	.make span { display: inline-block; font-size: 11px; padding: 10px 10px 9px 10px; border-left: 1px solid #f0f0ea; cursor: pointer;  }
-	.make span svg { width: 10px; height: 10px; margin-right: 4px; }
+	.view { height: inherit; position: relative; }
+	.view_wrap { height: calc(100% - 28px); display: grid; grid-template-rows: auto 24px; }
 </style>

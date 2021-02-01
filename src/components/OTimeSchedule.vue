@@ -1,5 +1,5 @@
 <template>
-    <div class="sched-s">
+    <div class="time-s">
         <div class="f">
             <div v-for="(t,i) in timeList" :key="'tl'+i">{{ t }}</div>
         </div>
@@ -96,15 +96,15 @@
 </script>
 
 <style scoped>
-    .sched-s { width: 636px; display: grid; grid-template-rows: 16px 112px; margin: 12px 0; border-left: 1px solid #a0a0a0; }
-    .sched-s .f { display: flex; padding-left: 26px; }
-    .sched-s .f div { width: 26px; height: 16px; font-size: 9px; text-align: center; color: #000; }
-    .sched-s .e { display: grid; grid-template-columns: 38px 598px; }
-    .sched-s .e .l { padding: 0 2px; }
-    .sched-s .e .l div { height: 16px; font-size: 10px; color: #000; padding: 3px 0; }
-    .sched-s .e .l div span { float: right; }
-    .sched-s .e .d { display: grid; grid-template-rows: 16px 16px 16px 16px 16px 16px 16px }
-    .sched-s .e .d .y { height: 16px; display: flex; border-top: 1px solid #a0a099; border-left: 1px solid #a0a099; }
-    .sched-s .e .d .y .x { width: 26px; height: 16px; border-right: 1px solid #a0a099; border-bottom: 1px solid #a0a099; }
-    .sched-s .e .d .y .x.active { background-color: #f7f0c6; font-size: 8px; text-align: center; color: #000; word-break: break-all; display: flex; align-items: center; justify-content: center; }
+    .time-s { width: 636px; display: grid; grid-template-rows: 16px 112px; margin: 12px 0; border-left: 1px solid #a0a0a0; }
+    .time-s .f { display: flex; padding-left: 26px; }
+    .time-s .f div { width: 26px; height: 16px; font-size: 9px; text-align: center; color: #000; }
+    .time-s .e { display: grid; grid-template-columns: 38px 598px; }
+    .time-s .e .l { padding: 0 2px; }
+    .time-s .e .l div { height: 16px; font-size: 10px; color: #000; padding: 3px 0; }
+    .time-s .e .l div span { float: right; }
+    .time-s .e .d { display: grid; grid-template-rows: 16px 16px 16px 16px 16px 16px 16px }
+    .time-s .e .d .y { height: 16px; display: flex; border-top: 1px solid #a0a099; border-left: 1px solid #a0a099; }
+    .time-s .e .d .y .x { width: 26px; height: 16px; border-right: 1px solid #a0a099; border-bottom: 1px solid #a0a099; }
+    .time-s .e .d .y .x.active { background-color: #f7f0c6; font-size: 8px; text-align: center; color: #000; word-break: break-all; display: flex; align-items: center; justify-content: center; }
 </style>

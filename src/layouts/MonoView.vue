@@ -1,5 +1,5 @@
 <template>
-	<div class="w">
+	<div class="_w">
 		<title-bar></title-bar>
 		<div class="m">
 			<div class="sidecon">
@@ -55,18 +55,18 @@
 </script>
 
 <style scoped>
-	div.w { height: 100vh; background: #fff; box-sizing: border-box; border-radius: 5px; }
+	._w { height: 100vh; background: #fff; box-sizing: border-box; border-radius: 5px; }
 		
-	div.m { display: grid; grid-template-columns: 28px auto; }
-	div.m .content .c { height: calc(100vh - 48px); width: 100%; }
+	.m { display: grid; grid-template-columns: 28px auto; }
+	.m .content .c { height: calc(100vh - 48px); width: 100%; }
 
-	div.m .sidecon { background-color: #555753; border-right: 1px solid #101010; }
-	div.m .sidecon ul { padding: 24px 0; }
-	div.m .sidecon ul li { height: 36px; padding: 10px 5px; cursor: pointer; }
-	div.m .sidecon ul li span {}
-	div.m .sidecon ul li span svg { height: 16px; width: 16px; color: #f0f0f0; }
-	div.m .sidecon ul li.active { background-color: #2E3436; }
+	.m .sidecon { background-color: #555753; border-right: 1px solid #101010; }
+	.m .sidecon ul { padding: 24px 0; }
+	.m .sidecon ul li { height: 36px; padding: 10px 6px; cursor: pointer; }
+	.m .sidecon ul li span {}
+	.m .sidecon ul li span svg { height: 16px; width: 16px; color: #f0f0f0; }
+	.m .sidecon ul li.active { background-color: #2E3436; }
 
-	div.m .content .c { overflow-y: hidden; }
-	div.m .content .s {}
+	.m .content .c { overflow-y: hidden; }
+	.m .content .s {}
 </style>

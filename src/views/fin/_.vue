@@ -1,67 +1,43 @@
 <template>
-    <div class="wrap-f">
-        <div class="head">
-            <div class="cate-o">
-                <div class="link">
-                    <ul>
-                        <li @click="goName('fin-matriculation')" :class="viewName == 'fin-matriculation' ? 'active' : ''"><div>Matriculation</div></li>
-                        <li @click="goName('fin-transcript')" :class="viewName == 'fin-transcript' ? 'active' : ''"><div>Transcript</div></li>
-                        <li @click="goName('fin-breakdown')" :class="viewName == 'fin-breakdown' ? 'active' : ''"><div>Breakdown</div></li>
-                        <li @click="goName('fin-misc')" :class="viewName == 'fin-misc' ? 'active' : ''"><div>Miscellaneous</div></li>
-                    </ul>
+    <div class="_wrp_cas">
+        <title-bar-cas></title-bar-cas>
+        <div class="_wrp_cas_view">
+            <side-con dashboard="fin-index"></side-con>
+            <div class="view">
+                <div class="view_wrap">
+                    <router-view></router-view>
+                    <status-bar></status-bar>
                 </div>
             </div>
         </div>
-        <div class="view">
-            <router-view @setViewName="setViewName"></router-view>
-        </div>
-        <status-bar></status-bar>
     </div>
 </template>
 
 <script>
+    import TitleBarCas from '@/components/TitleBarCas.vue';
+    import SideCon from '@/components/SideCon.vue';
     import StatusBar from '@/components/StatusBar.vue';
-
-    import 'vue-awesome/icons/plus';
 
     export default {
         components: {
-            StatusBar
+            TitleBarCas,
+            StatusBar,
+            SideCon
         },
         data() {
             return {
-                viewName: 'fin-matriculation'
             }
         },
         methods: {
-            goName(name) {
-                if( name != this.$route.name ) {
-                    this.viewName = name;
-                    this.$router.push({ name });
-                }
-            },
-            goMake() {
-                this.$router.push({ name: 'adm-new' });
-            },
-            setViewName(v) {
-                this.viewName = v;
-            }
         }
-    }
+    } 
 </script>
 
 <style scoped>
-    .wrap-f { height: 100%; background-color: #fff; position: relative; display: grid; grid-template-rows: 32px auto 24px }
-    .head {}
-    .view {}
+    ._wrp_cas { height: inherit; background-color: #fff }
 
-    .cate-o { background-color: #fbfbfb; height: 32px; border-bottom: 1px solid #eaeaea; text-align: center }
-    .link ul { display: block; margin: 0 auto; }
-    .link ul li { display: inline-block; font-size: 11px; padding: 10px 12px; cursor: pointer; }
-    .link ul li.active { border-bottom: 2px solid #290e12; }
-    .link ul li.active div {  }
+    ._wrp_cas_view { height: 100%; display: grid; grid-template-columns: 28px auto; }
 
-    .make { text-align: right; }
-    .make span { display: inline-block; background-color: #fff; font-size: 11px; padding: 10px 10px 9px 10px; border-left: 1px solid #e9e9e9; cursor: pointer; }
-    .make span svg { width: 12px; height: 12px; margin-bottom: -2px; }
+    .view { height: inherit; position: relative; }
+    .view_wrap { height: calc(100% - 28px); display: grid; grid-template-rows: auto 24px; }
 </style>

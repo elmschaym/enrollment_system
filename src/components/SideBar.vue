@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar">
+    <div class="_side">
         <div class="list">
             <div class="usr">
                 <div class="u">
@@ -102,13 +102,13 @@
 </script>
 
 <style scoped>
-    .sidebar { background: #EEEEEC; height: calc(100vh - 24px); border-right: 1px solid #E8E8E2; position: relative; }
+    ._side { background: #EEEEEC; height: calc(100vh - 24px); border-right: 1px solid #E8E8E2; position: relative; }
 
-    .sidebar .name { height: 40px; background-color: #00222E; font-size: 24px; text-align: center; font-weight: 600; padding: 8px 0; }
-    .sidebar .name b { color: #fff; }
-    .sidebar .name span { color: #fff; }
+    ._side .name { height: 40px; background-color: #00222E; font-size: 24px; text-align: center; font-weight: 600; padding: 8px 0; }
+    ._side .name b { color: #fff; }
+    ._side .name span { color: #fff; }
     
-    .sidebar .list { height: calc(100% - 48px); padding: 20px 0; }
+    ._side .list { height: calc(100% - 48px); padding: 20px 0; }
     .list ul {}
     .list ul li { display: block; position: relative; }
     .list ul li.l > div { display: block; padding: 6px 8px 6px 14px; border-top: 1px solid #E8E8E2 }

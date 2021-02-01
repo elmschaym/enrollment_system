@@ -28,8 +28,8 @@
     .cour-s { display: grid; grid-template-columns: 48px auto; height: 48px; background-color: #fff; border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; border-radius: 24px 24px 0 24px; cursor: pointer; transition: all 0.3s cubic-bezier(.25,.8,.25,1); }
     .cour-s:hover { border-style: solid; border-width: 1px; border-color: transparent #cacaca #b0b0b0 #cacaca; }
 
-    .cour-s .a { background-color: #f5f5f5; height: 46px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #909090; border-radius: 23px; }
+    .cour-s .a { background-color: #e0e0da; height: 46px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #909090; border-radius: 23px; }
     .cour-s .n { padding: 7px 6px; }
-    .cour-s .n .name { font-size: 12px; color: #000; padding-bottom: 6px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; }
-    .cour-s .n .info { font-size: 10px; color: #444; }
+    .cour-s .n .name { font-size: 12px; color: #000; padding-bottom: 4px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; font-weight: 600 }
+    .cour-s .n .info { font-size: 11px; color: #303030; }
 </style>

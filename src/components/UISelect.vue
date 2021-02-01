@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap-o">
+	<div class="_com_us">
 		<div class="sele" :style="styles[0] ? styles[0] : 'width: 100%;'">
 			<div class="name" @click="isSelect = !isSelect">
 				<span>{{ selected }}</span>
@@ -65,7 +65,7 @@
 </script>
 
 <style scoped>
-	.wrap-o { position: relative; }
+	._com_us { position: relative; }
 	.sele { color: #391e22; background-color: #fdfdfd; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0f0 #eaeaea #d0d0d0 #eaeaea; position: relative; border-radius: 2px; padding: 6px 10px 6px 10px; height: 27px; }
 
 	.name { height: inherit; display: grid; grid-template-columns: auto 10px }

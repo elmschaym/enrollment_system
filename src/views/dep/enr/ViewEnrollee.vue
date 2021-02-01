@@ -97,7 +97,7 @@
 				</div>
 			</div>
 			<div id="print-ebf">
-				EBF
+				<div class="name">EBF</div>
 			</div>
 		</div>
 	</div>
@@ -218,4 +218,6 @@
 
 	.q .r.o .y .t { display: grid; grid-template-columns: auto 86px; border-top: 1px solid #eaeaea; }
 	.q .r.o .y .t div { padding: 7px 12px; font-size: 11px; }
+
+	#print-ebf { display: none; }
 </style>

@@ -5,12 +5,15 @@
 				<div class="u">
 					<div class="h">
 						<div class="pixx">
-							<v-icon name="user"></v-icon>
+							<div>
+								<v-icon name="user"></v-icon>
+								<div class="name">
+									<div class="n">{{ fullname }}</div>
+									<div class="m"><span>{{ student.school_id }}</span></div>
+								</div>
+							</div>
 						</div>
-						<div class="name">
-							<div class="n">{{ fullname }}</div>
-							<div class="m"><span>{{ student.school_id }}</span></div>
-						</div>
+						
 						<div v-show="false" class="butt">
 							<div>
 								<div>Previous Admission: </div>
@@ -35,6 +38,9 @@
 								</div>
 							</div>
 						</div>
+						<date-picker class="dp-wrap" @selected="setDateAdmittedDP($event)" v-if="isDatePickerShow" :format="'yyyy-MM-dd'" :inline="true"></date-picker>
+						<div class="dp-back" v-if="isDatePickerShow"></div>
+						<div class="dsbd" v-if="student.id == 0"></div>
 					</div>
 				</div>
 				<div class="v">
@@ -78,9 +84,6 @@
 						</div>
 					</div>
 				</div>
-				<date-picker class="dp-wrap" @selected="setDateAdmittedDP($event)" v-if="isDatePickerShow" :format="'yyyy-MM-dd'" :inline="true"></date-picker>
-				<div class="dp-back" v-if="isDatePickerShow"></div>
-				<div class="dsbd" v-if="student.id == 0"></div>
 			</div>
 			<div class="q">
 				<div class="t">
@@ -114,6 +117,7 @@
 	import UIModalInformer from '@/components/UIModalInformer.vue';
 
 	import 'vue-awesome/icons/user';
+	import 'vue-awesome/icons/plus';
 
 	export default {
 		components: {
@@ -227,20 +231,20 @@
 <style scoped>
 	.form-o { position: relative; height: auto;  }
 	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 280px; }
-	.form-o .w .p { height: 100%; padding: 16px; position: relative; }
+	.form-o .w .p { height: 100%; position: relative; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
-	.p .u { position: relative; }
+	.p .u { height: 100%; position: relative; display: grid; grid-template-columns: 270px auto; }
 
-	.p .h { padding: 0 0 8px 0; border-bottom: 1px solid #d0d0c0; display: grid; grid-template-columns: 40px auto 200px; margin-bottom: 0px;}
-	.p .h .pixx { height: 40px; width: 40px; background-color: #f5f5f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
-	.p .h .pixx svg { height: 32px; width: 32px; margin: 4px; color: #d5d5d0; }
-	.p .h .name { padding: 0 0 0 12px; }
-	.p .h .name .n { font-size: 12px; font-weight: 600; margin: 4px 0; }
-	.p .h .name .m { font-size: 11px;  }
+	.p .h { height: 100%; background-color: #272537; border-right: 1px solid #f0f0ea; }
+	.p .h .pixx { height: 210px; background-color: #373547; text-align: center; padding: 32px 10px; }
+	.p .h .pixx svg { height: 100px; width: 100px; color: #808080; }
+	.p .h .name { text-align: center; margin-top: 10px; font-weight: normal }
+	.p .h .name .n { font-size: 14px; margin: 4px 0; color: #fff; }
+	.p .h .name .m { font-size: 12px; color: #eee; }
 	.p .h .butt { display: grid; grid-template-columns: 50% 50%; }
 
-	.p .g { padding: 16px 0; display: grid; grid-template-columns: 200px auto }
+	.p .g { position: relative; padding: 32px 16px; display: grid; grid-template-columns: 200px auto }
 	.p .g .b {}
 	.p .g .b span { display: block; padding: 7px 0; }
 	.p .g .c {}

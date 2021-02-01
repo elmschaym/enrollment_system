@@ -89,6 +89,7 @@
 				this.section = v;
 				this.student = {};
 				this.studentIndex = -1;
+				this.grade = { initial: '', final: '' };
 				this.fetchStudents();
 			},
 			setGrade(v) {
@@ -100,6 +101,7 @@
 			gradeStudent(s, i) {
 				this.student = s;
 				this.studentIndex = i;
+				this.grade = { initial: '', final: '' };
 			},
 			fetchStudents() {
 				this.isFetchingList = true;
@@ -125,6 +127,7 @@
 						else if (action == 'submit-grade-final')
 							s.grade_final = this.grade.final;
 						this.sectEnrol[this.studentIndex] = s;
+						this.grade = { initial: '', final: '' };
 					}).finally(() => {
 						this.isSubmitGrade = false;
 					});
@@ -159,11 +162,11 @@
 
 	.p .u { height: inherit; }
 
-	.p .u .list { background-color: #fff; }
+	.p .u .list { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
 	.p .u .list .h, .p .u .list .l .i { display: grid; grid-template-columns: 60px auto 70px 50px 60px }
 	.p .u .list .h { padding: 4px 6px; background-color: #fbfbf7; font-size: 11px; }
 	.p .u .list .h div { font-weight: normal }
-	.p .u .list .l { height: 460px; max-height: 460px; overflow-y: hidden; position: relative;  border-bottom: 1px solid #f0f0ea; border-top: 1px solid #f0f0ea; }
+	.p .u .list .l { height: 460px; max-height: 460px; overflow-y: hidden; position: relative; border-top: 1px solid #f0f0ea; }
 	.p .u .list .l .i { padding: 7px 6px; font-size: 11px; border-bottom: 1px solid #fbfbf7; cursor: pointer; }
 	.p .u .list .l .i:hover, .p .u .list .l .i.active { background-color: #f8f8f2 }
 	.p .u .list .l .i div { white-space: nowrap; text-overflow: clip; overflow: hidden }
@@ -176,7 +179,7 @@
 
 	.p .v { margin: 30px 0 0 16px; }
 
-	.p .v .f { background-color: #fff; padding: 16px 16px 8px 16px; }
+	.p .v .f { background-color: #fff; padding: 16px 16px 8px 16px; border-top: 4px solid #e0e0da; }
 	.p .v .f .nn { font-size: 13px; font-weight: 600; color: #111; padding-bottom: 2px;  }
 	.p .v .f .ii { font-size: 11px; color: #222; }
 
@@ -186,6 +189,6 @@
 	.p .v .g div b { display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;  background-color: rgba(255,255,255,0.3); }
 
 	.p .v .h { padding: 0; position: relative; height: 280px; }
-	.p .v .h button { height: 28px; display: block; border: none; background-color: #fbfbf7; font-size: 11px; font-weight: 600; width: 100% }
-	.p .v .h button:hover { background-color: #f0f0ea; }
+	.p .v .h button { height: 28px; display: block; border: none; font-size: 11px; font-weight: 600; width: 100%; background-color: #f0f0ea; }
+	.p .v .h button:disabled { background-color: #fbfbf7; cursor: default; }
 </style>

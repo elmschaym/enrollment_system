@@ -2,11 +2,11 @@
 	<div class="load-i">
 		<div class="name">
 			<div :class="['icon', { 'animate': isAnimate }]">
-				<b class="a">☄</b>
-				<b class="b">☄</b>
-				<b class="c">☄</b>
+				<b class="a"></b>
+				<b class="b"></b>
+				<b class="c"></b>
 			</div>
-			<span v-if="isShowName">sysuno v1.0-alpha</span>
+			<span>sysuno v1.0-alpha</span>
 		</div>
 		<div class="stat" v-if="isLoading">
 			<span><b></b></span>
@@ -25,10 +25,16 @@
 				isShowName: false
 			}
 		},
+		computed: {
+			meteor() {
+				return require('../../public/static/svg/meteor.svg');
+			}
+		},
 		methods: {
 			initializeSetup() {
 				this.isLoading = true;
 				this.$sleep(4000).then(() => {
+					window.nwWin.hide();
 					this.$router.push({ name: 'usr-signin', query: { set_dimen: 1 } });
 				});
 			}
@@ -37,9 +43,6 @@
 			this.$sleep(500).then(() => this.isShowName = true );
 			this.$sleep(1000).then(() => this.isAnimate = true );
 			this.$sleep(4000).then(this.initializeSetup);
-		},
-		destroyed() {
-			window.nwWin.hide();
 		}
 	}
 </script>
@@ -50,15 +53,15 @@
 	.name { position: relative; display: grid; grid-template-rows: auto 18px }
 
 	.name .icon { position: relative; }
-	.name .icon b {  display: block; position: absolute; font-weight: normal; transition: all 3s ease; }
+	.name .icon b {  display: block; position: absolute; height: 0; transform: rotate(-60deg); transition: all 3s ease-in; }
 
-	.name .icon b.a { font-size: 128px; bottom: 100%; left: 220px; color: #111; }
-	.name .icon b.b { font-size: 96px; bottom: 100%; left: 180px; color: #505050; }
-	.name .icon b.c { font-size: 72px; bottom: 100%; left: 300px; color: #909090; }
+	.name .icon b.a { width: 160px; border-left: 60px solid transparent; border-right: 60px solid transparent;  border-bottom: 20px solid #202020; bottom: calc(100% + 80px); left: 190px; }
+	.name .icon b.b { width: 138px; border-left: 50px solid transparent; border-right: 60px solid transparent; border-bottom: 14px solid #505050; bottom: calc(100% + 60px); left: 140px;  }
+	.name .icon b.c { width: 120px; border-left: 40px solid transparent; border-right: 50px solid transparent; border-bottom: 8px solid #909090; bottom: calc(100% + 50px); left: 260px; color: #909090; }
 
-	.name .icon.animate b.a { bottom: 22px; left: 70px; }
-	.name .icon.animate b.b { bottom: 114px; left: 70px; }
-	.name .icon.animate b.c { bottom: 58px; left: 170px; }
+	.name .icon.animate b.a { bottom: 90px; left: 65px; }
+	.name .icon.animate b.b { bottom: 130px; left: 40px; }
+	.name .icon.animate b.c { bottom: 100px; left: 150px; }
 
 	.name svg { height: 128px; width: 128px; display: block; margin: 0 auto; position: absolute; background: -webkit-linear-gradient(to bottom, #478ba2, #de5b6d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 	.name span { font-size: 18px; font-weight: 100; color: #111; display: block; text-shadow: 0 2px 2px rgba(0,0,0,0.2); position: absolute; top: 238px; text-align: center; width: 100%; }

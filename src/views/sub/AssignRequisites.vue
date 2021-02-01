@@ -136,19 +136,19 @@
 				this.queue_to_rem = p;
 				this.isModalDeciderShow = true;
 			},
-			removeDecidedYes(v) {
+			removeDecidedYes() {
 				this.$http.delete('subject_requisite/'+ this.queue_to_rem.id +'/?type=full').then(res => {
 					this.fetchRequisites(false);
 				});
 				this.isModalDeciderShow = false;
 			},
 			changeSubjectByOld(p) {
-				this.subject = { ...p.requisite };
+				this.subject = p.requisite;
 				this.fetchRequisites(true);
 			},
 			fetchRequisites(v) {
 				this.isFetchingList = v;
-				this.$http.get('subject_requisite/'+ this.subject.id +'/?action=lister&subjrequisite_fields=id,requisite&subject_fields=id,code,name,units').then( res => {
+				this.$http.get('subject_requisite/'+ this.subject.id +'/?action=lister&subjrequisite_fields=id,requisite&subject_fields_alt=id,code,name,units').then( res => {
 					this.pre_reqs_old = res.data;
 				}).catch( () => {
 					this.isErrorConnect = true;
@@ -182,12 +182,12 @@
 </script>
 
 <style scoped>
-	.wrap-a { height: 100%; position: relative; display: grid; grid-template-columns: 320px auto; }
+	.wrap-a { height: auto; position: relative; display: grid; grid-template-columns: 320px auto; }
 	.p { height: 100%; padding: 0 16px; background-color: #fbfbf7; }
 	.q { height: 100%; border-left: 1px solid #f0f0f0; background: #fff; position: relative;  }
-	.q .w { height: inherit; display: grid; grid-template-rows: 58px auto; }
+	.q .w { height: 100%; display: grid; grid-template-rows: 58px auto; }
 
-	.p .a { height: inherit; padding: 12px 0; }
+	.p .a { height: 100%; padding: 12px 0; }
 
 	.q .w .h { padding: 12px; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 72px auto 80px; margin-bottom: 0px; }
 	.q .w .h .code { height: 32px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #444; font-weight: 600; background-color: #f5f5f0; white-space: nowrap; overflow-x: hidden; padding-top: 6px; padding-bottom: 6px; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
@@ -214,7 +214,7 @@
 
 	.x .subm { background-color: #fff; border-top: 1px solid #f8f8f2; padding: 14px 0; text-align: center;  }
 	.x .subm button { height: 22px; border: none; font-size: 11px; }
-	.x .subm button.okay { border: 1px outset #e0e0d0; color: #000; background-color: #fff }
+	.x .subm button.okay { border: 1px solid #e0e0d0; color: #000; background-color: #fff }
 
 	.u .y .data { display: grid; grid-template-columns: 90px auto; padding: 20px; }
 	.y .list { height: 100%; margin-top: 20px; overflow-y: scroll; max-height: 350px; margin-bottom: 20px; }

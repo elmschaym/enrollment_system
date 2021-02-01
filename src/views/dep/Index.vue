@@ -10,6 +10,11 @@
             }
         },
         created() {
+            if (this.$route.query.hasOwnProperty('set_dimen')) {
+                this.$sleep(1500).then(() => {
+                    window.nwWin.show();
+                });
+            }
             this.$store.commit('setModuleName', 'College of Engineering Deparrment');
         }
     }

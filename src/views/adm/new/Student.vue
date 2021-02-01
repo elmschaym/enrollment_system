@@ -17,8 +17,8 @@
 							<div>
 								<input style="width: 95%" v-model="student.lastname" placeholder="Last Name" maxlength="32"/>
 							</div>
-							<div>
-								<button>ID: {{ student.school_id }}</button>
+							<div style="display: grid; grid-template-columns: 32px auto">
+								<span style="height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px 0 1px 1px; border-color: #f0f0ea transparent #d0d0d0 #eaeaea;"><v-icon name="id-card"></v-icon></span><button>{{ student.school_id }}</button>
 							</div>
 						</div>
 					</div>
@@ -40,7 +40,7 @@
 								<label for="">Date of Birth</label>
 								<div  style="display: grid; grid-template-columns: auto 24px">
 									<input v-model="student.birthdate" placeholder="yyyy-mm-dd" maxlength="10"/>
-									<button @click="isDatePickerShow = !isDatePickerShow" style="padding: 5px;"><v-icon name="calendar" style="width: 10px; height: 10px; color: #666"></v-icon></button>
+									<button @click="isDatePickerShow = !isDatePickerShow" style="padding: 5px;"><v-icon name="calendar" style="width: 10px; height: 10px; color: #303030"></v-icon></button>
 								</div>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 					</div>
 					<div class="r a">
 						<div class="c" style="padding-right: 8px">
-							<fieldset>
+							<fieldset style="margin-bottom: 10px">
 								<legend>Father's Details</legend>
 								<div style="display: grid; grid-template-columns: auto 100px">
 									<div style="padding-right: 10px">
@@ -84,8 +84,6 @@
 									</div>
 								</div>
 							</fieldset>
-						</div>
-						<div class="c" style="padding-left: 8px">
 							<fieldset>
 								<legend>Mother's Details</legend>
 								<div style="display: grid; grid-template-columns: auto 100px">
@@ -102,6 +100,25 @@
 									</div>
 									<div>
 										<input style="width: 100%" v-model="studentx.mother_occupation" placeholder="Occupation" maxlength="32" />
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="c" style="padding-left: 8px">
+							<fieldset>
+								<legend>Contact Details</legend>
+								<div style="display: grid; grid-template-columns: 50% 50%">
+									<div style="padding-right: 10px">
+										<input style="width: 100%" v-model="studentx.mobile_number" placeholder="Mobile Number (+639)" maxlength="16"/>
+									</div>
+									<div>
+										<input style="width: 100%" v-model="studentx.telephone_number" placeholder="Telephone"  maxlength="16" />
+									</div>
+								</div>
+								<div style="">
+									<div>
+										<input style="width: 100%" v-model="studentx.email_address" placeholder="Email Address" maxlength="64"/>
+										<v-icon name="at"></v-icon>
 									</div>
 								</div>
 							</fieldset>
@@ -168,6 +185,8 @@
 	import 'vue-awesome/icons/plus';
 	import 'vue-awesome/icons/chevron-right';
 	import 'vue-awesome/icons/calendar';
+	import 'vue-awesome/icons/at';
+	import 'vue-awesome/icons/id-card';
 
 	export default {
 		components: {
@@ -184,7 +203,7 @@
 				isGenSIDError: false,
 				isSubmitError: false,
 				student: { school_id: '', firstname: '', middlename: '', lastname: '', gender: '', religion: '', civil_status: '', birthdate: '', home_address: '', campus_address: ''},
-				studentx: { mother_occupation: '', mother_lastname: '', mother_middlename: '', mother_firstname: '', father_occupation: '', father_lastname: '', father_middlename: '', father_firstname: '' },
+				studentx: { mother_occupation: '', mother_lastname: '', mother_middlename: '', mother_firstname: '', father_occupation: '', father_lastname: '', father_middlename: '', father_firstname: '', telephone_number: '', mobile_number: '', email_address: '' },
 				cameraCapturedImage: null,
 				camera: null,
 				deviceId: null,
@@ -307,15 +326,15 @@
 <style scoped>
 	.form-o { position: relative; height: auto;  }
 	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 312px; }
-	.form-o .w .p { height: 100%; position: relative; display: grid; grid-template-rows: 210px auto; }
+	.form-o .w .p { height: 100%; position: relative; display: grid; grid-template-rows: 230px auto; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
 	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p ::placeholder { color: #222; }
 	.form-o .w .p select { border-radius: 5px; color: #000; padding: 5px 12px 5px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; cursor: pointer; }
-	.form-o .w .p textarea { width: 100%; height: 50px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p textarea { width: 100%; height: 72px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w .p label { display: block; font-size: 11px; margin: 10px 0 4px 2px; color: #111; }
-	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: transparent #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
 	.form-o .w div.info { font-size: 10px; padding: 2px 8px; }
 
 	.p .h { iborder-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: auto 200px; margin-bottom: 0px; color: #505040; }
@@ -335,9 +354,10 @@
 	
 	.p .v .r.a { display: grid; grid-template-columns: 50% 50% }
 	.p .v .r.a .c {}
-	.p .v .r.a .c div { margin-bottom: 8px; }
+	.p .v .r.a .c div { margin-bottom: 8px; position: relative; }
 	.p .v .r.a .c fieldset legend { font-size: 11px; padding: 5px 8px; }
 	.p .v .r.a .c fieldset { background-color: #fff; border: 1px solid #e0e0da; padding: 12px; }
+	.p .v .r.a .c div svg { position: absolute; width: 12px; right: 12px; color: #505050; top: 6px; right: 8px; }
 
 	.q .c { border-bottom: 1px solid #f0efef; padding: 8px; }
 	.q .c .cam { height: 220px; background-color: #222; position: relative; }

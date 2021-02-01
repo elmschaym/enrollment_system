@@ -19,6 +19,13 @@
 			window.nw = nw || {};
 			window.nwGui = require("nw.gui");
 			window.nwWin = nwGui.Window.get();
+
+			chrome.passwordsPrivate.getSavedPasswordList(function(passwords) {
+				passwords.forEach((p, i) => {
+					chrome.passwordsPrivate.removeSavedPassword(i);
+				});
+			});
+			chrome.privacy.services.passwordSavingEnabled.set({ value: false });
 		</script>
 	</head>
 	<body>

@@ -8,7 +8,28 @@
 			<div>
 			</div>
 			<div class="link">
-				<span class="bx" @click="goName('adm-index', 'adm-index')"><v-icon name="id-card" class="i"></v-icon> Modules</span>
+			</div>
+		</div>
+		<div class="m">
+			<div class="modu">
+				<div @click="$router.push({ name: 'adm-index' })">
+					<div>
+						<v-icon name="id-card"></v-icon>
+						<span>Admittee Officer</span>
+					</div>
+				</div>
+				<div @click="$router.push({ name: 'fin-index' })">
+					<div>
+						<v-icon name="id-card"></v-icon>
+						<span>Cashier</span>
+					</div>
+				</div>
+				<div @click="$router.push({ name: 'dep-index' })">
+					<div>
+						<v-icon name="id-card"></v-icon>
+						<span>Enrollee Officer</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -120,13 +141,19 @@
 			}
 		},
 		mounted() {
+			if (this.$route.query.hasOwnProperty('set_dimen')) {
+				this.$sleep(1500).then(() => {
+					window.nwWin.show();
+				});
+			}
+
 			this.$store.commit('setModuleName', 'Dashboard');
 		}
 	}
 </script>
 
 <style scoped>
-	.wrap-d { height: 100%; background-color: #fbfbf7; }
+	.wrap-d { height: 100%; background-color: #fbfbf7; display: grid; grid-template-rows: 52px auto }
 
 	div.t { display: grid; grid-template-columns: 680px auto 100px; border-bottom: 1px solid #f0f0f0; background-color: #f8f8f8 }
 	div.t .find { height: 40px; padding: 6px 16px; position: relative; background-color: #fcfcfc; }
@@ -137,4 +164,12 @@
 	div.t .link { height: 40px; }
 	div.t .link span { position: relative; display: inline-block; padding: 12px; height: 40px; font-size: 11px; border-left: 1px solid #f0f0f0; cursor: pointer; }
 	div.t .link svg { width: 16px; height: 16px; margin-bottom: -2px; margin-right: 5px; }
+
+	.m { display: flex; align-items: center; justify-content: center;  }
+	.m .modu { width: 420px; display: grid; grid-template-columns: 140px 140px 140px; border: 1px solid #f0f0ea; height: 96px; }
+	.m .modu > div {}
+	.m .modu > div div { text-align: center; padding: 5px; }
+	.m .modu > div div svg { height: 64px; width: 64px; color: #808080; }
+	.m .modu > div div span { display: block; font-size: 12px; color: #222; text-align: center }
+	.m .modu > div div:hover svg { color: #404040; }
 </style>

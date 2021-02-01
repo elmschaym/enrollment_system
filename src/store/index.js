@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		isReloadView: false,
-		module: { name: 'sysuno' },
+		module: { name: 'sysuno-' },
 		forms: {
 			admission: {
 				academic_type: [
@@ -36,8 +36,8 @@ export default new Vuex.Store({
 			},
 			faculty: {
 				positions: [
-					{ id: 'DEAN', name: 'Department Dean'},
-					{ id: 'CHAIRP', name: 'Chairperson'},
+					{ id: 'DDEAN', name: 'Department Dean'},
+					{ id: 'CHAIR', name: 'Chairperson'},
 					{ id: 'INST1', name: 'Instructor I'},
 					{ id: 'INST2', name: 'Instructor II'},
 					{ id: 'PROF1', name: 'Professor I'},
