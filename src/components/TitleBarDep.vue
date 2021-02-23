@@ -116,7 +116,7 @@
 </script>
 
 <style scoped>
-	._cmp_tbr { display: grid; grid-template-columns: 82px 160px auto 160px 82px; width: 100vw; background: linear-gradient(to bottom, #fbfbfb, #ebebeb); height: 28px; }
+	._cmp_tbr { display: grid; grid-template-columns: 82px 160px auto 160px 82px; width: 100vw; background: linear-gradient(to bottom, #f8f8f8, #ebebeb); height: 28px; }
 	.name { padding: 8px 6px; -webkit-app-region: drag; font-size: 12x; font-weight: 600; text-align: center }
 	.name span { font-size: 11px; color: #40403a; font-weight: bold; line-height: 12px; }
 	.wind { padding: 4px 5px; display: grid; grid-template-columns: 20px 20px 20px; }
@@ -124,7 +124,7 @@
 	.wind span b { display: block; width: 10px; height: 10px; border-radius: 5px; background-color: #707070; font-weight: normal; font-size: 10px; text-align: center; }
 	.wind span:hover b { color: #fff; }
 
-	.menu { display: grid; grid-template-columns: auto 34px }
+	.menu { display: grid; grid-template-columns: auto 34px; padding-right: 4px; }
 	.menu .c { position: relative; }
 	.menu .c .n { margin: 2px 4px; color: #222; padding: 4px 5px; background: #fdfdf9; border: 1px solid #f0f0ea; border-radius: 2px; text-align: center; cursor: pointer; }
 	.menu .c .n svg { width: 10px; height: 10px; }

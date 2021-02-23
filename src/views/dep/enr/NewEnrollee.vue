@@ -78,6 +78,7 @@
 
     import 'vue-awesome/icons/user';
     import 'vue-awesome/icons/id-card';
+    import 'vue-awesome/icons/plus';
 
     export default {
         emits: ['setViewName'],

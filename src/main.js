@@ -11,12 +11,13 @@ Vue.config.devtools = true;
 
 Vue.use(plugins);
 Vue.use(VueHtmlToPaper, {
-  name: '_blank',
-  specs: ['fullscreen=no', 'titlebar=no', 'scrollbars=yes', 'height=600', 'width=800', 'top=100', 'left=300'
-  ],
-  styles: [
-    'http://192.168.254.101:8080/static/css/print.css'
-  ]
+	name: '_blank',
+	specs: ['fullscreen=no', 'titlebar=no', 'scrollbars=yes', 'height=600', 'width=800', 'top=100', 'left=300'
+	],
+	styles: [
+		//'http://localhost:8080/static/css/print.css'
+		'http://192.168.254.101:8080/static/css/print.css'
+	]
 });
 Vue.component('v-icon', VIcon);
 
@@ -27,4 +28,5 @@ const vue = new Vue({
 	store,
 	render: h => h(App)
 });
+
 vue.$mount('#app');

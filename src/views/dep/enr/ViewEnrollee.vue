@@ -15,7 +15,7 @@
 						</div>
 						<div class="e">
 							<div>{{ enrollment.student.school_id }}</div>
-							<div>{{ enrollment.admission.course.program_type +' '+ enrollment.admission.course.name }},</div>
+							<div>{{ enrollment.admission.course.program_type +' '+ enrollment.admission.course.name }}</div>
 							<div>{{ enrollment.acad_year }}, {{ enrollment.semester }}</div>
 						</div>
 					</div>
@@ -97,7 +97,7 @@
 				</div>
 			</div>
 			<div id="print-ebf">
-				<div class="name">EBF</div>
+				<print-ebf v-if="isPrintable" :enrollment="enrollment" :tally="{ totalFees, totalSubjects, allowedUnits, enrolledUnits }"></print-ebf>
 			</div>
 		</div>
 	</div>
@@ -111,7 +111,12 @@
 	import 'vue-awesome/icons/square';
 	import 'vue-awesome/icons/user';
 
+    import PrintEBF from '@/components/PrintEBF.vue';
+
 	export default {
+		components: {
+			PrintEbf: PrintEBF
+		},
 		data() {
 			return {
 				isErrorConnect: false,
@@ -141,11 +146,14 @@
 				if (this.enrollment.hasOwnProperty('billing') && this.enrollment.billing.length > 0 && this.enrollment.billing[0].sect_enrol.length > 0)
 					this.enrollment.billing[0].sect_enrol.forEach(x => { total += x.subject.units });
 				return total;
+			},
+			isPrintable() {
+				return this.enrollment.hasOwnProperty('billing') && this.enrollment.billing.length > 0 && this.enrollment.billing[0].sect_enrol.length > 0 && this.enrollment.hasOwnProperty('billing') && this.enrollment.billing[0].misc_bills.length > 0;
 			}
 		},
 		methods: {
 			fetchEnrollment() {
-				this.$http.get('enrollment/'+ this.$route.params.enrol_id +'/?type=profile&enrollment_fields=id,acad_year,acad_status,semester,max_units,is_confirmed,student,admission,billing&admission_fields=id,date_admitted,course,academic_program&acadprogram_fields=name&course_fields=id,name,name_alias,program_type&student_fields=id,school_id,firstname,lastname,middlename&billing_fields=id,sect_enrol,misc_bills&sectenrol_fields=id,subject,section&miscbill_fields=id,misc&misc_fields=id,name,amount&subject_fields=id,code,name,units&section_fields=id,name,sched_days,sched_time,room&room_fields=name').then(res => {
+				this.$http.get('enrollment/'+ this.$route.params.enrol_id +'/?type=profile&enrollment_fields=id,acad_year,acad_status,semester,max_units,is_confirmed,confirmed_at,student,admission,billing&admission_fields=id,date_admitted,course,academic_program&acadprogram_fields=name&course_fields=id,name,name_alias,program_type&student_fields=id,school_id,firstname,lastname,middlename,civil_status,religion,gender&billing_fields=id,sect_enrol,misc_bills&sectenrol_fields=id,subject,section&miscbill_fields=id,misc&misc_fields=id,name,amount&subject_fields=id,code,name,units&section_fields=id,name,sched_days,sched_time,room&room_fields=name').then(res => {
 					if (res.data.hasOwnProperty('id')) {
 						this.enrollment = res.data;
 					}
@@ -189,7 +197,7 @@
 	.q .r.o { display: grid; grid-template-columns: auto 350px; margin: 8px 16px; }
 	.q .r.o .x { margin-right: 16px;}
 	.q .r.o .x .a { font-size: 11px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); background-color: #fff; font-weight: 600; text-align: center }
-	.q .r.o .x .b, .q .r.o .x .d > div { display: grid; grid-template-columns: 20px 70px auto 55px 155px 60px 40px  }
+	.q .r.o .x .b, .q .r.o .x .d > div { display: grid; grid-template-columns: 20px 70px auto 75px 155px 60px 40px  }
 	.q .r.o .x .z { text-align: center; padding: 16px; font-size: 11px; }
 	.q .r.o .x .b { background-color: #fefefe; margin-top: 2px; iborder-bottom: 1px solid #fafafa; }
 	.q .r.o .x .b div { padding: 7px; font-size: 10px; }

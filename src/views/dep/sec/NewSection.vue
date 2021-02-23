@@ -142,7 +142,8 @@
 					{id: 6, name: 'A – Sunday', alias: 'A', code: 'T' }
 				],
 				timeList: [],
-				tempSched: { day: '', code: '', time: '', name: '', week: '' }
+				tempSched: { day: '', code: '', time: '', name: '', week: '' },
+				departmentId: 0
 			}
 		},
 		computed: {
@@ -236,7 +237,7 @@
 				}
 			},
 			fetchRoomList() {
-				this.$http.get('room/?action=lister&room_fields=id,name,slots').then(res => {
+				this.$http.get('room/?action=lister&depid='+ this.departmentId +'&room_fields=id,name,slots').then(res => {
 					this.roomsList = res.data;
 				});
 			},
@@ -263,6 +264,8 @@
 		},
 		created() {
 			this.$store.commit('setModuleName', 'Department – New Section');
+			let d = this.$storageGet('user_info').department;
+			this.departmentId = d.id;
 			this.generateSchedCodes();
 			this.generateTimeList();
 		},

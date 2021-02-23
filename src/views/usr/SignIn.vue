@@ -21,7 +21,7 @@
 				<input type="text" :class="isErrorConnect ? 'error' : ''" placeholder="Username" v-model="username" maxlength="32"/>
 				<v-icon name="address-book"></v-icon>
 			</div>
-			<div class="f">
+			<div class="f"> 
 				<input type="password" :class="isErrorConnect ? 'error' : ''" placeholder="Password" v-model="password" maxlength="64" />
 				<v-icon name="lock"></v-icon>
 			</div>
@@ -81,7 +81,6 @@
 					if (res.data.hasOwnProperty('api_token')) {
 						this.$storageSet("user_info", res.data);
 						this.$storageSet("api_token", res.data.api_token);
-						window.nwWin.hide();
 						this.setPhysicals();
 						this.$router.push({ name: landings[res.data.system_app_role], query: { set_dimen: 1 } });
 					} else {
@@ -96,14 +95,18 @@
 			},
 			setPhysicals() {
 				if (this.$route.query.hasOwnProperty('set_dimen')) {
+					window.nwWin.hide();
+					window.nwWin.setPosition('center');
 					if (window.screen.availWidth > 1900) {
 						window.nwWin.width = 1500;
 						window.nwWin.height = 800;
+						window.nwWin.setMaximumSize(1500, 800);
 						window.nwWin.setMinimumSize(1500, 800);
 						window.nwWin.zoomLevel = 1.1;
 					} else {
 						window.nwWin.width = 1200;
 						window.nwWin.height = 660;
+						window.nwWin.setMaximumSize(1200, 660);
 						window.nwWin.setMinimumSize(1200, 660);
 						window.nwWin.zoomLevel = 0;
 					}

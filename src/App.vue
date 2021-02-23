@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap-a">
+	<div class="_wrp-app">
 		<router-view></router-view>
 	</div>
 </template>
@@ -21,5 +21,5 @@
 
 
 <style scoped>
-	.wrap-a { height: 100%; background-color: rgba(0,0,0,0); pointer-events: auto; box-shadow: 0 4px 9px rgba(0,0,0,0.5); }
+	._wrp-app { height: 100%; background-color: rgba(0,0,0,0); pointer-events: auto; }
 </style>

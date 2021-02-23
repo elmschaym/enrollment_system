@@ -34,6 +34,7 @@
 				menus: {
 					create: [
 						{ name: 'Enrollee', icon: 'address-book', link: 'dep-enr-new-enrollee' },
+						{ name: 'Room', icon: 'columns', link: 'dep-roo-new-room' },
 						{ name: 'Section', icon: 'crop', link: 'dep-sec-new-section' }
 					],
 					lister: [

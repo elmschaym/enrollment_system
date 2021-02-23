@@ -27,6 +27,8 @@
 	import 'vue-awesome/icons/crop';
 	import 'vue-awesome/icons/braille';
 	import 'vue-awesome/icons/users';
+	import 'vue-awesome/icons/suitcase';
+	import 'vue-awesome/icons/columns';
 
 	export default {
 		emits: ['menuClose'],

@@ -50,7 +50,7 @@
 </script>
 
 <style scoped>
-    .stat-s {  height: 24px; display: grid; grid-template-columns: 350px auto 350px; background-color: #fff; border-top: 1px solid #f0f0ea; font-size: 11px; color: #222; }
+    .stat-s {  height: 24px; display: grid; grid-template-columns: 350px auto 350px; background-color: #fcfcfc; border-top: 1px solid #f0f0ea; font-size: 11px; color: #444; }
     .stat-s .o { text-align: left; }
     .stat-s .o span { padding: 6px 12px; display: inline-block; border-right: 1px solid #f0f0ea; cursor: pointer; }
     .stat-s .o span svg { height: 10px; width: 10px; }
