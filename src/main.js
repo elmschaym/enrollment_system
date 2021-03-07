@@ -15,8 +15,8 @@ Vue.use(VueHtmlToPaper, {
 	specs: ['fullscreen=no', 'titlebar=no', 'scrollbars=yes', 'height=600', 'width=800', 'top=100', 'left=300'
 	],
 	styles: [
-		//'http://localhost:8080/static/css/print.css'
-		'http://192.168.254.101:8080/static/css/print.css'
+		'http://localhost:8080/static/css/print.css'
+		//'http://192.168.254.101:8080/static/css/print.css'
 	]
 });
 Vue.component('v-icon', VIcon);

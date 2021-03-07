@@ -52,7 +52,16 @@
 		},
 		props: {
 			stuid: {
-				type: Number
+				type: Number,
+				required: false
+			},
+			couid: {
+				type: Number,
+				required: false
+			},
+			refer: {
+				type: String,
+				required: true
 			}
 		},
 		data() {
@@ -88,7 +97,7 @@
 		methods: {
 			fetchSubjects() {
 				this.isFetching = true;
-				this.$http.get('subject/?action='+ this.queryAction +'&query='+ this.queryString +'&type='+ this.queryType +'&refer=department&depid='+ this.departmentId +'&subject_fields=id,name,code,units').then(res => {
+				this.$http.get('subject/?action='+ this.queryAction +'&query='+ this.queryString +'&type='+ this.queryType +'&refer='+ this.refer +'&depid='+ this.departmentId +'&couid='+ this.couid +'&stuid='+ this.stuid +'&subject_fields=id,name,code,units').then(res => {
 					this.subjects = res.data;
 				}).finally( () => {
 					this.$sleep(500).then( () => { this.isFetching = false; });

@@ -77,7 +77,7 @@
 			</div>
 			<div class="q">
 				<div class="t">
-					<list-e-dep-subject @setValue="setSubjectFromSearch" :stuid="student.school_id"></list-e-dep-subject>
+					<list-e-dep-subject @setValue="setSubjectFromSearch" :refer="'enrollment'" :stuid="student.id" :couid="student.admission[0].course.id"></list-e-dep-subject>
 				</div>
 				<div class="r">
 					<div v-if="acadPreference.hasOwnProperty('is_enrollment_open') && !acadPreference.is_enrollment_open">Enrollment is CLOSED</div>
@@ -285,7 +285,7 @@
 			removeSubject(s) {
 				this.selectIdH = -1;
 				if (this.acadPreference.hasOwnProperty('is_enrollment_open') && this.acadPreference.is_enrollment_open) {
-					this.$http.delete('section_enroll/'+ s.id +'/?subid='+ s.subject.id).then(res => {
+					this.$http.delete('section_enroll/'+ s.id +'/?subid='+ s.subject.id +'&enrid='+ this.student.admission[0].enrollment[0].id).then(res => {
 						this.fetchSubjectsEnrolled();
 						this.fetchSections();
 					});

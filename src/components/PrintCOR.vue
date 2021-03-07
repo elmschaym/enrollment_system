@@ -7,7 +7,7 @@
 				<div class="n">Academic Status</div><div class="v">{{ enrollment.enrollment.acad_status }}</div>
 			</div>
 			<div class="y">
-				<div class="a" style="padding-top: 10px">Mindanao State University</div>
+				<div class="a" style="padding-top: 10px">{{ CLIENT_NAME }}</div>
 				<div class="b">Marawi City</div>
 			</div>
 			<div class="z">

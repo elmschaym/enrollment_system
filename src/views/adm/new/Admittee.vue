@@ -47,7 +47,7 @@
 					<div id="print-adm" v-if="printStudentData.hasOwnProperty('id')">
 						<div style="font-family: 'Cairo'; font-size: 12px">
 							<div style=" margin-bottom: 16px; text-align: center">
-								<h4 style="margin: 0">Mindanao State University</h4>
+								<h4 style="margin: 0">{{ CLIENT_NAME }}</h4>
 								<h5 style="margin: 0; font-weight: normal">Marawi City, Philippines</h5>
 								<h3 style="margin: 0">CERTIFICATE OF ADMISSION</h3>
 							</div>

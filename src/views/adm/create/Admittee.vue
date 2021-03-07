@@ -5,10 +5,12 @@
 				<div class="u">
 					<div class="h">
 						<div class="pixx">
-							<v-icon name="user"></v-icon>
-							<div class="name">
-								<div class="n">{{ student.fullname }}</div>
-								<div class="m"><span>{{ student.school_id }}</span></div>
+							<div>
+								<v-icon name="user"></v-icon>
+								<div class="name">
+									<div class="n">{{ fullname }}</div>
+									<div class="m"><span>{{ student.school_id }}</span></div>
+								</div>
 							</div>
 						</div>
 						
@@ -38,13 +40,14 @@
 						</div>
 						<date-picker class="dp-wrap" @selected="setDateAdmittedDP($event)" v-if="isDatePickerShow" :format="'yyyy-MM-dd'" :inline="true"></date-picker>
 						<div class="dp-back" v-if="isDatePickerShow"></div>
+						<div class="dsbd" v-if="student.id == 0"></div>
 					</div>
 				</div>
 				<div class="v">
 					<div id="print-adm" v-if="printStudentData.hasOwnProperty('id')">
 						<div style="font-family: 'Cairo'; font-size: 12px">
 							<div style=" margin-bottom: 16px; text-align: center">
-								<h4 style="margin: 0">{{ CLIENT_NAME }}</h4>
+								<h4 style="margin: 0">Mindanao State University</h4>
 								<h5 style="margin: 0; font-weight: normal">Marawi City, Philippines</h5>
 								<h3 style="margin: 0">CERTIFICATE OF ADMISSION</h3>
 							</div>
@@ -64,7 +67,7 @@
 								<div style="text-align: right; padding-right: 8px">
 									<div>School ID:</div>
 									<div>Admitted:</div>
-									<div>Acad Year:</div>
+									<div>Acade Year:</div>
 									<div>Semester:</div>
 								</div>
 								<div style="color: #000">
@@ -84,8 +87,7 @@
 			</div>
 			<div class="q">
 				<div class="t">
-					<div class="g">
-					</div>
+					<find-e-student @setValue="setStudIDFromSearch"></find-e-student>
 				</div>
 				<div class="s">
 					<button :class="['br-confirm', isFormOkay ? 'okay' : '']" @click="goSaveAdmittee()" :disabled="isSavingForm || !isFormOkay"><v-icon name="plus"></v-icon> Admit Student</button>
@@ -97,6 +99,11 @@
 				Student admitted successfully. Proceed to preferred Department for Enrollment and Course selection.
 			</div>
 		</ui-modal-listener>
+		<ui-modal-informer v-if="isModalShow && !isSubmitOkay" @informedOkay="modalClose" class="moda-l">
+			<div slot="text">
+				Student couldn't be admitted. There has been an existing admission and/or your request is invalid.<br/><span style="font-size: 10px">Error Code: 401 Bad Request</span>
+			</div>
+		</ui-modal-informer>
 		<ui-loader v-if="isSavingForm"></ui-loader>
 	</div>
 </template>
@@ -105,24 +112,29 @@
 	import DatePicker from 'vuejs-datepicker';
 	import UISelect from '@/components/UISelect.vue';
 	import UILoader from '@/components/UILoader.vue';
+	import FindEStudent from '@/components/FindEStudent.vue';
 	import UIModalListener from '@/components/UIModalListener.vue';
+	import UIModalInformer from '@/components/UIModalInformer.vue';
 
 	import 'vue-awesome/icons/user';
+	import 'vue-awesome/icons/plus';
 
 	export default {
 		components: {
 			UiSelect: UISelect,
 			UiLoader: UILoader,
+			FindEStudent,
 			UiModalListener: UIModalListener,
+			UiModalInformer: UIModalInformer,
 			DatePicker
 		},
 		data() {
 			return {
 				isSavingForm: false,
 				isModalShow: false,
-				isSubmitOkay: false,
 				isDatePickerShow: false,
-				student: { id: 0, school_id: '', fullname: '' },
+				isSubmitOkay: false,
+				student: { id: 0, school_id: '', firstname: '', middlename: '', lastname: '' },
 				acad_programs: [],
 				acad_program_id: 0,
 				admission: { date_admitted: '' },
@@ -132,20 +144,28 @@
 		},
 		computed: {
 			isFormOkay() {
-				let isStudFormOkay = this.student.school_id != '', isAdmitFormOkay = this.acad_program_id > 0 && this.admission.date_admitted != '';
-				return isStudFormOkay && isAdmitFormOkay;
+				let isStudFormOkay = true, isAdmitFormOkay = true;
+				for (let o in this.student) isStudFormOkay = isStudFormOkay && this.student[o] != '';
+				for (let o in this.admission) isAdmitFormOkay = isAdmitFormOkay && this.admission[o] != '';
+				return isStudFormOkay && isAdmitFormOkay && this.acad_program_id > 0;
+			},
+			fullname() {
+				return this.student.lastname +', '+ this.student.firstname +' '+ this.student.middlename;
 			}
 		},
 		methods: {
+			setAcademicType(v) {
+				this.acad_program_id = v;
+				this.printAcademicData.program_type = this.acad_programs.length > 0 ? this.acad_programs.find(x => x.id === v).name : '';
+			},
+			setStudIDFromSearch(v) {
+				this.student = v;
+			},
 			getGender(v) {
 				return this.$store.state.forms.student.gender.find(x => x.id == v).name;
 			},
 			getCivilStatus(v) {
 				return this.$store.state.forms.student.civil_status.find(x => x.id == v).name;
-			},
-			setAcademicType(v) {
-				this.acad_program_id = v;
-				this.printAcademicData.program_type = this.acad_programs.length > 0 ? this.acad_programs.find(x => x.id === v).name : '';
 			},
 			setDateAdmittedNow() {
 				this.admission.date_admitted = this.formatDate(new Date());
@@ -166,7 +186,7 @@
 					this.$http.post('admission/?school_id='+ this.student.school_id +'&student_fields=id,school_id,firstname,middlename,lastname,gender,civil_status', Object.assign({}, this.admission, { student: this.student.id, academic_program: this.acad_program_id, course: 1 })).then( res => {
 						if (res.status == 201) {
 							this.printStudentData = res.data;
-							this.printAcademicData.date_admitted = this.admission.date_admitted
+							this.printAcademicData.date_admitted = this.admission.date_admitted;
 							this.isModalShow = true;
 							this.isSubmitOkay = true;
 						} else {
@@ -189,7 +209,6 @@
 			modalClose(v) {
 				this.student = { id: 0, school_id: '', firstname: '', middlename: '', lastname: '' };
 				this.isModalShow = false;
-				this.$router.push({ name: 'adm-index' });
 			},
 			printAdmission() {
 				this.$htmlToPaper('print-adm');
@@ -201,10 +220,6 @@
 			}
 		},
 		created() {
-			let student = this.$storageGet('stu_student', 'session');
-			this.student.id = student.id;
-			this.student.school_id = student.school_id;
-			this.student.fullname = student.fullname;
 			this.$store.commit('setModuleName', 'Admission – New Admittee');
 		},
 		mounted() {
@@ -215,7 +230,7 @@
 
 <style scoped>
 	.form-o { position: relative; height: auto;  }
-	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 290px; }
+	.form-o .w { height: 100%; display: grid; grid-template-columns: auto 280px; }
 	.form-o .w .p { height: 100%; position: relative; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
@@ -229,7 +244,7 @@
 	.p .h .name .m { font-size: 12px; color: #eee; }
 	.p .h .butt { display: grid; grid-template-columns: 50% 50%; }
 
-	.p .g { padding: 32px 16px; display: grid; grid-template-columns: 200px auto; position: relative; }
+	.p .g { position: relative; padding: 32px 16px; display: grid; grid-template-columns: 200px auto }
 	.p .g .b {}
 	.p .g .b span { display: block; padding: 7px 0; }
 	.p .g .c {}
@@ -238,10 +253,7 @@
 	.p .g .c .d div input { border: none; height: 24px; border-bottom: 1px solid #c0c0ba; font-size: 11px; }
 	.p .g .c .d div button { margin-left: 10px; height: 24px; padding: 0px 12px; border: 1px solid #e0e0d0; background: #fbfbf7; border-radius: 2px; font-size: 11px; color: #444; }
 
-	.q .t { position: relative; }
-	.q .t .g {}
-	.q .t .g div { height: 240px; width: 100%; background-color: #404040; padding: 20px 0; }
-	.q .t .g div svg { width: 200px; height: 200px; color: #505050; display: block; margin: 0 auto; }
+	.q .t { padding: 16px 12px; }
 
 	.q .s { text-align: center; background-color: #f0f0ea; height: 70px; padding: 20px 0; }
 	.q .s button {}
@@ -249,12 +261,10 @@
 	.q .s button.okay { border: 1px outset #e0e0d0; color: #000; }
 	.q .s button.okay svg { color: #000; }
 
-	.form-o .o {}
-
 	.dp-wrap { position: absolute; top: 150px; left: calc((100% - 300px) / 2); z-index: 9999; }
 	.dp-back { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.15) }
 
-	.dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.65) }
+	.dsbd { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff }
 
 	#print-adm { display: none }
 	.v { position: relative; }

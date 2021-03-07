@@ -49,7 +49,43 @@ input, button, select, textarea { font-family: 'Blinker', sans-serif; outline: n
 ._pri_cor .data .x .h .i div { padding: 4px 0; white-space: nowrap; text-overflow: hidden; overflow: hidden; color: #000; }
 ._pri_cor .data .x .h .i div svg { width: 10px; height: 10px; color: #d0d0ca; }
 
+._pri_pay { width: 12cm; }
+._pri_pay * { font-family: "Courier New"; }
+._pri_pay .code { text-align: right; font-weight: 600; }
+._pri_pay .head { display: grid; grid-template-columns: 60% 40% }
+._pri_pay .head div { padding: 7px 0; font-weight: 600 }
+._pri_pay .data {}
+._pri_pay .data .l { height: 300px; padding: 20px 0; }
+._pri_pay .data .l .i, ._pri_pay .data .k { display: grid; grid-template-columns: 70% 30% }
+._pri_pay .data .l .i div {}
+._pri_pay .data .k { padding: 7px 0; font-weight: bold }
+._pri_pay .data .m { padding: 7px 0; font-weight: bold; }
+._pri_pay .foot { padding: 12px 0; }
 
+._pri_gs { width: 10cm; }
+._pri_gs .data { margin-top: 10px; border-bottom: 1px solid #d0d0ca; height: 280px; overflow: hidden; }
+._pri_gs .data .x {}
+._pri_gs .data .x .g, ._pri_gs .data .x .h .i { display: grid; grid-template-columns: 60px auto 10px 60px 90px  }
+._pri_gs .data .x .g { border-top: 1px solid #d0d0ca; border-bottom: 1px solid #d0d0ca; padding: 5px 0; color: #222; }
+._pri_gs .data .x .g div {}
+._pri_gs .data .x .h {}
+._pri_gs .data .x .h .i {}
+._pri_gs .data .x .h .i div { padding: 4px 0; white-space: nowrap; text-overflow: hidden; overflow: hidden; color: #000; }
+._pri_gs .data .x .h .i div svg { width: 10px; height: 10px; color: #d0d0ca; }
+
+._pri_gs .head { padding: 0; margin: 0; }
+._pri_gs .head.r { text-align: center }
+._pri_gs .head.r .a { font-weight: 600; font-size: 13px; }
+._pri_gs .head.r .b { font-weight: normal }
+
+._pri_gs .head.o .c { font-size: 13px; padding: 5px 0; }
+
+._pri_gs .head.s { display: grid; grid-template-columns: 60% 10px auto }
+._pri_gs .head.s .n { white-space: nowrap; text-overflow: hidden; overflow: hidden; }
+._pri_gs .head.s .n span { font-weight: 600 }
+
+
+._pri_gs .date { padding: 10px 0; display: grid; grid-template-columns: 210px auto; }
 /* vowels */
 .ta-l { text-align: left }
 .ta-r { text-align: right }

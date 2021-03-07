@@ -6,7 +6,7 @@
 				<b class="b"></b>
 				<b class="c"></b>
 			</div>
-			<span>sysuno v1.0-alpha</span>
+			<span>{{ APP_NAME | lowercase }} {{ APP_VERSION }}</span>
 		</div>
 		<div class="stat" v-if="isLoading">
 			<span><b></b></span>
@@ -15,19 +15,12 @@
 </template>
 
 <script>
-	//import 'vue-awesome/icons/microchip';
-
 	export default {
 		data() {
 			return {
 				isLoading: false,
 				isAnimate: false,
 				isShowName: false
-			}
-		},
-		computed: {
-			meteor() {
-				return require('../../public/static/svg/meteor.svg');
 			}
 		},
 		methods: {
@@ -55,9 +48,9 @@
 	.name .icon { position: relative; }
 	.name .icon b {  display: block; position: absolute; height: 0; transform: rotate(-60deg); transition: all 3s ease-in; }
 
-	.name .icon b.a { width: 160px; border-left: 60px solid transparent; border-right: 60px solid transparent;  border-bottom: 20px solid #202020; bottom: calc(100% + 80px); left: 190px; }
-	.name .icon b.b { width: 138px; border-left: 50px solid transparent; border-right: 60px solid transparent; border-bottom: 14px solid #505050; bottom: calc(100% + 60px); left: 140px;  }
-	.name .icon b.c { width: 120px; border-left: 40px solid transparent; border-right: 50px solid transparent; border-bottom: 8px solid #909090; bottom: calc(100% + 50px); left: 260px; color: #909090; }
+	.name .icon b.a { width: 160px; border-left: 60px solid transparent; border-right: 60px solid transparent;  border-bottom: 20px solid #202020; bottom: calc(100% + 80px); left: 194px; }
+	.name .icon b.b { width: 138px; border-left: 50px solid transparent; border-right: 60px solid transparent; border-bottom: 14px solid #505050; bottom: calc(100% + 60px); left: 144px;  }
+	.name .icon b.c { width: 120px; border-left: 40px solid transparent; border-right: 50px solid transparent; border-bottom: 8px solid #909090; bottom: calc(100% + 50px); left: 264px; color: #909090; }
 
 	.name .icon.animate b.a { bottom: 90px; left: 65px; }
 	.name .icon.animate b.b { bottom: 130px; left: 40px; }

@@ -2,8 +2,10 @@ import axios from 'axios';
 
 export default {
      install(Vue) {
-        Vue.prototype.APP_NAME = "System ENR";
-        Vue.prototype.APP_NAME_FULL = "Enrollment System";
+        Vue.prototype.APP_NAME = "SYSUNO";
+        Vue.prototype.APP_NAME_FULL = "System UNO";
+        Vue.prototype.APP_VERSION = "v1.0-alpha";
+        Vue.prototype.CLIENT_NAME = "Adiong Memorial Polytechnic State College";
 
         Vue.filter('currency', function(value) {
             if (typeof value !== "number") {
@@ -15,6 +17,14 @@ export default {
                 minimumFractionDigits: 2
             });
             return formatter.format(value);
+        });
+
+        Vue.filter('lowercase', function(value) {
+            return value.toLowerCase();
+        });
+
+        Vue.filter('uppercase', function(value) {
+            return value.toUpperCase();
         });
 
         Vue.filter('getDate', function(value) {

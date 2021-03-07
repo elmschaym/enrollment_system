@@ -62,6 +62,8 @@ const routes = [
 					{ path: 'new-student', component: () => import('../views/adm/new/Student.vue'), name: 'adm-new-student' },
 					{ path: 'new-student-admit', component: () => import('../views/adm/new/StudentAdmit.vue'), name: 'adm-new-student-admit' },
 					{ path: 'view/adm/:admit_id', component: () => import('../views/adm/view/adm/Admittee.vue'), name: 'adm-view-admittee' },
+					{ path: 'student-evaluation', component: () => import('../views/adm/tool/StudentEvaluation.vue'), name: 'adm-student-evaluation' },
+					{ path: 'grade-slip', component: () => import('../views/adm/tool/GradeSlip.vue'), name: 'adm-grade-slip' },
 					{ path: 'view/stu/:stude_id', component: () => import('../views/adm/view/stu/_.vue'),
 						children: [
 							{ path: 'index', component: () => import('../views/adm/view/stu/Index.vue'), name: 'adm-view-student-index' },

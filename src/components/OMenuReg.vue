@@ -29,6 +29,7 @@
 	import 'vue-awesome/icons/users';
 	import 'vue-awesome/icons/suitcase';
 	import 'vue-awesome/icons/columns';
+	import 'vue-awesome/icons/sticky-note';
 
 	export default {
 		emits: ['menuClose'],

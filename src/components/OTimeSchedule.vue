@@ -1,10 +1,10 @@
 <template>
     <div class="time-s">
-        <div class="f">
+        <div class="ff">
             <div v-for="(t,i) in timeList" :key="'tl'+i">{{ t }}</div>
         </div>
-        <div class="e">
-            <div class="l">
+        <div class="ee">
+            <div class="ll">
                 <div>Mon <span>M</span></div>
                 <div>Tue <span>T</span></div>
                 <div>Web <span>W</span></div>
@@ -13,9 +13,9 @@
                 <div>Sat <span>S</span></div>
                 <div>Sun <span>A</span></div>
             </div>
-            <div class="d">
-                <div class="y" v-for="(y,j) in schedules" :key="'srow'+j">
-                    <div :class="['x', x == 0 ? '' : 'active']" v-for="(x,i) in y" :key="'scol'+i+'_'+j">{{ x == 0 ? '' : x }}</div>
+            <div class="dd">
+                <div class="yy" v-for="(y,j) in schedules" :key="'srow_'+j">
+                    <div :class="['xx', x == 0 ? '' : 'active']" v-for="(x,i) in y" :key="'scol_'+i+'_'+j">{{ x == 0 ? '' : x }}</div>
                 </div>
             </div>
         </div>
@@ -97,14 +97,14 @@
 
 <style scoped>
     .time-s { width: 636px; display: grid; grid-template-rows: 16px 112px; margin: 12px 0; border-left: 1px solid #a0a0a0; }
-    .time-s .f { display: flex; padding-left: 26px; }
-    .time-s .f div { width: 26px; height: 16px; font-size: 9px; text-align: center; color: #000; }
-    .time-s .e { display: grid; grid-template-columns: 38px 598px; }
-    .time-s .e .l { padding: 0 2px; }
-    .time-s .e .l div { height: 16px; font-size: 10px; color: #000; padding: 3px 0; }
-    .time-s .e .l div span { float: right; }
-    .time-s .e .d { display: grid; grid-template-rows: 16px 16px 16px 16px 16px 16px 16px }
-    .time-s .e .d .y { height: 16px; display: flex; border-top: 1px solid #a0a099; border-left: 1px solid #a0a099; }
-    .time-s .e .d .y .x { width: 26px; height: 16px; border-right: 1px solid #a0a099; border-bottom: 1px solid #a0a099; }
-    .time-s .e .d .y .x.active { background-color: #f7f0c6; font-size: 8px; text-align: center; color: #000; word-break: break-all; display: flex; align-items: center; justify-content: center; }
+    .time-s .ff { display: flex; padding-left: 26px; }
+    .time-s .ff div { width: 26px; height: 16px; font-size: 9px; text-align: center; color: #000; }
+    .time-s .ee { display: grid; grid-template-columns: 38px 598px; }
+    .time-s .ee .ll { padding: 0 2px; }
+    .time-s .ee .ll div { height: 16px; font-size: 10px; color: #000; padding: 3px 0; }
+    .time-s .ee .ll div span { float: right; }
+    .time-s .ee .dd { display: grid; grid-template-rows: 16px 16px 16px 16px 16px 16px 16px }
+    .time-s .ee .dd .yy { height: 16px; display: flex; border-top: 1px solid #a0a099; border-left: 1px solid #a0a099; }
+    .time-s .ee .dd .yy .xx { width: 26px; height: 16px; border-right: 1px solid #a0a099; border-bottom: 1px solid #a0a099; }
+    .time-s .ee .dd .yy .xx.active { background-color: #f7f0c6; font-size: 8px; text-align: center; color: #000; word-break: break-all; display: flex; align-items: center; justify-content: center; }
 </style>

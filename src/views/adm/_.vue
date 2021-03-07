@@ -50,7 +50,8 @@
 					tools: [
 						{ name: 'Generate Prospectus', icon: 'clone', link: 'cou-view-prospectus' },
 						{ name: 'COR', icon: 'suitcase', link: 'adm-confirm-registration' },
-						{ name: 'Student Evaluation', icon: 'industry', link: 'sub-student-eval' }
+						{ name: 'Grade Slip', icon: 'sticky-note', link: 'adm-grade-slip' },
+						{ name: 'Student Evaluation', icon: 'industry', link: 'adm-student-evaluation' }
 					]
 				},
 				names: {

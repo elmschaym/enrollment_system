@@ -6,7 +6,7 @@
 					<b>&times;</b>
 				</span>
 			</div>
-			<div class="name">SYSUNO &nbsp; Sign-In</div>
+			<div class="name">{{ APP_NAME }} &nbsp; Sign-In</div>
 			<div class="menu">
 				<span v-show="isLoggingIn">
 					<v-icon name="spinner" :spin="true"></v-icon>

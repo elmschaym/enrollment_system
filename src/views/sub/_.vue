@@ -49,6 +49,7 @@
 					],
 					tools: [
 						{ name: 'Generate Prospectus', icon: 'clone', link: 'cou-view-prospectus' },
+						{ name: 'COR', icon: 'suitcase', link: 'adm-confirm-registration' },
 						{ name: 'Student Evaluation', icon: 'industry', link: 'sub-student-eval' }
 					]
 				},
