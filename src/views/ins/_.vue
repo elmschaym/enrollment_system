@@ -1,8 +1,8 @@
 <template>
-	<div class="_wrp_dep">
-		<title-bar-dep @showMenu="menuModal"></title-bar-dep>
-		<div class="_wrp_dep_view">
-			<side-con dashboard="dep-index"></side-con>
+	<div class="_wrp_ins">
+		<title-bar-ins @showMenu="menuModal"></title-bar-ins>
+		<div class="_wrp_ins_view">
+			<side-con dashboard="ins-index"></side-con>
 			<div class="view">
 				<div class="view_wrap">
 					<router-view></router-view>
@@ -15,14 +15,14 @@
 </template>
 
 <script>
-	import TitleBarDep from '@/components/TitleBarDep.vue';
+	import TitleBarIns from '@/components/TitleBarIns.vue';
 	import SideCon from '@/components/SideCon.vue';
 	import StatusBar from '@/components/StatusBar.vue';
 	import OMenuReg from '@/components/OMenuReg.vue';
 
 	export default {
 		components: {
-			TitleBarDep,
+			TitleBarIns,
 			StatusBar,
 			SideCon,
 			OMenuReg
@@ -32,21 +32,9 @@
 				showMenu: false,
 				menuName: '',
 				menus: {
-					create: [
-						{ name: 'Enrollee', icon: 'address-book', link: 'dep-create-enrollee' },
-						{ name: 'Room', icon: 'columns', link: 'dep-create-room' },
-						{ name: 'Section', icon: 'crop', link: 'dep-create-section' }
-					],
-					lister: [
-						{ name: 'Enrollees', icon: 'id-card', link: 'dep-list-enrollees' },
-						{ name: 'Faculties', icon: 'users', link: 'dep-list-faculties' }
-					],
-					assign: [
-						{ name: 'Student Subjects', icon: 'sitemap', link: 'dep-assign-set-subject' },
-						{ name: 'Teaching Load', icon: 'anchor', link: 'dep-assign-teaching-load' },
-						{ name: 'Enter Grades', icon: 'eraser', link: 'dep-assign-enter-grades' }
-					],
 					tools: [
+						{ name: 'Handled Subjects', icon: 'braille', link: 'ins-index' },
+						{ name: 'Enter Grades', icon: 'eraser', link: 'ins-enter-grades' }
 					]
 				},
 				names: {
@@ -70,9 +58,9 @@
 </script>
 
 <style scoped>
-	._wrp_dep { height: inherit; background-color: #fff }
+	._wrp_ins { height: inherit; background-color: #fff }
 
-	._wrp_dep_view { height: 100%; display: grid; grid-template-columns: 28px auto; }
+	._wrp_ins_view { height: 100%; display: grid; grid-template-columns: 28px auto; }
 
 	.view { height: inherit; position: relative; }
 	.view_wrap { height: calc(100% - 28px); display: grid; grid-template-rows: auto 24px; }

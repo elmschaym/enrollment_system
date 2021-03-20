@@ -45,7 +45,7 @@
 						<div style="font-family: 'Cairo'; font-size: 12px">
 							<div style=" margin-bottom: 16px; text-align: center">
 								<h4 style="margin: 0">{{ CLIENT_NAME }}</h4>
-								<h5 style="margin: 0; font-weight: normal">Marawi City, Philippines</h5>
+								<h5 style="margin: 0; font-weight: normal">{{ CLIENT_ADDR }}</h5>
 								<h3 style="margin: 0">CERTIFICATE OF ADMISSION</h3>
 							</div>
 							<div style="display: grid; grid-template-columns: 120px auto 120px auto; width: 100%; padding: 16px 0; margin: 16px 0; border-bottom: 2px solid #e0e0e0; border-top: 2px solid #a0a090">

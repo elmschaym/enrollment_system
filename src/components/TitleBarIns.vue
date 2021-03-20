@@ -12,6 +12,7 @@
 			</span>
 		</div>
 		<div class="link">
+			<span @click="showMenu('tools')">Tools</span>
 		</div>
 		<div class="name" ref="tbName">{{ moduleName }}</div>
 		<div class="link" style="text-align: right">
@@ -124,7 +125,7 @@
 	.menu .c { position: relative; }
 	.menu .c .n { margin: 2px 4px; color: #222; padding: 4px 5px; background: #fdfdf9; border: 1px solid #f0f0ea; border-radius: 2px; text-align: center; cursor: pointer; }
 	.menu .c .n svg { width: 10px; height: 10px; }
-	.menu .c .m { position: absolute; top: 100%; right: 10px; width: 160px; height: auto; background-color: #fff; z-index: 10001; box-shadow: 0 4px 9px rgba(0,0,0,0.24); z-index: 9999; }
+	.menu .c .m { position: absolute; top: 100%; right: 10px; width: 160px; height: auto; background-color: #fff; z-index: 9999; box-shadow: 0 4px 9px rgba(0,0,0,0.24); z-index: 9999; }
 	.menu .c .m .u { display: grid; grid-template-columns: 32px auto; margin: 0 10px; border-bottom: 1px solid #ebebe7; padding: 20px 0; }
 	.menu .c .m .u .p {}
 	.menu .c .m .u .p span { display: block; height: 28px; width: 28px; background-color: #60605a; }

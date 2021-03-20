@@ -1,36 +1,38 @@
 <template>
-	<div class="logi-n">
-		<div class="_tbr">
-			<div class="wind">
-				<span @click="winClose()" tooltip="close">
-					<b>&times;</b>
-				</span>
-			</div>
-			<div class="name">{{ APP_NAME }} &nbsp; Sign-In</div>
-			<div class="menu">
-				<span v-show="isLoggingIn">
-					<v-icon name="spinner" :spin="true"></v-icon>
-				</span>
+	<div class="wrap-a">
+		<div class="bnnr">
+			<div class="name">
+				<div class="p">
+					<span>{{ CLIENT_NAME }}</span>
+				</div>
+				<div class="q">ENROLLMENT System</div>
 			</div>
 		</div>
-		<div class="_frm">
-			<div class="n">
-				<span><v-icon name="user-circle"></v-icon></span>
+		<div class="form">
+			<div class="x">
+				<span @click="winMinimize()"><v-icon name="window-minimize"></v-icon></span>
+				<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span>
 			</div>
-			<div class="f">
-				<input type="text" :class="isErrorConnect ? 'error' : ''" placeholder="Username" v-model="username" maxlength="32"/>
-				<v-icon name="address-book"></v-icon>
+			<div v-if="!isConnecting" class="w">
+				<div class="h">
+					<b>Connect</b>
+				</div>
+				<div class="f">
+					<input type="text" v-model="username" placeholder="Username" :class="{ 'error': isErrorConnect }" maxlength="32"/>
+					<v-icon :name="isUsername ? 'user-circle' : 'user'"></v-icon>
+				</div>
+				<div class="f">
+					<input type="password" v-model="password" placeholder="Password" :class="{ 'error': isErrorConnect }" maxlength="64"/>
+					<v-icon :name="isPassword ? 'lock' : 'unlock'"></v-icon>
+				</div>
+				<div class="s">
+					<button @click="login()" :disabled="!isOkay" :class="{ 'ready': isOkay }">Sign In</button>
+				</div>
+				<div class="c">
+					<span @click="$router.push({ name: 'usr-config' })">config <v-icon name="cog"></v-icon></span>
+				</div>
 			</div>
-			<div class="f"> 
-				<input type="password" :class="isErrorConnect ? 'error' : ''" placeholder="Password" v-model="password" maxlength="64" />
-				<v-icon name="lock"></v-icon>
-			</div>
-			<div class="r" @click="togglePersistentLogin()">
-				<b :class="isPersistentLogin ? 'check' : ''"></b> <span>Remember Credentials</span>
-			</div>
-			<div class="f">
-				<button :disabled="!isOkay || isLoggingIn" @click="goLogin()">Connect</button>
-			</div>
+			<div v-else class="l"><div class="loader"></div></div>
 		</div>
 	</div>
 </template>
@@ -44,16 +46,13 @@
 	import 'vue-awesome/icons/unlock';
 	import 'vue-awesome/icons/times';
 	import 'vue-awesome/icons/window-minimize';
-	import 'vue-awesome/icons/address-book';
-	import 'vue-awesome/icons/spinner';
-
+	import 'vue-awesome/icons/cog';
 
 	export default {
 		data() {
 			return {
-				isLoggingIn: false,
+				isConnecting: false,
 				isErrorConnect: false,
-				isPersistentLogin: false,
 				username: "",
 				password: "",
 				isShow: false
@@ -71,46 +70,47 @@
 			}
 		},
 		methods: {
-			togglePersistentLogin() {
-				this.isPersistentLogin = !this.isPersistentLogin;
+			setDimensions() {
+				window.nwWin.hide();
+				/**if (window.screen.availWidth > 1440) {
+					window.nwWin.width = 1200;
+					window.nwWin.height = 660;
+					window.nwWin.setMinimumSize(1200, 660);
+					window.nwWin.zoomLevel = 1.1;
+				} else if (window.screen.availWidth < 1080) {
+					window.nwWin.width = 800;
+					window.nwWin.height = 400;
+					window.nwWin.zoomLevel = 0;
+					window.nwWin.setMinimumSize(800, 400);
+				}
+				else {
+					window.nwWin.width = 1000;
+					window.nwWin.height = 660;
+					window.nwWin.zoomLevel = 0;
+					window.nwWin.setMinimumSize(1000, 660);
+				} **/
+				window.nwWin.setPosition('center');
 			},
-			goLogin() {
-				this.isLoggingIn = true;
-				let uname = this.username, passw = this.password, landings = { REG: 'adm-index', CAS: 'fin-index', 'DEP': 'dep-index', 'INS': 'dep-index' };
-				this.$http.post(window.API_BASEURL +'/login/', qs.stringify({ uname, passw })).then( res => {
-					if (res.data.hasOwnProperty('api_token')) {
-						this.$storageSet("user_info", res.data);
-						this.$storageSet("api_token", res.data.api_token);
-						this.setPhysicals();
-						this.$router.push({ name: landings[res.data.system_app_role], query: { set_dimen: 1 } });
-					} else {
+			login() {
+				let api_config = this.$storageGet("api_config", 'local');
+				if (api_config.hasOwnProperty('server')) {
+					this.isConnecting = true;
+					let uname = this.username, passw = this.password, landings = { REG: 'adm-index', CAS: 'cas-index', 'DEP': 'dep-index', 'INS': 'ins-index' };
+					this.$http.post(api_config.server.slice(0,-4) +'login/', qs.stringify({ uname, passw })).then( res => {
+						if (res.data.hasOwnProperty('api_token')) {
+							this.$storageSet("user_info", res.data);
+							this.$storageSet("api_token", res.data.api_token);
+							this.setDimensions();
+							this.$router.push({ name: landings[res.data.system_app_role], query: { set_dimen: 1 } });
+						} else {
+							this.isErrorConnect = true;
+						}
+					}).catch( () => {
+						this.isConnecting = false;
 						this.isErrorConnect = true;
-					}
-				}).catch( () => {
-					this.isErrorConnect = true;
-				}).finally( () => {
-					this.isLoggingIn = false;
-					this.$sleep(2000).then( () => this.isErrorConnect = false, 2000);
-				});
-			},
-			setPhysicals() {
-				if (this.$route.query.hasOwnProperty('set_dimen')) {
-					window.nwWin.hide();
-					window.nwWin.setPosition('center');
-					if (window.screen.availWidth > 1900) {
-						window.nwWin.width = 1500;
-						window.nwWin.height = 800;
-						window.nwWin.setMaximumSize(1500, 800);
-						window.nwWin.setMinimumSize(1500, 800);
-						window.nwWin.zoomLevel = 1.1;
-					} else {
-						window.nwWin.width = 1200;
-						window.nwWin.height = 660;
-						window.nwWin.setMaximumSize(1200, 660);
-						window.nwWin.setMinimumSize(1200, 660);
-						window.nwWin.zoomLevel = 0;
-					}
-					window.nwWin.setPosition('center');
+					}).finally( () => {
+						this.$sleep(2000).then( () => this.isErrorConnect = false, 2000);
+					});
 				}
 			},
 			winClose() {
@@ -118,68 +118,71 @@
 					window.nwWin.hide();
 					window.nwWin.close(true);
 				});
+			},
+			winMinimize() {
+				window.nwWin.minimize();
 			}
 		},
 		created() {
-			let token = this.$storageGet('api_token', 'local') || "", user = this.$storageGet('user_info', 'local') || {}, landings = { REG: 'adm-index', CAS: 'fin-index', 'DEP': 'dep-index', 'INS': 'dep-index' };
+			window.nwWin.width = 1000;
+			window.nwWin.height = 660;
+			window.nwWin.zoomLevel = 0;
+			window.nwWin.setMinimumSize(1000, 660);
+			window.nwWin.setPosition('center');
+			let token = this.$storageGet('api_token', 'local') || "", user = this.$storageGet('user_info', 'local') || {}, landings = { REG: 'adm-index', CAS: 'cas-index', 'DEP': 'dep-index', 'INS': 'ins-index' };
 			if (token != "" && user.hasOwnProperty('system_app_role')) {
-				this.setPhysicals();
+				window.nwWin.hide();
 				this.$router.push({ name: landings[user.system_app_role], query: { set_dimen: 1 } });
 			} else {
-				if (window.screen.availWidth > 1900) {
-					window.nwWin.setMaximumSize(400, 400);
-					window.nwWin.setMinimumSize(400, 400);
-					window.nwWin.width = 400;
-					window.nwWin.height = 400;
-					window.nwWin.zoomLevel = 1.1;
-				} else {
-					window.nwWin.setMaximumSize(300, 300);
-					window.nwWin.setMinimumSize(300, 300);
-					window.nwWin.width = 300;
-					window.nwWin.height = 300;
-					window.nwWin.zoomLevel = 0;
-				}
-				window.nwWin.setPosition('center');
-				//window.nwWin.setShadow(true);
-				//window.nwWin.setResizable(false);
-				this.$sleep(2000).then(() => {
+				this.$sleep(1000).then(() => {
 					window.nwWin.show();
 				});
 			}
+		},
+		mounted() {
 		}
 	}
 </script>
 
 <style scoped>
-	.logi-n { background-color: #fff; overflow: hidden; }
+	.wrap-a { height: 100%; display: grid; grid-template-columns: auto 35%; position: relative; background: linear-gradient(to left bottom, #fafafa, #f0f0f0); }
+	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #fff, #fff); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; user-select: none; }
+	.form { position: relative; height: 100%; background: transparent; }
 
-	._tbr { display: grid; grid-template-columns: 32px auto 32px; width: 100vw; background-color: #f5f5f5; height: 28px; }
-	.name { padding: 6px; -webkit-app-region: drag; font-size: 14px; font-weight: 600; text-align: center }
-	.name span { font-size: 12px; color: #40403a; font-weight: 600; line-height: 12px; }
-	.wind { padding: 4px 5px; display: grid; grid-template-columns: 20px 20px 20px; }
-	.wind span { display: block; width: 20px; height: 20px; cursor: pointer; padding: 5px 5px; color: #555; }
-	.wind span b { display: block; width: 10px; height: 10px; border-radius: 5px; background-color: #707070; font-weight: normal; font-size: 10px; text-align: center; }
-	.wind span:hover b { color: #fff; }
+	.form .x { position: absolute; top: 4px; right: 4px; display: grid; grid-template-columns: 24px 24px; }
+	.form .x span { display: block; width: 24px; height: 24px; cursor: pointer; padding: 5px 5px; color: #555; }
+	.form .x span svg { width: 10px; height: 10px; }
+	.form .x span:hover { color: #000; }
 
-	.menu {}
-	.menu span { display: block; padding: 6px; }
-	.menu span svg { width: 12px; height: 12px; }
+	.form .w { position: absolute; top: calc((100% - 230px)/2); height: 266px; width: 260px; right: 48px; background: linear-gradient(to left bottom, #272537, #575567); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
+	.form .w .h { padding: 8px 0 20px 0;  }
+	.form .w .h b { display: block; text-align: center; color: #fff; font-size: 28px; font-weight: 600; }
+	.form .w .h i { display: block; color: #56373c; font-size: 10px; font-weight: bold; text-align: center; font-style: normal; }
 
-	._frm {}
-	._frm .n { height: 54px; background-color: #fbfbf7; iborder-bottom: 1px solid #f0f0ea; text-align: center; margin-bottom: 40px; position: relative; }
-	._frm .n span { display: block; position: absolute; bottom: -28px; left: 0; right: 0; text-align: center; }
-	._frm .n span svg { width: 72px; height: 72px; color: #404040;}
+	.form .w .f { padding: 5px 0; position: relative }
+	.form .w .f svg { position: absolute; right: 12px; top: 16px; height: 12px; width: 12px; color: #888; }
+	.form .w input { height: 30px; border-radius: 5px; color: #000; padding: 8px 12px; border: none;  background-color: #fdfdfd; width: 100%; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); outline: none; cursor: pointer; }
+	.form .w input::placeholder { color: #222; }
+	.form .w .s { padding-top: 16px; }
+	.form .w input.error { background-color: #ffebeb; }
+	.form .w button { text-align: center; padding: 8px 16px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); font-size: 12px; display: block; width: 75%; margin: 0 auto; border-radius: 5px; outline: none; background-color: #fbfbfb; color: #a0a0a0; font-weight: 600 }
+	.form .w button.ready { box-shadow: 0 4px 9px rgba(0,0,0,0.15); background: linear-gradient(to bottom, #fafafa, #f0f0f0); color: #391e22; cursor: pointer; }
+	.form .w .c { position: absolute; bottom: 10px; right: 10px; color: #e0e0e0; font-size: 10px; cursor: pointer; }
+	.form .w .c svg { color: #e0e0e0; width: 10px; height: 10px; margin-bottom: -2px; }
 
-	._frm .f { margin: 10px 40px; position: relative; }
-	._frm .f input { width: 100%; height: 32px; border-radius: 2px; color: #000; padding: 4px 8px; border: none; font-size: 14px; outline: none; background-color: #fff; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
-	._frm .f input::placeholder { color: #303030; }
-	._frm .f input.error { background-color: #fcf5ef; }
-	._frm .f svg { width: 12px; height: 12px; color: #404040; position: absolute; top: 10px; right: 10px; }
-	._frm .r { text-align: center; }
-	._frm .r b { display: inline-block; width: 8px; height: 8px; border: 1px solid #909090; margin-right: 6px; }
-	._frm .r span { font-size: 11px; color: #505050; }
-	._frm .r b.check { background-color: #505050 }
+	.bnnr .name { position: absolute; top: 150px; left: 32px; right: 32px; }
+	.bnnr .name .p { color: #111; }
+	.bnnr .name .p span { font-size: 54px; text-transform: uppercase; color: #272537; font-weight: bold; text-shadow: 0 -1px 1px rgba(0,0,0,0.4); }
+	.bnnr .name .q { border-top: 16px solid #272537; font-size: 36px; text-transform: uppercase; color: #444; font-weight: 600; margin-top: 20px; padding-top: 5px; }
 
-	._frm .f button { display: block; width: 70%; margin: 0 auto; height: 32px; border-radius: 2px; color: #000; padding: 4px 8px; border: none; background-color: #f5f5f5; font-size: 12px; outline: none;  border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
-	._frm .f button:disabled { color: #808080; cursor: default; }
+	div.l { position: absolute; top: calc((100% - 230px)/2); height: 266px; width: 260px; right: 48px; background: linear-gradient(to left bottom, #272537, #575567); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
+	
+	.loader, .loader:before, .loader:after { border-radius: 0; width: 8px; height: 8px; -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation: load7 1.8s infinite ease-in-out; animation: load7 1.8s infinite ease-in-out; }
+	.loader { color: #fff; font-size: 10px; margin: 80px auto; position: relative; text-indent: -9999em; -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation-delay: -0.16s; animation-delay: -0.16s; }
+	.loader:before,
+	.loader:after { content: ''; position: absolute; top: 0; }
+	.loader:before { left: -18px; -webkit-animation-delay: -0.32s; animation-delay: -0.32s; }
+	.loader:after { left: 18px; }
+	@-webkit-keyframes load7 { 0%, 80%, 100% { box-shadow: 8px 0 -4px; } 40% { box-shadow: 0 8px 0 0; }}
+	@keyframes load7 { 0%, 80%, 100% { box-shadow: 0 8px 0 -4px; } 40% { box-shadow: 0 8px 0 0; }}
 </style>

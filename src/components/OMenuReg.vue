@@ -30,6 +30,9 @@
 	import 'vue-awesome/icons/suitcase';
 	import 'vue-awesome/icons/columns';
 	import 'vue-awesome/icons/sticky-note';
+	import 'vue-awesome/icons/anchor';
+	import 'vue-awesome/icons/eraser';
+	import 'vue-awesome/icons/sitemap';
 
 	export default {
 		emits: ['menuClose'],

@@ -238,7 +238,7 @@
 </script>
 
 <style scoped>
-	.wrap-i { height: 100%; background-color: #fbfbf7; display: grid; grid-template-columns: 270px auto }
+	.wrap-i { height: 100%; background-color: #fbfbf7; display: grid; grid-template-columns: 240px auto }
 
 	.wrap-i .q { height: 100%; background: #fff; }
 	.wrap-i .p { border-right: 1px solid #f0f0f0; height: 100%; background: #fbfbf7; display: grid; grid-template-rows: 45px auto 70px }
@@ -258,7 +258,7 @@
 	.q .u div span { font-weight: 600; margin-left: 5px; font-size: 12px; }
 
 	.q .v { position: relative; }
-	.q .v .r { display: grid; grid-template-columns: auto 320px; }
+	.q .v .r { display: grid; grid-template-columns: auto 270px; }
 	.q .v .r .x { background-color: #fff; height: 400px; padding: 12px; }
 	.q .v .r .x .a { font-size: 11px; color: #111; padding: 6px 0; background-color: #fff; }
 	.q .v .r .x .a svg { width: 10px; height: 10px; color: #444; margin-right: 4px; }

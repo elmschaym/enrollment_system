@@ -40,7 +40,7 @@
 									<div class="h">
 										<button @click="changeSemester(0)" :class="semester == 0 ? 'active' : ''">1st</button>
 										<button @click="changeSemester(1)" :class="semester == 1 ? 'active' : ''">2nd</button>
-										<button @click="changeSemester(2)" :class="semester == 2 ? 'active' : ''">3rd</button>
+										<button @click="changeSemester(2)" :class="semester == 2 ? 'active' : ''">SMR</button>
 									</div>
 								</div>
 							</div>

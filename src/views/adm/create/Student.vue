@@ -239,7 +239,7 @@
 					this.$http.post('student/', Object.assign({}, this.student, this.studentx)).then( res => {
 						let data = res.data;
 						this.$storageSet('stu_student', { id: data.id, fullname: data.lastname +', '+ data.firstname +' '+ data.middlename, school_id: data.school_id }, 'session');
-						this.$router.push({ name: 'adm-new-student-admit' });
+						this.$router.push({ name: 'adm-create-student-admit' });
 					}).catch( () => {
 						this.isSubmitError = true;
 						this.isSavingForm = false;

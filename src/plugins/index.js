@@ -2,10 +2,12 @@ import axios from 'axios';
 
 export default {
      install(Vue) {
-        Vue.prototype.APP_NAME = "SYSUNO";
+        Vue.prototype.APP_NAME = "EVERUNO";
         Vue.prototype.APP_NAME_FULL = "System UNO";
         Vue.prototype.APP_VERSION = "v1.0-alpha";
         Vue.prototype.CLIENT_NAME = "Adiong Memorial Polytechnic State College";
+        Vue.prototype.CLIENT_ADDR = "Marawi City, Philippines";
+        Vue.prototype.API_BASEURL = 'http://127.0.0.1:8000';
 
         Vue.filter('currency', function(value) {
             if (typeof value !== "number") {
@@ -56,7 +58,7 @@ export default {
         };
 
         Vue.prototype.$http = axios.create({
-            baseURL: window.API_BASEURL +'/api/',
+            baseURL: Vue.prototype.API_BASEURL,
             timeout: 5000
         });
         Vue.prototype.$http.interceptors.request.use(function (config) {

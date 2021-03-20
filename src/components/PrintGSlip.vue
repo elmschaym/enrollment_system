@@ -3,7 +3,7 @@
 		<div class="head r">
 			<div class="c">
 				<div class="a" style="padding-top: 10px">{{ CLIENT_NAME }}</div>
-				<div class="b">Marawi City</div>
+				<div class="b">{{ CLIENT_ADDR }}</div>
 			</div>
 		</div>
 		<div class="head o">

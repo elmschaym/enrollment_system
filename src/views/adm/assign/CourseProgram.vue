@@ -269,11 +269,11 @@
 
 <style scoped>
 	.wrap-m { height: 100%; position: relative; }
-	.wrap-m .w-m { height: 100%; display: grid; grid-template-columns: 312px auto; }
+	.wrap-m .w-m { height: 100%; display: grid; grid-template-columns: 270px auto; }
 	.wrap-m .w-m .p { height: 100%; background: #f8f8f2; padding: 16px; }
 	.wrap-m .w-m .q { height: 100%; border-left: 1px solid #f0f0f0; display: grid; grid-template-rows: 48px auto }
 
-	.q .s { border-bottom: 1px solid #f0f0ea; display: grid; grid-template-columns: auto 350px; }
+	.q .s { border-bottom: 1px solid #f0f0ea; display: grid; grid-template-columns: auto 320px; }
 	.q .s .x { padding: 10px; }
 	.q .s .x b { display: block; color: #111; font-size: 12px; font-weight: 600; }
 	.q .s .x span { display: block; color: #7404040; font-size: 11px; font-weight: normal; padding-top: 2px; }
@@ -281,7 +281,7 @@
 	.q .s .y div { font-size: 11px; }
 	.q .s .y div span { float: right; font-weight: 600 }
 
-	.q .t { height: 100%; display: grid; grid-template-columns: auto 350px; background-color: #fff; }
+	.q .t { height: 100%; display: grid; grid-template-columns: auto 320px; background-color: #fff; }
 	.q .t .u { height: 100%; position: relative; }
 	.q .t .u .w { height: 100%; display: grid; grid-template-rows: 50px auto 70px 32px; }
 	.q .t .u .w .a { display: grid; grid-template-columns: auto 10px 160px; }

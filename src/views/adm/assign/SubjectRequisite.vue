@@ -199,7 +199,7 @@
 	.q .w .h .butt button.okay { background-color: #fff }
 
 	.q .w .g { background-color: #fff; position: relative; }
-	.q .w .g .u { height: 100%; display: grid; grid-template-columns: auto 40%; }
+	.q .w .g .u { height: 100%; display: grid; grid-template-columns: auto 50%; }
 	.q .w .g .u .x { height: inherit; background: #fbfbf7; display: grid; grid-template-rows:  auto 50px; }
 	.q .w .g .u .y { height: inherit; background: #fff; border-left: 1px solid #f0f0ea; display: grid; grid-template-rows: auto 50px; }
 
@@ -207,7 +207,7 @@
 	.x .l { display: grid; grid-template-columns: auto 50px; border-right: 1px solid #e0e0da; }
 	.x .l .bb { width: 50px; height: 20px; border-bottom: 1px solid #e0e0da; }
 	.x .l .ii { padding: 8px 0; }
-	.x .ff { height: 40px; background-color: #fff; border: 1px solid #ebebe7; display: grid; grid-template-columns: 70px auto 20px; overflow: hidden }
+	.x .ff { height: 40px; background-color: #fff; border: 1px solid #ebebe7; display: grid; grid-template-columns: 50px auto 20px; overflow: hidden }
 	.x .ff .c { display: flex; justify-content: left; align-items: center; font-size: 13px; font-weight: 600; padding: 4px 10px; background-color: #fbfbf7; }
 	.x .n { display: flex; justify-content: left; align-items: center; font-size: 11px; padding: 4px 10px; background-color: #fff; }
 	.x .ff .e { display: flex; justify-content: center; align-items: center; background-color: #fbfbf7; cursor: pointer; }

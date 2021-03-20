@@ -152,11 +152,6 @@
             }
         },
         created() {
-            if (this.$route.query.hasOwnProperty('set_dimen')) {
-                this.$sleep(1500).then(() => {
-                    window.nwWin.show();
-                });
-            }
             this.$emit('setViewName', this.$route.name);
             this.$store.commit('setModuleName', 'Department – New Enrollee');
         },

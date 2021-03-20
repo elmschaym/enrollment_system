@@ -194,7 +194,7 @@
 	.p .h .butt .e > div { margin-top: 5px; font-size: 11px; color: #111; }
 
 	.q .r.o {}
-	.q .r.o { display: grid; grid-template-columns: auto 350px; margin: 8px 16px; }
+	.q .r.o { display: grid; grid-template-columns: auto 280px; margin: 8px 16px; }
 	.q .r.o .x { margin-right: 16px;}
 	.q .r.o .x .a { font-size: 11px; color: #111; padding: 6px 7px; border-top: 1px solid #f0f0f0; box-shadow: 0 1px 1px rgba(0,0,0,0.24); background-color: #fff; font-weight: 600; text-align: center }
 	.q .r.o .x .b, .q .r.o .x .d > div { display: grid; grid-template-columns: 20px 70px auto 75px 155px 60px 40px  }
