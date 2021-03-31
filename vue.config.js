@@ -1,13 +1,27 @@
-//const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+const path = require('path');
 
 module.exports = {
-    outputDir: 'dist',
-    assetsDir: 'static',
-    // baseUrl: IS_PRODUCTION
-    // ? 'http://cdn123.com'
-    // : '/',
-    // For Production, replace set baseUrl to CDN
-    // And set the CDN origin to `yourdomain.com/static`
-    // Whitenoise will serve once to CDN which will then cache
-    // and distribute
-  }
+	outputDir: 'dist',
+	assetsDir: 'static',
+	pages: {
+		index: {
+			entry: 'src-adm/main.js',
+			template: 'public/index.html'
+		}
+	},
+	configureWebpack: {
+		resolve: {
+			alias: {
+				'@': path.resolve(__dirname, 'src-adm')
+			}
+		}
+	},
+	chainWebpack: config => {
+		config.plugin('copy').use(require('copy-webpack-plugin'), [[{
+			from: path.resolve(__dirname, 'public'),
+			to: path.resolve(__dirname, 'dist'),
+			toType: 'dir',
+			ignore: ['.DS_Store']
+		}]]);
+	}
+}

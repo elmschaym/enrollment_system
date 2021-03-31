@@ -12,7 +12,6 @@
 			</span>
 		</div>
 		<div class="link">
-			<span @click="showMenu('tools')">Tools</span>
 		</div>
 		<div class="name" ref="tbName">{{ moduleName }}</div>
 		<div class="link" style="text-align: right">

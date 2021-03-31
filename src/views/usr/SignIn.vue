@@ -103,12 +103,14 @@
 							this.setDimensions();
 							this.$router.push({ name: landings[res.data.system_app_role], query: { set_dimen: 1 } });
 						} else {
+							this.isConnecting = false;
 							this.isErrorConnect = true;
 						}
 					}).catch( () => {
 						this.isConnecting = false;
 						this.isErrorConnect = true;
 					}).finally( () => {
+						this.isConnecting = false;
 						this.$sleep(2000).then( () => this.isErrorConnect = false, 2000);
 					});
 				}

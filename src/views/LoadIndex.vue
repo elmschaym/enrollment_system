@@ -33,12 +33,6 @@
 			}
 		},
 		mounted() {
-			let api_config = this.$storageGet('api_config', 'local') || {};
-			if (api_config.hasOwnProperty('server')) {
-				this.$http.defaults.baseURL = api_config.server;
-			} else {
-				this.$storageSet("api_config", { protocol: "2", server: "http://127.0.0.1:8000"}, 'local');
-			}
 			this.$sleep(500).then(() => this.isShowName = true );
 			this.$sleep(1000).then(() => this.isAnimate = true );
 			this.$sleep(4000).then(this.initializeSetup);
