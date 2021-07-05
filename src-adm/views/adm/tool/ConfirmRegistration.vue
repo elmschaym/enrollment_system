@@ -56,11 +56,11 @@
 				<div class="t">
 					<div>
 						<span>Semester</span>
-						<ui-select @setValue="setSemester" :options="[{ id: '1ST', name: '1ST' }, { id: '2ND', name: '2ND' }, { id: '3RD', name: '3RD' }]" :presets="{ id: '1ST', name: '1ST' }" :styles="['border-radius: 2px; width: 100%; padding: 6px 10px 6px 10px', '']"></ui-select>
+						<ui-select @setValue="setSemester" :options="[{ id: '1ST', name: '1ST' }, { id: '2ND', name: '2ND' }, { id: '3RD', name: '3RD' }]" :presets="{ id: '1ST', name: '1ST' }" :styles="['border-radius: 2px; width: 100%; padding: 6px 10px 6px 10px; border-color: #a0a09a #90908a #70706a #90908a;', '']"></ui-select>
 					</div>
 					<div style="padding-left: 10px">
 						<span>Academic Year</span>
-						<ui-select @setValue="setAcademicYear" :options="[{ id: '2020-2021', name: '2020-2021' }, { id: '2021-2022', name: '2021-2022' }, { id: '2022-2023', name: '2022-2023' }]" :presets="{ id: '2020-2021', name: '2020-2021' }" :styles="['border-radius: 2px; width: 100%; padding: 6px 10px 6px 10px', '']"></ui-select>
+						<ui-select @setValue="setAcademicYear" :options="[{ id: '2020-2021', name: '2020-2021' }, { id: '2021-2022', name: '2021-2022' }, { id: '2022-2023', name: '2022-2023' }]" :presets="{ id: '2020-2021', name: '2020-2021' }" :styles="['border-radius: 2px; width: 100%; padding: 6px 10px 6px 10px; border-color: #a0a09a #90908a #70706a #90908a;', '']"></ui-select>
 					</div>
 				</div>
 				<div class="r">

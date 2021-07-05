@@ -310,7 +310,7 @@
 	.q .t .u .w .d { background-color: #fff }
 	.q .t .u .w .d button { display: block; border: none; width: 100%; height: 100%; font-size: 11px; background-color: #fbfbf7; color: #909090; }
 	.q .t .u .w .d button svg { width: 10px; height: 10px; margin-right: 6px }
-	.q .t .u .w .d button.okay { background-color: #f0f0ea; color: #222; }
+	.q .t .u .w .d button.okay { background-color: #555753; color: #fff; }
 
 	.q .t .v { height: 100%; padding: 16px 12px; background-color: #fbfbf7; border-left: 1px solid #f0f0ea; }
 

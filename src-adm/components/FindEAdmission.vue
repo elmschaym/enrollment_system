@@ -6,7 +6,10 @@
         </div>
         <div class="y">
             <div class="find">
-                <input v-model="queryString" :placeholder="'Enter Student  [' + queryType +']'" :disabled="disableInput"/>
+                <div>
+                    <input v-model="queryString" :placeholder="'Enter Student  [' + queryType +']'" :disabled="disableInput"/>
+                    <v-icon name="search"></v-icon>
+                </div>
                 <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
             </div>
             <div class="rslt">
@@ -34,6 +37,7 @@
     import UILoader from './UILoader.vue';
 
     import 'vue-awesome/icons/coffee';
+    import 'vue-awesome/icons/search';
 
     export default {
         emits: ['setValue'],
@@ -116,9 +120,11 @@
 
     .y { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .y .find { display: grid; grid-template-columns: auto 60px; }
-    .y .find input { display: block; color: #391e22; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-radius: 5px 0 0 0; }
-    .y .find input::placeholder { color: #202020; }
-    .y .find button { display: block; color: #391e22; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border-radius: 0 5px 0 0; }
+    .y .find div { position: relative; }
+    .y .find div input { display: block; width: 100%; color: #391e22; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 12px; outline: none; height: 28px; border-style: solid; border-width: 1px; border-color: #a0a09a #90908a #70706a #90908a; }
+    .y .find div input::placeholder { color: #202020; }
+    .y .find div svg { position: absolute; top: 8px; right: 6px; width: 12px; height: 12px; color: #555753; }
+    .y .find button { display: block; height: 28px; color: #fff; padding: 8px 8px 8px 2px; border: 1px solid #555753; background-color: #555753; font-size: 11px; outline: none; cursor: pointer; }
     .y .find button svg { width: 12px; height: 12px; float: right; }
 
     .y .rslt {  position: relative; }

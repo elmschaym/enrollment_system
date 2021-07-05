@@ -18,7 +18,7 @@
 								<input style="width: 95%" v-model="student.lastname" placeholder="Last Name" maxlength="32"/>
 							</div>
 							<div style="display: grid; grid-template-columns: 32px auto">
-								<span style="height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px 0 1px 1px; border-color: #f0f0ea transparent #d0d0d0 #eaeaea;"><v-icon name="id-card"></v-icon></span><button>{{ student.school_id }}</button>
+								<span style="height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px 0 1px 1px; border-color: #a0a09a #90908a #70706a #90908a;"><v-icon name="id-card"></v-icon></span><button>{{ student.school_id }}</button>
 							</div>
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 						<div class="c">
 							<div>
 								<label for="">Gender</label>
-								<ui-select @setValue="setStudentGender" :options="$store.state.forms.student.gender" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px']"></ui-select>
+								<ui-select @setValue="setStudentGender" :options="$store.state.forms.student.gender" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px; border-color: #a0a09a #90908a #70706a #90908a;']"></ui-select>
 							</div>
 							<div>
 								<label for="">Religion</label>
@@ -34,7 +34,7 @@
 							</div>
 							<div>
 								<label for="">Civil Status</label>
-								<ui-select @setValue="setStudentCivilStatus" :options="$store.state.forms.student.civil_status" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px', '']"></ui-select>
+								<ui-select @setValue="setStudentCivilStatus" :options="$store.state.forms.student.civil_status" :styles="['border-radius: 2px; width: 90%; padding: 5px 10px 5px 10px; border-color: #a0a09a #90908a #70706a #90908a;', '']"></ui-select>
 							</div>
 							<div>
 								<label for="">Date of Birth</label>
@@ -329,12 +329,12 @@
 	.form-o .w .p { height: 100%; position: relative; display: grid; grid-template-rows: 230px auto; }
 	.form-o .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; display: grid; grid-template-rows: auto 70px; }
 
-	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p input { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 3px 8px 3px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #a0a09a #90908a #70706a #90908a; }
 	.form-o .w .p ::placeholder { color: #222; }
-	.form-o .w .p select { border-radius: 5px; color: #000; padding: 5px 12px 5px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border-width: 1px; border-style: solid; border-color: #f0f0f0 #e0e0e0 #d0d0d0 #e0e0e0; outline: none; cursor: pointer; }
-	.form-o .w .p textarea { width: 100%; height: 72px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p select { border-radius: 5px; color: #000; padding: 5px 12px 5px 12px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border-width: 1px; border-style: solid; border-color: #a0a09a #90908a #70706a #90908a; outline: none; cursor: pointer; }
+	.form-o .w .p textarea { width: 100%; height: 72px; border-radius: 2px; color: #000; padding: 5px 8px; background-color: #fdfdfd; font-size: 11px; border: none; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #a0a09a #90908a #70706a #90908a; }
 	.form-o .w .p label { display: block; font-size: 11px; margin: 10px 0 4px 2px; color: #111; }
-	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: #f0f0ea #eaeaea #d0d0d0 #eaeaea; }
+	.form-o .w .p button { width: 100%; height: 28px; border-radius: 2px; color: #000; padding: 7px 8px 8px 8px; border: none; background-color: #fdfdfd; font-size: 11px; outline: none; cursor: pointer;border-style: solid; border-width: 1px; border-color: #a0a09a #90908a #70706a #90908a; }
 	.form-o .w div.info { font-size: 10px; padding: 2px 8px; }
 
 	.p .h { iborder-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: auto 200px; margin-bottom: 0px; color: #505040; }

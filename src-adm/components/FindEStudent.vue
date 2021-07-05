@@ -1,7 +1,10 @@
 <template>
     <div class="_f">
         <div class="find">
-            <input v-model="query" :placeholder="'Enter Student  ['+ queryType +']'" :disabled="disableInput"/>
+            <div>
+                <input v-model="query" :placeholder="'Enter Student  ['+ queryType +']'" :disabled="disableInput"/>
+                <v-icon name="search"></v-icon>
+            </div>
             <button @click="switchQueryType()"><v-icon v-show="false" name="coffee"></v-icon> {{ queryType }}</button>
         </div>
         <div class="rslt">
@@ -30,6 +33,7 @@
 <script>
     import UILoader from './UILoader.vue';
 
+    import 'vue-awesome/icons/search';
     import 'vue-awesome/icons/coffee';
 
     export default {
@@ -91,10 +95,12 @@
 <style scoped>
     ._f { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); }
     .find { display: grid; grid-template-columns: auto 60px; }
-    .find input { height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-bottom: 1px solid #f0f0f0; border-top: 1px solid #f0f0f0; }
+    .find input { height: 28px; width: 100%; display: block; color: #111; padding: 2px 10px 2px 10px; border: none; background-color: #fefefe; font-size: 12px; outline: none; border-bottom: 1px solid #c0c0ba; border-left: 1px solid #c0c0ba; border-top: 1px solid #c0c0ba; margin-left: -1px; }
     .find input::placeholder { color: #202020; }
-    .find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; border-top: 1px solid #f0f0ea; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; }
+    .find button { height: 28px; display: block; color: #fff; border: 1px solid #555753; background-color: #555753; font-size: 12px; outline: none; cursor: pointer; margin-right: -1px; }
     .find button svg { width: 12px; height: 12px; float: right; }
+    .find > div { position: relative; }
+    .find > div svg { position: absolute; top: 8px; right: 6px; width: 12px; height: 12px; }
 
     .rslt {  position: relative; }
     .head { font-size: 8px; text-transform: uppercase; padding: 4px 12px; background-color: #f8f8f5; border-radius: 5px 5px 0 0 }

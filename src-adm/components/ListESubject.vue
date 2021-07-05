@@ -1,7 +1,7 @@
 <template>
 	<div class="_f">
 		<div class="form">
-			<ui-select @setValue="setDepartment" :options="departments" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+			<ui-select @setValue="setDepartment" :options="departments" :styles="['border-radius: 0; padding: 7px 10px; border-color: #a0a09a #90908a #70706a #90908a; margin-left: -1px']" :presets="{ name: '-- Select Department --', id: 0 }"></ui-select>
 			<button @click="fetchSubjects()"><v-icon name="book"></v-icon></button>
 		</div>
 		<div class="rslt">
@@ -29,6 +29,7 @@
 		</div>
 		<div class="find">
 			<div class="i">
+				<v-icon name="search"></v-icon>
 				<input v-model="queryString" :placeholder="'Find Subject  ['+ queryType +']'"/>
 				<span v-if="queryString.length > 0" @click="queryString = ''">&times;</span>
 			</div>
@@ -43,6 +44,7 @@
 
 	import 'vue-awesome/icons/book';
 	import 'vue-awesome/icons/square';
+	import 'vue-awesome/icons/search';
 
 	export default {
 		emits: ['setValue'],
@@ -104,7 +106,7 @@
 
 	.form { display: grid; grid-template-columns: auto 32px; } 
 	.form input { width: 100%; color: #391e22; padding: 8px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; cursor: pointer; }
-	.form button { display: block; height: 27px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0f0 #eaeaea #d0d0d0 transparent; }
+	.form button { display: block; height: 27px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #555753; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #555753; color: #fff; }
 	.form button svg { width: 10px; height: 10px; }
 
 	.rslt { position: relative; }
@@ -124,8 +126,9 @@
 	.find { display: grid; grid-template-columns: auto 60px; border-top: 1px solid #e0e0da; }
 	.find .i { background-color: #fefefe; position: relative; }
 	.find .i span { position: absolute;; top: 2px; right: 5px; padding: 5px; cursor: pointer; }
-	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; }
+	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px 2px 20px; border: none; background-color: #fefefe; font-size: 12px; outline: none; border-color: #a0a09a #90908a #70706a #90908a; border-style: solid; border-width: 1px; }
 	.find .i input::placeholder { color: #202020; }
-	.find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; }
+	.find .i svg { position: absolute; top: 8px; left: 4px; width: 12px; height: 12px; color: #555753; }
+	.find button { height: 28px; display: block; color: #fff; padding: 8px 8px 8px 2px; border: 1px solid #555753; background-color: #555753; font-size: 11px; outline: none; cursor: pointer; }
 	.find button svg { width: 12px; height: 12px; float: right; }
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<div class="_f">
 		<div class="form">
-			<ui-select @setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+			<ui-select @setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px; border-color: #a0a09a #90908a #70706a #90908a; margin-left: -1px']"></ui-select>
 			<button @click="fetchSubjects()"><v-icon name="book"></v-icon></button>
 		</div>
 		<div class="rslt">
@@ -135,7 +135,7 @@
 
 	.form { display: grid; grid-template-columns: auto 32px; } 
 	.form input { width: 100%; color: #391e22; padding: 8px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; cursor: pointer; }
-	.form button { display: block; height: 27px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0f0 #eaeaea #d0d0d0 transparent; }
+	.form button { display: block; height: 27px; color: #fff; padding: 2px 8px 2px 8px; border: none; background-color: #555753; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #555753; }
 	.form button svg { width: 10px; height: 10px; }
 
 	.rslt { position: }

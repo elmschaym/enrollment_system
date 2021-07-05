@@ -7,8 +7,8 @@
 				<div class="n">Academic Status</div><div class="v">{{ enrollment.enrollment.acad_status }}</div>
 			</div>
 			<div class="y">
-				<div class="a" style="padding-top: 10px">{{ CLIENT_NAME }}</div>
-				<div class="b">Marawi City</div>
+				<div class="a" style="padding-top: 10px">{{ appPreference.client_name_print }}</div>
+				<div class="b">{{ appPreference.client_addr_print }}</div>
 			</div>
 			<div class="z">
 				<div class="n ta-r">ID Number</div><div class="v ta-r">{{ enrollment.student.school_id }}</div>
@@ -77,6 +77,11 @@
 				required: false
 			}
 		},
+		data() {
+			return {
+				appPreference: { id: 0, client_print_name: 'EVERSOFT IT SOLUTIONS', client_addr_print: 'EVERSOFT' }
+			}
+		},
 		methods: {
 			parseGender(v) {
 				return this.$store.state.forms.student.gender.find(x => x.id == v).name;
@@ -93,6 +98,11 @@
 				if (mm<10) mm = '0'+ mm;
 				return yyyy+'-'+mm+'-'+dd;
 			}
+		},
+		created() {
+			let app_prefer = this.$storageGet('app_prefer', 'local') || '';
+			if (app_prefer)
+				this.appPreference = app_prefer;
 		}
 	}
 </script>

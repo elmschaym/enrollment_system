@@ -2,8 +2,17 @@
     <div class="sidecon">
         <ul class="a">
             <li v-for="(m,i) in menus" :key="'menu_'+ i">
-                <div :class="['l', sconName == m.link ? 'active' : '']" @click="goScon(m.link)" :title="m.name">
+                <div class="l">
                     <v-icon :name="m.icon"></v-icon>
+                    <div class="m">
+                        <div class="h">{{ m.name }}</div>
+                        <div class="g">
+                            <div v-for="(u,j) in m.menu" :key="m.icon +'_'+j" @click="$router.push({ name: u.link })">
+                                <v-icon :name="u.icon"></v-icon>
+                                <span>{{ u.name }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -61,19 +70,31 @@
             return {
                 sconName: 'adm-index',
                 menus: [
-                    { name: 'New Admittee', icon: 'id-card', link: 'adm-create-admittee' },
-                    { name: 'New Student', icon: 'address-book', link: 'adm-create-student' },
-                    { name: 'New Subject', icon: 'book', link: 'adm-create-subject' },
-                    { name: 'New Course', icon: 'book-reader', link: 'adm-create-course' },
-                    { name: 'Students List', icon: 'address-book', link: 'adm-list-stu-master' },
-                    { name: 'Admittees List', icon: 'id-card', link: 'adm-list-adm-master' },
-                    { name: 'Courses List', icon: 'book-reader', link: 'adm-list-cou-master' },
-                    { name: 'Subject Requisites', icon: 'map-signs', link: 'adm-assign-sub-xreq' },
-                    { name: 'Course Programme', icon: 'map', link: 'adm-assign-cou-subj' },
-                    { name: 'Generate Prospectus', icon: 'clone', link: 'adm-tool-view-prospectus' },
-                    { name: 'COR', icon: 'suitcase', link: 'adm-tool-confirm-registration' },
-                    { name: 'Grade Slip', icon: 'sticky-note', link: 'adm-tool-grade-slip' },
-                    { name: 'Student Evaluate', icon: 'industry', link: 'adm-tool-student-evaluation' }
+                    { name: 'Create Instance', icon: 'file', menu: [
+                        { name: 'Admittee', icon: 'id-card', link: 'adm-create-admittee' },
+                        { name: 'Student', icon: 'address-book', link: 'adm-create-student' },
+                        { name: 'Subject', icon: 'book', link: 'adm-create-subject' },
+                        { name: 'Course', icon: 'book-reader', link: 'adm-create-course' }
+                        ]
+                    },
+                    { name: 'Lister', icon: 'list-ul', menu: [
+                        { name: 'Students', icon: 'address-book', link: 'adm-list-stu-master' },
+                        { name: 'Admittees', icon: 'id-card', link: 'adm-list-adm-master' },
+                        { name: 'Courses', icon: 'book-reader', link: 'adm-list-cou-master' }
+                        ]
+                    },
+                    { name: 'Assign', icon: 'clipboard', menu: [
+                        { name: 'Subject Reqsts', icon: 'map-signs', link: 'adm-assign-sub-xreq' },
+                        { name: 'Course Prog.', icon: 'map', link: 'adm-assign-cou-subj' }
+                        ]
+                    },
+                    { name: 'Tools', icon: 'wrench', menu: [
+                        { name: 'Gen Prospectus', icon: 'clone', link: 'adm-tool-view-prospectus' },
+                        { name: 'COR', icon: 'suitcase', link: 'adm-tool-confirm-registration' },
+                        { name: 'Grade Slip', icon: 'sticky-note', link: 'adm-tool-grade-slip' },
+                        { name: 'Student Evaluate', icon: 'industry', link: 'adm-tool-student-evaluation' }
+                        ]
+                    }
                 ]
             }
         },
@@ -92,7 +113,7 @@
 </script>
 
 <style scoped>
-    .sidecon { height: inherit; background-color: #454743; border-right: 1px solid #2E3436; display: grid; grid-template-rows: 200px auto 124px }
+    .sidecon { height: inherit; background-color: #555753; border-right: 1px solid #2E3436; display: grid; grid-template-rows: 200px auto 124px }
     .sidecon ul { padding: 24px 0; }
     .sidecon ul li { height: 36px; cursor: pointer; }
     .sidecon ul li div.l { display: block; text-align: center; position: relative; padding: 10px 0; }
@@ -106,6 +127,6 @@
     .sidecon ul li div.l div.m .g > div span { font-size: 11px; display: block; color: #e0e0e0; padding-top: 2px; }
 
     .sidecon ul li div.l:hover div.m { left: 100%; display: block; transition: left 250ms ease-in-out; }
-    .sidecon ul li div.l.active, .sidecon ul li div.l:hover { background-color: #2E3436; }
+    .sidecon ul li.active, .sidecon ul li:hover { background-color: #2E3436; }
     .sidecon ul li.active svg { color: #fff; }
 </style>

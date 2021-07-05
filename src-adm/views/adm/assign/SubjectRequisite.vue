@@ -214,7 +214,7 @@
 
 	.x .subm { background-color: #fff; border-top: 1px solid #f8f8f2; padding: 14px 0; text-align: center;  }
 	.x .subm button { height: 22px; border: none; font-size: 11px; }
-	.x .subm button.okay { border: 1px solid #e0e0d0; color: #000; background-color: #fff }
+	.x .subm button.okay { border: 1px solid #e0e0d0; color: #fff; background-color: #555753 }
 
 	.u .y .data { display: grid; grid-template-columns: 90px auto; padding: 20px; }
 	.y .list { height: 100%; margin-top: 20px; overflow-y: scroll; max-height: 350px; margin-bottom: 20px; }

@@ -1,7 +1,7 @@
 <template>
     <div class="_cmp_lec">
         <div class="form">
-            <ui-select @setValue="setDepartment" :options="departments" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+            <ui-select @setValue="setDepartment" :options="departments" :styles="['border-radius: 0; padding: 7px 10px; border-color: #a0a09a #90908a #70706a #90908a; margin-left: -1px']" :presets="{ name: '-- Select Department --', id: 0 }"></ui-select>
             <button @click="fetchCourses()"><v-icon name="book-reader"></v-icon></button>
         </div>
         <div class="rslt">
@@ -87,14 +87,14 @@
     ._cmp_lec { height: inherit; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: grid; grid-template-rows: 26px auto 28px }
 
     .form { display: grid; grid-template-columns: auto 32px; }
-    .form button { display: block; height: 27px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0f0 transparent #d0d0d0 transparent; }
-    .form button svg { width: 10px; height: 10px; }
+    .form button { display: block; height: 27px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #555753; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #555753; }
+    .form button svg { width: 10px; height: 10px; color: #fff; }
 
     .rslt { position: relative; }
     .head { font-size: 8px; text-transform: uppercase; padding: 4px 12px; background-color: #fafafa; }
 
     .tabs, .list .l .i { display: grid; grid-template-columns: 28px auto }
-    .tabs { margin: 2px 0 0 0; padding: 6px 0; font-size: 10px; color: #333; background-color: #fafaf9 }
+    .tabs { margin: 1px 0 0 0; padding: 6px 0; font-size: 10px; color: #333; background-color: #fafaf9 }
     .list { max-height: 500px; overflow-y: scroll; }
     .list::-webkit-scrollbar { width: 4px; display: block; }
     .list::-webkit-scrollbar-track { background: transparent; }

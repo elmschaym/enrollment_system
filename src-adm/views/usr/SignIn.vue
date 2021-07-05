@@ -3,7 +3,7 @@
 		<div class="bnnr">
 			<div class="name">
 				<div class="p">
-					<span>{{ CLIENT_NAME }}</span>
+					<span>{{ appPreference.client_name }}</span>
 				</div>
 				<div class="q">ENROLLMENT System</div>
 			</div>
@@ -29,7 +29,7 @@
 					<button @click="login()" :disabled="!isOkay" :class="{ 'ready': isOkay }">Connect</button>
 				</div>
 				<div class="c">
-					<span @click="$router.push({ name: 'usr-config' })">config <v-icon name="cog"></v-icon></span>
+					<span @click="$router.push({ name: 'usr-config' })">Config <v-icon name="cog"></v-icon></span>
 				</div>
 			</div>
 			<div v-else class="l"><div class="loader"></div></div>
@@ -55,7 +55,8 @@
 				isErrorConnect: false,
 				username: "",
 				password: "",
-				isShow: false
+				isShow: false,
+				appPreference: { id: 0, client_name: 'EVERSOFT IT SOLUTIONS' }
 			}
 		},
 		computed: {
@@ -96,10 +97,11 @@
 				if (api_config.hasOwnProperty('server')) {
 					this.isConnecting = true;
 					let uname = this.username, passw = this.password;
-					this.$http.post(api_config.server.slice(0,-4) +'login/', qs.stringify({ uname, passw })).then( res => {
+					this.$http.post(api_config.server.slice(0,-4) +'/login/', qs.stringify({ uname, passw })).then( res => {
 						if (res.data.hasOwnProperty('api_token') && res.data.system_app_role == 'REG') {
 							this.$storageSet("user_info", res.data);
 							this.$storageSet("api_token", res.data.api_token);
+							this.fetchAppPreference();
 							this.setDimensions();
 							this.$router.push({ name: 'adm-index', query: { set_dimen: 1 } });
 						} else {
@@ -114,6 +116,11 @@
 						this.$sleep(2000).then( () => this.isErrorConnect = false, 2000);
 					});
 				}
+			},
+			fetchAppPreference() {
+				this.$http.get('application_preference/').then( res => {
+					this.$storageSet("app_prefer", res.data);
+				});
 			},
 			winClose() {
 				this.$sleep(500).then(() => {
@@ -140,8 +147,10 @@
 					window.nwWin.show();
 				});
 			}
-		},
-		mounted() {
+
+			let app_prefer = this.$storageGet('app_prefer', 'local') || "";
+			if (app_prefer)
+				this.appPreference = app_prefer;
 		}
 	}
 </script>

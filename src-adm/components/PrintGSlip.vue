@@ -2,8 +2,8 @@
 	<div class="_pri _pri_gs">
 		<div class="head r">
 			<div class="c">
-				<div class="a" style="padding-top: 10px">{{ CLIENT_NAME }}</div>
-				<div class="b">{{ CLIENT_ADDR }}</div>
+				<div class="a" style="padding-top: 10px">{{ appPreference.client_name_print }}</div>
+				<div class="b">{{ appPreference.client_addr_print }}</div>
 			</div>
 		</div>
 		<div class="head o">
@@ -62,6 +62,11 @@
 				required: false
 			}
 		},
+		data() {
+			return {
+				appPreference: { id: 0, client_print_name: 'EVERSOFT IT SOLUTIONS', client_addr_print: 'EVERSOFT' }
+			}
+		},
 		methods: {
 			getTodate() {
 				let today = new Date(),
@@ -72,6 +77,11 @@
 				if (mm<10) mm = '0'+ mm;
 				return yyyy+'-'+mm+'-'+dd;
 			}
+		},
+		created() {
+			let app_prefer = this.$storageGet('app_prefer', 'local') || '';
+			if (app_prefer)
+				this.appPreference = app_prefer;
 		}
 	}
 </script>

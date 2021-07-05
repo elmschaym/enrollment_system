@@ -7,7 +7,7 @@ export default {
         Vue.prototype.APP_VERSION = "v1.2.1-alpha";
         Vue.prototype.CLIENT_NAME = "Adiong Memorial Polytechnic State College";
         Vue.prototype.CLIENT_ADDR = "Marawi City, Philippines";
-        Vue.prototype.API_BASEURL = 'http://127.0.0.1:8000/api/';
+        Vue.prototype.API_BASEURL = 'http://127.0.0.1:8000/api';
 
         Vue.filter('currency', function(value) {
             if (typeof value !== "number") {
