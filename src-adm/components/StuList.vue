@@ -2,8 +2,7 @@
 	<div class="wrap-l">
 		<div class="find-o">
 			<div class="u">
-				<span><v-icon class="a" name="square"></v-icon> Admitted</span>
-				<span><v-icon class="i" name="square"></v-icon> In-Active</span>
+				
 			</div>
 			<div class="v">
 				<input v-model="queryString" :placeholder="'Find Student \\'+ queryType"/>
@@ -48,13 +47,13 @@
 			</div>
 			<div class="page">
 				<div class="l">
-					<button>RELOAD</button>
-				</div>
-				<div class="c">
-				</div>
-				<div class="r">
+					<button @click="fetchStudents()">RELOAD</button>
 					<button :disabled="listStart == 0" @click="goPrevList()"><v-icon name="angle-left"></v-icon> PREV</button>
 					<button :disabled="students.length != listLimit" @click="goNextList()">NEXT <v-icon name="angle-right"></v-icon></button>
+				</div>
+				<div class="r">
+					<span><v-icon class="a" name="square"></v-icon> Admitted</span>
+					<span><v-icon class="i" name="square"></v-icon> In-Active</span>
 				</div>
 			</div>
 		</div>
@@ -159,7 +158,7 @@
 <style scoped>
 	.wrap-l { height: 100%; background-color: #fbfbf7; }
 
-	.list-o { margin: 0 16px; background-color: #fff; font-size: 12px; }
+	.list-o { margin: 0 16px; background-color: #fff; font-size: 12px; border: 1px solid #e0e0da; }
 	.list-o .data .tbl { position: relative; }
 	.list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 28px 72px 186px 68px auto 166px 90px 100px }
 	.list-o .data .tbl .tbd { height: 440px; overflow: hidden; position: relative; border-top: 1px solid #f0f0ea; border-bottom: 1px solid #f0f0ea; }
@@ -167,8 +166,8 @@
 	.list-o .data .tbl .tbd::-webkit-scrollbar-track { background: #f6f6f0; }
 	.list-o .data .tbl .tbd::-webkit-scrollbar-thumb { background-color: #d7d7d0; border-radius: 3px; }
 
-	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #fbfbf7; }
-	.list-o .data .tbl .ttd { padding: 10px 10px 10px 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow: hidden; white-space: nowrap; }
+	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #fbfbf7; font-weight: 600; }
+	.list-o .data .tbl .ttd { padding: 10px 10px 10px 10px; height: 30px; font-size: 12px; text-overflow: clip; overflow: hidden; white-space: nowrap; }
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #fbfbf7; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover, .list-o .data .tbl .tbd .ttr.active { background-color: #f6f6f0; }
 	.list-o .data .tbl .ttd b {}
@@ -182,27 +181,26 @@
 	.list-o .data .tbl .rel { display: block; cursor: pointer; font-size: 9px; text-transform: uppercase; padding: 7px 12px;  }
 	.list-o .data .tbl .rel svg { width: 9px; height: 9px; color: #404040; margin-bottom: -2px; }
 
-	.list-o .page { display: grid; grid-template-columns: 40% 20% 40%; padding: 5px 10px; border-top: 1px solid #f0f0f0; background-color: #fff; }
+	.list-o .page { display: grid; grid-template-columns: 40% 60%; padding: 5px 10px; border-top: 1px solid #f0f0f0; background-color: #fff; }
 	.list-o .page .l { text-align: left; }
 	.list-o .page .c { text-align: center; }
-	.list-o .page .r { text-align: right; }
+	.list-o .page .r { text-align: right; padding: 4px 0; }
 	.list-o .page .r button { margin-left: 4px; }
 	.list-o .page button { background: #fff; padding: 4px 10px; font-size: 8px; border: 1px solid #e0e0da; }
 	.list-o .page button svg { width: 10px; height: 10px; margin-bottom: -2px; }
-	.list-o .page button:disabled { border: 1px solid #fff; color: #777; cursor: default; }
 	.list-o .page .r span { background: #fff; padding: 0 10px; font-size: 9px; border: 1px solid #fff; }
+	.list-o .page span { font-size: 11px; display: inline-block; margin-right: 12px; }
+	.list-o .page span svg { width: 10px; height: 10px; margin-right: 4px; }
+	.list-o .page span svg.a { color: #fff; border: 1px solid #c0c0ba;  }
+	.list-o .page span svg.o { color: #ccc; border: 1px solid #c0c0ba;  }
+	.list-o .page span svg.i { color: #808080; border: 1px solid #c0c0ba;  }
 
 	.find-o { margin: 0 16px 10px 16px; display: grid; grid-template-columns: auto 200px 50px; border: none; padding-top: 16px; }
 	.find-o .u {}
-	.find-o .u span { font-size: 11px; padding: 10px 0; display: inline-block; height: 24px; margin-right: 12px; }
-	.find-o .u span svg { width: 10px; height: 10px; margin-right: 4px; }
-	.find-o .u span svg.a { color: #fff; border: 1px solid #c0c0ba;  }
-	.find-o .u span svg.o { color: #ccc; border: 1px solid #c0c0ba;  }
-	.find-o .u span svg.i { color: #808080; border: 1px solid #c0c0ba;  }
 
 	.find-o .v { position: relative; }
-	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none; border-right: none;  }
+	.find-o .v input { width: 100%; height: 24px; color: #111; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; outline: none; border-right: none; border: 1px solid #959793; }
 	.find-o .v svg { position: absolute; top: 6px; right: 8px; height: 12px; width: 12px; }
 	.find-o .w {}
-	.find-o .w button { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none;  }
+	.find-o .w button { width: 100%; height: 24px; color: #fff; padding: 5px 10px; background-color: #959793; font-size: 11px; border: 1px solid #959793; outline: none;  }
 </style>

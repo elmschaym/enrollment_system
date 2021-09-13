@@ -1,20 +1,5 @@
 <template>
     <div class="wrap-z">
-        <div class="cate-o">
-            <div class="link">
-                <ul>
-                    <li @click="goName('adm-list-adm-master')" :class="viewName == 'adm-list-adm-master'? 'active' : ''"><div>Admittees</div></li>
-                    <li @click="goName('adm-list-stu-master')" :class="viewName == 'adm-list-stu-master' ? 'active' : ''"><div>Students</div></li>
-                    <li :class="viewName == 'adm-probation' ? 'active' : ''"><div>Enrollees</div></li>
-                    <li :class="viewName == 'adm-discharged' ? 'active' : ''"><div>Graduates</div></li>
-                </ul>
-            </div>
-            <div class="make">
-                <span @click="goMake()">
-                    <v-icon name="plus"></v-icon> Admittee
-                </span>
-            </div>
-        </div>
         <router-view></router-view>
     </div>
 </template>
@@ -43,7 +28,7 @@
 </script>
 
 <style scoped>
-    .wrap-z { height: 100%; display: grid; grid-template-rows: 32px auto; }
+    .wrap-z { height: 100%;  background-color: #fbfbf7; }
 
     .cate-o { background-color: #f8f8f8; height: 32px; display: grid; grid-template-columns: auto 300px; border-bottom: 1px solid #eaeaea; }
     .link ul { display: block; margin: 0 16px; }

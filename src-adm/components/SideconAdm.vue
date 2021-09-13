@@ -1,16 +1,17 @@
 <template>
     <div class="sidecon">
-        <ul class="a">
+        <ul v-if="!isDashBoard" class="a">
             <li v-for="(m,i) in menus" :key="'menu_'+ i">
                 <div :class="['l', sconName == m.link ? 'active' : '']" @click="goScon(m.link)" :title="m.name">
                     <v-icon :name="m.icon"></v-icon>
                 </div>
             </li>
         </ul>
+        <ul v-else class="a"></ul>
         <ul class="b"></ul>
         <ul class="c">
-            <li :class="sconName == 'adm-index' ? 'active' : ''">
-                <div class="l" @click="goScon(dashboard)"><v-icon name="th-large"></v-icon></div>
+            <li>
+                <div :class="['l', sconName == 'dbd-index' ? 'active' : '']" @click="goScon('dbd-index')"><v-icon name="th-large"></v-icon></div>
             </li>
             <li :class="sconName == 'set-index' ? 'active' : ''">
                 <div class="l" @click="goScon('adm-index')"><v-icon name="cog"></v-icon></div>
@@ -48,18 +49,9 @@
     import 'vue-awesome/icons/sitemap';
 
     export default {
-        props: {
-            dashboard: {
-                type: String,
-                required: false,
-                default: function() {
-                    return 'adm-index';
-                }
-            }
-        },
         data() {
             return {
-                sconName: 'adm-index',
+                sconName: 'dbd-index',
                 menus: [
                     { name: 'New Admittee', icon: 'id-card', link: 'adm-create-admittee' },
                     { name: 'New Student', icon: 'address-book', link: 'adm-create-student' },
@@ -72,9 +64,13 @@
                     { name: 'Course Programme', icon: 'map', link: 'adm-assign-cou-subj' },
                     { name: 'Generate Prospectus', icon: 'clone', link: 'adm-tool-view-prospectus' },
                     { name: 'COR', icon: 'suitcase', link: 'adm-tool-confirm-registration' },
-                    { name: 'Grade Slip', icon: 'sticky-note', link: 'adm-tool-grade-slip' },
-                    { name: 'Student Evaluate', icon: 'industry', link: 'adm-tool-student-evaluation' }
+                    { name: 'Grade Slip', icon: 'sticky-note', link: 'adm-tool-grade-slip' }
                 ]
+            }
+        },
+        computed: {
+            isDashBoard() {
+                return this.$route.name == 'dbd-index';
             }
         },
         methods: {
@@ -86,7 +82,7 @@
         created() {
         },
         mounted() {
-            this.sconName = 'adm-index';
+            this.sconName = this.$route.name;
         }
     }
 </script>

@@ -5,14 +5,14 @@ module.exports = {
 	assetsDir: 'static',
 	pages: {
 		index: {
-			entry: 'src-adm/main.js',
+			entry: 'src-tor/main.js',
 			template: 'public/index.html'
 		}
 	},
 	configureWebpack: {
 		resolve: {
 			alias: {
-				'@': path.resolve(__dirname, 'src-adm')
+				'@': path.resolve(__dirname, 'src-tor')
 			}
 		}
 	},

@@ -2,9 +2,6 @@
 	<div class="wrap-m">
 		<div class="find-o">
 			<div class="u">
-				<span><v-icon class="c" name="square"></v-icon> Active</span>
-				<span><v-icon class="n" name="square"></v-icon> On-Leave</span>
-				<span><v-icon class="s" name="square"></v-icon> Inactive</span>
 			</div>
 			<div class="v">
 				<input v-model="queryString" placeholder="Find faculty by name"/>
@@ -42,13 +39,14 @@
 			</div>
 			<div class="page">
 				<div class="l">
-					<button>RELOAD</button>
-				</div>
-				<div class="c">
+					<button @click="fetchFaculties()">RELOAD</button>
+					<button :disabled="listStart == 0"><v-icon name="angle-left"></v-icon> PREV</button>
+					<button :disabled="faculties.length != listLimit">NEXT <v-icon name="angle-right"></v-icon></button>
 				</div>
 				<div class="r">
-					<button><v-icon name="angle-left"></v-icon> PREV</button>
-					<button>NEXT <v-icon name="angle-right"></v-icon></button>
+					<span><v-icon class="c" name="square"></v-icon> Active</span>
+					<span><v-icon class="n" name="square"></v-icon> On-Leave</span>
+					<span><v-icon class="s" name="square"></v-icon> Inactive</span>
 				</div>
 			</div>
 		</div>
@@ -82,8 +80,9 @@
 				faculties: [],
 				queryString: '',
 				queryAction: 'lister',
-				paging: { limit: 14, start: 0 },
-				userDepartment: 0,
+				listLimit: 14,
+				listStart: 0,
+				departmentId: 0,
 				selectId: 0
 			}
 		},
@@ -91,7 +90,7 @@
 			fetchFaculties() {
 				this.isErrorConnect = false;
 				this.isFetching = true;
-				this.$http.get('faculty/?action='+ this.queryAction +'&query='+ this.queryString +'&faculty_fields=id,first_name,last_name,gender,position,date_hired,is_active,is_staff&facultyf_department='+ this.userDepartment).then( res => {
+				this.$http.get('faculty/?action='+ this.queryAction +'&query='+ this.queryString +'&depid='+ this.departmentId +'&faculty_fields=id,first_name,last_name,gender,position,date_hired,is_active,is_staff&facultyf_department='+ this.departmentId).then( res => {
 					let data = res.data;
 					this.faculties = data;
 				}).catch( () => {
@@ -138,7 +137,7 @@
 			this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Department – Faculty List');
 			let d = this.$storageGet('user_info').department;
-			this.userDepartment = d.id;
+			this.departmentId = d.id;
 		},
 		mounted() {
 			this.fetchFaculties();
@@ -149,11 +148,11 @@
 <style scoped>
 	.wrap-m { height: 100%; background-color: #fbfbf7; }
 
-	.list-o { margin: 0 16px; background-color: #fff; font-size: 12px; }
+	.list-o { margin: 0 16px; background-color: #fff; font-size: 12px; border: 1px solid #e0e0da; }
 	.list-o .data .tbl {}
 	.list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 28px auto 220px 90px 170px 100px }
 	.list-o .data .tbl .tbd { height: 440px; position: relative; border-top: 1px solid #f0f0ea; border-bottom: 1px solid #f0f0ea; }
-	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #fbfbf7; }
+	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: #fbfbf7; font-weight: 600; }
 	.list-o .data .tbl .ttd { padding: 10px 0 10px 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; }
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #fbfbf7; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover, .list-o .data .tbl .tbd .ttr.active { background-color: #fbfbf7; }
@@ -170,23 +169,22 @@
 	.list-o .data .tbl .rel { display: block; cursor: pointer; font-size: 9px; text-transform: uppercase; padding: 7px 12px;  }
 	.list-o .data .tbl .rel svg { width: 9px; height: 9px; color: #404040; margin-bottom: -2px; }
 
-	.list-o .page { display: grid; grid-template-columns: 40% 20% 40%; padding: 5px 10px; border-top: 1px solid #f0f0f0; background-color: #fff; }
+	.list-o .page { display: grid; grid-template-columns: 40% 60%; padding: 5px 10px; border-top: 1px solid #f0f0f0; background-color: #fff; }
 	.list-o .page .l { text-align: left; }
 	.list-o .page .c { text-align: center; }
-	.list-o .page .r { text-align: right; }
-	.list-o .page .r button { margin-left: 4px; }
+	.list-o .page .r { text-align: right; padding: 4px 0 }
 	.list-o .page button { background: #fff; padding: 4px 10px; font-size: 8px; border: 1px solid #e0e0da; }
 	.list-o .page button svg { width: 10px; height: 10px; margin-bottom: -2px; }
+	.list-o .page span { font-size: 11px; display: inline-block; margin-right: 12px; }
+	.list-o .page span svg { width: 10px; height: 10px; margin-right: 4px; }
+	.list-o .page span svg.n { color: #fff; border: 1px solid #c0c0ba  }
+	.list-o .page span svg.c { color: #ccc; border: 1px solid #c0c0ba  }
+	.list-o .page span svg.s { color: #808080; border: 1px solid #c0c0ba  }
 
 	.find-o { margin: 0 16px 10px 16px; display: grid; grid-template-columns: auto 200px; border: none; padding-top: 16px; }
 	.find-o .u {}
-	.find-o .u span { font-size: 11px; padding: 10px 0; display: inline-block; height: 24px; margin-right: 12px; }
-	.find-o .u span svg { width: 10px; height: 10px; margin-right: 4px; }
-	.find-o .u span svg.n { color: #fff; border: 1px solid #c0c0ba  }
-	.find-o .u span svg.c { color: #ccc; border: 1px solid #c0c0ba  }
-	.find-o .u span svg.s { color: #808080; border: 1px solid #c0c0ba  }
 
 	.find-o .v { position: relative; }
-	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; border: 1px solid #f0f0f0;  background-color: #fdfdfd; font-size: 11px; border: 1px solid #e0e0da; outline: none;  }
+	.find-o .v input { width: 100%; height: 24px; border-radius: 2px; color: #391e22; padding: 7px 10px; border: 1px solid #959793;  background-color: #fdfdfd; font-size: 11px; outline: none;  }
 	.find-o .v svg { position: absolute; top: 6px; right: 8px; height: 12px; width: 12px; }
 </style>

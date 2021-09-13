@@ -2,17 +2,8 @@
     <div class="sidecon">
         <ul class="a">
             <li v-for="(m,i) in menus" :key="'menu_'+ i">
-                <div class="l">
+                <div :class="['l', sconName == m.link ? 'active' : '']" @click="goScon(m.link)" :title="m.name">
                     <v-icon :name="m.icon"></v-icon>
-                    <div class="m">
-                        <div class="h">{{ m.name }}</div>
-                        <div class="g">
-                            <div v-for="(u,j) in m.menu" :key="m.icon +'_'+j" @click="$router.push({ name: u.link })">
-                                <v-icon :name="u.icon"></v-icon>
-                                <span>{{ u.name }}</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </li>
         </ul>
@@ -51,11 +42,8 @@
             return {
                 sconName: 'ins-index',
                 menus: [
-                    { name: 'Tools', icon: 'wrench', menu: [
-                        { name: 'Handled Subjects', icon: 'braille', link: 'ins-index' },
-                        { name: 'Enter Grades', icon: 'eraser', link: 'ins-enter-grades' }
-                        ]
-                    }
+                    { name: 'Handled Subjects', icon: 'braille', link: 'ins-index' },
+                    { name: 'Enter Grades', icon: 'eraser', link: 'ins-enter-grades' }
                 ]
             }
         },
@@ -88,6 +76,6 @@
     .sidecon ul li div.l div.m .g > div span { font-size: 11px; display: block; color: #e0e0e0; padding-top: 2px; }
 
     .sidecon ul li div.l:hover div.m { left: 100%; display: block; transition: left 250ms ease-in-out; }
-    .sidecon ul li.active, .sidecon ul li:hover { background-color: #2E3436; }
+    .sidecon ul li div.l.active, .sidecon ul li div.l:hover { background-color: #2E3436; }
     .sidecon ul li.active svg { color: #fff; }
 </style>

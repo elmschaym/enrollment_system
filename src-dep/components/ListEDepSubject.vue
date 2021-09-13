@@ -1,7 +1,7 @@
 <template>
 	<div class="_f">
 		<div class="form">
-			<ui-select @setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px;']"></ui-select>
+			<ui-select @setValue="setDepartment" :options="departments" :presets="presetDepartment" :styles="['border-radius: 0; padding: 7px 10px; border-bottom: 1px solid #555753; border-left: 1px solid #555753; border-top: 1px solid #555753; margin-left: -1px; ']"></ui-select>
 			<button @click="fetchSubjects()"><v-icon name="book"></v-icon></button>
 		</div>
 		<div class="rslt">
@@ -131,11 +131,11 @@
 </script>
 
 <style scoped>
-	._f { height: inherit; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: grid; grid-template-rows: 26px auto 28px }
+	._f { height: inherit; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: grid; grid-template-rows: 28px auto 28px }
 
 	.form { display: grid; grid-template-columns: auto 32px; } 
-	.form input { width: 100%; color: #391e22; padding: 8px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; cursor: pointer; }
-	.form button { display: block; height: 27px; color: #000; padding: 2px 8px 2px 8px; border: none; background-color: #f5f5ed; font-size: 11px; outline: none; cursor: pointer; border-style: solid; border-width: 1px; border-color: #f0f0f0 #eaeaea #d0d0d0 transparent; }
+	.form input { width: 100%; color: #391e22; padding: 8px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; cursor: pointer; border-bottom: 1px solid #c0c0ba; border-left: 1px solid #c0c0ba; border-top: 1px solid #c0c0ba; margin-left: -1px;  height: 28px; }
+	.form button { display: block; height: 27px; color: #fff; padding: 2px 8px 2px 8px; border: none; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #555753; background-color: #555753; }
 	.form button svg { width: 10px; height: 10px; }
 
 	.rslt { position: relative; }
@@ -152,11 +152,11 @@
 	.list .l .i div svg { width: 10px; height: 10px; color: #e0e0e0; margin-bottom: 2px; }
 	.list .l.active .b span{ background-color: #ececec; }
 
-	.find { display: grid; grid-template-columns: auto 60px; border-top: 1px solid #e0e0da; }
+	.find { display: grid; grid-template-columns: auto 60px; margin: 0 -1px; }
 	.find .i { background-color: #fefefe; position: relative; }
 	.find .i span { position: absolute;; top: 2px; right: 5px; padding: 5px; cursor: pointer; }
-	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; }
+	.find .i input { width: 100%; height: 28px; display: block; color: #111; padding: 2px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-bottom: 1px solid #959793; border-left: 1px solid #959793; border-top: 1px solid #959793; }
 	.find .i input::placeholder { color: #202020; }
-	.find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-left: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; }
+	.find button { height: 28px; display: block; color: #111; padding: 8px 8px 8px 2px; border: none; border-bottom: 1px solid #959793; border-right: 1px solid #959793; border-top: 1px solid #959793; background-color: #e0e0da; font-size: 11px; outline: none; cursor: pointer; }
 	.find button svg { width: 12px; height: 12px; float: right; }
 </style>

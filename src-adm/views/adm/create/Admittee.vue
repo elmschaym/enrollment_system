@@ -34,8 +34,8 @@
 					<div id="print-adm" v-if="printStudentData.hasOwnProperty('id')">
 						<div style="font-family: 'Cairo'; font-size: 12px">
 							<div style=" margin-bottom: 16px; text-align: center">
-								<h4 style="margin: 0">Mindanao State University</h4>
-								<h5 style="margin: 0; font-weight: normal">Marawi City, Philippines</h5>
+								<h4 style="margin: 0">{{ appPreference.client_name_print }}</h4>
+								<h5 style="margin: 0; font-weight: normal">{{ appPreference.client_addr_print }}</h5>
 								<h3 style="margin: 0">CERTIFICATE OF ADMISSION</h3>
 							</div>
 							<div style="display: grid; grid-template-columns: 120px auto 120px auto; width: 100%; padding: 16px 0; margin: 16px 0; border-bottom: 2px solid #e0e0e0; border-top: 2px solid #a0a090">
@@ -126,7 +126,8 @@
 				acad_program_id: 0,
 				admission: { date_admitted: '' },
 				printStudentData: {},
-				printAcademicData: { program_type: '', date_damitted: '' }
+				printAcademicData: { program_type: '', date_damitted: '' },
+				appPreference: { id: 0, client_print_name: 'EVERSOFT IT SOLUTIONS', client_addr_print: 'EVERSOFT' }
 			}
 		},
 		computed: {
@@ -213,6 +214,9 @@
 				});
 			}
 			this.$store.commit('setModuleName', 'Admission – New Admittee');
+			let app_prefer = this.$storageGet('app_prefer', 'local') || '';
+			if (app_prefer)
+				this.appPreference = app_prefer;
 		},
 		mounted() {
 			this.fetchAcademicProgram();

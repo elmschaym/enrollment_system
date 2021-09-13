@@ -1,6 +1,6 @@
 * { box-sizing: border-box; font-size: 12px; font-family: 'Blinker', sans-serif; color: #000; }
 input, button, select, textarea { font-family: 'Blinker', sans-serif; outline: none; cursor: pointer; line-height: 1 }
-
+header, footer, aside, nav, form, iframe, .menu, .hero, .adslot { display: none; }
 
 ._pri .wrap {}
 ._pri .head {  }
@@ -89,4 +89,69 @@ input, button, select, textarea { font-family: 'Blinker', sans-serif; outline: n
 /* vowels */
 .ta-l { text-align: left }
 .ta-r { text-align: right }
+.ta-c { text-align: center }
 
+
+._pri_tor { font-size: 12px; position: relative; }
+._pri_tor .p1 .x, ._pri_tor .p2 .x {}
+._pri_tor .p1 .x .a, ._pri_tor .p2 .x .a { height: 20px; font-weight: 500px; font-size: 13px; color: #404040; }
+._pri_tor .p1 .x .b, ._pri_tor .p2 .x .b { height: 80px; display: grid; grid-template-columns: auto 180px 96px; }
+._pri_tor .p1 .x .b > div p, ._pri_tor .p2 .x .b > div p { margin: 0; padding: 0; }
+._pri_tor .p1 .x .b > div b, ._pri_tor .p2 .x .b > div b { font-size: 14px; padding: 0; }
+._pri_tor .p1 .x .b > div svg, ._pri_tor .p2 .x .b > div svg { width: 72px; height: 72px; color: #c0c0c0; margin-top: -6px; }
+
+._pri_tor .p1 .x .c, ._pri_tor .p2 .x .c { color: #fff; font-size: 14px; padding: 2px 4px; background-color: #555555; text-align: center; font-weight: 600; text-transform: uppercase; }
+
+._pri_tor .p1 .y, ._pri_tor .p2 .y { padding-top: 5px; height: 1028px; }
+._pri_tor .p1 .y .a, ._pri_tor .p2 .y .a { border-top: 1px solid #404040; border-left: 1px solid #404040; border-right: 1px solid #404040; display: grid; grid-template-columns: 140px auto 140px 90px; }
+._pri_tor .p1 .y .a div, ._pri_tor .p2 .y .a div { padding: 4px; }
+._pri_tor .p1 .y .a b, ._pri_tor .p2 .y .a b { display: block; padding-top: 6px; text-transform: uppercase; }
+._pri_tor .p1 .y .a span, ._pri_tor .p2 .y .a span { display: block; }
+
+._pri_tor .p1 .y .b { display: grid; grid-template-columns: auto 110px; border-bottom: 1px solid #404040; border-right: 1px solid #404040; }
+._pri_tor .p1 .y .b img { display: block; height: 96px; width: 96px; background-color: #b0b0b0; }
+._pri_tor .p1 .y .b > div > div { border-top: 1px solid #404040; border-left: 1px solid #404040; border-right: 1px solid #404040; }
+._pri_tor .p1 .y .b > div > div > div { padding: 4px; }
+._pri_tor .p1 .y .b b { display: block; padding-top: 6px; text-transform: uppercase; }
+._pri_tor .p1 .y .b span { display: block; }
+
+._pri_tor .p1 .y .c { padding: 12px 0; }
+._pri_tor .p1 .y .c .h { font-weight: 600; text-align: center; padding-bottom: 6px; }
+._pri_tor .p1 .y .c .g {}
+._pri_tor .p1 .y .c .g > div { display: grid; grid-template-columns: 100px auto 60px 80px; padding-bottom: 2px; }
+._pri_tor .p1 .y .c .g > div span { display: block; }
+._pri_tor .p1 .y .c .g > div b { display: block; font-weight: 600; }
+
+._pri_tor .p1 .y .d { height: 340px; }
+
+._pri_tor .p1 .y .e { padding: 20px 50px; }
+._pri_tor .p1 .y .e .h { font-weight: 600; text-align: center; }
+._pri_tor .p1 .y .e .g {}
+._pri_tor .p1 .y .e .g .m, ._pri_tor .p1 .y .e .g .n { display: grid; grid-template-columns: auto 100px 120px 10px 120px; }
+._pri_tor .p1 .y .e .g .m div { font-weight: 600; padding: 4px 0; }
+._pri_tor .p1 .y .e .g .n {}
+._pri_tor .p1 .y .e .g .n div {}
+
+._pri_tor .p1 .y .f { padding: 0 0 20px 0; }
+._pri_tor .p1 .y .f .h { font-weight: 600; text-align: center; padding: 4px 0; }
+._pri_tor .p1 .y .f .g p { text-indent: 32px; line-height: 125%; }
+
+._pri_tor .p1 .z, ._pri_tor .p2 .z { border-top: 2px solid #555; padding: 5px 0 0 0; }
+._pri_tor .p1 .z .h, ._pri_tor .p2 .z .h { display: grid; grid-template-columns: 70px auto; }
+._pri_tor .p1 .z .h .m, ._pri_tor .p2 .z .h .m { padding: 2px; }
+._pri_tor .p1 .z .h .n, ._pri_tor .p2 .z .h .n { border-bottom: 1px solid #404040; padding: 2px; text-align: center; font-weight: 600; }
+._pri_tor .p1 .z .g, ._pri_tor .p2 .z .g { padding: 20px 0 12px 0; display: grid; grid-template-columns:  180px 120px auto; }
+._pri_tor .p1 .z .g b, ._pri_tor .p2 .z .g b { font-weight: 600; display: block; }
+._pri_tor .p1 .z .g i, ._pri_tor .p2 .z .g i { display: block; padding-bottom: 4px; }
+._pri_tor .p1 .z .g span, ._pri_tor .p2 .z .g span { display: block; padding-top: 4px; }
+
+._pri_tor .p2 {}
+._pri_tor .p2 .y .b { display: grid; grid-template-columns: auto 90px 90px 90px; border: 1px solid #404040; border-left: none; border-right: 1px solid #404040; }
+._pri_tor .p2 .y .b > div { display: grid; place-items: center; border-left: 1px solid #404040; padding: 4px 0; }
+
+._pri_tor .p2 .y .c, ._pri_tor .p3 .y .c {}
+._pri_tor .p2 .y .c .g, ._pri_tor .p3 .y .c .g {}
+._pri_tor .p2 .y .c .g .list, ._pri_tor .p3 .y .c .g .list {}
+._pri_tor .p2 .y .c .g .list .n, ._pri_tor .p3 .y .c .g .list .n { padding-left: 90px; padding-top: 16px; font-weight: 600; }
+._pri_tor .p2 .y .c .g .list .l, ._pri_tor .p2 .y .c .g .list .l { padding: 1px 0; display: grid; grid-template-columns: 90px auto 90px 90px 90px; }
+._pri_tor .p2 .y .c .h { padding: 20px 0; text-align: center; color: #505050; font-weight: 600; }

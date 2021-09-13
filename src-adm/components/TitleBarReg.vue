@@ -115,9 +115,9 @@
 	._cmp_tbr { display: grid; grid-template-columns: 82px 160px auto 160px 82px; width: 100vw; background: linear-gradient(to bottom, #f8f8f8, #ebebeb); height: 28px; }
 	.name { padding: 8px 6px; -webkit-app-region: drag; font-size: 12x; font-weight: 600; text-align: center }
 	.name span { font-size: 11px; color: #40403a; font-weight: bold; line-height: 12px; }
-	.wind { padding: 4px 5px; display: grid; grid-template-columns: 20px 20px 20px; }
-	.wind span { display: block; width: 20px; height: 20px; cursor: pointer; padding: 5px 5px; color: #555; }
-	.wind span b { display: block; width: 10px; height: 10px; border-radius: 5px; background-color: #707070; font-weight: normal; font-size: 10px; text-align: center; }
+	.wind { padding: 4px 5px; display: grid; grid-template-columns: 28px 28px 28px; }
+	.wind span { display: block; width: 24px; height: 24px; cursor: pointer; padding: 3px 5px; color: #555; }
+	.wind span b { display: block; width: 14px; height: 14px; border-radius: 8px; background-color: #555; font-weight: normal; font-size: 14px; text-align: center; }
 	.wind span:hover b { color: #fff; }
 
 	.menu { display: grid; grid-template-columns: auto 34px; padding-right: 4px; }

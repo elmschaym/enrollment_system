@@ -201,7 +201,7 @@
 	.q .w .g { background-color: #fff; position: relative; }
 	.q .w .g .u { height: 100%; display: grid; grid-template-columns: auto 50%; }
 	.q .w .g .u .x { height: inherit; background: #fbfbf7; display: grid; grid-template-rows:  auto 50px; }
-	.q .w .g .u .y { height: inherit; background: #fff; border-left: 1px solid #f0f0ea; display: grid; grid-template-rows: auto 50px; }
+	.q .w .g .u .y { height: inherit; background: #fbfbf7; border-left: 1px solid #f0f0ea; display: grid; grid-template-rows: auto 50px; }
 
 	.u .x .list { margin: 60px 78px 20px 20px; overflow-y: scroll; max-height: 350px; }
 	.x .l { display: grid; grid-template-columns: auto 50px; border-right: 1px solid #e0e0da; }

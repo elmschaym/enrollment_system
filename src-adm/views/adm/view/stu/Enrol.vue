@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="tbd x" v-else>
-                        <div class="tno" style="text-align: center">{{ isErrorConnect ? 'Server Error Occured' : 'Enrollment Available'}}</div>
+                        <div class="tno" style="text-align: center">{{ isErrorConnect ? 'Server Error Occured' : 'No Enrollment Available'}}</div>
                     </div>
                 </div>
             </div>
@@ -48,12 +48,6 @@
                 isFetching: false,
                 admission: {},
                 enrollees: [
-                    { id: 12345, academic_year: '2020-2021', year_level: '5', units_enrolled: 24, date_confirmed: '2020-11-18', academic_status: 'SCHOLAR', course: { name_alias: 'BS ECE' } },
-                    { id: 12234, academic_year: '2020-2021', year_level: '5', units_enrolled: 21, date_confirmed: '2020-11-18', academic_status: 'SCHOLAR', course: { name_alias: 'BS ECE' } },
-                    { id: 13545, academic_year: '2019-2020', year_level: '4', units_enrolled: 24, date_confirmed: '2020-11-18',academic_status: 'PAYING', course: { name_alias: 'BS ECE' } },
-                    { id: 16545, academic_year: '2019-2020', year_level: '4', units_enrolled: 21, date_confirmed: '2020-11-18',academic_status: 'PAYING', course: { name_alias: 'BS ECE' } },
-                    { id: 12895, academic_year: '2018-2019', year_level: '3', units_enrolled: 22, date_confirmed: '2020-11-18',academic_status: 'PAYING', course: { name_alias: 'BS EE' } },
-                    { id: 10045, academic_year: '2018-2019', year_level: '3', units_enrolled: 19, date_confirmed: '2020-11-18',academic_status: 'PAYING', course: { name_alias: 'BS ECE' } }
                 ]
             }
         },
@@ -91,7 +85,7 @@
 
     .list-o {}
     .list-o .data .tbl { position: relative; }
-    .list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 100px 80px 170px 130px 100px 100px }
+    .list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 100px 80px auto 130px 100px 100px }
     .list-o .data .tbl .tbd { height: 130px; overflow-y: scroll; }
     .list-o .data .tbl .tth { padding: 7px 10px; color: #111; text-align: left; font-size: 11px; background-color: #f5f5f0 }
     .list-o .data .tbl .ttd { padding: 7px 0 7px 10px; font-size: 10px; text-overflow: clip; overflow-x: hidden; white-space: nowrap; color: #000; }

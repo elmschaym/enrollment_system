@@ -49,7 +49,7 @@
         methods: {
             fetchSubjects() {
                 this.isFetching = true;
-                this.$http.get('subject/?action='+ this.queryAction +'&type='+ this.queryType +'&query='+ this.query +'&referr=department&depid='+ this.userDepartment +'&subject_fields=id,name,code,units,section&section_fields=name').then(res => {
+                this.$http.get('subject/?action='+ this.queryAction +'&type='+ this.queryType +'&query='+ this.query +'&refer=department&depid='+ this.userDepartment +'&subject_fields=id,name,code,units,section&section_fields=name').then(res => {
                     this.subjects = res.data;
                 }).then(() => {
                     this.isErrorConnect = true;
@@ -87,9 +87,9 @@
 <style scoped>
     ._c { background-color: #fff; box-shadow:  0 1px 1px rgba(0,0,0,0.24); }
     .find { display: grid; grid-template-columns: auto 60px; }
-    .find input { display: block; height: 30px; color: #391e22; padding: 5px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-radius: 5px 0 0 0; }
+    .find input { display: block; height: 30px; color: #111; padding: 5px 10px; border: none; background-color: #fefefe; font-size: 11px; outline: none; border-bottom: 1px solid #c0c0ba; border-left: 1px solid #c0c0ba; border-top: 1px solid #c0c0ba; margin-left: -1px;  height: 28px; }
     .find input::placeholder { color: #202020; }
-    .find button { display: block; height: 30px; color: #391e22; padding: 4px 8px 4px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border-radius: 0 5px 0 0; }
+    .find button { display: block; height: 30px; color: #fff; padding: 4px 8px 4px 2px; border: none; border-left: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background-color: #fafafa; font-size: 11px; outline: none; cursor: pointer; border: 1px solid #555753; background-color: #555753; height: 28px; }
     .find button svg { width: 12px; height: 12px; float: right; }
 
     .rslt {  position: relative; }

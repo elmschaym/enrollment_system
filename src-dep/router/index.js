@@ -13,7 +13,12 @@ Vue.use(VueRouter);
 
 const routes = [
 	{ path: '/', component: LoadIndex, name: 'load-view' },
-
+	{ path: '/dbd', component: MainView,
+		children: [
+			{ path: 'index', component: () => import('../views/DashBoard.vue'), name: 'dbd-index' }
+		]
+	},
+	
 	{ path: '/usr', component: InitView,
 		children: [
 			{ path: 'signin', component: () => import('../views/usr/SignIn.vue'), name: 'usr-signin' },

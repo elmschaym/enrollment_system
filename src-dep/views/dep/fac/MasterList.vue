@@ -83,15 +83,15 @@
 				queryString: '',
 				queryAction: 'lister',
 				paging: { limit: 14, start: 0 },
-				userDepartment: 0,
-				selectId: 0
+				selectId: 0,
+				departmentId: 0
 			}
 		},
 		methods: {
 			fetchFaculties() {
 				this.isErrorConnect = false;
 				this.isFetching = true;
-				this.$http.get('faculty/?action='+ this.queryAction +'&query='+ this.queryString +'&faculty_fields=id,first_name,last_name,gender,position,date_hired,is_active,is_staff&facultyf_department='+ this.userDepartment).then( res => {
+				this.$http.get('faculty/?action='+ this.queryAction +'&query='+ this.queryString +'&depid='+ this.departmentId +'&faculty_fields=id,first_name,last_name,gender,position,date_hired,is_active,is_staff&facultyf_department='+ this.departmentId).then( res => {
 					let data = res.data;
 					this.faculties = data;
 				}).catch( () => {
@@ -138,7 +138,7 @@
 			this.$emit('setViewName', this.$route.name);
 			this.$store.commit('setModuleName', 'Department – Faculty List');
 			let d = this.$storageGet('user_info').department;
-			this.userDepartment = d.id;
+			this.departmentId = d.id;
 		},
 		mounted() {
 			this.fetchFaculties();

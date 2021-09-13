@@ -35,6 +35,10 @@
                             <div class="z">
                                 <span>Total Program Units: </span> <input type="text" v-model="course.total_units" maxlength="3" placeholder="0">
                             </div>
+                            <div class="z">
+                                <b @click="course.is_available = !course.is_available"><v-icon :name="course.is_available ? 'toggle-on' : 'toggle-off'"></v-icon></b> Is Offer For All
+                                <i>Should this course be offer for all student</i>
+                            </div>
                         </div>
                         <div class="y">
                             <fieldset style="padding-bottom: 30px">
@@ -78,6 +82,8 @@
 
     import 'vue-awesome/icons/square';
     import 'vue-awesome/icons/save';
+    import 'vue-awesome/icons/toggle-off';
+    import 'vue-awesome/icons/toggle-on';
 
     export default {
         emits: ['setViewName'],
@@ -105,7 +111,7 @@
                 acadPrograms: [],
                 acadProgramId: 0,
                 programTypeId: '',
-                course: { name: '', name_alias: '', total_units: 0 }
+                course: { name: '', name_alias: '', total_units: 0, is_available: true }
             }
         },
         computed: {
@@ -133,7 +139,7 @@
             modalClose(v) {
                 this.isModalShow = !v;
                 this.department = {};
-                this.course = { name: '', name_alias: '', total_units: 0 };
+                this.course = { name: '', name_alias: '', total_units: 0, is_available: true };
                 this.acadProgramId = 0;
                 this.programTypeId = '';
             },
@@ -144,7 +150,7 @@
             },
             goSaveCourse() {
                 this.isSavingForm = true;
-                this.$http.post('course/', { department: this.department.id, academic_program: this.acadProgramId, ...this.course, program_type: this.programTypeId }).then( res => {
+                this.$http.post('course/', { department: this.department.id, academic_program: this.acadProgramId, ...this.course, program_type: this.programTypeId }).then(res => {
                     this.isModalShow = true;
                 }).finally(() => {
                     this.isSavingForm = false;
@@ -171,8 +177,8 @@
 
     .p .a { padding: 8px 0; font-size: 12px; font-weight: 600; text-align: center; }
     .p .b { background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.24); padding: 24px 12px; position: relative; }
-    .p .b .f input { height: 24px; border: none; font-size: 12px; padding: 4px 0; border-bottom: 1px solid #b0b0aa; color: #222; }
-    .p .b .f input::placeholder { color: #777; font-size: 11px; }
+    .p .b .f input[text] { height: 24px; border: none; font-size: 12px; padding: 4px 0; border-bottom: 1px solid #b0b0aa; color: #222; }
+    .p .b .f input[text]::placeholder { color: #777; font-size: 11px; }
     .p .b .f.g button { height: 24px; border: none; font-size: 11px; padding: 4px 0; border-bottom: 1px solid #b0b0aa; color: #222; display: block; width: 80%; cursor: default; background-color: #fff }
     .p .b .f.g label { display: block; font-size: 11px; padding: 4px 0; color: #444; }
     .p .b .f.g { display: grid; grid-template-columns: 40px auto 140px }
@@ -189,8 +195,11 @@
     .p .b .f.h fieldset .list .l i { font-style: normal; position: absolute; top: 8px; right: 8px; font-size: 10px; color: #222; }
     .p .b .f.h fieldset .list .l:hover, .p .b .f.h fieldset .list .l.active { background-color: #f0f0ea; color: #222; }
 
-    .p .b .f.h .x .z { padding: 20px 0; }
+    .p .b .f.h .x .z { padding: 20px 0 0 0; }
     .p .b .f.h .x .z span { height: 24px; padding: 5px 0; font-size: 11px; color: #444; margin-right: 10px; display: inline-block; }
+    .p .b .f.h .x .z i { display: block; font-size: 11px; padding: 2px 0; }
+    .p .b .f.h .x .z b { display: inline-block; padding: 4px; }
+    .p .b .f.h .x .z b svg { width: 16px; height: 14px; margin-bottom: -2px; color: #202020; }
 
     .p .b .butt { position: absolute; bottom: 24px; right: 12px; width: 300px; }
     .p .b .butt button { height: 32px; display: block; border: none; width: 100%; font-size: 11px; background-color: #fbfbf7; color: #909090; cursor: default; }

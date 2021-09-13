@@ -77,6 +77,10 @@
 		"excludes": [
 			"node_modules/*",
 			"src/**/*",
+			"src-adm/**/*",
+			"src-ins/**/*",
+			"src-dep/**/*",
+			"src-cas/**/*",
 			"public/**/*",
 			"dist/*",
 			".eslintrc",
@@ -87,7 +91,7 @@
 		]
 	},
 	"window": {
-		"title": "system_enr",
+		"title": "system",
 		"toolbar": true,
 		"frame": false,
 		"fullscreen": false,

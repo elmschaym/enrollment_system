@@ -69,15 +69,15 @@
 								<legend>Father's Details</legend>
 								<div style="display: grid; grid-template-columns: auto 100px">
 									<div style="padding-right: 10px">
-										<input style="width: 100%" v-model="studentx.father_firstname" placeholder="First Name" maxlength="32" />
+										<input style="width: 100%" v-model="studentx.father_fname" placeholder="First Name" maxlength="32" />
 									</div>
 									<div>
-										<input style="width: 100%" v-model="studentx.father_middlename" placeholder="Middle Name"  maxlength="32" />
+										<input style="width: 100%" v-model="studentx.father_mname" placeholder="Middle Name"  maxlength="32" />
 									</div>
 								</div>
 								<div style="display: grid; grid-template-columns: 120px auto">
 									<div style="padding-right: 10px">
-										<input style="width: 100%" v-model="studentx.father_lastname" placeholder="Last Name" maxlength="32" />
+										<input style="width: 100%" v-model="studentx.father_lname" placeholder="Last Name" maxlength="32" />
 									</div>
 									<div>
 										<input style="width: 100%" v-model="studentx.father_occupation" placeholder="Occupation" maxlength="32" />
@@ -88,15 +88,15 @@
 								<legend>Mother's Details</legend>
 								<div style="display: grid; grid-template-columns: auto 100px">
 									<div style="padding-right: 10px">
-										<input style="width: 100%" v-model="studentx.mother_firstname" placeholder="First Name" maxlength="32" />
+										<input style="width: 100%" v-model="studentx.mother_fname" placeholder="First Name" maxlength="32" />
 									</div>
 									<div>
-										<input style="width: 100%" v-model="studentx.mother_middlename" placeholder="Middle Name" maxlength="32" />
+										<input style="width: 100%" v-model="studentx.mother_mname" placeholder="Middle Name" maxlength="32" />
 									</div>
 								</div>
 								<div style="display: grid; grid-template-columns: 120px auto">
 									<div style="padding-right: 10px">
-										<input style="width: 100%" v-model="studentx.mother_lastname" placeholder="Last Name" maxlength="32" />
+										<input style="width: 100%" v-model="studentx.mother_lname" placeholder="Last Name" maxlength="32" />
 									</div>
 									<div>
 										<input style="width: 100%" v-model="studentx.mother_occupation" placeholder="Occupation" maxlength="32" />
@@ -203,7 +203,7 @@
 				isGenSIDError: false,
 				isSubmitError: false,
 				student: { school_id: '', firstname: '', middlename: '', lastname: '', gender: '', religion: '', civil_status: '', birthdate: '', home_address: '', campus_address: ''},
-				studentx: { mother_occupation: '', mother_lastname: '', mother_middlename: '', mother_firstname: '', father_occupation: '', father_lastname: '', father_middlename: '', father_firstname: '', telephone_number: '', mobile_number: '', email_address: '' },
+				studentx: { mother_occupation: '', mother_lname: '', mother_mname: '', mother_fname: '', father_occupation: '', father_lname: '', father_mname: '', father_fname: '', telephone_number: '', mobile_number: '', email_address: '' },
 				cameraCapturedImage: null,
 				camera: null,
 				deviceId: null,

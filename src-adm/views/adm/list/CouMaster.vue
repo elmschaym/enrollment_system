@@ -163,7 +163,7 @@
 	.wrap-m .w .p { height: 100%; padding: 16px; }
 	.wrap-m .w .q { height: 100%; border-left: 1px solid #f0f0f0; background: #f8f8f2; }
 
-	.list-o { background-color: #fff; font-size: 12px; }
+	.list-o { background-color: #fff; font-size: 12px; border: 1px solid #e0e0da; }
 	.list-o .data .tbl { position: relative;  }
 	.list-o .data .tbl .thd, .list-o .data .tbl .ttr { display: grid; grid-template-columns: 50px auto 200px 180px 70px }
 	.list-o .data .tbl .tbd { height: 470px; overflow: hidden; position: relative; border-top: 1px solid #f0f0ea; border-bottom: 1px solid #f0f0ea; }
@@ -171,7 +171,7 @@
 	.list-o .data .tbl .tbd::-webkit-scrollbar-track { background: #f6f6f0; }
 	.list-o .data .tbl .tbd::-webkit-scrollbar-thumb { background-color: #d7d7d0; border-radius: 3px; }
 
-	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: transparent; }
+	.list-o .data .tbl .tth { padding: 7px 10px; color: #202020; text-align: left; font-size: 11px; background-color: transparent; font-weight: 600; }
 	.list-o .data .tbl .ttd { padding: 10px 10px 10px 10px; height: 30px; font-size: 11px; text-overflow: clip; overflow: hidden; white-space: nowrap; }
 	.list-o .data .tbl .tbd .ttr { border-bottom: 1px solid #fbfbf7; cursor: pointer; }
 	.list-o .data .tbl .tbd .ttr:hover, .list-o .data .tbl .tbd .ttr.active { background-color: #f6f6f0; }

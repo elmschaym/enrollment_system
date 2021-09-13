@@ -49,11 +49,9 @@
                 <div class="cate-o">
                     <div class="link">
                         <ul>
-                            <li @click="goName('adm-view-stu-index')" :class="viewName == 'stu-view-index' || viewName == 'stu-view-index'? 'active' : ''"><div>Admissions</div></li>
-                            <li @click="goName('adm-view-stu-enrol')" :class="viewName == 'stu-view-enrol' ? 'active' : ''"><div>Enrolments</div></li>
-                            <li @click="goName('adm-view-stu-infos')" :class="viewName == 'stu-view-infos' ? 'active' : ''"><div>Background</div></li>
-                            <li @click="goName('adm-view-stu-previ')" :class="viewName == 'stu-view-previ' ? 'active' : ''"><div>Previleges</div></li>
-                            <li @click="goName('adm-view-stu-organ')" :class="viewName == 'stu-view-organ' ? 'active' : ''"><div>Organizations</div></li>
+                            <li @click="goName('adm-view-student-index')" :class="viewName == 'adm-view-student-index' || viewName == 'adm-view-student-index'? 'active' : ''"><div>Admissions</div></li>
+                            <li @click="goName('adm-view-student-enrol')" :class="viewName == 'adm-view-student-enrol' ? 'active' : ''"><div>Enrolments</div></li>
+                            <li @click="goName('adm-view-student-infos')" :class="viewName == 'adm-view-student-infos' ? 'active' : ''"><div>Background</div></li>
                         </ul>
                     </div>
                     <div class="make">

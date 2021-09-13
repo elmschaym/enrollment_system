@@ -35,7 +35,7 @@
 								</div>
 							</div>
 							<div class="subm">
-								<button :disabled="!isFormOkay" @click="saveRequisites()" :class="['br-confirm', isFormOkay ? 'okay' : '']">Commit Changes</button>
+								<button :disabled="!isFormOkay" @click="saveRequisites()" :class="isFormOkay ? 'okay' : ''">Commit Changes</button>
 							</div>
 						</div>
 						<div class="y">
@@ -196,7 +196,7 @@
 	.q .w .h .name .m { font-size: 11px;  }
 	.q .w .h .butt { padding: 8px 0; }
 	.q .w .h .butt button { width: 100%; border-radius: 2px; color: #808080; padding: 3px 8px 2px 8px; border: none; background-color: #f0f0ea; font-size: 11px; outline: none; cursor: pointer; color: #000; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
-	.q .w .h .butt button.okay { background-color: #fff }
+	.q .w .h .butt button.okay { background-color: #555753; color: #fff; }
 
 	.q .w .g { background-color: #fff; position: relative; }
 	.q .w .g .u { height: 100%; display: grid; grid-template-columns: auto 50%; }
@@ -214,7 +214,7 @@
 
 	.x .subm { background-color: #fff; border-top: 1px solid #f8f8f2; padding: 14px 0; text-align: center;  }
 	.x .subm button { height: 22px; border: none; font-size: 11px; }
-	.x .subm button.okay { border: 1px solid #e0e0d0; color: #000; background-color: #fff }
+	.x .subm button.okay { border: 1px solid #e0e0d0; color: #fff; background-color: #555753 !important }
 
 	.u .y .data { display: grid; grid-template-columns: 90px auto; padding: 20px; }
 	.y .list { height: 100%; margin-top: 20px; overflow-y: scroll; max-height: 350px; margin-bottom: 20px; }
