@@ -66,8 +66,16 @@
 						</div>
 						<div class="c" style="padding-left: 8px">
 							<fieldset style="height: 120px; display: block; margin-bottom: 10px;">
+								<legend>School Logo</legend>
+								<img v-if="school.logo64" :src="school.logo64" style="max-width: 96px; max-height: 96px; border: 1px outset #f0f0ea;"/>
+								<span v-if="school.logo64" @click="school.logo64 = ''" style="display: block; width: 96px; border: 1px solid #909090; font-size: 10px; text-transform: uppercase; margin-left: 15px; margin-top: 4px; text-align: center;">Clear</span>
 							</fieldset>
-							<fieldset style="height: 200px; display: block">
+							<fieldset style="display: block">
+								<div>
+									<input type="file" style="width: 100%" @change="setLogo" placeholder="Logo" accept="image/*"/>
+								</div>
+								<div>
+								</div>
 							</fieldset>
 						</div>
 					</div>
@@ -115,8 +123,10 @@
 				isGenSIDError: false,
 				isSubmitOkay: false,
 				isFetchingList: false,
-				school: { address: '', tel_no: '',  email: '', checked_by: '', prepared_by: '', registrar_oic: '' },
-				schoolx: { fax_no: '', website: '' }
+				school: { address: '', tel_no: '',  email: '', checked_by: '', prepared_by: '', registrar_oic: '', logo64: '' },
+				schoolx: { fax_no: '', website: '' },
+				logo: null,
+				logo64: ""
 			}
 		},
 		computed: {
@@ -140,6 +150,14 @@
 					this.schoolx.fax_no = info.fax_no;
 					this.schoolx.website = info.website;
 				}
+			},
+			setLogo(e) {
+				this.logo = e.target.files[0];
+				let reader = new FileReader(), vm = this;
+				reader.onload = function(event) {
+					vm.school.logo64 = event.target.result;
+				}
+				reader.readAsDataURL(this.logo);
 			},
 			modalAClose(v) {
 				this.isGenSIDError = false;

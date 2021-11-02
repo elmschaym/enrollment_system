@@ -10,8 +10,8 @@
 		</div>
 		<div class="form">
 			<div class="x">
-				<span @click="winMinimize()"><v-icon name="window-minimize"></v-icon></span>
-				<span @click="winClose()" tooltip="close"><v-icon name="times"></v-icon></span>
+				<span @click="winMinimize()" tooltip="minimize"><b>-</b></span>
+				<span @click="winClose()" tooltip="close"><b>&times;</b></span>
 			</div>
 			<div v-if="!isConnecting" class="w">
 				<div class="h">
@@ -144,6 +144,7 @@
 			window.nwWin.zoomLevel = 0;
 			window.nwWin.setMinimumSize(1000, 660);
 			window.nwWin.setPosition('center');
+			window.nwWin.transparent = false;
 			let token = this.$storageGet('api_token', 'local') || "", user = this.$storageGet('user_info', 'local') || {};
 			if (token != "" && user.hasOwnProperty('system_app_role') && user.system_app_role == 'DEP') {
 				window.nwWin.hide();
@@ -166,10 +167,10 @@
 	.bnnr { position: relative; height: 100%; background: linear-gradient(to right bottom, #fff, #fff); border-radius: 0 0 660px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); -webkit-app-region: drag; overflow: hidden; user-select: none; }
 	.form { position: relative; height: 100%; background: transparent; }
 
-	.form .x { position: absolute; top: 4px; right: 4px; display: grid; grid-template-columns: 24px 24px; }
-	.form .x span { display: block; width: 24px; height: 24px; cursor: pointer; padding: 5px 5px; color: #555; }
-	.form .x span svg { width: 10px; height: 10px; }
-	.form .x span:hover { color: #000; }
+	.form .x { position: absolute; top: 4px; right: 4px; display: grid; grid-template-columns: 28px 28px; }
+	.form .x span { display: block; width: 24px; height: 24px; cursor: pointer; padding: 2px 5px; color: #555; }
+	.form .x span b { display: block; width: 14px; height: 14px; border-radius: 8px; background-color: #555; font-weight: normal; font-size: 14px; text-align: center; }
+	.form .x span:hover b { color: #fff; }
 
 	.form .w { position: absolute; top: calc((100% - 230px)/2); height: 266px; width: 260px; right: 48px; background: linear-gradient(to left bottom, #272537, #575567); padding: 20px 32px 16px 32px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24); }
 	.form .w .h { padding: 8px 0 20px 0;  }

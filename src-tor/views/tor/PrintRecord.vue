@@ -94,6 +94,7 @@
 				isSavingPrint: false,
 				isConnectError: false,
 				isNoDetails: false,
+				isSavingForm: false,
 				departments: [],
 				student: {},
 				subjGrades: [],

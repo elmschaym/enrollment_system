@@ -3,11 +3,11 @@
 		<div class="logo">
 			<img :src="appLogo"/>
 		</div>
-		<div class="stat" v-if="isLoading">
-			<span><b></b></span>
+		<div class="stat">
+			<span  v-if="isLoading"><b></b></span>
 		</div>
 		<div class="name">
-			<span>EES v1.7.1-beta</span>
+			<span>EES DEP v1.7.1-beta</span>
 		</div>
 	</div>
 </template>
@@ -62,14 +62,14 @@
 </script>
 
 <style scoped>
-.__w { background-color: #fff; width: 300px; height: 300px; overflow: hidden; display: grid; grid-template-rows: 236px 32px 32px }
+.__w { background-color: #fff; width: 300px; height: 300px; overflow: hidden; display: grid; grid-template-rows: 236px 32px 32px; }
 
 .logo {}
-.logo img { width: 200px; height: 200px; display: block; margin: 20px auto 0 auto; }
+.logo img { width: 200px; height: 200px; display: block; margin: 36px auto 0 auto; }
 .name { text-align: right; padding: 5px 12px; }
 .name span { font-size: 12px; font-weight: 100; color: #111; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-.stat {}
+.stat { }
 .stat span {  display: block;  margin: 0 auto; position: relative; background-color: #f8f8f0; height: 2px; width: 120px; overflow-x: hidden; }
-.stat span b { background-color: #707070; height: 2px; top: 0;  width: 64px; display: block; position: absolute; -webkit-animation-name: loaderer;  -webkit-animation-duration: 2000ms;  -webkit-animation-iteration-count: infinite;  -webkit-animation-direction: alternate; }
-@-webkit-keyframes loaderer { from { left: 100% } to { left: -64px; } }
+.stat span b { background-color: #707070; height: 2px; top: 0;  width: 64px; display: block; position: absolute; animation-name: loaderer;  animation-duration: 2000ms;  animation-iteration-count: infinite;  animation-direction: alternate; }
+@keyframes loaderer { from { left: 100% } to { left: -64px; } }
 </style>

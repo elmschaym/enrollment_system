@@ -7,7 +7,7 @@
 			<span><b></b></span>
 		</div>
 		<div class="name">
-			<span>EES v1.6.5-beta</span>
+			<span>EES REG v1.6.6-beta</span>
 		</div>
 	</div>
 </template>

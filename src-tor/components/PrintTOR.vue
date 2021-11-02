@@ -20,7 +20,7 @@
 						</p>
 					</div>
 					<div style="text-align: right;">
-						<v-icon name="circle"></v-icon>
+						<img :src="sch.logo64" style="max-width: 96px; max-height: 96px;" alt="seal"/>
 					</div>
 				</div>
 				<div class="c">
@@ -216,7 +216,7 @@
 						</p>
 					</div>
 					<div style="text-align: right;">
-						<v-icon name="circle"></v-icon>
+						<img :src="sch.logo64" style="max-width: 96px; max-height: 96px;" alt="seal"/>
 					</div>
 				</div>
 				<div class="c">
@@ -321,7 +321,7 @@
 							</p>
 						</div>
 						<div style="text-align: right;">
-							<v-icon name="circle"></v-icon>
+							<img :src="sch.logo64" style="max-width: 96px; max-height: 96px;" alt="seal"/>
 						</div>
 					</div>
 					<div class="c">

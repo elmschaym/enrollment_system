@@ -19,5 +19,5 @@
 
 
 <style scoped>
-	._wrp-app { height: 100%; background-color: rgba(0,0,0,0); pointer-events: auto; }
+	._wrp-app { height: 100%; background-color: rgba(0,0,0,0); pointer-events: auto; border-radius: 5px; }
 </style>

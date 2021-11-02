@@ -7,7 +7,7 @@
 			<span><b></b></span>
 		</div>
 		<div class="name">
-			<span>EES v1.0.0-beta</span>
+			<span>EES TOR v1.0.0-beta</span>
 		</div>
 	</div>
 </template>

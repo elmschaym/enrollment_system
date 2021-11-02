@@ -115,16 +115,16 @@
 	._cmp_tbr { display: grid; grid-template-columns: 82px 160px auto 160px 82px; width: 100vw; background: linear-gradient(to bottom, #f8f8f8, #ebebeb); height: 28px; }
 	.name { padding: 8px 6px; -webkit-app-region: drag; font-size: 12x; font-weight: 600; text-align: center }
 	.name span { font-size: 11px; color: #40403a; font-weight: bold; line-height: 12px; }
-	.wind { padding: 4px 5px; display: grid; grid-template-columns: 20px 20px 20px; }
-	.wind span { display: block; width: 20px; height: 20px; cursor: pointer; padding: 5px 5px; color: #555; }
-	.wind span b { display: block; width: 10px; height: 10px; border-radius: 5px; background-color: #707070; font-weight: normal; font-size: 10px; text-align: center; }
+	.wind { padding: 4px 5px; display: grid; grid-template-columns: 28px 28px 28px; }
+	.wind span { display: block; width: 24px; height: 24px; cursor: pointer; padding: 3px 5px; color: #555; }
+	.wind span b { display: block; width: 14px; height: 14px; border-radius: 8px; background-color: #555; font-weight: normal; font-size: 14px; text-align: center; }
 	.wind span:hover b { color: #fff; }
 
 	.menu { display: grid; grid-template-columns: auto 34px; padding-right: 4px; }
 	.menu .c { position: relative; }
 	.menu .c .n { margin: 2px 4px; color: #222; padding: 4px 5px; background: #fdfdf9; border: 1px solid #f0f0ea; border-radius: 2px; text-align: center; cursor: pointer; }
 	.menu .c .n svg { width: 10px; height: 10px; }
-	.menu .c .m { position: absolute; top: 100%; right: 10px; width: 160px; height: auto; background-color: #fff; z-index: 9999; box-shadow: 0 4px 9px rgba(0,0,0,0.24); z-index: 9999; }
+	.menu .c .m { position: absolute; top: 100%; right: 10px; width: 160px; height: auto; background-color: #fff; z-index: 10001; box-shadow: 0 4px 9px rgba(0,0,0,0.24); z-index: 9999; }
 	.menu .c .m .u { display: grid; grid-template-columns: 32px auto; margin: 0 10px; border-bottom: 1px solid #ebebe7; padding: 20px 0; }
 	.menu .c .m .u .p {}
 	.menu .c .m .u .p span { display: block; height: 28px; width: 28px; background-color: #60605a; }
